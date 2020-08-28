@@ -1,0 +1,17 @@
+﻿*.suo
+*.snk
+/.vs
+*/bin
+*/obj
+*.exe
+*.log
+*.pdb
+*.db
+*.swp
+*.DotSettings.user
+/packages
+/Test/Capture_img
+/Test/Config.ini
+/Test/bs1770gain**
+/Test/dll/CSharpTest.Net.Collections.*
+/Test/dll/SlimDX.*
