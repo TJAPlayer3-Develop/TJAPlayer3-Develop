@@ -9,8 +9,8 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TJAPlayer3</RootNamespace>
-    <AssemblyName>TJAPlayer3</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <AssemblyName>TJAPlayer3-Develop</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>Resources\TJAPlayer3.ico</ApplicationIcon>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -51,6 +51,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <Optimize>false</Optimize>
     <LangVersion>7.3</LangVersion>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>..\Test\</OutputPath>
@@ -63,6 +64,7 @@
     <NoWarn>0219</NoWarn>
     <UseVSHostingProcess>true</UseVSHostingProcess>
     <LangVersion>7.3</LangVersion>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -329,7 +331,7 @@ move /y "$(TargetDir)SlimDX.dll" "$(SolutionDir)Test\dll\"
 move /y "$(TargetDir)CSharpTest.Net.Collections.*" "$(SolutionDir)Test\dll\"
 copy /y "$(SolutionDir)Readme.txt" "$(SolutionDir)Test\"
 call "$(DevEnvDir)..\Tools\VsDevCmd.bat"
-"editbin.exe" /LARGEADDRESSAWARE "$(SolutionDir)Test\TJAPlayer3.exe"</PostBuildEvent>
+"editbin.exe" /LARGEADDRESSAWARE "$(SolutionDir)Test\TJAPlayer3-Develop.exe"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="packages\SharpDX.2.6.3\build\SharpDX.targets" Condition="Exists('packages\SharpDX.2.6.3\build\SharpDX.targets')" />
 </Project>

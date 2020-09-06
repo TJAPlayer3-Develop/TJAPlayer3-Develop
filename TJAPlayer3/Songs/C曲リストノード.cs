@@ -56,7 +56,8 @@ namespace TJAPlayer3
         public bool bBranch = false;
         public int[] nLevel = new int[(int)Difficulty.Total]{ 0, 0, 0, 0, 0, 0, 0 };
         public Eジャンル eジャンル = Eジャンル.None;
-		
+		public int Openindex;
+
 		// コンストラクタ
 
 		public C曲リストノード()

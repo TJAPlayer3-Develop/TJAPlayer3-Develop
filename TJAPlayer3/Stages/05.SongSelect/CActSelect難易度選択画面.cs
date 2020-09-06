@@ -286,7 +286,7 @@ namespace TJAPlayer3
                 else if ( ( TJAPlayer3.Pad.b押されたDGB( Eパッド.Decide ) ||
 						( ( TJAPlayer3.ConfigIni.bEnterがキー割り当てのどこにも使用されていない && TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.Return ) ) ) ) )
                 {
-                    TJAPlayer3.stage選曲.actPresound.tサウンド停止();
+                    TJAPlayer3.stage選曲.actPresound.tサウンドの停止MT();
                     switch( TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 )
                     {
                         case C曲リストノード.Eノード種別.SCORE:

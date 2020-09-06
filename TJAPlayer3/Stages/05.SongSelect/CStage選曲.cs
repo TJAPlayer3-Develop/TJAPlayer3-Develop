@@ -171,7 +171,9 @@ namespace TJAPlayer3
 			Trace.Indent();
 			try
 			{
-                this.eフェードアウト完了時の戻り値 = E戻り値.継続;
+				TJAPlayer3.Skin.bgm選曲画面In.t再生する();
+				TJAPlayer3.Skin.soundSongSelectChara.t再生する();
+				this.eフェードアウト完了時の戻り値 = E戻り値.継続;
 				this.bBGM再生済み = false;
 				this.ftフォント = new Font("MS UI Gothic", 26f, GraphicsUnit.Pixel );
 				for( int i = 0; i < 4; i++ )
@@ -311,24 +313,10 @@ namespace TJAPlayer3
                     }
                 }
 
-
-				//this.actPreimageパネル.On進行描画();
-			//	this.bIsEnumeratingSongs = !this.actPreimageパネル.bIsPlayingPremovie;				// #27060 2011.3.2 yyagi: #PREMOVIE再生中は曲検索を中断する
-
 				this.act曲リスト.On進行描画();
 				int y = 0;
-				if( this.ct登場時アニメ用共通.b進行中 )
-				{
-					double db登場割合 = ( (double) this.ct登場時アニメ用共通.n現在の値 ) / 100.0;	// 100が最終値
-					double dbY表示割合 = Math.Sin( Math.PI / 2 * db登場割合 );
-					y = ( (int) (TJAPlayer3.Tx.SongSelect_Header.sz画像サイズ.Height * dbY表示割合 ) ) - TJAPlayer3.Tx.SongSelect_Header.sz画像サイズ.Height;
-				}
-				if( TJAPlayer3.Tx.SongSelect_Header != null )
-                    TJAPlayer3.Tx.SongSelect_Header.t2D描画( TJAPlayer3.app.Device, 0, 0 );
 
 				this.actInformation.On進行描画();
-				if( TJAPlayer3.Tx.SongSelect_Footer != null )
-                    TJAPlayer3.Tx.SongSelect_Footer.t2D描画( TJAPlayer3.app.Device, 0, 720 - TJAPlayer3.Tx.SongSelect_Footer.sz画像サイズ.Height );
 
                 #region ネームプレート
                 for (int i = 0; i < TJAPlayer3.ConfigIni.nPlayerCount; i++)
@@ -364,29 +352,18 @@ namespace TJAPlayer3
                     TJAPlayer3.act文字コンソール.tPrint(0, 32, C文字コンソール.Eフォント種別.赤, "HBSCROLL : ON");
                 #endregion
 
-                //this.actステータスパネル.On進行描画();
-
                 this.actPresound.On進行描画();
-				//if( this.txコメントバー != null )
-				{
-					//this.txコメントバー.t2D描画( CDTXMania.app.Device, 484, 314 );
-				}
-				//this.actArtistComment.On進行描画();
+
                 this.act演奏履歴パネル.On進行描画();
-				//this.actオプションパネル.On進行描画();
+
 				this.actShowCurrentPosition.On進行描画();								// #27648 2011.3.28 yyagi
 
-                //CDTXMania.act文字コンソール.tPrint( 0, 0, C文字コンソール.Eフォント種別.白, this.n現在選択中の曲の難易度.ToString() );
-                TJAPlayer3.Tx.SongSelect_Difficulty.t2D描画( TJAPlayer3.app.Device, 980, 30, new Rectangle( 0, 70 * this.n現在選択中の曲の難易度, 260, 70 ) );
-
-				if( !this.bBGM再生済み && ( base.eフェーズID == CStage.Eフェーズ.共通_通常状態 ) )
+				if( !this.bBGM再生済み && (base.eフェーズID == CStage.Eフェーズ.共通_通常状態) && !TJAPlayer3.Skin.bgm選曲画面In.b再生中)
 				{
 					TJAPlayer3.Skin.bgm選曲画面.t再生する();
 					this.bBGM再生済み = true;
 				}
 
-
-//Debug.WriteLine( "パンくず=" + this.r現在選択中の曲.strBreadcrumbs );
                 if( this.ctDiffSelect移動待ち != null )
                     this.ctDiffSelect移動待ち.t進行();
 
@@ -398,7 +375,7 @@ namespace TJAPlayer3
 					if (  actQuickConfig.bGotoDetailConfig )
 					{	// 詳細CONFIG呼び出し
 						actQuickConfig.tDeativatePopupMenu();
-						this.actPresound.tサウンド停止();
+						this.actPresound.tサウンドの停止MT();
 						this.eフェードアウト完了時の戻り値 = E戻り値.コンフィグ呼び出し;	// #24525 2011.3.16 yyagi: [SHIFT]-[F1]でCONFIG呼び出し
 						this.actFIFO.tフェードアウト開始();
 						base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
@@ -422,14 +399,14 @@ namespace TJAPlayer3
                             {
                                 TJAPlayer3.Skin.sound取消音.t再生する();
                                 bool bNeedChangeSkin = this.act曲リスト.tBOXを出る();
-                                this.actPresound.tサウンド停止();
+                                this.actPresound.tサウンドの停止MT();
                             }
                         #endregion
                         #region [ Shift-F1: CONFIG画面 ]
                         if ( ( TJAPlayer3.Input管理.Keyboard.bキーが押されている( (int) SlimDX.DirectInput.Key.RightShift ) || TJAPlayer3.Input管理.Keyboard.bキーが押されている( (int) SlimDX.DirectInput.Key.LeftShift ) ) &&
 							TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.F1 ) )
 						{	// [SHIFT] + [F1] CONFIG
-							this.actPresound.tサウンド停止();
+							this.actPresound.tサウンドの停止MT();
 							this.eフェードアウト完了時の戻り値 = E戻り値.コンフィグ呼び出し;	// #24525 2011.3.16 yyagi: [SHIFT]-[F1]でCONFIG呼び出し
 							this.actFIFO.tフェードアウト開始();
 							base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
@@ -566,7 +543,7 @@ namespace TJAPlayer3
 							#region [ Upstairs ]
 							if ( ( ( this.act曲リスト.r現在選択中の曲 != null ) && ( this.act曲リスト.r現在選択中の曲.r親ノード != null ) ) && ( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.FT ) || TJAPlayer3.Pad.b押されたGB( Eパッド.Cancel ) ) )
 							{
-								this.actPresound.tサウンド停止();
+								this.actPresound.tサウンドの停止MT();
 								TJAPlayer3.Skin.sound取消音.t再生する();
 								this.act曲リスト.tBOXを出る();
 								this.t選択曲変更通知();
@@ -759,19 +736,13 @@ namespace TJAPlayer3
 		private CActSelectQuickConfig actQuickConfig;
 
                 private int nGenreBack;
-		private bool bBGM再生済み;
+		public bool bBGM再生済み;
 		private STキー反復用カウンタ ctキー反復用;
 		public CCounter ct登場時アニメ用共通;
 		private CCounter ct背景スクロール用タイマー;
 		private E戻り値 eフェードアウト完了時の戻り値;
 		private Font ftフォント;
-		//private CTexture tx下部パネル;
-		//private CTexture tx上部パネル;
-		//private CTexture tx背景;
-  //      private CTexture[] txジャンル別背景 = new CTexture[9];
-  //      private CTexture[] tx難易度別背景 = new CTexture[5];
-  //      private CTexture tx難易度名;
-  //      private CTexture tx下部テキスト;
+
         private CCounter ctDiffSelect移動待ち;
 
 		private struct STCommandTime		// #24063 2011.1.16 yyagi コマンド入力時刻の記録用
@@ -1016,12 +987,12 @@ namespace TJAPlayer3
         {
             int nGenre = 8;
             switch( strジャンル )
-            {
-                case "アニメ":
+			{
+				case "ポップス":
+					nGenre = 1;
+					break;
+				case "アニメ":
                     nGenre = 2;
-                    break;
-                case "J-POP":
-                    nGenre = 1;
                     break;
                 case "ゲームミュージック":
                     nGenre = 3;
@@ -1032,15 +1003,12 @@ namespace TJAPlayer3
                 case "クラシック":
                     nGenre = 5;
                     break;
-                case "どうよう":
-                    nGenre = 7;
-                    break;
-                case "バラエティ":
+                case "キッズ":
                     nGenre = 6;
                     break;
                 case "ボーカロイド":
                 case "VOCALOID":
-                    nGenre = 8;
+                    nGenre = 7;
                     break;
                 default:
                     nGenre = 0;
