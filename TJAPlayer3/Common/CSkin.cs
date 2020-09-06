@@ -2565,24 +2565,24 @@ namespace TJAPlayer3
         public int[] Game_Score_Size = new int[] { 24, 40 };
         #endregion
         #region Taiko
-        public int[] Game_Taiko_NamePlate_X = new int[] { 0, 0 };
-        public int[] Game_Taiko_NamePlate_Y = new int[] { 288, 368 };
+        public int[] Game_Taiko_NamePlate_X = new int[] { -27, -27 };
+        public int[] Game_Taiko_NamePlate_Y = new int[] { 286, 366 };
         public int[] Game_Taiko_PlayerNumber_X = new int[] { 4, 4 };
         public int[] Game_Taiko_PlayerNumber_Y = new int[] { 233, 435 };
         public int[] Game_Taiko_X = new int[] { 190, 190 };
-        public int[] Game_Taiko_Y = new int[] { 190, 366 };
-        public int[] Game_Taiko_Combo_X = new int[] { 268, 268 };
+        public int[] Game_Taiko_Y = new int[] { 190, 368 };
+        public int[] Game_Taiko_Combo_X = new int[] { 267, 267 };
         public int[] Game_Taiko_Combo_Y = new int[] { 270, 448 };
         public int[] Game_Taiko_Combo_Ex_X = new int[] { 268, 268 };
         public int[] Game_Taiko_Combo_Ex_Y = new int[] { 270, 448 };
         public int[] Game_Taiko_Combo_Ex4_X = new int[] { 268, 268 };
         public int[] Game_Taiko_Combo_Ex4_Y = new int[] { 270, 448 };
-        public int[] Game_Taiko_Combo_Padding = new int[] { 28, 30, 24 };
-        public int[] Game_Taiko_Combo_Size = new int[] { 42, 48 };
-        public int[] Game_Taiko_Combo_Size_Ex = new int[] { 42, 56 };
+        public int[] Game_Taiko_Combo_Padding = new int[] { 34, 34, 24 };
+        public int[] Game_Taiko_Combo_Size = new int[] { 40, 48 };
+        public int[] Game_Taiko_Combo_Size_Ex = new int[] { 40, 48 };
         public float[] Game_Taiko_Combo_Scale = new float[] { 1.0f, 1.0f, 0.8f };
         public int[] Game_Taiko_Combo_Text_X = new int[] { 268, 268 };
-        public int[] Game_Taiko_Combo_Text_Y = new int[] { 295, 472 };
+        public int[] Game_Taiko_Combo_Text_Y = new int[] { 298, 475 };
         public int[] Game_Taiko_Combo_Text_Size = new int[] { 100, 50 };
         public bool Game_Taiko_Combo_Ex_IsJumping = true;
         #endregion
@@ -2631,7 +2631,7 @@ namespace TJAPlayer3
         public float[] Game_Effect_Roll_Speed_2P_X = new float[] { 0.6f };
         public float[] Game_Effect_Roll_Speed_2P_Y = new float[] { 0.6f };
         public int Game_Effect_Roll_Ptn;
-        public int[] Game_Effect_NotesFlash = new int[] { 180, 180, 12 }; // Width, Height, Ptn
+        public int[] Game_Effect_NotesFlash = new int[] { 180, 180, 11 }; // Width, Height, Ptn
         public int Game_Effect_NotesFlash_Timer = 20;
         public int[] Game_Effect_GoGoSplash = new int[] { 300, 400, 30 };
         public int[] Game_Effect_GoGoSplash_X = new int[] { 120, 300, 520, 760, 980, 1160 };

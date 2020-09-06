@@ -56,7 +56,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>..\Test\</OutputPath>
     <DefineConstants>TRACE;TEST_ENGLISH_ TEST_Direct3D9Ex_ _WindowedFullscreen</DefineConstants>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -204,7 +204,6 @@
     <Compile Include="Stages\07.Game\CStage演奏画面共通.cs" />
     <Compile Include="Stages\07.Game\C演奏判定ライン座標共通.cs" />
     <Compile Include="Stages\07.Game\Taiko\Dan_Cert.cs" />
-    <Compile Include="Stages\07.Game\Taiko\CAct演奏DrumsRunner.cs" />
     <Compile Include="Stages\07.Game\Taiko\CAct演奏DrumsFooter.cs" />
     <Compile Include="Stages\07.Game\Taiko\CAct演奏DrumsMob.cs" />
     <Compile Include="Stages\07.Game\Taiko\CAct演奏DrumsDanger.cs" />

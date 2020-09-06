@@ -405,7 +405,7 @@ namespace FDK
 
         public void t2D拡大率考慮上中心基準描画(Device device, int x, int y, Rectangle rc画像内の描画領域)
         {
-            this.t2D描画(device, x - ((rc画像内の描画領域.Width / 2)), y + (rc画像内の描画領域.Height * this.vc拡大縮小倍率.Y), 1f, rc画像内の描画領域);
+            this.t2D描画(device, x - (((rc画像内の描画領域.Width / 2) * this.vc拡大縮小倍率.X)), y, 1f, rc画像内の描画領域);
         }
 
         public void t2D拡大率考慮下中心基準描画(Device device, int x, int y, Rectangle rc画像内の描画領域)

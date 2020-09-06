@@ -60,7 +60,6 @@ namespace TJAPlayer3
             base.list子Activities.Add( this.actPauseMenu = new CAct演奏PauseMenu() );
             base.list子Activities.Add(this.actChipEffects = new CAct演奏Drumsチップエフェクト());
             base.list子Activities.Add(this.actFooter = new CAct演奏DrumsFooter());
-            base.list子Activities.Add(this.actRunner = new CAct演奏DrumsRunner());
             base.list子Activities.Add(this.actMob = new CAct演奏DrumsMob());
             base.list子Activities.Add(this.GoGoSplash = new GoGoSplash());
             base.list子Activities.Add(this.FlyingNotes = new FlyingNotes());
@@ -447,10 +446,6 @@ namespace TJAPlayer3
 
 				this.t進行描画_譜面スクロール速度();
 				this.t進行描画_チップアニメ();
-
-                if(TJAPlayer3.ConfigIni.ShowRunner)
-                    this.actRunner.On進行描画();
-
 
                 if (!TJAPlayer3.ConfigIni.bNoInfo)
                     this.t進行描画_パネル文字列();

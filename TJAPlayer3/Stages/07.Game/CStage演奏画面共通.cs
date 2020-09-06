@@ -610,7 +610,6 @@ namespace TJAPlayer3
         protected CAct演奏PauseMenu actPauseMenu;
         public CAct演奏Drumsチップエフェクト actChipEffects;
         public CAct演奏DrumsFooter actFooter;
-        public CAct演奏DrumsRunner actRunner;
         public CAct演奏DrumsMob actMob;
         public Dan_Cert actDan;
 		public bool bPAUSE;
@@ -1535,9 +1534,6 @@ namespace TJAPlayer3
             {
                 double dbUnit = (((60.0 / (TJAPlayer3.stage演奏ドラム画面.actPlayInfo.dbBPM))));
 
-                // ランナー(たたけたやつ)
-                this.actRunner.Start(nPlayer, false, pChip);
-
                 if ((int)actGauge.db現在のゲージ値[nPlayer] >= 100 && this.bIsAlreadyMaxed[nPlayer] == false)
                 {
                     if(TJAPlayer3.Skin.Game_Chara_Ptn_SoulIn != 0 && nPlayer == 0 && actChara.CharaAction_Balloon_Delay.b終了値に達した)
@@ -1567,8 +1563,6 @@ namespace TJAPlayer3
 
 			if ( eJudgeResult == E判定.Poor || eJudgeResult == E判定.Miss || eJudgeResult == E判定.Bad )
 			{
-                // ランナー(みすったやつ)
-                this.actRunner.Start(nPlayer, true, pChip);
                 //if (actGauge.db現在のゲージ値[nPlayer] < 80.0)
                 //{
                 //    CDTXMania.stage演奏ドラム画面.actBackground.tFadeOut(nPlayer);
