@@ -630,9 +630,12 @@ namespace TJAPlayer3
 			ctBoxOpen = new CCounter();
 			ctBoxClose = new CCounter();
 
-			pfBoxExplanation = new CPrivateFont(new FontFamily("ＤＦＰ勘亭流"), 15);
+			if (!string.IsNullOrEmpty(TJAPlayer3.ConfigIni.BoxFontName))
+				pfBoxExplanation = new CPrivateFont(new FontFamily(TJAPlayer3.ConfigIni.BoxFontName), 15);
+			else
+				pfBoxExplanation = new CPrivateFont(new FontFamily("MS UI Gothic"), 15);
 
-			for(int i = 0; i < 3; i++)
+			for (int i = 0; i < 3; i++)
 			{
 				using (var pfBE = pfBoxExplanation.DrawPrivateFont(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[i],
 					TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor,
@@ -909,7 +912,7 @@ namespace TJAPlayer3
 						{
 							TJAPlayer3.stage選曲.t選択曲変更通知();      // スクロール完了＝選択曲変更！
 							ctBarOpen.t開始(0, 161, 2, TJAPlayer3.Timer);
-							this.ctBoxExplanationOpacity.t開始(0, 210, 2, TJAPlayer3.Timer);
+							this.ctBoxExplanationOpacity.t開始(0, 211, 2, TJAPlayer3.Timer);
 						}
 
 						//-----------------
@@ -980,7 +983,7 @@ namespace TJAPlayer3
 						{
 							TJAPlayer3.stage選曲.t選択曲変更通知();      // スクロール完了＝選択曲変更！
 							ctBarOpen.t開始(0, 161, 2, TJAPlayer3.Timer);
-							this.ctBoxExplanationOpacity.t開始(0, 210, 2, TJAPlayer3.Timer);
+							this.ctBoxExplanationOpacity.t開始(0, 211, 2, TJAPlayer3.Timer);
 						}
 						//-----------------
 						#endregion
@@ -1608,7 +1611,7 @@ namespace TJAPlayer3
 								{
 									if (!ctBoxOpen.b進行中 && !ctBoxClose.b進行中)
 										this.txBoxExplanation[j].Opacity = (ctBoxExplanationOpacity.n現在の値 - 161) * 5.1f;
-									this.txBoxExplanation[j].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 643, 350 + j * 35);
+									this.txBoxExplanation[j].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 643, 360 + j * 35);
 								}
 								else
 								{

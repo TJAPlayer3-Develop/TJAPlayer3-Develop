@@ -77,11 +77,6 @@ namespace TJAPlayer3
                         {
                             bmpDiff = pfMusicName.DrawPrivateFont(stageText, TJAPlayer3.Skin.Game_StageText_ForeColor, TJAPlayer3.Skin.Game_StageText_BackColor );
                         }
-
-					    using (bmpDiff)
-					    {
-					        this.tx難易度とステージ数 = TJAPlayer3.tテクスチャの生成( bmpDiff, false );
-					    }
 					}
 					catch( CTextureCreateFailedException e )
 					{
@@ -92,7 +87,8 @@ namespace TJAPlayer3
 				}
                 if( !string.IsNullOrEmpty(genreName) )
                 {
-                    if(genreName.Equals( "アニメ" ) )
+                    this.txSONGS = TJAPlayer3.Tx.TxCGen("Songs");
+                    if (genreName.Equals( "アニメ" ) )
                     {
                         this.txGENRE = TJAPlayer3.Tx.TxCGen("Anime");
                     }
@@ -186,10 +182,7 @@ namespace TJAPlayer3
 		public override void On活性化()
 		{
             if( !string.IsNullOrEmpty( TJAPlayer3.ConfigIni.FontName ) )
-            {
                 this.pfMusicName = new CPrivateFastFont( new FontFamily( TJAPlayer3.ConfigIni.FontName), TJAPlayer3.Skin.Game_MusicName_FontSize);
-                //this.pf縦書きテスト = new CPrivateFastFont( new FontFamily( CDTXMania.ConfigIni.strPrivateFontで使うフォント名 ), 22 );
-            }
             else
                 this.pfMusicName = new CPrivateFastFont( new FontFamily("MS UI Gothic"), TJAPlayer3.Skin.Game_MusicName_FontSize);
 
@@ -227,6 +220,7 @@ namespace TJAPlayer3
 				TJAPlayer3.tテクスチャの解放( ref this.txPanel );
 				TJAPlayer3.tテクスチャの解放( ref this.txMusicName );
                 TJAPlayer3.tテクスチャの解放( ref this.txGENRE );
+                TJAPlayer3.tテクスチャの解放( ref this.txSONGS);
                 TJAPlayer3.tテクスチャの解放(ref this.txPanel);
                 TJAPlayer3.tテクスチャの解放(ref this.tx歌詞テクスチャ);
                 TJAPlayer3.t安全にDisposeする(ref this.pfMusicName);
@@ -244,14 +238,13 @@ namespace TJAPlayer3
 			if( !base.b活性化してない && !this.bMute )
 			{
 				this.ct進行用.t進行Loop();
-                if( this.bFirst )
-                {
-                    this.ct進行用.n現在の値 = 300;
-                }
+
                 if( this.txGENRE != null )
                     this.txGENRE.t2D描画( TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Genre_X, TJAPlayer3.Skin.Game_Genre_Y );
 
-                if( TJAPlayer3.Skin.b現在のステージ数を表示しない )
+                txSONGS.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Genre_X, TJAPlayer3.Skin.Game_Genre_Y);
+
+                if ( TJAPlayer3.Skin.b現在のステージ数を表示しない )
                 {
                     if( this.txMusicName != null )
                     {
@@ -277,37 +270,25 @@ namespace TJAPlayer3
                 {
                     #region[ 透明度制御 ]
 
-                    if( this.ct進行用.n現在の値 < 745 )
+                    if (this.ct進行用.n現在の値 < 745)
                     {
-                        this.bFirst = false;
-                        this.txMusicName.Opacity = 255;
-                        if( this.txGENRE != null )
-                            this.txGENRE.Opacity = 255;
-                        this.tx難易度とステージ数.Opacity = 0;
+                        txSONGS.Opacity = 0;
                     }
-                    else if( this.ct進行用.n現在の値 >= 745 && this.ct進行用.n現在の値 < 1000 )
+                    else if (this.ct進行用.n現在の値 >= 745 && this.ct進行用.n現在の値 < 1000)
                     {
-                        this.txMusicName.Opacity = 255 - ( this.ct進行用.n現在の値 - 745 );
-                        if( this.txGENRE != null )
-                            this.txGENRE.Opacity = 255 - ( this.ct進行用.n現在の値 - 745 );
-                        this.tx難易度とステージ数.Opacity = this.ct進行用.n現在の値 - 745;
+                        txSONGS.Opacity = (this.ct進行用.n現在の値 - 745);
                     }
-                    else if( this.ct進行用.n現在の値 >= 1000 && this.ct進行用.n現在の値 <= 1745 )
+                    else if (this.ct進行用.n現在の値 >= 1000 && this.ct進行用.n現在の値 <= 1745)
                     {
-                        this.txMusicName.Opacity = 0;
-                        if( this.txGENRE != null )
-                            this.txGENRE.Opacity = 0;
-                        this.tx難易度とステージ数.Opacity = 255;
+                        txSONGS.Opacity = 255;
                     }
-                    else if( this.ct進行用.n現在の値 >= 1745 )
+                    else if (this.ct進行用.n現在の値 >= 1745)
                     {
-                        this.txMusicName.Opacity = this.ct進行用.n現在の値 - 1745;
-                        if( this.txGENRE != null )
-                            this.txGENRE.Opacity = this.ct進行用.n現在の値 - 1745;
-                        this.tx難易度とステージ数.Opacity = 255 - ( this.ct進行用.n現在の値 - 1745 );
+                        txSONGS.Opacity = 255 - (this.ct進行用.n現在の値 - 1745);
                     }
                     #endregion
-                    if( this.txMusicName != null )
+
+                    if ( this.txMusicName != null )
                     {
                         if(this.b初めての進行描画)
                         {
@@ -326,20 +307,9 @@ namespace TJAPlayer3
                             this.txMusicName.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_MusicName_X - (this.txMusicName.szテクスチャサイズ.Width * txMusicName.vc拡大縮小倍率.X), TJAPlayer3.Skin.Game_MusicName_Y);
                         }
                     }
-                    if (this.tx難易度とステージ数 != null)
-                        if (TJAPlayer3.Skin.Game_MusicName_ReferencePoint == CSkin.ReferencePoint.Center)
-                        {
-                            this.tx難易度とステージ数.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_MusicName_X - (this.tx難易度とステージ数.szテクスチャサイズ.Width / 2), TJAPlayer3.Skin.Game_MusicName_Y);
-                        }
-                        else if (TJAPlayer3.Skin.Game_MusicName_ReferencePoint == CSkin.ReferencePoint.Left)
-                        {
-                            this.tx難易度とステージ数.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_MusicName_X, TJAPlayer3.Skin.Game_MusicName_Y);
-                        }
-                        else
-                        {
-                            this.tx難易度とステージ数.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_MusicName_X - this.tx難易度とステージ数.szテクスチャサイズ.Width, TJAPlayer3.Skin.Game_MusicName_Y);
-                        }
                 }
+
+                TJAPlayer3.act文字コンソール.tPrint(0, 0, C文字コンソール.Eフォント種別.灰, ct進行用.n現在の値.ToString());
 
                 //CDTXMania.act文字コンソール.tPrint( 0, 0, C文字コンソール.Eフォント種別.白, this.ct進行用.n現在の値.ToString() );
 
@@ -360,8 +330,8 @@ namespace TJAPlayer3
         private bool bFirst;
 
         private CTexture txMusicName;
-        private CTexture tx難易度とステージ数;
         private CTexture txGENRE;
+        private CTexture txSONGS;
         private CTexture tx歌詞テクスチャ;
         private CPrivateFastFont pfMusicName;
         private CPrivateFastFont pf歌詞フォント;

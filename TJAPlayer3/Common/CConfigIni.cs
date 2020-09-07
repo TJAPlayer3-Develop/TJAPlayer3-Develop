@@ -724,6 +724,7 @@ namespace TJAPlayer3
 		public string strDTXManiaのバージョン;
 		public string str曲データ検索パス;
         public string FontName;
+        public string BoxFontName;
         public bool bBranchGuide;
         public int nScoreMode;
         public int nDefaultCourse; //2017.01.30 DD デフォルトでカーソルをあわせる難易度
@@ -1277,6 +1278,7 @@ namespace TJAPlayer3
 			this.n表示可能な最小コンボ数.Bass = 2;
 			this.n表示可能な最小コンボ数.Taiko = 3;
             this.FontName = "MS UI Gothic";
+            this.BoxFontName = "MS UI Gothic";
 		    this.ApplyLoudnessMetadata = true;
 
 		    // 2018-08-28 twopointzero:
@@ -1560,6 +1562,10 @@ namespace TJAPlayer3
             sw.WriteLine("; フォントレンダリングに使用するフォント名");
             sw.WriteLine("; Font name used for font rendering.");
             sw.WriteLine("FontName={0}", this.FontName);
+            sw.WriteLine();
+            sw.WriteLine("; Boxの文章のフォントレンダリングに使用するフォント名");
+            sw.WriteLine("; Font name used for font rendering of Box text");
+            sw.WriteLine("BoxFontName={0}", this.BoxFontName);
             sw.WriteLine();
             #endregion
             #region [ フレーム処理関連(VSync, フレーム毎のsleep) ]
@@ -2249,6 +2255,10 @@ namespace TJAPlayer3
                                             else if (str3.Equals("FontName"))
                                             {
                                                 this.FontName = str4;
+                                            }
+                                            else if (str3.Equals("BoxFontName"))
+                                            {
+                                                this.BoxFontName = str4;
                                             }
                                             #endregion
 

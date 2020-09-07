@@ -2534,12 +2534,12 @@ namespace TJAPlayer3
         public int[] Game_CourseSymbol_Y = new int[] { 232, 432 };
         #endregion
         #region PanelFont
-        public int Game_MusicName_X = 1254;
-        public int Game_MusicName_Y = 14;
-        public int Game_MusicName_FontSize = 30;
+        public int Game_MusicName_X = 1260;
+        public int Game_MusicName_Y = 28;
+        public int Game_MusicName_FontSize = 27;
         public ReferencePoint Game_MusicName_ReferencePoint = ReferencePoint.Right;
-        public int Game_Genre_X = 1114;
-        public int Game_Genre_Y = 74;
+        public int Game_Genre_X = 1000;
+        public int Game_Genre_Y = 70;
         public int Game_Lyric_X = 640;
         public int Game_Lyric_Y = 630;
         public string Game_Lyric_FontName = "MS UI Gothic";
@@ -2574,7 +2574,7 @@ namespace TJAPlayer3
         public int[] Game_Taiko_Combo_X = new int[] { 267, 267 };
         public int[] Game_Taiko_Combo_Y = new int[] { 270, 448 };
         public int[] Game_Taiko_Combo_Ex_X = new int[] { 268, 268 };
-        public int[] Game_Taiko_Combo_Ex_Y = new int[] { 270, 448 };
+        public int[] Game_Taiko_Combo_Ex_Y = new int[] { 275, 452 };
         public int[] Game_Taiko_Combo_Ex4_X = new int[] { 268, 268 };
         public int[] Game_Taiko_Combo_Ex4_Y = new int[] { 270, 448 };
         public int[] Game_Taiko_Combo_Padding = new int[] { 34, 34, 24 };
