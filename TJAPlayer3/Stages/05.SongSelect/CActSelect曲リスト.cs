@@ -626,9 +626,24 @@ namespace TJAPlayer3
 			//this.txカーソル右 = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_cursor right.png" ) );
 
 			ctBarOpen = new CCounter();
+			ctBoxExplanationOpacity = new CCounter();
 			ctBoxOpen = new CCounter();
 			ctBoxClose = new CCounter();
-			
+
+			pfBoxExplanation = new CPrivateFont(new FontFamily("ＤＦＰ勘亭流"), 15);
+
+			for(int i = 0; i < 3; i++)
+			{
+				using (var pfBE = pfBoxExplanation.DrawPrivateFont(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[i],
+					TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor,
+					TJAPlayer3.stage選曲.r現在選択中の曲.BackColor))
+				{
+					txBoxExplanation[i] = TJAPlayer3.tテクスチャの生成(pfBE);
+					this.txBoxExplanation[i].vc拡大縮小倍率.X = this.txBoxExplanation[i].szテクスチャサイズ.Width >= 540f ? 540f / this.txBoxExplanation[i].szテクスチャサイズ.Width : 1.0f;
+					OldBoxExplanetion = TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2];
+				}
+			}
+
 			for ( int i = 0; i < 13; i++ )
             {
                 //this.t曲名バーの生成(i, this.stバー情報[i].strタイトル文字列, this.stバー情報[i].ForeColor, this.stバー情報[i].BackColor);
@@ -636,6 +651,7 @@ namespace TJAPlayer3
             }
 
 			int c = ( CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "ja" ) ? 0 : 1;
+
 			#region [ Songs not found画像 ]
 			try
 			{
@@ -689,9 +705,7 @@ namespace TJAPlayer3
 				this.txEnumeratingSongs = null;
 			}
 			#endregion
-			#region [ 曲数表示 ]
-			//this.txアイテム数数字 = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\ScreenSelect skill number on gauge etc.png" ), false );
-			#endregion
+
 			base.OnManagedリソースの作成();
 		}
 
@@ -710,41 +724,8 @@ namespace TJAPlayer3
 
 		    ClearTitleTextureCache();
 
-            //CDTXMania.t安全にDisposeする( ref this.txスキル数字 );
             TJAPlayer3.tテクスチャの解放( ref this.txEnumeratingSongs );
             TJAPlayer3.tテクスチャの解放( ref this.txSongNotFound );
-            //CDTXMania.t安全にDisposeする( ref this.tx曲名バー.Score );
-            //CDTXMania.t安全にDisposeする( ref this.tx曲名バー.Box );
-            //CDTXMania.t安全にDisposeする( ref this.tx曲名バー.Other );
-            //CDTXMania.t安全にDisposeする( ref this.tx選曲バー.Score );
-            //CDTXMania.t安全にDisposeする( ref this.tx選曲バー.Box );
-            //CDTXMania.t安全にDisposeする( ref this.tx選曲バー.Other );
-
-            //CDTXMania.tテクスチャの解放( ref this.tx曲バー_JPOP );
-            //CDTXMania.tテクスチャの解放( ref this.tx曲バー_アニメ );
-            //CDTXMania.tテクスチャの解放( ref this.tx曲バー_ゲーム );
-            //CDTXMania.tテクスチャの解放( ref this.tx曲バー_ナムコ );
-            //CDTXMania.tテクスチャの解放( ref this.tx曲バー_クラシック );
-            //CDTXMania.tテクスチャの解放( ref this.tx曲バー_どうよう );
-            //CDTXMania.tテクスチャの解放( ref this.tx曲バー_バラエティ );
-            //CDTXMania.tテクスチャの解放( ref this.tx曲バー_ボカロ );
-            //CDTXMania.tテクスチャの解放( ref this.tx曲バー );
-            //CDTXMania.tテクスチャの解放( ref this.tx譜面分岐曲バー用 );
-
-       		//for( int i = 0; i < 5; i++ )
-         //   {
-         //       CDTXMania.tテクスチャの解放( ref this.tx曲バー_難易度[ i ] );
-         //   }
-
-         //   CDTXMania.tテクスチャの解放( ref this.tx難易度パネル );
-         //   CDTXMania.tテクスチャの解放( ref this.txバー中央 );
-         //   CDTXMania.tテクスチャの解放( ref this.tx難易度星 );
-         //   CDTXMania.tテクスチャの解放( ref this.tx譜面分岐中央パネル用 );
-         //   CDTXMania.tテクスチャの解放( ref this.tx上部ジャンル名 );
-         //   CDTXMania.tテクスチャの解放( ref this.txレベル数字フォント );
-
-         //   CDTXMania.tテクスチャの解放( ref this.txカーソル左 );
-         //   CDTXMania.tテクスチャの解放( ref this.txカーソル右 );
 
 			base.OnManagedリソースの解放();
 		}
@@ -766,6 +747,7 @@ namespace TJAPlayer3
                 this.n矢印スクロール用タイマ値 = CSound管理.rc演奏用タイマ.n現在時刻;
 				this.ct三角矢印アニメ.t開始( 0, 1000, 1, TJAPlayer3.Timer );
 				ctBarOpen.t開始(0, 161, 2, TJAPlayer3.Timer);
+				this.ctBoxExplanationOpacity.t開始(0, 210, 2, TJAPlayer3.Timer);
 				base.b初めての進行描画 = false;
 			}
 			//-----------------
@@ -782,6 +764,21 @@ namespace TJAPlayer3
 			ctBarOpen.t進行();
 			ctBoxOpen.t進行();
 			ctBoxClose.t進行();
+			ctBoxExplanationOpacity.t進行();
+
+
+			if(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2] != OldBoxExplanetion)
+			{
+				for(int i = 0; i < 3; i++)
+				{
+					using (var pfBE = pfBoxExplanation.DrawPrivateFont(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[i], TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor, TJAPlayer3.stage選曲.r現在選択中の曲.BackColor))
+					{
+						OldBoxExplanetion = TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2];
+						txBoxExplanation[i] = TJAPlayer3.tテクスチャの生成(pfBE);
+						this.txBoxExplanation[i].vc拡大縮小倍率.X = this.txBoxExplanation[i].szテクスチャサイズ.Width >= 540f ? 540f / this.txBoxExplanation[i].szテクスチャサイズ.Width : 1.0f;
+					}
+				}
+			}
 
 			// 進行。
 			if (n現在のスクロールカウンタ == 0) ct三角矢印アニメ.t進行Loop();
@@ -912,6 +909,7 @@ namespace TJAPlayer3
 						{
 							TJAPlayer3.stage選曲.t選択曲変更通知();      // スクロール完了＝選択曲変更！
 							ctBarOpen.t開始(0, 161, 2, TJAPlayer3.Timer);
+							this.ctBoxExplanationOpacity.t開始(0, 210, 2, TJAPlayer3.Timer);
 						}
 
 						//-----------------
@@ -982,6 +980,7 @@ namespace TJAPlayer3
 						{
 							TJAPlayer3.stage選曲.t選択曲変更通知();      // スクロール完了＝選択曲変更！
 							ctBarOpen.t開始(0, 161, 2, TJAPlayer3.Timer);
+							this.ctBoxExplanationOpacity.t開始(0, 210, 2, TJAPlayer3.Timer);
 						}
 						//-----------------
 						#endregion
@@ -1005,7 +1004,6 @@ namespace TJAPlayer3
 				//-----------------
 				#endregion
 			}
-
 
 			// 描画。
 
@@ -1051,9 +1049,11 @@ namespace TJAPlayer3
 					int y = this.ptバーの座標[ n見た目の行番号 ].Y + ( (int) ( ( this.ptバーの座標[ n次のパネル番号 ].Y - this.ptバーの座標[ n見た目の行番号 ].Y ) * ( ( (double) Math.Abs( this.n現在のスクロールカウンタ ) ) / 100.0 ) ) );
 		
 					{
-						// (B) スクロール中の選択曲バー、またはその他のバーの描画。
+                        // (B) スクロール中の選択曲バー、またはその他のバーの描画。
 
-						float BoxX = 0;
+                        #region [ BoxOpen,BoxCloseのバーアニメーション ]
+
+                        float BoxX = 0;
 						float BoxY = 0;
 						if (this.ctBoxOpen.b進行中)
 						{
@@ -1176,6 +1176,8 @@ namespace TJAPlayer3
 							BoxY = 0;
 						}
 
+						#endregion
+
 						#region [ バーテクスチャを描画。]
 						//-----------------
 						if (n現在のスクロールカウンタ != 0)
@@ -1188,7 +1190,6 @@ namespace TJAPlayer3
 						#endregion
 
 						#region [ タイトル名テクスチャを描画。]
-
 
 						if (this.stバー情報[nパネル番号].eバー種別 != Eバー種別.BackBox)
 						{
@@ -1210,10 +1211,11 @@ namespace TJAPlayer3
                             ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, xAnime + 318 + (int)BoxX, y + 62 + (int)BoxY);
                         
                         #endregion
+
 						//-----------------						
 					}
                     #endregion
-				}
+			}
 
                 if( this.n現在のスクロールカウンタ == 0 )
                 {
@@ -1340,14 +1342,33 @@ namespace TJAPlayer3
 							else
 								TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.vc拡大縮小倍率.X = 1.0f;
 
+							TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.Opacity = 255;
 							TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 643, ctBarOpen.n現在の値 <= 100 ? 322 : 322 - (ctBarOpen.n現在の値 - 100), new Rectangle(0, 0, 630, 26));   //上
 							TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 643, ctBarOpen.n現在の値 <= 100 ? 394 : 394 + (ctBarOpen.n現在の値 - 100), new Rectangle(0, 66, 630, 26));   //下
-
 							TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.vc拡大縮小倍率.Y = ctBarOpen.n現在の値 <= 100 ? 5f : 5f + ((ctBarOpen.n現在の値 - 100) / 3.68f);
 							TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 643, 359, new Rectangle(0, 62, 630, 8));    //中心
 
+							if (ctBoxOpen.b進行中)
+							{
+								if (ctBoxOpen.n現在の値 >= 730)
+									if (ctBoxOpen.n現在の値 <= 1000)
+										TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.Opacity = 270 - (ctBoxOpen.n現在の値 - 730);
+							}
+							else if (ctBoxClose.b進行中)
+							{
+								if (ctBoxClose.n現在の値 >= 0)
+									if (ctBoxClose.n現在の値 <= 90)
+										TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.Opacity = ctBoxClose.n現在の値 * 2.8333f;
+							}
+                            else
+							{
+								TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.Opacity = 255.0f;
+							}
+
 							TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.vc拡大縮小倍率.Y = 1.0f;
+							TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.vc拡大縮小倍率.X = 1.0f;
 							TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 643, 359, new Rectangle(271, 25, 87, 37));    //中心
+
 						}
 					}
 
@@ -1466,16 +1487,16 @@ namespace TJAPlayer3
                     int xAnime = this.ptバーの座標[ n見た目の行番号 ].X + ( (int) ( ( this.ptバーの座標[ n次のパネル番号 ].X - this.ptバーの座標[ n見た目の行番号 ].X ) * ( ( (double) Math.Abs( this.n現在のスクロールカウンタ ) ) / 100.0 ) ) );
 					int y = this.ptバーの座標[ n見た目の行番号 ].Y + ( (int) ( ( this.ptバーの座標[ n次のパネル番号 ].Y - this.ptバーの座標[ n見た目の行番号 ].Y ) * ( ( (double) Math.Abs( this.n現在のスクロールカウンタ ) ) / 100.0 ) ) );
 
-                    if( ( i == 5 ) && ( this.n現在のスクロールカウンタ == 0 ) )
+					if ((i == 5) && (this.n現在のスクロールカウンタ == 0))
 					{
-                        // (A) スクロールが停止しているときの選択曲バーの描画。
+						// (A) スクロールが停止しているときの選択曲バーの描画。
 
-                        #region [ タイトル名テクスチャを描画。]
-                        //-----------------
-                        if (this.stバー情報[nパネル番号].strタイトル文字列 != "" &&  this.ttk選択している曲の曲名 == null)
-                            this.ttk選択している曲の曲名 = this.ttk曲名テクスチャを生成する(this.stバー情報[nパネル番号].strタイトル文字列, TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor, TJAPlayer3.stage選曲.r現在選択中の曲.BackColor);
-                        if ( this.stバー情報[ nパネル番号 ].strサブタイトル != "" && this.ttk選択している曲のサブタイトル == null )
-                            this.ttk選択している曲のサブタイトル = this.ttkサブタイトルテクスチャを生成する( this.stバー情報[ nパネル番号 ].strサブタイトル, TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor, TJAPlayer3.stage選曲.r現在選択中の曲.BackColor);
+						#region [ タイトル名テクスチャを描画。]
+						//-----------------
+						if (this.stバー情報[nパネル番号].strタイトル文字列 != "" && this.ttk選択している曲の曲名 == null)
+							this.ttk選択している曲の曲名 = this.ttk曲名テクスチャを生成する(this.stバー情報[nパネル番号].strタイトル文字列, TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor, TJAPlayer3.stage選曲.r現在選択中の曲.BackColor);
+						if (this.stバー情報[nパネル番号].strサブタイトル != "" && this.ttk選択している曲のサブタイトル == null)
+							this.ttk選択している曲のサブタイトル = this.ttkサブタイトルテクスチャを生成する(this.stバー情報[nパネル番号].strサブタイトル, TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor, TJAPlayer3.stage選曲.r現在選択中の曲.BackColor);
 
 						//サブタイトルがあったら700
 
@@ -1492,7 +1513,7 @@ namespace TJAPlayer3
 								ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.Y = 1.1f;
 							}
 						}
-						if ( this.ttk選択している曲のサブタイトル != null )
+						if (this.ttk選択している曲のサブタイトル != null)
 						{
 							var tx選択している曲のサブタイトル = ResolveTitleTexture(ttk選択している曲のサブタイトル);
 
@@ -1500,12 +1521,15 @@ namespace TJAPlayer3
 							{
 								if (ctBoxOpen.b進行中)
 								{
-									if (ctBoxOpen.n現在の値 >= 730)
+									if (ctBoxOpen.n現在の値 >= 645)
 									{
-										if (ctBoxOpen.n現在の値 <= 1000)
+										if (ctBoxOpen.n現在の値 <= 730)
 										{
-											tx選択している曲のサブタイトル.Opacity = 270 - (ctBoxOpen.n現在の値 - 730);
-											ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 270 - (ctBoxOpen.n現在の値 - 730);
+											for (int j = 0; j < 3; j++)
+												this.txBoxExplanation[j].Opacity = 255 - ((ctBoxOpen.n現在の値 - 645) * 3);
+
+											tx選択している曲のサブタイトル.Opacity = 255 - ((ctBoxOpen.n現在の値 - 645) * 3);
+											ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 255 - ((ctBoxOpen.n現在の値 - 645) * 3);
 										}
 									}
 								}
@@ -1515,6 +1539,8 @@ namespace TJAPlayer3
 									{
 										if (ctBoxClose.n現在の値 <= 90)
 										{
+											for (int j = 0; j < 3; j++)
+												this.txBoxExplanation[j].Opacity = ctBoxClose.n現在の値 * 2.8333f;
 											tx選択している曲のサブタイトル.Opacity = ctBoxClose.n現在の値 * 2.8333f;
 											ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = ctBoxClose.n現在の値 * 2.8333f;
 										}
@@ -1529,44 +1555,68 @@ namespace TJAPlayer3
 
 							tx選択している曲のサブタイトル.vc拡大縮小倍率.Y = 0.87f;
 
-							int nサブタイY = (int)(TJAPlayer3.Skin.SongSelect_Overall_Y + 440 - (tx選択している曲のサブタイトル.sz画像サイズ.Height * tx選択している曲のサブタイトル.vc拡大縮小倍率.Y ));
+							int nサブタイY = (int)(TJAPlayer3.Skin.SongSelect_Overall_Y + 440 - (tx選択している曲のサブタイトル.sz画像サイズ.Height * tx選択している曲のサブタイトル.vc拡大縮小倍率.Y));
 
 							if (ctBarOpen.n現在の値 >= 100)
 							{
 								tx選択している曲のサブタイトル.Opacity = (ctBarOpen.n現在の値 - 100) * 5.1f;
 								tx選択している曲のサブタイトル.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 647, 416 - (ctBarOpen.n現在の値 <= 100 ? 0 : (ctBarOpen.n現在の値 - 100)));
 							}
-							if ( this.ttk選択している曲の曲名 != null )
-                            {
-						    	ResolveTitleTexture(this.ttk選択している曲の曲名).t2D拡大率考慮中央基準描画( TJAPlayer3.app.Device, 647, 376 - (ctBarOpen.n現在の値 <= 97 ? 0 : ((ctBarOpen.n現在の値 - 97))));
-                            }
-                        }
-                        else
+							if (this.ttk選択している曲の曲名 != null)
+							{
+								ResolveTitleTexture(this.ttk選択している曲の曲名).t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 647, 376 - (ctBarOpen.n現在の値 <= 97 ? 0 : ((ctBarOpen.n現在の値 - 97))));
+							}
+						}
+						else
 						{
 							if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 != C曲リストノード.Eノード種別.BACKBOX)
 							{
 								if (ctBoxOpen.b進行中)
 								{
-									if (ctBoxOpen.n現在の値 >= 730)
-										if (ctBoxOpen.n現在の値 <= 1000)
-											ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 270 - (ctBoxOpen.n現在の値 - 730);
+									if (ctBoxOpen.n現在の値 >= 645)
+										if (ctBoxOpen.n現在の値 <= 730)
+										{
+											for (int j = 0; j < 3; j++)
+												this.txBoxExplanation[j].Opacity = 255 - ((ctBoxOpen.n現在の値 - 645) * 3);
+											ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 255 - ((ctBoxOpen.n現在の値 - 645) * 3);
+										}
 								}
 								else if (ctBoxClose.b進行中)
 								{
 									if (ctBoxClose.n現在の値 >= 0)
 										if (ctBoxClose.n現在の値 <= 90)
+                                        {
+											for (int j = 0; j < 3; j++)
+												this.txBoxExplanation[j].Opacity = ctBoxClose.n現在の値 * 2.8333f;
 											ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = ctBoxClose.n現在の値 * 2.8333f;
+										}
 								}
 								else
 									ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 255;
 							}
 
-							if ( this.ttk選択している曲の曲名 != null )
-                            {
-	    						ResolveTitleTexture(this.ttk選択している曲の曲名).t2D拡大率考慮中央基準描画( TJAPlayer3.app.Device, 647, 376 - (ctBarOpen.n現在の値 <= 97 ? 0 : ((ctBarOpen.n現在の値 - 97))));
-                            }
+							if (this.ttk選択している曲の曲名 != null)
+							{
+								ResolveTitleTexture(this.ttk選択している曲の曲名).t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 647, 376 - (ctBarOpen.n現在の値 <= 97 ? 0 : ((ctBarOpen.n現在の値 - 97))));
+							}
 						}
-
+						if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.BOX)
+						{
+							for (int j = 0; j < 3; j++)
+							{
+								if (ctBoxExplanationOpacity.n現在の値 >= 161)
+								{
+									if (!ctBoxOpen.b進行中 && !ctBoxClose.b進行中)
+										this.txBoxExplanation[j].Opacity = (ctBoxExplanationOpacity.n現在の値 - 161) * 5.1f;
+									this.txBoxExplanation[j].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 643, 350 + j * 35);
+								}
+								else
+								{
+									if (!ctBoxOpen.b進行中 && !ctBoxClose.b進行中)
+										this.txBoxExplanation[j].Opacity = 0;
+								}
+							}
+						}
 						//-----------------
 						#endregion
 					}
@@ -1713,6 +1763,13 @@ namespace TJAPlayer3
 			}
 		}
 
+		
+
+		private string OldBoxExplanetion;
+
+		private CPrivateFont pfBoxExplanation;
+		private CTexture[] txBoxExplanation = new CTexture[3];
+
 		public CCounter ctBoxOpen;
 		public CCounter ctBoxClose;
 
@@ -1720,7 +1777,8 @@ namespace TJAPlayer3
 		public bool bBoxClose;
 		public bool bBoxOpenAnime;
 
-		public CCounter ctBarOpen;
+		private CCounter ctBarOpen;
+		private CCounter ctBoxExplanationOpacity;
 
         public bool b選択曲が変更された = true;
 		private bool b登場アニメ全部完了;
@@ -1965,7 +2023,9 @@ namespace TJAPlayer3
 			TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.vc拡大縮小倍率.X = 1.0f;
 			TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.vc拡大縮小倍率.Y = 1.0f;
 
-			switch( strジャンル )
+			TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.Opacity = 255.0f;
+
+			switch ( strジャンル )
             {
                 case "ポップス":
 				    #region [ J-POP ]

@@ -14,6 +14,7 @@ namespace TJAPlayer3
 		public Color Color;
 		public string Genre;
 		public string Title;
+		public string[] BoxExplanation = new string[3];
         public Color ForeColor;
         public Color BackColor;
         public bool IsChangedForeColor;
@@ -26,6 +27,9 @@ namespace TJAPlayer3
 		{
 			this.Title = "";
 			this.Genre = "";
+			this.BoxExplanation[0] = "";
+			this.BoxExplanation[1] = "";
+			this.BoxExplanation[2] = "";
             ForeColor = Color.White;
             BackColor = Color.Black;
 
@@ -64,6 +68,18 @@ namespace TJAPlayer3
 							if ( str.StartsWith( "#TITLE", StringComparison.OrdinalIgnoreCase ) )
 							{
 								this.Title = str.Substring( 6 ).Trim( ignoreChars );
+							}
+							else if ( str.StartsWith("#BOXEXPLANATION1", StringComparison.OrdinalIgnoreCase ) )
+							{
+								this.BoxExplanation[0] = str.Substring( 16 ).Trim( ignoreChars );
+							}
+							else if (str.StartsWith("#BOXEXPLANATION2", StringComparison.OrdinalIgnoreCase))
+							{
+								this.BoxExplanation[1] = str.Substring(16).Trim(ignoreChars);
+							}
+							else if (str.StartsWith("#BOXEXPLANATION3", StringComparison.OrdinalIgnoreCase))
+							{
+								this.BoxExplanation[2] = str.Substring(16).Trim(ignoreChars);
 							}
 							else if( str.StartsWith( "#GENRE", StringComparison.OrdinalIgnoreCase ) )
 							{

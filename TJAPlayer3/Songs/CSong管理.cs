@@ -440,7 +440,14 @@ namespace TJAPlayer3
 						{
 							c曲リストノード.strジャンル = boxdef.Genre;
 						}
-						if(boxdef.IsChangedForeColor)
+						for(int i = 0; i < 3; i++)
+						{
+							if ((boxdef.BoxExplanation[i] != null) && (boxdef.BoxExplanation[i].Length > 0))
+							{
+								c曲リストノード.strボックス説明[i] = boxdef.BoxExplanation[i];
+							}
+						}
+						if (boxdef.IsChangedForeColor)
 						{
 							c曲リストノード.ForeColor = boxdef.ForeColor;
 						}
@@ -493,8 +500,10 @@ namespace TJAPlayer3
 					c曲リストノード.bDTXFilesで始まるフォルダ名のBOXである = false;
 					c曲リストノード.strタイトル = boxdef.Title;
 					c曲リストノード.strジャンル = boxdef.Genre;
+					for(int i = 0; i < 3; i++)
+						c曲リストノード.strボックス説明[i] = boxdef.BoxExplanation[i];
 
-                    if (boxdef.IsChangedForeColor)
+					if (boxdef.IsChangedForeColor)
                     {
                         c曲リストノード.ForeColor = boxdef.ForeColor;
                         c曲リストノード.IsChangedForeColor = true;
