@@ -1529,17 +1529,20 @@ namespace TJAPlayer3
 
 							//サブタイトルがあったら700
 
-							if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 != C曲リストノード.Eノード種別.BACKBOX)
+							if (this.ttk選択している曲の曲名 != null)
 							{
-								if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.SCORE)
+								if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 != C曲リストノード.Eノード種別.BACKBOX)
 								{
-									ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.Y = 0.9f;
-									ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.X = 0.9f;
-								}
-								else
-								{
-									ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.X = 1.1f;
-									ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.Y = 1.1f;
+									if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.SCORE)
+									{
+										ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.Y = 0.9f;
+										ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.X = 0.9f;
+									}
+									else
+									{
+										ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.X = 1.1f;
+										ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.Y = 1.1f;
+									}
 								}
 							}
 							if (this.ttk選択している曲のサブタイトル != null)
