@@ -129,6 +129,13 @@ namespace TJAPlayer3
                 SongSelect_Donchan_Normal[i] = TxC(SONGSELECT + @"Donchan_Normal\" + i.ToString() + ".png");
             }
             SongSelect_ScoreWindow_Text = TxC(SONGSELECT + @"ScoreWindow_Text.png");
+
+            for (int i = 0; i < Diffculty_Back.Length; i++)
+            {
+                Diffculty_Back[i] = TxC(SONGSELECT + @"Difficulty Select\Difficulty_Back_" + i.ToString() + ".png");
+            }
+
+            Difficulty_Bar = TxC(SONGSELECT + @"Difficulty Select\Difficulty_Bar.png");
             #endregion
 
             #region 4_読み込み画面
@@ -586,6 +593,11 @@ namespace TJAPlayer3
                 TJAPlayer3.tテクスチャの解放(ref SongSelect_Donchan_Normal[i]);
             }
             TJAPlayer3.tテクスチャの解放(ref SongSelect_ScoreWindow_Text);
+
+            for (int i = 0; i < Diffculty_Back.Length; i++)
+            {
+                TJAPlayer3.tテクスチャの解放(ref Diffculty_Back[i]);
+            }
             #endregion
 
             #region 4_読み込み画面
@@ -893,6 +905,9 @@ namespace TJAPlayer3
             SongSelect_Bar_Box = new CTexture[9],
             SongSelect_Donchan_Normal = new CTexture[61],
             SongSelect_NamePlate = new CTexture[1];
+
+        public CTexture Difficulty_Bar;
+        public CTexture[] Diffculty_Back = new CTexture[8];
         #endregion
 
         #region 4_読み込み画面

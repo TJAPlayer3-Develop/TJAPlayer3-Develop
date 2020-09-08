@@ -65,30 +65,24 @@ namespace TJAPlayer3
             }
             return pos;
         }
-        
+
         public void t次に移動()
-		{
-			if( TJAPlayer3.stage選曲.r現在選択中の曲 != null )
-			{
-		        if( this.n現在の選択行 < 5 )
-                {
-                    this.n現在の選択行 = this.t指定した方向に近い難易度番号を返す( 0, this.n現在の選択行 );
-                }
-                this.ct移動 = new CCounter( 1, 710, 1, CSound管理.rc演奏用タイマ );
-			}
-		}
+        {
+            if (this.n現在の選択行 + 1 < 5)
+            {
+                this.n現在の選択行 += 1;
+                TJAPlayer3.Skin.sound変更音.t再生する();
+            }
+        }
 		public void t前に移動()
 		{
 			if( TJAPlayer3.stage選曲.r現在選択中の曲 != null )
 			{
-		        if( this.n現在の選択行 > 0 )
+		        if( this.n現在の選択行 - 1 >= 0 )
                 {
-                    this.n現在の選択行 = this.t指定した方向に近い難易度番号を返す( 1, this.n現在の選択行 );
+                    this.n現在の選択行 -= 1;
+                    TJAPlayer3.Skin.sound変更音.t再生する();
                 }
-                //else
-                //{
-                //    this.n現在の選択行 = this.t指定した方向に近い難易度番号を返す( 1, 5 );
-                //}
 			}
 		}
 		public void t選択画面初期化()
@@ -173,19 +167,7 @@ namespace TJAPlayer3
 			if( this.b活性化してない )
 				return;
 
-            this.tx背景 = TJAPlayer3.tテクスチャの生成( CSkin.Path( @"Graphics\5_diffselect_background.png" ) );
-            this.txヘッダー = TJAPlayer3.tテクスチャの生成( CSkin.Path( @"Graphics\5_diffselect_header_panel.png" ) );
-            this.txフッター = TJAPlayer3.tテクスチャの生成( CSkin.Path( @"Graphics\5_footer panel.png" ) );
-
-            this.tx説明背景 = TJAPlayer3.tテクスチャの生成( CSkin.Path( @"Graphics\5_information_BG.png" ) );
-            this.tx説明1 = TJAPlayer3.tテクスチャの生成( CSkin.Path( @"Graphics\5_information.png" ) );
-
             this.soundSelectAnnounce = TJAPlayer3.Sound管理.tサウンドを生成する( CSkin.Path( @"Sounds\DiffSelect.ogg" ), ESoundGroup.SoundEffect );
-
-            for( int i = 0; i < (int)Difficulty.Total; i++ )
-            {
-                this.tx踏み台[ i ] = TJAPlayer3.tテクスチャの生成( CSkin.Path( @"Graphics\5_diffSelect_table" + i.ToString() + @".png" ) );
-            }
 
 			base.OnManagedリソースの作成();
 		}
@@ -194,19 +176,7 @@ namespace TJAPlayer3
 			if( this.b活性化してない )
 				return;
 
-            TJAPlayer3.tテクスチャの解放( ref this.tx背景 );
-            TJAPlayer3.tテクスチャの解放( ref this.txヘッダー );
-            TJAPlayer3.tテクスチャの解放( ref this.txフッター );
-
-            TJAPlayer3.tテクスチャの解放( ref this.tx説明背景 );
-            TJAPlayer3.tテクスチャの解放( ref this.tx説明1 );
-
             TJAPlayer3.t安全にDisposeする( ref this.soundSelectAnnounce );
-
-            for( int i = 0; i < (int)Difficulty.Total; i++ )
-            {
-                TJAPlayer3.tテクスチャの解放( ref this.tx踏み台[ i ] );
-            }
 
 			base.OnManagedリソースの解放();
 		}
@@ -227,7 +197,7 @@ namespace TJAPlayer3
                 this.n矢印スクロール用タイマ値 = CSound管理.rc演奏用タイマ.n現在時刻;
 				this.ct三角矢印アニメ.t開始( 0, 19, 40, TJAPlayer3.Timer );
 				
-                this.soundSelectAnnounce.tサウンドを再生する();
+                //this.soundSelectAnnounce.tサウンドを再生する();
 				base.b初めての進行描画 = false;
 			}
 			//-----------------
@@ -240,46 +210,16 @@ namespace TJAPlayer3
 			// 進行。
             //this.ct三角矢印アニメ.t進行Loop();
 
-            if( this.tx背景 != null )
-                this.tx背景.t2D描画( TJAPlayer3.app.Device, 0, 0 );
-
-			if( !this.b登場アニメ全部完了 )
-			{
-				#region [ (1) 登場アニメフェーズの進行。]
-				//-----------------
-				for( int i = 0; i < 13; i++ )	// パネルは全13枚。
-				{
-					this.ct登場アニメ用[ i ].t進行();
-
-					if( this.ct登場アニメ用[ i ].b終了値に達した )
-						this.ct登場アニメ用[ i ].t停止();
-				}
-
-				// 全部の進行が終わったら、this.b登場アニメ全部完了 を true にする。
-
-				this.b登場アニメ全部完了 = true;
-				for( int i = 0; i < 13; i++ )	// パネルは全13枚。
-				{
-					if( this.ct登場アニメ用[ i ].b進行中 )
-					{
-						this.b登場アニメ全部完了 = false;	// まだ進行中のアニメがあるなら false のまま。
-						break;
-					}
-				}
-				//-----------------
-				#endregion
-			}
-			else
 			{
 				#region [ (2) 通常フェーズの進行。]
 				//-----------------
 
                 //キー操作
-                if( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.RightArrow ) )
+                if (TJAPlayer3.Pad.b押されたDGB(Eパッド.RBlue))
                 {
                     this.t次に移動();
                 }
-                else if( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.LeftArrow ) )
+                else if( TJAPlayer3.Pad.b押されたDGB(Eパッド.LBlue) )
                 {
                     this.t前に移動();
                 }
@@ -295,18 +235,17 @@ namespace TJAPlayer3
                                 TJAPlayer3.stage選曲.t曲を選択する( this.n現在の選択行 );
                             }
                             break;
-                        case C曲リストノード.Eノード種別.RANDOM:
-                            {
-                                TJAPlayer3.Skin.sound曲決定音.t再生する();
-                                TJAPlayer3.stage選曲.t曲を選択する( this.n現在の選択行 );
-                            }
-                            break;
                     }
                 }
-                else if( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.F7 ) )
+                else if( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.Escape ) )
                 {
                     this.bIsDifficltSelect = false;
                 }
+
+                TJAPlayer3.Tx.Diffculty_Back[TJAPlayer3.stage選曲.act曲リスト.nStrジャンルtoNum(TJAPlayer3.stage選曲.r現在選択中の曲.strジャンル)].Opacity = TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 1235;
+                TJAPlayer3.Tx.Difficulty_Bar.Opacity = TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 1235;
+                TJAPlayer3.Tx.Diffculty_Back[TJAPlayer3.stage選曲.act曲リスト.nStrジャンルtoNum(TJAPlayer3.stage選曲.r現在選択中の曲.strジャンル)].t2D中心基準描画(TJAPlayer3.app.Device, 640, 280);
+                TJAPlayer3.Tx.Difficulty_Bar.t2D中心基準描画(TJAPlayer3.app.Device, 640, 380);
 
 				//-----------------
 				#endregion
@@ -317,72 +256,6 @@ namespace TJAPlayer3
 
             int i選曲バーX座標 = 673; //選曲バーの座標用
             int i選択曲バーX座標 = 665; //選択曲バーの座標用
-
-
-			if( !this.b登場アニメ全部完了 )
-			{
-				#region [ (1) 登場アニメフェーズの描画。]
-				//-----------------
-				for( int i = 0; i < 4; i++ )	// パネルは全13枚。
-				{
-
-				}
-				//-----------------
-				#endregion
-			}
-			else
-			{
-				#region [ (2) 通常フェーズの描画。]
-				//-----------------
-                int nバー基準X = 64;
-                TJAPlayer3.act文字コンソール.tPrint( 0, 32, C文字コンソール.Eフォント種別.白, this.n現在の選択行.ToString() );
-
-				for( int i = 0; i < (int)Difficulty.Total; i++ )
-				{
-                    if( TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[ i ] == null )
-                        continue;
-
-                    string strFlag = this.n現在の選択行 == i ? "NowSelect" : "UnSelect";
-                    C文字コンソール.Eフォント種別 bColorFlag = this.n現在の選択行 == i ? C文字コンソール.Eフォント種別.赤 : C文字コンソール.Eフォント種別.灰;
-
-                    nバー基準X = nバー基準X + 16;
-                    TJAPlayer3.act文字コンソール.tPrint( 0, nバー基準X, bColorFlag, strFlag );
-
-                    
-				}
-
-                //1→3→5→2→4の順で描画する。
-
-				for( int j = 0; j < (int)Difficulty.Total; j++ )
-				{
-                    if( TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[ n描画順[ j ] ] == null )
-                        continue;
-                    //if( j == 4 )
-                    //    break;
-
-                    if( this.tx踏み台[ n描画順[ j ] ] != null )
-                    {
-                        bool bEven = false;
-                        if( n描画順[ j ] % 2 == 0 && n描画順[ j ] != 0 )
-                            bEven = true;
-
-                        this.tx踏み台[ n描画順[ j ] ].t2D描画( TJAPlayer3.app.Device, n踏み台座標[ j ], 720 - this.tx踏み台[ n描画順[ j ] ].szテクスチャサイズ.Height + ( bEven ? 35 : 0 ) );
-                    }
-				}
-
-
-				//-----------------
-				#endregion
-			}
-            if( this.txヘッダー != null )
-                this.txヘッダー.t2D描画( TJAPlayer3.app.Device, 0, 0 );
-            if( this.txフッター != null )
-                this.txフッター.t2D描画( TJAPlayer3.app.Device, 0, 720 - this.txフッター.sz画像サイズ.Height );
-
-            if( this.tx説明背景 != null )
-                this.tx説明背景.t2D描画( TJAPlayer3.app.Device, 340, 600 );
-            if( this.tx説明1 != null )
-                this.tx説明1.t2D描画( TJAPlayer3.app.Device, 340, 600 );
 
 			return 0;
 		}
@@ -401,15 +274,6 @@ namespace TJAPlayer3
 		private int n現在のスクロールカウンタ;
 		private int n現在の選択行;
 		private int n目標のスクロールカウンタ;
-
-        private CTexture[] tx踏み台 = new CTexture[(int)Difficulty.Total];
-
-        private CTexture tx背景;
-        private CTexture txヘッダー;
-        private CTexture txフッター;
-
-        private CTexture tx説明背景;
-        private CTexture tx説明1;
 
         private CSound soundSelectAnnounce;
 

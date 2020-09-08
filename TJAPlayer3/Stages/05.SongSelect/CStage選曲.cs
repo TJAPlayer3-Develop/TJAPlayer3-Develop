@@ -114,7 +114,7 @@ namespace TJAPlayer3
 			base.list子Activities.Add( this.actSortSongs = new CActSortSongs() );
 			base.list子Activities.Add( this.actShowCurrentPosition = new CActSelectShowCurrentPosition() );
 			base.list子Activities.Add( this.actQuickConfig = new CActSelectQuickConfig() );
-			//base.list子Activities.Add( this.act難易度選択画面 = new CActSelect難易度選択画面() );
+			base.list子Activities.Add( this.act難易度選択画面 = new CActSelect難易度選択画面() );
 
 			this.CommandHistory = new CCommandHistory();		// #24063 2011.1.16 yyagi
 		}
@@ -180,8 +180,8 @@ namespace TJAPlayer3
 					this.ctキー反復用[ i ] = new CCounter( 0, 0, 0, TJAPlayer3.Timer );
 
 				this.ctDonchanNormal = new CCounter(0, 60, 1000 / 60, TJAPlayer3.Timer);
-
-                //this.act難易度選択画面.bIsDifficltSelect = true;
+				ctDiffSelect移動待ち = new CCounter();
+				//this.act難易度選択画面.bIsDifficltSelect = true;
 				base.On活性化();
 
 				this.actステータスパネル.t選択曲が変更された();	// 最大ランクを更新
@@ -406,7 +406,7 @@ namespace TJAPlayer3
 						return 0;
 					}
 					#endregion
-					if ( !this.actSortSongs.bIsActivePopupMenu && !this.actQuickConfig.bIsActivePopupMenu /*&&  !this.act難易度選択画面.bIsDifficltSelect */ && !this.act曲リスト.ctBoxOpen.b進行中 && !this.act曲リスト.ctBoxClose.b進行中)
+					if ( !this.actSortSongs.bIsActivePopupMenu && !this.actQuickConfig.bIsActivePopupMenu && !this.act難易度選択画面.bIsDifficltSelect && !this.act曲リスト.ctBoxOpen.b進行中 && !this.act曲リスト.ctBoxClose.b進行中)
 					{
                         #region [ ESC ]
                         if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape) && (this.act曲リスト.r現在選択中の曲 != null))// && (  ) ) )
@@ -504,8 +504,15 @@ namespace TJAPlayer3
 												TJAPlayer3.Skin.sound曲決定音.t再生する();
 											else
 												TJAPlayer3.Skin.sound決定音.t再生する();
-
-											this.t曲を選択する();
+											//if (TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Dan && TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Tower)
+											//{
+											//	ctDiffSelect移動待ち.t開始(0, 1490, 1, TJAPlayer3.Timer);
+											//	act難易度選択画面.bIsDifficltSelect = true;
+											//}
+                                            //else
+											{
+												this.t曲を選択する();
+											}
 											break;
 										case C曲リストノード.Eノード種別.BOX:
 											{
@@ -589,9 +596,6 @@ namespace TJAPlayer3
 							#region [ 上: 難易度変更(上) ]
 							if( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.UpArrow ) )
 							{
-								//CommandHistory.Add( E楽器パート.DRUMS, EパッドFlag.HH );
-								//EパッドFlag[] comChangeDifficulty = new EパッドFlag[] { EパッドFlag.HH, EパッドFlag.HH };
-								//if ( CommandHistory.CheckCommand( comChangeDifficulty, E楽器パート.DRUMS ) )
 								{
 									Debug.WriteLine( "ドラムス難易度変更" );
                                     this.act曲リスト.t難易度レベルをひとつ進める();
@@ -622,6 +626,17 @@ namespace TJAPlayer3
 
 					this.actSortSongs.t進行描画();
 					this.actQuickConfig.t進行描画();
+
+                    if (this.act難易度選択画面.bIsDifficltSelect)
+                    {
+						if(TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Dan && TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Tower)
+                        {
+							if(this.ctDiffSelect移動待ち.n現在の値 >= 1235)
+                            {
+								this.act難易度選択画面.On進行描画();
+                            }
+                        }
+                    }
 				}
 
 				TJAPlayer3.Tx.SongSelect_Donchan_Normal[ctDonchanNormal.n現在の値].t2D描画(TJAPlayer3.app.Device, 0, 330);
@@ -636,7 +651,7 @@ namespace TJAPlayer3
 				}
 				#endregion
 
-				TJAPlayer3.act文字コンソール.tPrint(0, 0, C文字コンソール.Eフォント種別.灰, this.act曲リスト.ctBoxOpen.n現在の値.ToString());
+				TJAPlayer3.act文字コンソール.tPrint(0, 0, C文字コンソール.Eフォント種別.灰, this.ctDiffSelect移動待ち.n現在の値.ToString());
 
 				switch ( base.eフェーズID )
 				{
@@ -751,7 +766,7 @@ namespace TJAPlayer3
 		public CActSelect演奏履歴パネル act演奏履歴パネル;
 		public CActSelect曲リスト act曲リスト;
 		private CActSelectShowCurrentPosition actShowCurrentPosition;
-        private CActSelect難易度選択画面 act難易度選択画面;
+        public CActSelect難易度選択画面 act難易度選択画面;
 
 		public CActSortSongs actSortSongs;
 		private CActSelectQuickConfig actQuickConfig;
@@ -764,7 +779,7 @@ namespace TJAPlayer3
 		private E戻り値 eフェードアウト完了時の戻り値;
 		private Font ftフォント;
 
-        private CCounter ctDiffSelect移動待ち;
+        public CCounter ctDiffSelect移動待ち;
 
 		private struct STCommandTime		// #24063 2011.1.16 yyagi コマンド入力時刻の記録用
 		{
