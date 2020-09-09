@@ -68,7 +68,7 @@ namespace TJAPlayer3
                 {
                     this.ct上背景スクロール用タイマー1st[i] = new CCounter(1, TJAPlayer3.Tx.Background_Up_1st[i].szテクスチャサイズ.Width, 16, TJAPlayer3.Timer);
                     this.ct上背景スクロール用タイマー2nd[i] = new CCounter(1, TJAPlayer3.Tx.Background_Up_2nd[i].szテクスチャサイズ.Height, 70, TJAPlayer3.Timer);
-                    this.ct上背景スクロール用タイマー3rd[i] = new CCounter(1, 120, 1000 / 60, TJAPlayer3.Timer);
+                    this.ct上背景スクロール用タイマー3rd[i] = new CCounter(1, 600, 3, TJAPlayer3.Timer);
                     this.ct上背景クリアインタイマー[i] = new CCounter();
                 }
             }
@@ -167,23 +167,18 @@ namespace TJAPlayer3
                     float thirdy = 0;
                     float thirdx = 0;
 
-                    if(this.ct上背景スクロール用タイマー3rd[i].n現在の値 <= 54)
+                    if(this.ct上背景スクロール用タイマー3rd[i].n現在の値 <= 270)
                     {
-                        thirdx = this.ct上背景スクロール用タイマー3rd[i].n現在の値 * 4.629f;  
-                        thirdy = (float)Math.Sin((float)(this.ct上背景スクロール用タイマー3rd[i].n現在の値 * 3.333f) * (Math.PI / 180)) * 50.0f;
-                    }
-                    else
-                    {
-                        thirdx = 250 + (ct上背景スクロール用タイマー3rd[i].n現在の値 - 54) * 1.244f;
-                        if(this.ct上背景スクロール用タイマー3rd[i].n現在の値 <= 99)
-                        {
-                            thirdy = -(float)Math.Sin((float)((this.ct上背景スクロール用タイマー3rd[i].n現在の値 - 54) * 4) * (Math.PI / 180)) * 20.0f;
-                        }
-                        else if (this.ct上背景スクロール用タイマー3rd[i].n現在の値 <= 130)
-                        {
-                            thirdy = -(float)Math.Sin((float)((this.ct上背景スクロール用タイマー3rd[i].n現在の値 - 100) * 3) * (Math.PI / 180)) * 12.0f;
-                        }
-                    }
+                        thirdx = this.ct上背景スクロール用タイマー3rd[i].n現在の値 * 0.9258f;
+						thirdy = (float)Math.Sin((float)this.ct上背景スクロール用タイマー3rd[i].n現在の値 * (Math.PI / 270.0f)) * 40.0f;
+					}
+					else
+					{
+						thirdx = 250 + (ct上背景スクロール用タイマー3rd[i].n現在の値 - 270) * 0.24f;
+
+						if (this.ct上背景スクロール用タイマー3rd[i].n現在の値 <= 490) thirdy = -(float)Math.Sin((float)(this.ct上背景スクロール用タイマー3rd[i].n現在の値 - 270) * (Math.PI / 170.0f)) * 15.0f;
+						else thirdy = -((float)Math.Sin((float)220f * (Math.PI / 170.0f)) * 15.0f) + (float)(((this.ct上背景スクロール用タイマー3rd[i].n現在の値 - 490) / 110f) * ((float)Math.Sin((float)220f * (Math.PI / 170.0f)) * 15.0f));
+					}
 
                     TJAPlayer3.Tx.Background_Up_3rd[i].t2D描画(TJAPlayer3.app.Device, 0 - thirdx, 0 + i * 550 - thirdy);
 
@@ -251,23 +246,18 @@ namespace TJAPlayer3
                     float thirdy = 0;
                     float thirdx = 0;
 
-                    if (this.ct上背景スクロール用タイマー3rd[i].n現在の値 <= 54)
+                    if(this.ct上背景スクロール用タイマー3rd[i].n現在の値 <= 270)
                     {
-                        thirdx = this.ct上背景スクロール用タイマー3rd[i].n現在の値 * 4.629f;
-                        thirdy = (float)Math.Sin((float)(this.ct上背景スクロール用タイマー3rd[i].n現在の値 * 3.333f) * (Math.PI / 180)) * 50.0f;
-                    }
-                    else
-                    {
-                        thirdx = 250 + (ct上背景スクロール用タイマー3rd[i].n現在の値 - 54) * 1.244f;
-                        if (this.ct上背景スクロール用タイマー3rd[i].n現在の値 <= 99)
-                        {
-                            thirdy = -(float)Math.Sin((float)((this.ct上背景スクロール用タイマー3rd[i].n現在の値 - 54) * 4) * (Math.PI / 180)) * 20.0f;
-                        }
-                        else if (this.ct上背景スクロール用タイマー3rd[i].n現在の値 <= 130)
-                        {
-                            thirdy = -(float)Math.Sin((float)((this.ct上背景スクロール用タイマー3rd[i].n現在の値 - 100) * 3) * (Math.PI / 180)) * 12.0f;
-                        }
-                    }
+                        thirdx = this.ct上背景スクロール用タイマー3rd[i].n現在の値 * 0.9258f;
+						thirdy = (float)Math.Sin((float)this.ct上背景スクロール用タイマー3rd[i].n現在の値 * (Math.PI / 270.0f)) * 40.0f;
+					}
+					else
+					{
+						thirdx = 250 + (ct上背景スクロール用タイマー3rd[i].n現在の値 - 270) * 0.24f;
+
+						if (this.ct上背景スクロール用タイマー3rd[i].n現在の値 <= 490) thirdy = -(float)Math.Sin((float)(this.ct上背景スクロール用タイマー3rd[i].n現在の値 - 270) * (Math.PI / 170.0f)) * 15.0f;
+						else thirdy = -((float)Math.Sin((float)220f * (Math.PI / 170.0f)) * 15.0f) + (float)(((this.ct上背景スクロール用タイマー3rd[i].n現在の値 - 490) / 110f) * ((float)Math.Sin((float)220f * (Math.PI / 170.0f)) * 15.0f));
+					}
 
                     TJAPlayer3.Tx.Background_Up_3rd[2].t2D描画(TJAPlayer3.app.Device, 0 - thirdx, 0 + i * 640 - thirdy);
 
