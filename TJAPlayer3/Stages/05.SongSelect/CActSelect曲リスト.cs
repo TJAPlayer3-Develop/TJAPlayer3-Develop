@@ -1170,11 +1170,9 @@ namespace TJAPlayer3
 								if (this.stバー情報[nパネル番号].eバー種別 == Eバー種別.Score)
 								{
 									ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).vc拡大縮小倍率.Y = 0.9f;
-									ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).vc拡大縮小倍率.X = 0.9f;
 								}
 								else
 								{
-									ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).vc拡大縮小倍率.X = 1.1f;
 									ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).vc拡大縮小倍率.Y = 1.1f;
 								}
 							}
@@ -1513,11 +1511,9 @@ namespace TJAPlayer3
 									if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.SCORE)
 									{
 										ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.Y = 0.9f;
-										ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.X = 0.9f;
 									}
 									else
 									{
-										ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.X = 1.1f;
 										ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.Y = 1.1f;
 									}
 								}
@@ -2099,17 +2095,17 @@ namespace TJAPlayer3
             return nGenre;
         }
 
-        private TitleTextureKey ttk曲名テクスチャを生成する( string str文字, Color forecolor, Color backcolor)
+        public TitleTextureKey ttk曲名テクスチャを生成する( string str文字, Color forecolor, Color backcolor)
         {
-            return new TitleTextureKey(str文字, pfMusicName, forecolor, backcolor, 500);
+            return new TitleTextureKey(str文字, pfMusicName, forecolor, backcolor, 700);
         }
 
-	    private TitleTextureKey ttkサブタイトルテクスチャを生成する( string str文字, Color forecolor, Color backcolor)
+		public TitleTextureKey ttkサブタイトルテクスチャを生成する( string str文字, Color forecolor, Color backcolor)
         {
-            return new TitleTextureKey(str文字, pfSubtitle, forecolor, backcolor, 500);
+            return new TitleTextureKey(str文字, pfSubtitle, forecolor, backcolor, 700);
         }
 
-	    private CTexture ResolveTitleTexture(TitleTextureKey titleTextureKey)
+		public CTexture ResolveTitleTexture(TitleTextureKey titleTextureKey)
 	    {
 	        if (!_titleTextures.TryGetValue(titleTextureKey, out var texture))
 	        {
@@ -2120,7 +2116,7 @@ namespace TJAPlayer3
 	        return texture;
 	    }
 
-	    private static CTexture GenerateTitleTexture(TitleTextureKey titleTextureKey)
+		public static CTexture GenerateTitleTexture(TitleTextureKey titleTextureKey)
 	    {
 	        using (var bmp = new Bitmap(titleTextureKey.cPrivateFastFont.DrawPrivateFont(
 	            titleTextureKey.str文字, titleTextureKey.forecolor, titleTextureKey.backcolor)))
@@ -2131,26 +2127,29 @@ namespace TJAPlayer3
 	                tx文字テクスチャ.vc拡大縮小倍率.X = -0.18f + (float) (((double) titleTextureKey.maxWidht) / tx文字テクスチャ.szテクスチャサイズ.Width);
 	            }
                 else
-                {
-					tx文字テクスチャ.vc拡大縮小倍率.X = 0.9f;
+				{
+					if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.SCORE)
+						tx文字テクスチャ.vc拡大縮小倍率.X = 0.9f;
+					else if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 != C曲リストノード.Eノード種別.BACKBOX)
+						tx文字テクスチャ.vc拡大縮小倍率.X = 1.1f;
 				}
 	            return tx文字テクスチャ;
 	        }
 	    }
 
-	    private static void OnTitleTexturesOnItemUpdated(
+		public static void OnTitleTexturesOnItemUpdated(
 	        KeyValuePair<TitleTextureKey, CTexture> previous, KeyValuePair<TitleTextureKey, CTexture> next)
 	    {
             previous.Value.Dispose();
 	    }
 
-	    private static void OnTitleTexturesOnItemRemoved(
+		public static void OnTitleTexturesOnItemRemoved(
 	        KeyValuePair<TitleTextureKey, CTexture> kvp)
 	    {
 	        kvp.Value.Dispose();
 	    }
 
-	    private void ClearTitleTextureCache()
+		public void ClearTitleTextureCache()
 	    {
 	        foreach (var titleTexture in _titleTextures.Values)
 	        {
@@ -2160,7 +2159,7 @@ namespace TJAPlayer3
             _titleTextures.Clear();
 	    }
 
-	    private sealed class TitleTextureKey
+		public sealed class TitleTextureKey
 	    {
 	        public readonly string str文字;
 	        public readonly CPrivateFont cPrivateFastFont;

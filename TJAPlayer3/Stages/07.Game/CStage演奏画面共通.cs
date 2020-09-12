@@ -61,7 +61,7 @@ namespace TJAPlayer3
 					Drums.eRandom[ i ] = TJAPlayer3.ConfigIni.eRandom[ i ];
 					Drums.bLight[ i ] = TJAPlayer3.ConfigIni.bLight[ i ];
 					Drums.bLeft[ i ] = TJAPlayer3.ConfigIni.bLeft[ i ];
-					Drums.f譜面スクロール速度[ i ] = ( (float) ( TJAPlayer3.ConfigIni.n譜面スクロール速度[ i ] + 1 ) ) * 0.1f;
+					Drums.f譜面スクロール速度[ i ] = ( (float) ( TJAPlayer3.ConfigIni.n譜面スクロール速度[ i ] + 1 ) ) * 0.5f;
 				}
 				Drums.eDark = TJAPlayer3.ConfigIni.eDark;
 				Drums.n演奏速度分子 = TJAPlayer3.ConfigIni.n演奏速度;
@@ -131,7 +131,7 @@ namespace TJAPlayer3
 					Drums.eRandom[ i ] = TJAPlayer3.ConfigIni.eRandom[ i ];
 					Drums.bLight[ i ] = TJAPlayer3.ConfigIni.bLight[ i ];
 					Drums.bLeft[ i ] = TJAPlayer3.ConfigIni.bLeft[ i ];
-					Drums.f譜面スクロール速度[ i ] = ( (float) ( TJAPlayer3.ConfigIni.n譜面スクロール速度[ i ] + 1 ) ) * 0.1f;
+					Drums.f譜面スクロール速度[ i ] = ( (float) ( TJAPlayer3.ConfigIni.n譜面スクロール速度[ i ] + 1 ) ) * 0.5f;
 				}
 				Drums.eDark = TJAPlayer3.ConfigIni.eDark;
 				Drums.n演奏速度分子 = TJAPlayer3.ConfigIni.n演奏速度;

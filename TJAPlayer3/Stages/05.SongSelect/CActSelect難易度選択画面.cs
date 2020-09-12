@@ -116,12 +116,13 @@ namespace TJAPlayer3
 			this.n現在のスクロールカウンタ = 0;
 			this.nスクロールタイマ = -1;
             ct決定待機 = new CCounter();
+
             // フォント作成。
             // 曲リスト文字は２倍（面積４倍）でテクスチャに描画してから縮小表示するので、フォントサイズは２倍とする。
             this.ctBarAnime = new CCounter();
             this.ct移動 = new CCounter();
 
-			base.On活性化();
+            base.On活性化();
 		}
 		public override void On非活性化()
 		{
@@ -134,7 +135,10 @@ namespace TJAPlayer3
             this.ct移動 = null;
             this.ctBarAnime = null;
 
-			base.On非活性化();
+            TJAPlayer3.t安全にDisposeする(ref SongTitle);
+            TJAPlayer3.t安全にDisposeする(ref SongSubTitle);
+
+            base.On非活性化();
 		}
 		public override void OnManagedリソースの作成()
 		{
@@ -170,7 +174,8 @@ namespace TJAPlayer3
                 this.n矢印スクロール用タイマ値 = CSound管理.rc演奏用タイマ.n現在時刻;
 
                 //this.soundSelectAnnounce.tサウンドを再生する();
-				base.b初めての進行描画 = false;
+
+                base.b初めての進行描画 = false;
 			}
             //-----------------
             #endregion
@@ -224,8 +229,14 @@ namespace TJAPlayer3
                 TJAPlayer3.Tx.Difficulty_Bar.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 640, 380);
                 TJAPlayer3.Tx.Difficulty_SelectBar.Opacity = TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 1235;
                 TJAPlayer3.Tx.Difficulty_SelectBar.t2D描画(TJAPlayer3.app.Device, ptバー座標[n現在の選択行 + 2].X, (float)(ptバー座標[n現在の選択行 + 2].Y) + (float)Math.Sin(this.ctBarAnime.n現在の値 * (Math.PI / 180)) * 11.0f, new Rectangle(0, 0, 260, 122));
+                TJAPlayer3.stage選曲.act曲リスト.ResolveTitleTexture(SongTitle).vc拡大縮小倍率.X = 1.0f;
+                TJAPlayer3.stage選曲.act曲リスト.ResolveTitleTexture(SongTitle).vc拡大縮小倍率.Y = 1.0f;
+                TJAPlayer3.stage選曲.act曲リスト.ResolveTitleTexture(SongTitle).t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 640, 130);
+                TJAPlayer3.stage選曲.act曲リスト.ResolveTitleTexture(SongSubTitle).vc拡大縮小倍率.X = 1.0f;
+                TJAPlayer3.stage選曲.act曲リスト.ResolveTitleTexture(SongSubTitle).vc拡大縮小倍率.Y = 1.0f;
+                TJAPlayer3.stage選曲.act曲リスト.ResolveTitleTexture(SongSubTitle).t2D中心基準描画(TJAPlayer3.app.Device, 640, 160);
 
-                if(ct決定待機.n現在の値 == 2000)
+                if (ct決定待機.n現在の値 == 2000)
                 {
                     TJAPlayer3.stage選曲.actPresound.sound.tサウンドを停止する();
                     TJAPlayer3.stage選曲.t曲を選択する(this.n現在の選択行);
@@ -254,6 +265,8 @@ namespace TJAPlayer3
 
         private Point[] ptバー座標 = { new Point(194, 174), new Point(278, 174), new Point(389, 174), new Point(528, 174), new Point(666, 174), new Point(804, 174), new Point(804, 174) };
 
+        public CActSelect曲リスト.TitleTextureKey SongTitle;
+        public CActSelect曲リスト.TitleTextureKey SongSubTitle;
         private CCounter ct決定待機;
         public int 縁カウント = 0;
         private bool b登場アニメ全部完了;

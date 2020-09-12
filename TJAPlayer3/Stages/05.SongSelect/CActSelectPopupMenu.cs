@@ -82,7 +82,6 @@ namespace TJAPlayer3
 			    }
 				lciMenuItems[ i ] = stqm;
 			}
-			lciMenuItems[0].cItem.SetIndex(9);
 			bShowAllItems = showAllItems;
 			n現在の選択行 = defaultPos;
 		}
@@ -369,7 +368,7 @@ namespace TJAPlayer3
                                 break;
                             case "ばいそく":
                                 {
-                                    double d = 0.1 + (double)((((int)lciMenuItems[i].cItem.obj現在値())) / 10.0);
+                                    double d = (double)((((int)lciMenuItems[i].cItem.obj現在値() + 1)) / 2.0);
                                     s = "x" + d.ToString("0.0");
                                 }
                                 break;
