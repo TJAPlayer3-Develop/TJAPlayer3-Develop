@@ -500,16 +500,13 @@ namespace TJAPlayer3
 									switch (this.act曲リスト.r現在選択中の曲.eノード種別)
 									{
 										case C曲リストノード.Eノード種別.SCORE:
-											if (TJAPlayer3.Skin.sound曲決定音.b読み込み成功)
-												TJAPlayer3.Skin.sound曲決定音.t再生する();
-											else
+											if (TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Dan && TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Tower)
+											{
+												ctDiffSelect移動待ち.t開始(0, 1490, 1, TJAPlayer3.Timer);
+												act難易度選択画面.bIsDifficltSelect = true;
 												TJAPlayer3.Skin.sound決定音.t再生する();
-											//if (TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Dan && TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Tower)
-											//{
-											//	ctDiffSelect移動待ち.t開始(0, 1490, 1, TJAPlayer3.Timer);
-											//	act難易度選択画面.bIsDifficltSelect = true;
-											//}
-                                            //else
+											}
+                                            else
 											{
 												this.t曲を選択する();
 											}
@@ -626,19 +623,18 @@ namespace TJAPlayer3
 
 					this.actSortSongs.t進行描画();
 					this.actQuickConfig.t進行描画();
-
-                    if (this.act難易度選択画面.bIsDifficltSelect)
-                    {
-						if(TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Dan && TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Tower)
-                        {
-							if(this.ctDiffSelect移動待ち.n現在の値 >= 1235)
-                            {
-								this.act難易度選択画面.On進行描画();
-                            }
-                        }
-                    }
 				}
 
+				if (this.act難易度選択画面.bIsDifficltSelect)
+				{
+					if (TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Dan && TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Tower)
+					{
+						if (this.ctDiffSelect移動待ち.n現在の値 >= 1235)
+						{
+							this.act難易度選択画面.On進行描画();
+						}
+					}
+				}
 				TJAPlayer3.Tx.SongSelect_Donchan_Normal[ctDonchanNormal.n現在の値].t2D描画(TJAPlayer3.app.Device, 0, 330);
 
 				#region ネームプレート
@@ -650,8 +646,6 @@ namespace TJAPlayer3
 					}
 				}
 				#endregion
-
-				TJAPlayer3.act文字コンソール.tPrint(0, 0, C文字コンソール.Eフォント種別.灰, this.ctDiffSelect移動待ち.n現在の値.ToString());
 
 				switch ( base.eフェーズID )
 				{
@@ -976,8 +970,6 @@ namespace TJAPlayer3
 				this.actFOtoNowLoading.tフェードアウト開始();				// #27787 2012.3.10 yyagi 曲決定時の画面フェードアウトの省略
 				base.eフェーズID = CStage.Eフェーズ.選曲_NowLoading画面へのフェードアウト;
 			}
-
-			TJAPlayer3.Skin.bgm選曲画面.t停止する();
 		}
 		private List<C曲リストノード> t指定された曲が存在する場所の曲を列挙する_子リスト含む( C曲リストノード song )
 		{

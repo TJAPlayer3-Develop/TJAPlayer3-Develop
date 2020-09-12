@@ -14,12 +14,12 @@ namespace TJAPlayer3
 		{
 			this.mode = EFIFOモード.フェードアウト;
 
-            this.counter = new CCounter( 0, 1500, 1, TJAPlayer3.Timer );
+            this.counter = new CCounter( 0, 640, 1, TJAPlayer3.Timer );
 		}
 		public void tフェードイン開始()
 		{
 			this.mode = EFIFOモード.フェードイン;
-			this.counter = new CCounter( 0, 1500, 1, TJAPlayer3.Timer );
+			this.counter = new CCounter( 0, 640, 1, TJAPlayer3.Timer );
 		}
 		public void tフェードイン完了()		// #25406 2011.6.9 yyagi
 		{
@@ -59,30 +59,34 @@ namespace TJAPlayer3
             {
                 if( TJAPlayer3.Tx.SongLoading_FadeOut != null )
 			    {
-                    int y = this.counter.n現在の値 >= 840 ? 840 : this.counter.n現在の値;
-                    TJAPlayer3.Tx.SongLoading_FadeOut.t2D描画( TJAPlayer3.app.Device, 0, 720 - y );
+                    int x = this.counter.n現在の値 >= 640 ? 640 : this.counter.n現在の値;
+					TJAPlayer3.Tx.SongLoading_FadeOut.vc拡大縮小倍率.X = 0.8f + (this.counter.n現在の値 / 3200.0f);
+					TJAPlayer3.Tx.SongLoading_FadeOut.t2D拡大率考慮右描画( TJAPlayer3.app.Device, 0 + x, 0, new Rectangle(0, 0, 640, 720) );
+                    TJAPlayer3.Tx.SongLoading_FadeOut.t2D描画( TJAPlayer3.app.Device, 1280 - x, 0, new Rectangle(640, 0, 640, 720));
                 }
 
 			}
             else
             {
                 if(TJAPlayer3.Tx.SongLoading_FadeIn != null )
-                {
-                    int y = this.counter.n現在の値 >= 840 ? 840 : this.counter.n現在の値;
-                    TJAPlayer3.Tx.SongLoading_FadeIn.t2D描画( TJAPlayer3.app.Device, 0, 0 - y );
-                }
+				{
+					int x = this.counter.n現在の値;
+					TJAPlayer3.Tx.SongLoading_FadeIn.vc拡大縮小倍率.X = 1.0f - this.counter.n現在の値 / 3200.0f;
+					TJAPlayer3.Tx.SongLoading_FadeIn.t2D拡大率考慮右描画(TJAPlayer3.app.Device, 640 - x, 0, new Rectangle(0, 0, 640, 720));
+					TJAPlayer3.Tx.SongLoading_FadeIn.t2D描画(TJAPlayer3.app.Device, 640 + x, 0, new Rectangle(640, 0, 640, 720));
+				}
             }
 
             if( this.mode == EFIFOモード.フェードアウト )
             {
-			    if( this.counter.n現在の値 != 1500 )
+			    if( this.counter.n現在の値 != 640)
 			    {
 				    return 0;
 			    }
             }
             else if( this.mode == EFIFOモード.フェードイン )
             {
-			    if( this.counter.n現在の値 != 1500 )
+			    if( this.counter.n現在の値 != 640)
 			    {
 				    return 0;
 			    }

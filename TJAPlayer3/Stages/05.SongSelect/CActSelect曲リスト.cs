@@ -264,7 +264,8 @@ namespace TJAPlayer3
 				this.r現在選択中の曲 = this.r次の曲(this.r現在選択中の曲);
 			list.RemoveAt(list.IndexOf(this.r現在選択中の曲.r親ノード));
 			this.t現在選択中の曲を元に曲バーを再構成する();
-			this.t選択曲が変更された(false);                                 // #27648 項目数変更を反映させる
+			this.t選択曲が変更された(false);
+			TJAPlayer3.stage選曲.t選択曲変更通知();                          // #27648 項目数変更を反映させる
 			this.b選択曲が変更された = true;
 			TJAPlayer3.Skin.bgm選曲画面.t停止する();
 			return ret;
@@ -590,41 +591,6 @@ namespace TJAPlayer3
 			if( this.b活性化してない )
 				return;
 
-			//this.tx曲名バー.Score = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_bar score.png" ), false );
-			//this.tx曲名バー.Box = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_bar box.png" ), false );
-			//this.tx曲名バー.Other = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_bar other.png" ), false );
-			//this.tx選曲バー.Score = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_bar score selected.png" ), false );
-			//this.tx選曲バー.Box = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_bar box selected.png" ), false );
-			//this.tx選曲バー.Other = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_bar other selected.png" ), false );
-			//this.txスキル数字 = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_skill number on list.png" ), false );
-
-			//this.tx曲バー_JPOP = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_songboard_JPOP.png" ), false );
-			//this.tx曲バー_アニメ = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_songboard_anime.png" ), false );
-			//this.tx曲バー_ゲーム = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_songboard_game.png" ), false );
-			//this.tx曲バー_ナムコ = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_songboard_namco.png" ), false );
-			//this.tx曲バー_クラシック = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_songboard_classic.png" ), false );
-			//this.tx曲バー_バラエティ = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_songboard_variety.png" ), false );
-			//this.tx曲バー_どうよう = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_songboard_child.png" ), false );
-			//this.tx曲バー_ボカロ = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_songboard_vocaloid.png" ), false );
-			//this.tx曲バー = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_songboard.png" ), false );
-
-			//this.tx曲バー_難易度[0] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_songboard_Easy.png" ) );
-			//this.tx曲バー_難易度[1] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_songboard_Normal.png" ) );
-			//this.tx曲バー_難易度[2] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_songboard_Hard.png" ) );
-			//this.tx曲バー_難易度[3] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_songboard_Master.png" ) );
-			//this.tx曲バー_難易度[4] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_songboard_Edit.png" ) );
-
-			//this.tx難易度星 = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_levelstar.png" ), false );
-			//this.tx難易度パネル = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_level_panel.png" ), false );
-			//this.tx譜面分岐曲バー用 = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_songboard_branch.png" ) );
-			//this.tx譜面分岐中央パネル用 = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_center panel_branch.png" ) );
-			//this.txバー中央 = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_center panel.png" ) );
-			//this.tx上部ジャンル名 = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_genrename.png" ) );
-			//this.txレベル数字フォント = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_levelfont.png" ) );
-
-			//this.txカーソル左 = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_cursor left.png" ) );
-			//this.txカーソル右 = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_cursor right.png" ) );
-
 			ctBarOpen = new CCounter();
 			ctBoxExplanationOpacity = new CCounter();
 			ctBoxOpen = new CCounter();
@@ -637,13 +603,16 @@ namespace TJAPlayer3
 
 			for (int i = 0; i < 3; i++)
 			{
-				using (var pfBE = pfBoxExplanation.DrawPrivateFont(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[i],
-					TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor,
-					TJAPlayer3.stage選曲.r現在選択中の曲.BackColor))
-				{
-					txBoxExplanation[i] = TJAPlayer3.tテクスチャの生成(pfBE);
-					this.txBoxExplanation[i].vc拡大縮小倍率.X = this.txBoxExplanation[i].szテクスチャサイズ.Width >= 540f ? 540f / this.txBoxExplanation[i].szテクスチャサイズ.Width : 1.0f;
-					OldBoxExplanetion = TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2];
+				if(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[i] != null)
+                {
+					using (var pfBE = pfBoxExplanation.DrawPrivateFont(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[i],
+						TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor,
+						TJAPlayer3.stage選曲.r現在選択中の曲.BackColor))
+					{
+						txBoxExplanation[i] = TJAPlayer3.tテクスチャの生成(pfBE);
+						this.txBoxExplanation[i].vc拡大縮小倍率.X = this.txBoxExplanation[i].szテクスチャサイズ.Width >= 540f ? 540f / this.txBoxExplanation[i].szテクスチャサイズ.Width : 1.0f;
+						OldBoxExplanetion = TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2];
+					}
 				}
 			}
 
@@ -751,6 +720,7 @@ namespace TJAPlayer3
 				this.ct三角矢印アニメ.t開始( 0, 1000, 1, TJAPlayer3.Timer );
 				ctBarOpen.t開始(0, 161, 2, TJAPlayer3.Timer);
 				this.ctBoxExplanationOpacity.t開始(0, 210, 2, TJAPlayer3.Timer);
+				TJAPlayer3.stage選曲.act難易度選択画面.bIsDifficltSelect = false;
 				base.b初めての進行描画 = false;
 			}
 			//-----------------
@@ -1832,7 +1802,7 @@ namespace TJAPlayer3
 		public bool bBoxClose;
 		public bool bBoxOpenAnime;
 
-		private CCounter ctBarOpen;
+		public CCounter ctBarOpen;
 		private CCounter ctBoxExplanationOpacity;
 
         public bool b選択曲が変更された = true;
@@ -2131,12 +2101,12 @@ namespace TJAPlayer3
 
         private TitleTextureKey ttk曲名テクスチャを生成する( string str文字, Color forecolor, Color backcolor)
         {
-            return new TitleTextureKey(str文字, pfMusicName, forecolor, backcolor, 700);
+            return new TitleTextureKey(str文字, pfMusicName, forecolor, backcolor, 500);
         }
 
 	    private TitleTextureKey ttkサブタイトルテクスチャを生成する( string str文字, Color forecolor, Color backcolor)
         {
-            return new TitleTextureKey(str文字, pfSubtitle, forecolor, backcolor, 700);
+            return new TitleTextureKey(str文字, pfSubtitle, forecolor, backcolor, 500);
         }
 
 	    private CTexture ResolveTitleTexture(TitleTextureKey titleTextureKey)

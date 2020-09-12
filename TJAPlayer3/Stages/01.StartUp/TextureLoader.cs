@@ -136,6 +136,7 @@ namespace TJAPlayer3
             }
 
             Difficulty_Bar = TxC(SONGSELECT + @"Difficulty Select\Difficulty_Bar.png");
+            Difficulty_SelectBar = TxC(SONGSELECT + @"Difficulty Select\Difficulty_SelectBar.png");
             #endregion
 
             #region 4_読み込み画面
@@ -364,9 +365,10 @@ namespace TJAPlayer3
             Taiko_Score[0] = TxC(GAME + TAIKO + @"Score.png");
             Taiko_Score[1] = TxC(GAME + TAIKO + @"Score_1P.png");
             Taiko_Score[2] = TxC(GAME + TAIKO + @"Score_2P.png");
-            Taiko_Combo = new CTexture[2];
+            Taiko_Combo = new CTexture[3];
             Taiko_Combo[0] = TxC(GAME + TAIKO + @"Combo.png");
             Taiko_Combo[1] = TxC(GAME + TAIKO + @"Combo_Big.png");
+            Taiko_Combo[2] = TxC(GAME + TAIKO + @"Combo_Midium.png");
             Taiko_Combo_Effect = TxC(GAME + TAIKO + @"Combo_Effect.png");
             Taiko_Combo_Text = TxC(GAME + TAIKO + @"Combo_Text.png");
             #endregion
@@ -598,6 +600,8 @@ namespace TJAPlayer3
             {
                 TJAPlayer3.tテクスチャの解放(ref Diffculty_Back[i]);
             }
+            TJAPlayer3.tテクスチャの解放(ref Difficulty_Bar);
+            TJAPlayer3.tテクスチャの解放(ref Difficulty_SelectBar);
             #endregion
 
             #region 4_読み込み画面
@@ -731,6 +735,7 @@ namespace TJAPlayer3
             TJAPlayer3.tテクスチャの解放(ref Taiko_Score[2]);
             TJAPlayer3.tテクスチャの解放(ref Taiko_Combo[0]);
             TJAPlayer3.tテクスチャの解放(ref Taiko_Combo[1]);
+            TJAPlayer3.tテクスチャの解放(ref Taiko_Combo[2]);
             TJAPlayer3.tテクスチャの解放(ref Taiko_Combo_Effect);
             TJAPlayer3.tテクスチャの解放(ref Taiko_Combo_Text);
             #endregion
@@ -906,7 +911,8 @@ namespace TJAPlayer3
             SongSelect_Donchan_Normal = new CTexture[61],
             SongSelect_NamePlate = new CTexture[1];
 
-        public CTexture Difficulty_Bar;
+        public CTexture Difficulty_Bar,
+                        Difficulty_SelectBar;
         public CTexture[] Diffculty_Back = new CTexture[8];
         #endregion
 

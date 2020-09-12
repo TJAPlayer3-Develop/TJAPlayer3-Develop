@@ -457,9 +457,33 @@ namespace FDK
         {
             this.t2D描画(device, x, y, 1f, rc画像内の描画領域);
         }
+
+        public void t2D右描画(Device device, int x, int y, Rectangle rc画像内の描画領域)
+        {
+            this.t2D描画(device, x - (rc物理画面描画領域.Width), y, 1f, rc画像内の描画領域);
+        }
+
+        public void t2D右描画(Device device, int x, int y)
+        {
+            this.t2D描画(device, x - (rc全画像.Width / 2), y, 1f, rc全画像);
+        }
+
+        public void t2D拡大率考慮右描画(Device device, int x, int y)
+        {
+            this.t2D描画(device, x - (rc全画像.Width * vc拡大縮小倍率.X), y, 1f, rc全画像);
+        }
+        public void t2D拡大率考慮右描画(Device device, int x, int y, Rectangle rc画像内の描画領域)
+        {
+            this.t2D描画(device, x - (rc画像内の描画領域.Width * vc拡大縮小倍率.X), y, 1f, rc画像内の描画領域);
+        }
+
         public void t2D描画(Device device, float x, float y)
         {
             this.t2D描画(device, (int)x, (int)y, 1f, this.rc全画像);
+        }
+        public void t2D描画(Device device, float x, float y, Rectangle rc画像内の描画領域)
+        {
+            this.t2D描画(device, (int)x, (int)y, 1f, rc画像内の描画領域);
         }
         public void t2D描画(Device device, float x, float y, float depth, Rectangle rc画像内の描画領域)
         {

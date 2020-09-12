@@ -84,10 +84,12 @@ namespace TJAPlayer3
 						Trace.TraceError( "パネル文字列テクスチャの生成に失敗しました。" );
 						this.txPanel = null;
 					}
-				}
-                if( !string.IsNullOrEmpty(genreName) )
+                }
+
+                this.txSONGS = TJAPlayer3.Tx.TxCGen("Songs");
+
+                if ( !string.IsNullOrEmpty(genreName) )
                 {
-                    this.txSONGS = TJAPlayer3.Tx.TxCGen("Songs");
                     if (genreName.Equals( "アニメ" ) )
                     {
                         this.txGENRE = TJAPlayer3.Tx.TxCGen("Anime");
@@ -242,7 +244,8 @@ namespace TJAPlayer3
                 if( this.txGENRE != null )
                     this.txGENRE.t2D描画( TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Genre_X, TJAPlayer3.Skin.Game_Genre_Y );
 
-                txSONGS.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Genre_X, TJAPlayer3.Skin.Game_Genre_Y);
+                if (this.txSONGS != null)
+                    txSONGS.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Genre_X, TJAPlayer3.Skin.Game_Genre_Y);
 
                 if ( TJAPlayer3.Skin.b現在のステージ数を表示しない )
                 {
@@ -308,12 +311,6 @@ namespace TJAPlayer3
                         }
                     }
                 }
-
-                TJAPlayer3.act文字コンソール.tPrint(0, 0, C文字コンソール.Eフォント種別.灰, ct進行用.n現在の値.ToString());
-
-                //CDTXMania.act文字コンソール.tPrint( 0, 0, C文字コンソール.Eフォント種別.白, this.ct進行用.n現在の値.ToString() );
-
-				//this.txMusicName.t2D描画( CDTXMania.app.Device, 1250 - this.txMusicName.szテクスチャサイズ.Width, 14 );
 			}
 			return 0;
 		}

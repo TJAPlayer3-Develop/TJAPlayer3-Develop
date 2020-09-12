@@ -118,7 +118,7 @@ namespace TJAPlayer3
 		private CCounter ct再生待ちウェイト;
 		private long long再生位置;
 		private long long再生開始時のシステム時刻;
-		private CSound sound;
+		public CSound sound;
 		private string str現在のファイル名;
 
 		private void tBGMフェードアウト開始()
