@@ -715,9 +715,6 @@ namespace TJAPlayer3
 			cスコア.譜面情報.最大スキル.Drums = br.ReadDouble();
 			cスコア.譜面情報.最大スキル.Guitar = br.ReadDouble();
 			cスコア.譜面情報.最大スキル.Bass = br.ReadDouble();
-			cスコア.譜面情報.フルコンボ.Drums = br.ReadBoolean();
-			cスコア.譜面情報.フルコンボ.Guitar = br.ReadBoolean();
-			cスコア.譜面情報.フルコンボ.Bass = br.ReadBoolean();
 			cスコア.譜面情報.演奏回数.Drums = br.ReadInt32();
 			cスコア.譜面情報.演奏回数.Guitar = br.ReadInt32();
 			cスコア.譜面情報.演奏回数.Bass = br.ReadInt32();
@@ -734,6 +731,12 @@ namespace TJAPlayer3
 			cスコア.譜面情報.Duration = br.ReadInt32();
             cスコア.譜面情報.strBGMファイル名 = br.ReadString();
             cスコア.譜面情報.SongVol = br.ReadInt32();
+			for(int i = 0; i < 5; i++)
+			{
+				cスコア.譜面情報.クリア[i] = bool.Parse(br.ReadString());
+				cスコア.譜面情報.フルコンボ[i] = bool.Parse(br.ReadString());
+				cスコア.譜面情報.ドンダフルコンボ[i] = bool.Parse(br.ReadString());
+			}
 		    var hasSongIntegratedLoudness = br.ReadBoolean();
 		    var songIntegratedLoudness = br.ReadDouble();
 		    var integratedLoudness = hasSongIntegratedLoudness ? new Lufs(songIntegratedLoudness) : default(Lufs?);
@@ -845,7 +848,7 @@ namespace TJAPlayer3
                                     c曲リストノード.arスコア[ i ].譜面情報.nレベル[4] = cdtx.LEVELtaiko[4];
                                     c曲リストノード.arスコア[i].譜面情報.nレベル[5] = cdtx.LEVELtaiko[5];
                                     c曲リストノード.arスコア[i].譜面情報.nレベル[6] = cdtx.LEVELtaiko[6];
-                                    this.nファイルから反映できたスコア数++;
+									this.nファイルから反映できたスコア数++;
 									cdtx.On非活性化();
 //Debug.WriteLine( "★" + this.nファイルから反映できたスコア数 + " " + c曲リストノード.arスコア[ i ].譜面情報.タイトル );
 									#region [ 曲検索ログ出力 ]
@@ -1102,9 +1105,6 @@ namespace TJAPlayer3
 					bw.Write( node.arスコア[ i ].譜面情報.最大スキル.Drums );
 					bw.Write( node.arスコア[ i ].譜面情報.最大スキル.Guitar );
 					bw.Write( node.arスコア[ i ].譜面情報.最大スキル.Bass );
-					bw.Write( node.arスコア[ i ].譜面情報.フルコンボ.Drums );
-					bw.Write( node.arスコア[ i ].譜面情報.フルコンボ.Guitar );
-					bw.Write( node.arスコア[ i ].譜面情報.フルコンボ.Bass );
 					bw.Write( node.arスコア[ i ].譜面情報.演奏回数.Drums );
 					bw.Write( node.arスコア[ i ].譜面情報.演奏回数.Guitar );
 					bw.Write( node.arスコア[ i ].譜面情報.演奏回数.Bass );
@@ -1546,58 +1546,59 @@ Debug.WriteLine( dBPM + ":" + c曲リストノード.strタイトル );
 
 			try
 			{
-				var ini = new CScoreIni( strScoreIniファイルパス );
+				var ini = new CScoreIni(strScoreIniファイルパス);
 				ini.t全演奏記録セクションの整合性をチェックし不整合があればリセットする();
 
-				for( int n楽器番号 = 0; n楽器番号 < 3; n楽器番号++ )
+				for (int i = 0; i < 5; i++)
 				{
-					int n = ( n楽器番号 * 2 ) + 1;	// n = 0～5
+					score.譜面情報.ドンダフルコンボ[i] = ini.stセクション[0].bIsDondaFullCombo[i];
+					score.譜面情報.フルコンボ[i] = ini.stセクション[0].bIsFullCombo[i];
+					score.譜面情報.クリア[i] = ini.stセクション[0].bIsClear[i];
+				}
 
-					#region socre.譜面情報.最大ランク[ n楽器番号 ] = ... 
-					//-----------------
-					if( ini.stセクション[ n ].b演奏にMIDI入力を使用した ||
-						ini.stセクション[ n ].b演奏にキーボードを使用した ||
-						ini.stセクション[ n ].b演奏にジョイパッドを使用した ||
-						ini.stセクション[ n ].b演奏にマウスを使用した )
-					{
-						// (A) 全オートじゃないようなので、演奏結果情報を有効としてランクを算出する。
+				#region socre.譜面情報.最大ランク[ n楽器番号 ] = ... 
+				//-----------------
+				if (ini.stセクション[0].b演奏にMIDI入力を使用した ||
+					ini.stセクション[0].b演奏にキーボードを使用した ||
+					ini.stセクション[0].b演奏にジョイパッドを使用した ||
+					ini.stセクション[0].b演奏にマウスを使用した)
+				{
+					// (A) 全オートじゃないようなので、演奏結果情報を有効としてランクを算出する。
 
-						score.譜面情報.最大ランク[ n楽器番号 ] =
-							CScoreIni.tランク値を計算して返す( 
-								ini.stセクション[ n ].n全チップ数,
-								ini.stセクション[ n ].nPerfect数, 
-								ini.stセクション[ n ].nGreat数,
-								ini.stセクション[ n ].nGood数, 
-								ini.stセクション[ n ].nPoor数,
-								ini.stセクション[ n ].nMiss数 );
-					}
-					else
-					{
-						// (B) 全オートらしいので、ランクは無効とする。
+					score.譜面情報.最大ランク[0 ] =
+						CScoreIni.tランク値を計算して返す(
+							ini.stセクション[0].n全チップ数,
+							ini.stセクション[0].nPerfect数,
+							ini.stセクション[0].nGreat数,
+							ini.stセクション[0].nGood数,
+							ini.stセクション[0].nPoor数,
+							ini.stセクション[0].nMiss数);
+				}
+				else
+				{
+					// (B) 全オートらしいので、ランクは無効とする。
 
-						score.譜面情報.最大ランク[ n楽器番号 ] = (int) CScoreIni.ERANK.UNKNOWN;
-					}
-					//-----------------
-					#endregion
-					score.譜面情報.最大スキル[ n楽器番号 ] = ini.stセクション[ n ].db演奏型スキル値;
-					score.譜面情報.フルコンボ[ n楽器番号 ] = ini.stセクション[ n ].bフルコンボである;
-                    score.譜面情報.ハイスコア = (int)ini.stセクション.HiScoreDrums.nスコア;
-                    for( int i = 0; i < (int)Difficulty.Total; i++ )
-                    {
-                        score.譜面情報.nハイスコア[ i ] = (int)ini.stセクション.HiScoreDrums.nハイスコア[ i ];
-                    }
+					score.譜面情報.最大ランク[0] = (int)CScoreIni.ERANK.UNKNOWN;
+				}
+				//-----------------
+				#endregion
+				score.譜面情報.最大スキル[0] = ini.stセクション[0].db演奏型スキル値;
+				score.譜面情報.ハイスコア = (int)ini.stセクション.HiScoreDrums.nスコア;
+				for (int i = 0; i < (int)Difficulty.Total; i++)
+				{
+					score.譜面情報.nハイスコア[i] = (int)ini.stセクション.HiScoreDrums.nハイスコア[i];
 				}
 				score.譜面情報.演奏回数.Drums = ini.stファイル.PlayCountDrums;
 				score.譜面情報.演奏回数.Guitar = ini.stファイル.PlayCountGuitar;
 				score.譜面情報.演奏回数.Bass = ini.stファイル.PlayCountBass;
-				for( int i = 0; i < (int)Difficulty.Total; i++ )
-					score.譜面情報.演奏履歴[ i ] = ini.stファイル.History[ i ];
+				for (int i = 0; i < (int)Difficulty.Total; i++)
+					score.譜面情報.演奏履歴[i] = ini.stファイル.History[i];
 			}
 			catch (Exception e)
 			{
-				Trace.TraceError( "演奏記録ファイルの読み込みに失敗しました。[{0}]", strScoreIniファイルパス );
-				Trace.TraceError( e.ToString() );
-				Trace.TraceError( "例外が発生しましたが処理を継続します。 (801f823d-a952-4809-a1bb-cf6a56194f5c)" );
+				Trace.TraceError("演奏記録ファイルの読み込みに失敗しました。[{0}]", strScoreIniファイルパス);
+				Trace.TraceError(e.ToString());
+				Trace.TraceError("例外が発生しましたが処理を継続します。 (801f823d-a952-4809-a1bb-cf6a56194f5c)");
 			}
 		}
 		//-----------------

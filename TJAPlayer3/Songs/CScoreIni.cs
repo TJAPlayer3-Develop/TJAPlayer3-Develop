@@ -45,14 +45,6 @@ namespace TJAPlayer3
 		public struct STセクション
 		{
             public CScoreIni.C演奏記録 HiScoreDrums;
-            public CScoreIni.C演奏記録 HiSkillDrums;
-			public CScoreIni.C演奏記録 HiScoreGuitar;
-            public CScoreIni.C演奏記録 HiSkillGuitar;
-			public CScoreIni.C演奏記録 HiScoreBass;
-            public CScoreIni.C演奏記録 HiSkillBass;
-            public CScoreIni.C演奏記録 LastPlayDrums;   // #23595 2011.1.9 ikanick
-            public CScoreIni.C演奏記録 LastPlayGuitar;  //
-            public CScoreIni.C演奏記録 LastPlayBass;    //
 			public CScoreIni.C演奏記録 this[ int index ]
 			{
 				get
@@ -62,31 +54,7 @@ namespace TJAPlayer3
 						case 0:
 							return this.HiScoreDrums;
 
-						case 1:
-							return this.HiSkillDrums;
-
-						case 2:
-							return this.HiScoreGuitar;
-
-						case 3:
-							return this.HiSkillGuitar;
-
-						case 4:
-							return this.HiScoreBass;
-
-                        case 5:
-                            return this.HiSkillBass;
-
-                        // #23595 2011.1.9 ikanick
-                        case 6:
-                            return this.LastPlayDrums;
-
-                        case 7:
-                            return this.LastPlayGuitar;
-
-                        case 8:
-                            return this.LastPlayBass;
-                        //------------
+							//------------
 					}
 					throw new IndexOutOfRangeException();
 				}
@@ -98,38 +66,7 @@ namespace TJAPlayer3
 							this.HiScoreDrums = value;
 							return;
 
-						case 1:
-							this.HiSkillDrums = value;
-							return;
-
-						case 2:
-							this.HiScoreGuitar = value;
-							return;
-
-						case 3:
-							this.HiSkillGuitar = value;
-							return;
-
-						case 4:
-							this.HiScoreBass = value;
-                            return;
-
-                        case 5:
-                            this.HiSkillBass = value;
-                            return;
-                        // #23595 2011.1.9 ikanick
-                        case 6:
-                            this.LastPlayDrums = value;
-                            return;
-
-                        case 7:
-                            this.LastPlayGuitar = value;
-                            return;
-
-                        case 8:
-                            this.LastPlayBass = value;
-                            return;
-                        //------------------
+							//------------------
 					}
 					throw new IndexOutOfRangeException();
 				}
@@ -140,14 +77,6 @@ namespace TJAPlayer3
 			Unknown = -2,
 			File = -1,
 			HiScoreDrums = 0,
-			HiSkillDrums = 1,
-			HiScoreGuitar = 2,
-			HiSkillGuitar = 3,
-			HiScoreBass = 4,
-			HiSkillBass = 5,
-			LastPlayDrums = 6,  // #23595 2011.1.9 ikanick
-			LastPlayGuitar = 7, //
-			LastPlayBass = 8,   //
 		}
 		public enum ERANK : int		// #24459 yyagi
 		{
@@ -170,6 +99,9 @@ namespace TJAPlayer3
 			public STDGBVALUE<bool> bLight;
 			public STDGBVALUE<bool> bReverse;
 			public bool bSTAGEFAILED有効;
+			public bool[] bIsDondaFullCombo = new bool[5];
+			public bool[] bIsFullCombo = new bool[5];
+			public bool[] bIsClear = new bool[5];
 			public STDGBVALUE<bool> bSudden;
 			public STDGBVALUE<EInvisible> eInvisible;
 			public bool bTight;
@@ -239,7 +171,12 @@ namespace TJAPlayer3
 				this.bAutoPlay.BsB = false;
 				this.bAutoPlay.BsPick = false;
 				this.bAutoPlay.BsW = false;
-
+				for(int i = 0; i < 5; i++)
+				{
+					this.bIsDondaFullCombo[i] = false;
+					this.bIsFullCombo[i] = false;
+					this.bIsClear[i] = false;
+				}
 				this.bSudden = new STDGBVALUE<bool>();
 				this.bSudden.Drums = false;
 				this.bSudden.Guitar = false;
@@ -509,14 +446,6 @@ namespace TJAPlayer3
 	
 			this.stセクション = new STセクション();
 			stセクション.HiScoreDrums = new C演奏記録();
-			stセクション.HiSkillDrums = new C演奏記録();
-			stセクション.HiScoreGuitar = new C演奏記録();
-            stセクション.HiSkillGuitar = new C演奏記録();
-            stセクション.HiScoreBass = new C演奏記録();
-            stセクション.HiSkillBass = new C演奏記録();
-            stセクション.LastPlayDrums = new C演奏記録();
-            stセクション.LastPlayGuitar = new C演奏記録();
-            stセクション.LastPlayBass = new C演奏記録();
 		}
 
 		/// <summary>
@@ -608,40 +537,7 @@ namespace TJAPlayer3
 								{
 									section = Eセクション種別.HiScoreDrums;
 								}
-								else if( str2.Equals( "HiSkill.Drums" ) )
-								{
-									section = Eセクション種別.HiSkillDrums;
-								}
-								else if( str2.Equals( "HiScore.Guitar" ) )
-								{
-									section = Eセクション種別.HiScoreGuitar;
-								}
-								else if( str2.Equals( "HiSkill.Guitar" ) )
-								{
-									section = Eセクション種別.HiSkillGuitar;
-								}
-								else if( str2.Equals( "HiScore.Bass" ) )
-								{
-									section = Eセクション種別.HiScoreBass;
-                                }
-                                else if (str2.Equals("HiSkill.Bass"))
-                                {
-                                    section = Eセクション種別.HiSkillBass;
-                                }
-                                // #23595 2011.1.9 ikanick
-                                else if (str2.Equals("LastPlay.Drums"))
-                                {
-                                    section = Eセクション種別.LastPlayDrums;
-                                }
-                                else if (str2.Equals("LastPlay.Guitar"))
-                                {
-                                    section = Eセクション種別.LastPlayGuitar;
-                                }
-                                else if (str2.Equals("LastPlay.Bass"))
-                                {
-                                    section = Eセクション種別.LastPlayBass;
-                                }
-                                //----------------------------------------------------
+								//----------------------------------------------------
 								else
 								{
 									section = Eセクション種別.Unknown;
@@ -667,16 +563,8 @@ namespace TJAPlayer3
 												continue;
 											}
 										case Eセクション種別.HiScoreDrums:
-										case Eセクション種別.HiSkillDrums:
-										case Eセクション種別.HiScoreGuitar:
-										case Eセクション種別.HiSkillGuitar:
-										case Eセクション種別.HiScoreBass:
-                                        case Eセクション種別.HiSkillBass:
-                                        case Eセクション種別.LastPlayDrums:// #23595 2011.1.9 ikanick
-                                        case Eセクション種別.LastPlayGuitar:
-                                        case Eセクション種別.LastPlayBass:
 											{
-												c演奏記録 = this.stセクション[ (int) section ];
+												c演奏記録 = this.stセクション[ 0 ];
 												if( !item.Equals( "Score" ) )
 												{
 													goto Label_03B9;
@@ -1162,11 +1050,28 @@ namespace TJAPlayer3
                                             {
                                                 c演奏記録.nハイスコア[ 3 ] = int.Parse( para );
                                             }
-                                            //else if ( item.Equals( "HiScore5" ) )
-                                            //{
-                                            //    c演奏記録.nハイスコア[ 4 ] = int.Parse( para );
-                                            //}
+											else if ( item.Equals( "HiScore5" ) )
+											{
+											    c演奏記録.nハイスコア[ 4 ] = int.Parse( para );
+											}
 
+											for (int i = 0; i < 5; i++)
+											{
+												string[] Diff = { "Eazy", "Normal", "Hard", "Oni", "Edit" };
+
+												if (item.Equals(Diff[i] + "Clear"))
+												{
+													c演奏記録.bIsClear[i] = bool.Parse(para);
+												}
+												if (item.Equals(Diff[i] + "FullCombo"))
+												{
+													c演奏記録.bIsFullCombo[i] = bool.Parse(para);
+												}
+												if (item.Equals(Diff[i] + "DondaFullCombo"))
+												{
+													c演奏記録.bIsDondaFullCombo[i] = bool.Parse(para);
+												}
+											}
 
 										}
 									}
@@ -1194,103 +1099,89 @@ namespace TJAPlayer3
 			DateTime now = DateTime.Now;
 			this.stファイル.History[ 0 ] = string.Format( "{0:0}.{1:D2}/{2}/{3} {4}", this.stファイル.HistoryCount, now.Year % 100, now.Month, now.Day, str追加文字列 );
 		}
-		internal void t書き出し( string iniファイル名 )
+		internal void t書き出し(string iniファイル名)
 		{
-			this.iniファイルのあるフォルダ名 = Path.GetDirectoryName( iniファイル名 );
-			this.iniファイル名 = Path.GetFileName( iniファイル名 );
+			this.iniファイルのあるフォルダ名 = Path.GetDirectoryName(iniファイル名);
+			this.iniファイル名 = Path.GetFileName(iniファイル名);
 
-			StreamWriter writer = new StreamWriter( iniファイル名, false, Encoding.GetEncoding( "Shift_JIS" ) );
-			writer.WriteLine( "[File]" );
-			writer.WriteLine( "Title={0}", this.stファイル.Title );
-			writer.WriteLine( "Name={0}", this.stファイル.Name );
-			writer.WriteLine( "Hash={0}", this.stファイル.Hash );
-			writer.WriteLine( "PlayCountDrums={0}", this.stファイル.PlayCountDrums );
-			writer.WriteLine( "PlayCountGuitars={0}", this.stファイル.PlayCountGuitar );
-            writer.WriteLine( "PlayCountBass={0}", this.stファイル.PlayCountBass );
-            writer.WriteLine( "ClearCountDrums={0}", this.stファイル.ClearCountDrums );       // #23596 10.11.16 add ikanick
-            writer.WriteLine( "ClearCountGuitars={0}", this.stファイル.ClearCountGuitar );    //
-            writer.WriteLine( "ClearCountBass={0}", this.stファイル.ClearCountBass );         //
-			writer.WriteLine( "BestRankDrums={0}", this.stファイル.BestRank.Drums );		// #24459 2011.2.24 yyagi
-			writer.WriteLine( "BestRankGuitar={0}", this.stファイル.BestRank.Guitar );		//
-			writer.WriteLine( "BestRankBass={0}", this.stファイル.BestRank.Bass );			//
-			writer.WriteLine( "HistoryCount={0}", this.stファイル.HistoryCount );
-			writer.WriteLine( "History0={0}", this.stファイル.History[ 0 ] );
-			writer.WriteLine( "History1={0}", this.stファイル.History[ 1 ] );
-			writer.WriteLine( "History2={0}", this.stファイル.History[ 2 ] );
-			writer.WriteLine( "History3={0}", this.stファイル.History[ 3 ] );
-			writer.WriteLine( "History4={0}", this.stファイル.History[ 4 ] );
-			writer.WriteLine( "BGMAdjust={0}", this.stファイル.BGMAdjust );
+			StreamWriter writer = new StreamWriter(iniファイル名, false, Encoding.GetEncoding("Shift_JIS"));
+			writer.WriteLine("[File]");
+			writer.WriteLine("Title={0}", this.stファイル.Title);
+			writer.WriteLine("Name={0}", this.stファイル.Name);
+			writer.WriteLine("Hash={0}", this.stファイル.Hash);
+			writer.WriteLine("PlayCountDrums={0}", this.stファイル.PlayCountDrums);
+			writer.WriteLine("PlayCountGuitars={0}", this.stファイル.PlayCountGuitar);
+			writer.WriteLine("PlayCountBass={0}", this.stファイル.PlayCountBass);
+			writer.WriteLine("ClearCountDrums={0}", this.stファイル.ClearCountDrums);       // #23596 10.11.16 add ikanick
+			writer.WriteLine("ClearCountGuitars={0}", this.stファイル.ClearCountGuitar);    //
+			writer.WriteLine("ClearCountBass={0}", this.stファイル.ClearCountBass);         //
+			writer.WriteLine("BestRankDrums={0}", this.stファイル.BestRank.Drums);      // #24459 2011.2.24 yyagi
+			writer.WriteLine("BestRankGuitar={0}", this.stファイル.BestRank.Guitar);        //
+			writer.WriteLine("BestRankBass={0}", this.stファイル.BestRank.Bass);            //
+			writer.WriteLine("HistoryCount={0}", this.stファイル.HistoryCount);
+			writer.WriteLine("History0={0}", this.stファイル.History[0]);
+			writer.WriteLine("History1={0}", this.stファイル.History[1]);
+			writer.WriteLine("History2={0}", this.stファイル.History[2]);
+			writer.WriteLine("History3={0}", this.stファイル.History[3]);
+			writer.WriteLine("History4={0}", this.stファイル.History[4]);
+			writer.WriteLine("BGMAdjust={0}", this.stファイル.BGMAdjust);
 			writer.WriteLine();
-			for( int i = 0; i < 9; i++ )
+
+			writer.WriteLine("[HiScore.Drums]");
+			writer.WriteLine("Score={0}", this.stセクション[0].nスコア);
+			writer.WriteLine("PlaySkill={0}", this.stセクション[0].db演奏型スキル値);
+			writer.WriteLine("Skill={0}", this.stセクション[0].dbゲーム型スキル値);
+			writer.WriteLine("Perfect={0}", this.stセクション[0].nPerfect数);
+			writer.WriteLine("Great={0}", this.stセクション[0].nGreat数);
+			writer.WriteLine("Good={0}", this.stセクション[0].nGood数);
+			writer.WriteLine("Poor={0}", this.stセクション[0].nPoor数);
+			writer.WriteLine("Miss={0}", this.stセクション[0].nMiss数);
+			writer.WriteLine("MaxCombo={0}", this.stセクション[0].n最大コンボ数);
+			writer.WriteLine("TotalChips={0}", this.stセクション[0].n全チップ数);
+			writer.Write("AutoPlay=");
+			for (int j = 0; j < (int)Eレーン.MAX; j++)
 			{
-                string[] strArray = { "HiScore.Drums", "HiSkill.Drums", "HiScore.Guitar", "HiSkill.Guitar", "HiScore.Bass", "HiSkill.Bass", "LastPlay.Drums", "LastPlay.Guitar", "LastPlay.Bass" };
-				writer.WriteLine( "[{0}]", strArray[ i ] );
-				writer.WriteLine( "Score={0}", this.stセクション[ i ].nスコア );
-				writer.WriteLine( "PlaySkill={0}", this.stセクション[ i ].db演奏型スキル値 );
-				writer.WriteLine( "Skill={0}", this.stセクション[ i ].dbゲーム型スキル値 );
-				writer.WriteLine( "Perfect={0}", this.stセクション[ i ].nPerfect数 );
-				writer.WriteLine( "Great={0}", this.stセクション[ i ].nGreat数 );
-				writer.WriteLine( "Good={0}", this.stセクション[ i ].nGood数 );
-				writer.WriteLine( "Poor={0}", this.stセクション[ i ].nPoor数 );
-				writer.WriteLine( "Miss={0}", this.stセクション[ i ].nMiss数 );
-				writer.WriteLine( "MaxCombo={0}", this.stセクション[ i ].n最大コンボ数 );
-				writer.WriteLine( "TotalChips={0}", this.stセクション[ i ].n全チップ数 );
-				writer.Write( "AutoPlay=" );
-				for ( int j = 0; j < (int) Eレーン.MAX; j++ )
-				{
-					writer.Write( this.stセクション[ i ].bAutoPlay[ j ] ? 1 : 0 );
-				}
-				writer.WriteLine();
-				writer.WriteLine( "Risky={0}", this.stセクション[ i ].nRisky );
-				writer.WriteLine( "SuddenDrums={0}", this.stセクション[ i ].bSudden.Drums ? 1 : 0 );
-				writer.WriteLine( "SuddenGuitar={0}", this.stセクション[ i ].bSudden.Guitar ? 1 : 0 );
-				writer.WriteLine( "SuddenBass={0}", this.stセクション[ i ].bSudden.Bass ? 1 : 0 );
-				writer.WriteLine( "HiddenDrums={0}", this.stセクション[ i ].bHidden.Drums ? 1 : 0 );
-				writer.WriteLine( "HiddenGuitar={0}", this.stセクション[ i ].bHidden.Guitar ? 1 : 0 );
-				writer.WriteLine( "HiddenBass={0}", this.stセクション[ i ].bHidden.Bass ? 1 : 0 );
-				writer.WriteLine( "InvisibleDrums={0}", (int) this.stセクション[ i ].eInvisible.Drums );
-				writer.WriteLine( "InvisibleGuitar={0}", (int) this.stセクション[ i ].eInvisible.Guitar );
-				writer.WriteLine( "InvisibleBass={0}", (int) this.stセクション[ i ].eInvisible.Bass );
-				writer.WriteLine( "ReverseDrums={0}", this.stセクション[ i ].bReverse.Drums ? 1 : 0 );
-				writer.WriteLine( "ReverseGuitar={0}", this.stセクション[ i ].bReverse.Guitar ? 1 : 0 );
-				writer.WriteLine( "ReverseBass={0}", this.stセクション[ i ].bReverse.Bass ? 1 : 0 );
-				writer.WriteLine( "TightDrums={0}", this.stセクション[ i ].bTight ? 1 : 0 );
-				writer.WriteLine( "RandomGuitar={0}", (int) this.stセクション[ i ].eRandom.Guitar );
-				writer.WriteLine( "RandomBass={0}", (int) this.stセクション[ i ].eRandom.Bass );
-				writer.WriteLine( "LightGuitar={0}", this.stセクション[ i ].bLight.Guitar ? 1 : 0 );
-				writer.WriteLine( "LightBass={0}", this.stセクション[ i ].bLight.Bass ? 1 : 0 );
-				writer.WriteLine( "LeftGuitar={0}", this.stセクション[ i ].bLeft.Guitar ? 1 : 0 );
-				writer.WriteLine( "LeftBass={0}", this.stセクション[ i ].bLeft.Bass ? 1 : 0 );
-				writer.WriteLine( "Dark={0}", (int) this.stセクション[ i ].eDark );
-				writer.WriteLine( "ScrollSpeedDrums={0}", this.stセクション[ i ].f譜面スクロール速度.Drums );
-				writer.WriteLine( "ScrollSpeedGuitar={0}", this.stセクション[ i ].f譜面スクロール速度.Guitar );
-				writer.WriteLine( "ScrollSpeedBass={0}", this.stセクション[ i ].f譜面スクロール速度.Bass );
-				writer.WriteLine( "PlaySpeed={0}/{1}", this.stセクション[ i ].n演奏速度分子, this.stセクション[ i ].n演奏速度分母 );
-				writer.WriteLine( "Guitar={0}", this.stセクション[ i ].bGuitar有効 ? 1 : 0 );
-				writer.WriteLine( "Drums={0}", this.stセクション[ i ].bDrums有効 ? 1 : 0 );
-				writer.WriteLine( "StageFailed={0}", this.stセクション[ i ].bSTAGEFAILED有効 ? 1 : 0 );
-				writer.WriteLine( "DamageLevel={0}", (int) this.stセクション[ i ].eダメージレベル );
-				writer.WriteLine( "UseKeyboard={0}", this.stセクション[ i ].b演奏にキーボードを使用した ? 1 : 0 );
-				writer.WriteLine( "UseMIDIIN={0}", this.stセクション[ i ].b演奏にMIDI入力を使用した ? 1 : 0 );
-				writer.WriteLine( "UseJoypad={0}", this.stセクション[ i ].b演奏にジョイパッドを使用した ? 1 : 0 );
-				writer.WriteLine( "UseMouse={0}", this.stセクション[ i ].b演奏にマウスを使用した ? 1 : 0 );
-				writer.WriteLine( "PerfectRange={0}", this.stセクション[ i ].nPerfectになる範囲ms );
-				writer.WriteLine( "GreatRange={0}", this.stセクション[ i ].nGreatになる範囲ms );
-				writer.WriteLine( "GoodRange={0}", this.stセクション[ i ].nGoodになる範囲ms );
-				writer.WriteLine( "PoorRange={0}", this.stセクション[ i ].nPoorになる範囲ms );
-				writer.WriteLine( "DTXManiaVersion={0}", this.stセクション[ i ].strDTXManiaのバージョン );
-				writer.WriteLine( "DateTime={0}", this.stセクション[ i ].最終更新日時 );
-				writer.WriteLine( "Hash={0}", this.stセクション[ i ].Hash );
-                writer.WriteLine( "HiScore1={0}", this.stセクション[ i ].nハイスコア[ 0 ] );
-                writer.WriteLine( "HiScore2={0}", this.stセクション[ i ].nハイスコア[ 1 ] );
-                writer.WriteLine( "HiScore3={0}", this.stセクション[ i ].nハイスコア[ 2 ] );
-                writer.WriteLine( "HiScore4={0}", this.stセクション[ i ].nハイスコア[ 3 ] );
-                writer.WriteLine( "HiScore5={0}", this.stセクション[ i ].nハイスコア[ 4 ] );
-                writer.WriteLine( "Roll1={0}", this.stセクション[ i ].n連打[ 0 ] );
-                writer.WriteLine( "Roll2={0}", this.stセクション[ i ].n連打[ 1 ] );
-                writer.WriteLine( "Roll3={0}", this.stセクション[ i ].n連打[ 2 ] );
-                writer.WriteLine( "Roll4={0}", this.stセクション[ i ].n連打[ 3 ] );
-                writer.WriteLine( "Roll5={0}", this.stセクション[ i ].n連打[ 4 ] );
+				writer.Write(this.stセクション[0].bAutoPlay[j] ? 1 : 0);
+			}
+			writer.WriteLine();
+			writer.WriteLine("Risky={0}", this.stセクション[0].nRisky);
+			writer.WriteLine("SuddenDrums={0}", this.stセクション[0].bSudden.Drums ? 1 : 0);
+			writer.WriteLine("HiddenDrums={0}", this.stセクション[0].bHidden.Drums ? 1 : 0);
+			writer.WriteLine("InvisibleDrums={0}", (int)this.stセクション[0].eInvisible.Drums);
+			writer.WriteLine("ReverseDrums={0}", this.stセクション[0].bReverse.Drums ? 1 : 0);
+			writer.WriteLine("TightDrums={0}", this.stセクション[0].bTight ? 1 : 0);
+			writer.WriteLine("Dark={0}", (int)this.stセクション[0].eDark);
+			writer.WriteLine("ScrollSpeedDrums={0}", this.stセクション[0].f譜面スクロール速度.Drums);
+			writer.WriteLine("PlaySpeed={0}/{1}", this.stセクション[0].n演奏速度分子, this.stセクション[0].n演奏速度分母);
+			writer.WriteLine("StageFailed={0}", this.stセクション[0].bSTAGEFAILED有効 ? 1 : 0);
+			writer.WriteLine("DamageLevel={0}", (int)this.stセクション[0].eダメージレベル);
+			writer.WriteLine("UseKeyboard={0}", this.stセクション[0].b演奏にキーボードを使用した ? 1 : 0);
+			writer.WriteLine("UseMIDIIN={0}", this.stセクション[0].b演奏にMIDI入力を使用した ? 1 : 0);
+			writer.WriteLine("UseJoypad={0}", this.stセクション[0].b演奏にジョイパッドを使用した ? 1 : 0);
+			writer.WriteLine("UseMouse={0}", this.stセクション[0].b演奏にマウスを使用した ? 1 : 0);
+			writer.WriteLine("PerfectRange={0}", this.stセクション[0].nPerfectになる範囲ms);
+			writer.WriteLine("GreatRange={0}", this.stセクション[0].nGreatになる範囲ms);
+			writer.WriteLine("GoodRange={0}", this.stセクション[0].nGoodになる範囲ms);
+			writer.WriteLine("PoorRange={0}", this.stセクション[0].nPoorになる範囲ms);
+			writer.WriteLine("DTXManiaVersion={0}", this.stセクション[0].strDTXManiaのバージョン);
+			writer.WriteLine("DateTime={0}", this.stセクション[0].最終更新日時);
+			writer.WriteLine("Hash={0}", this.stセクション[0].Hash);
+			writer.WriteLine("HiScore1={0}", this.stセクション[0].nハイスコア[0]);
+			writer.WriteLine("HiScore2={0}", this.stセクション[0].nハイスコア[1]);
+			writer.WriteLine("HiScore3={0}", this.stセクション[0].nハイスコア[2]);
+			writer.WriteLine("HiScore4={0}", this.stセクション[0].nハイスコア[3]);
+			writer.WriteLine("HiScore5={0}", this.stセクション[0].nハイスコア[4]);
+			writer.WriteLine("Roll1={0}", this.stセクション[0].n連打[0]);
+			writer.WriteLine("Roll2={0}", this.stセクション[0].n連打[1]);
+			writer.WriteLine("Roll3={0}", this.stセクション[0].n連打[2]);
+			writer.WriteLine("Roll4={0}", this.stセクション[0].n連打[3]);
+			writer.WriteLine("Roll5={0}", this.stセクション[0].n連打[4]);
+			for(int i = 0; i < 5; i++)
+			{
+				string[] Diff = { "Eazy", "Normal", "Hard", "Oni", "Edit" };
+				writer.WriteLine(Diff[i] + "Clear={0}", this.stセクション[0].bIsClear[i]);
+				writer.WriteLine(Diff[i] + "FullCombo={0}", this.stセクション[0].bIsFullCombo[i]);
+				writer.WriteLine(Diff[i] + "DondaFullCombo={0}", this.stセクション[0].bIsDondaFullCombo[i]);
 			}
 
 			writer.Close();

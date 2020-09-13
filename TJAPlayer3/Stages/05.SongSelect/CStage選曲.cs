@@ -497,55 +497,58 @@ namespace TJAPlayer3
 							{
 								if (this.act曲リスト.r現在選択中の曲 != null)
 								{
-									switch (this.act曲リスト.r現在選択中の曲.eノード種別)
+									if(this.act曲リスト.n目標のスクロールカウンタ == 0 && this.act曲リスト.n現在のスクロールカウンタ == 0)
 									{
-										case C曲リストノード.Eノード種別.SCORE:
-											if (TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Dan && TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Tower)
-											{
-												this.act難易度選択画面.SongTitle = TJAPlayer3.stage選曲.act曲リスト.ttk曲名テクスチャを生成する(TJAPlayer3.stage選曲.r現在選択中の曲.strタイトル, Color.White, Color.Black);
-												this.act難易度選択画面.SongSubTitle = TJAPlayer3.stage選曲.act曲リスト.ttkサブタイトルテクスチャを生成する(TJAPlayer3.stage選曲.r現在選択中の曲.strサブタイトル, Color.White, Color.Black);
+										switch (this.act曲リスト.r現在選択中の曲.eノード種別)
+										{
+											case C曲リストノード.Eノード種別.SCORE:
+												if (TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Dan && TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Tower)
+												{
+													this.act難易度選択画面.SongTitle = TJAPlayer3.stage選曲.act曲リスト.ttk曲名テクスチャを生成する(TJAPlayer3.stage選曲.r現在選択中の曲.strタイトル, Color.White, Color.Black);
+													this.act難易度選択画面.SongSubTitle = TJAPlayer3.stage選曲.act曲リスト.ttkサブタイトルテクスチャを生成する(TJAPlayer3.stage選曲.r現在選択中の曲.strサブタイトル, Color.White, Color.Black);
 
-												ctDiffSelect移動待ち.t開始(0, 1490, 1, TJAPlayer3.Timer);
-												act難易度選択画面.bIsDifficltSelect = true;
-												TJAPlayer3.Skin.sound決定音.t再生する();
-											}
-                                            else
-											{
-												this.t曲を選択する();
-											}
-											break;
-										case C曲リストノード.Eノード種別.BOX:
-											{
-												this.act曲リスト.bBoxOpenAnime = true;
-												this.act曲リスト.bBoxOpen = true;
-												this.act曲リスト.bBoxClose = false;
-												TJAPlayer3.Skin.sound決定音.t再生する();
-												this.act曲リスト.ctBoxOpen.t開始(0, 1000, 1, TJAPlayer3.Timer);
-											}
-											break;
-										case C曲リストノード.Eノード種別.BACKBOX:
-											{
-												this.act曲リスト.bBoxOpenAnime = true;
-												this.act曲リスト.bBoxClose = true;
-												this.act曲リスト.bBoxOpen = false;
-												TJAPlayer3.Skin.sound取消音.t再生する();
-												this.act曲リスト.ctBoxOpen.t開始(0, 1000, 1, TJAPlayer3.Timer);
-											}
-											break;
-										case C曲リストノード.Eノード種別.RANDOM:
-											if (TJAPlayer3.Skin.sound曲決定音.b読み込み成功)
-												TJAPlayer3.Skin.sound曲決定音.t再生する();
-											else
-												TJAPlayer3.Skin.sound決定音.t再生する();
-											this.t曲をランダム選択する();
-											break;
-											//case C曲リストノード.Eノード種別.DANI:
-											//    if (CDTXMania.Skin.sound段位移動.b読み込み成功)
-											//        CDTXMania.Skin.sound段位移動.t再生する();
-											//    else
-											//        CDTXMania.Skin.sound段位移動.t再生する();
-											//    this.X();
-											//    break;
+													ctDiffSelect移動待ち.t開始(0, 1490, 1, TJAPlayer3.Timer);
+													act難易度選択画面.bIsDifficltSelect = true;
+													TJAPlayer3.Skin.sound決定音.t再生する();
+												}
+												else
+												{
+													this.t曲を選択する();
+												}
+												break;
+											case C曲リストノード.Eノード種別.BOX:
+												{
+													this.act曲リスト.bBoxOpenAnime = true;
+													this.act曲リスト.bBoxOpen = true;
+													this.act曲リスト.bBoxClose = false;
+													TJAPlayer3.Skin.sound決定音.t再生する();
+													this.act曲リスト.ctBoxOpen.t開始(0, 1000, 1, TJAPlayer3.Timer);
+												}
+												break;
+											case C曲リストノード.Eノード種別.BACKBOX:
+												{
+													this.act曲リスト.bBoxOpenAnime = true;
+													this.act曲リスト.bBoxClose = true;
+													this.act曲リスト.bBoxOpen = false;
+													TJAPlayer3.Skin.sound取消音.t再生する();
+													this.act曲リスト.ctBoxOpen.t開始(0, 1000, 1, TJAPlayer3.Timer);
+												}
+												break;
+											case C曲リストノード.Eノード種別.RANDOM:
+												if (TJAPlayer3.Skin.sound曲決定音.b読み込み成功)
+													TJAPlayer3.Skin.sound曲決定音.t再生する();
+												else
+													TJAPlayer3.Skin.sound決定音.t再生する();
+												this.t曲をランダム選択する();
+												break;
+												//case C曲リストノード.Eノード種別.DANI:
+												//    if (CDTXMania.Skin.sound段位移動.b読み込み成功)
+												//        CDTXMania.Skin.sound段位移動.t再生する();
+												//    else
+												//        CDTXMania.Skin.sound段位移動.t再生する();
+												//    this.X();
+												//    break;
+										}
 									}
 								}
 							}

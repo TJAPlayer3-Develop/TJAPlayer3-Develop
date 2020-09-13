@@ -58,169 +58,161 @@ namespace TJAPlayer3
 			Trace.Indent();
 			try
 			{
-				#region [ 初期化 ]
-				//---------------------
-				this.eフェードアウト完了時の戻り値 = E戻り値.継続;
-				this.bアニメが完了 = false;
-				this.bIsCheckedWhetherResultScreenShouldSaveOrNot = false;				// #24609 2011.3.14 yyagi
-				this.n最後に再生したHHのWAV番号 = -1;
-				this.n最後に再生したHHのチャンネル番号 = 0;
-				for( int i = 0; i < 3; i++ )
 				{
-					this.b新記録スキル[ i ] = false;
-                    this.b新記録スコア[ i ] = false;
-                    this.b新記録ランク[ i ] = false;
-				}
-				//---------------------
-				#endregion
-
-				#region [ 結果の計算 ]
-				//---------------------
-				for( int i = 0; i < 3; i++ )
-				{
-					this.nランク値[ i ] = -1;
-					this.fPerfect率[ i ] = this.fGreat率[ i ] = this.fGood率[ i ] = this.fPoor率[ i ] = this.fMiss率[ i ] = 0.0f;	// #28500 2011.5.24 yyagi
-					if ( ( ( ( i != 0 ) || ( TJAPlayer3.DTX.bチップがある.Drums  ) ) ) )
+					#region [ 初期化 ]
+					//---------------------
+					this.eフェードアウト完了時の戻り値 = E戻り値.継続;
+					this.bアニメが完了 = false;
+					this.bIsCheckedWhetherResultScreenShouldSaveOrNot = false;              // #24609 2011.3.14 yyagi
+					this.n最後に再生したHHのWAV番号 = -1;
+					this.n最後に再生したHHのチャンネル番号 = 0;
+					for (int i = 0; i < 3; i++)
 					{
-						CScoreIni.C演奏記録 part = this.st演奏記録[ i ];
-						bool bIsAutoPlay = true;
-						switch( i )
-						{
-							case 0:
-                                bIsAutoPlay = TJAPlayer3.ConfigIni.b太鼓パートAutoPlay;
-								break;
-
-							case 1:
-								bIsAutoPlay = TJAPlayer3.ConfigIni.b太鼓パートAutoPlay;
-								break;
-
-							case 2:
-								bIsAutoPlay = TJAPlayer3.ConfigIni.b太鼓パートAutoPlay;
-								break;
-						}
-						this.fPerfect率[ i ] = bIsAutoPlay ? 0f : ( ( 100f * part.nPerfect数 ) / ( (float) part.n全チップ数 ) );
-						this.fGreat率[ i ] = bIsAutoPlay ? 0f : ( ( 100f * part.nGreat数 ) / ( (float) part.n全チップ数 ) );
-						this.fGood率[ i ] = bIsAutoPlay ? 0f : ( ( 100f * part.nGood数 ) / ( (float) part.n全チップ数 ) );
-						this.fPoor率[ i ] = bIsAutoPlay ? 0f : ( ( 100f * part.nPoor数 ) / ( (float) part.n全チップ数 ) );
-						this.fMiss率[ i ] = bIsAutoPlay ? 0f : ( ( 100f * part.nMiss数 ) / ( (float) part.n全チップ数 ) );
-						this.bオート[ i ] = bIsAutoPlay;	// #23596 10.11.16 add ikanick そのパートがオートなら1
-															//        10.11.17 change (int to bool) ikanick
-						this.nランク値[ i ] = CScoreIni.tランク値を計算して返す( part );
+						this.b新記録スキル[i] = false;
+						this.b新記録スコア[i] = false;
+						this.b新記録ランク[i] = false;
 					}
-				}
-				this.n総合ランク値 = CScoreIni.t総合ランク値を計算して返す( this.st演奏記録.Drums, this.st演奏記録.Guitar, this.st演奏記録.Bass );
-				//---------------------
-				#endregion
-
-                #region [ .score.ini の作成と出力 ]
-				//---------------------
-				string str = TJAPlayer3.DTX.strファイル名の絶対パス + ".score.ini";
-				CScoreIni ini = new CScoreIni( str );
-
-				bool[] b今までにフルコンボしたことがある = new bool[] { false, false, false };
-
-				for( int i = 0; i < 3; i++ )
-				{
-					// フルコンボチェックならびに新記録ランクチェックは、ini.Record[] が、スコアチェックや演奏型スキルチェックの IF 内で書き直されてしまうよりも前に行う。(2010.9.10)
-					
-					b今までにフルコンボしたことがある[ i ] = ini.stセクション[ i * 2 ].bフルコンボである | ini.stセクション[ i * 2 + 1 ].bフルコンボである;
-
-					#region [deleted by #24459]
-			//		if( this.nランク値[ i ] <= CScoreIni.tランク値を計算して返す( ini.stセクション[ ( i * 2 ) + 1 ] ) )
-			//		{
-			//			this.b新記録ランク[ i ] = true;
-					//		}
+					//---------------------
 					#endregion
-					// #24459 上記の条件だと[HiSkill.***]でのランクしかチェックしていないので、BestRankと比較するよう変更。
-					if ( this.nランク値[ i ] >= 0 && ini.stファイル.BestRank[ i ] > this.nランク値[ i ] )		// #24459 2011.3.1 yyagi update BestRank
+
+					#region [ 結果の計算 ]
+					//---------------------
+					for (int i = 0; i < 3; i++)
 					{
-						this.b新記録ランク[ i ] = true;
-						ini.stファイル.BestRank[ i ] = this.nランク値[ i ];
+						this.nランク値[i] = -1;
+						this.fPerfect率[i] = this.fGreat率[i] = this.fGood率[i] = this.fPoor率[i] = this.fMiss率[i] = 0.0f;  // #28500 2011.5.24 yyagi
+						if ((((i != 0) || (TJAPlayer3.DTX.bチップがある.Drums))))
+						{
+							CScoreIni.C演奏記録 part = this.st演奏記録[i];
+							bool bIsAutoPlay = true;
+							switch (i)
+							{
+								case 0:
+									bIsAutoPlay = TJAPlayer3.ConfigIni.b太鼓パートAutoPlay;
+									break;
+
+								case 1:
+									bIsAutoPlay = TJAPlayer3.ConfigIni.b太鼓パートAutoPlay;
+									break;
+
+								case 2:
+									bIsAutoPlay = TJAPlayer3.ConfigIni.b太鼓パートAutoPlay;
+									break;
+							}
+							this.fPerfect率[i] = bIsAutoPlay ? 0f : ((100f * part.nPerfect数) / ((float)part.n全チップ数));
+							this.fGreat率[i] = bIsAutoPlay ? 0f : ((100f * part.nGreat数) / ((float)part.n全チップ数));
+							this.fGood率[i] = bIsAutoPlay ? 0f : ((100f * part.nGood数) / ((float)part.n全チップ数));
+							this.fPoor率[i] = bIsAutoPlay ? 0f : ((100f * part.nPoor数) / ((float)part.n全チップ数));
+							this.fMiss率[i] = bIsAutoPlay ? 0f : ((100f * part.nMiss数) / ((float)part.n全チップ数));
+							this.bオート[i] = bIsAutoPlay; // #23596 10.11.16 add ikanick そのパートがオートなら1
+														//        10.11.17 change (int to bool) ikanick
+							this.nランク値[i] = CScoreIni.tランク値を計算して返す(part);
+						}
+					}
+					this.n総合ランク値 = CScoreIni.t総合ランク値を計算して返す(this.st演奏記録.Drums, this.st演奏記録.Guitar, this.st演奏記録.Bass);
+					//---------------------
+					#endregion
+
+					#region [ .score.ini の作成と出力 ]
+					//---------------------
+					string str = TJAPlayer3.DTX.strファイル名の絶対パス + ".score.ini";
+					CScoreIni ini = new CScoreIni(str);
+
+					bool[] b今までにフルコンボしたことがある = new bool[] { false, false, false };
+
+					// フルコンボチェックならびに新記録ランクチェックは、ini.Record[] が、スコアチェックや演奏型スキルチェックの IF 内で書き直されてしまうよりも前に行う。(2010.9.10)
+
+					b今までにフルコンボしたことがある[0] = ini.stセクション[0].bフルコンボである | ini.stセクション[0].bフルコンボである;
+
+					// #24459 上記の条件だと[HiSkill.***]でのランクしかチェックしていないので、BestRankと比較するよう変更。
+					if (this.nランク値[0] >= 0 && ini.stファイル.BestRank[0] > this.nランク値[0])       // #24459 2011.3.1 yyagi update BestRank
+					{
+						this.b新記録ランク[0] = true;
+						ini.stファイル.BestRank[0] = this.nランク値[0];
 					}
 
 					// 新記録スコアチェック
-					if( ( this.st演奏記録[ i ].nスコア > ini.stセクション[ i * 2 ].nスコア ) && !TJAPlayer3.ConfigIni.b太鼓パートAutoPlay )
+					if ((this.st演奏記録[0].nスコア > ini.stセクション[0].nスコア) && !TJAPlayer3.ConfigIni.b太鼓パートAutoPlay)
 					{
-						this.b新記録スコア[ i ] = true;
-						ini.stセクション[ i * 2 ] = this.st演奏記録[ i ];
+						this.b新記録スコア[0] = true;
+						ini.stセクション[0] = this.st演奏記録[0];
 					}
 
-                    // 新記録スキルチェック
-                    if (this.st演奏記録[i].db演奏型スキル値 > ini.stセクション[(i * 2) + 1].db演奏型スキル値)
-                    {
-                        this.b新記録スキル[ i ] = true;
-                        ini.stセクション[(i * 2) + 1] = this.st演奏記録[ i ];
-                    }
+					if (TJAPlayer3.stage選曲.n確定された曲の難易度 != (int)Difficulty.Dan && TJAPlayer3.stage選曲.n確定された曲の難易度 != (int)Difficulty.Tower)
+						if (this.st演奏記録[0].nスコア > ini.stセクション[0].nスコア)
+							this.st演奏記録[0].nハイスコア[TJAPlayer3.stage選曲.n確定された曲の難易度] = (int)st演奏記録[0].nスコア;
 
-					// ラストプレイ #23595 2011.1.9 ikanick
-                    // オートじゃなければプレイ結果を書き込む
-                    if( TJAPlayer3.ConfigIni.b太鼓パートAutoPlay == false ) {
-                        ini.stセクション[i + 6] = this.st演奏記録[ i ];
-                    }
-
-                    // #23596 10.11.16 add ikanick オートじゃないならクリア回数を1増やす
-                    //        11.02.05 bオート to t更新条件を取得する use      ikanick
-					bool[] b更新が必要か否か = new bool[ 3 ];
-					CScoreIni.t更新条件を取得する( out b更新が必要か否か[ 0 ], out b更新が必要か否か[ 1 ], out b更新が必要か否か[ 2 ] );
-
-                    if (b更新が必要か否か[ i ])
-                    {
-                        switch ( i )
-                        {
-                            case 0:
-                                ini.stファイル.ClearCountDrums++;
-                                break;
-                            case 1:
-                                ini.stファイル.ClearCountGuitar++;
-                                break;
-                            case 2:
-                                ini.stファイル.ClearCountBass++;
-                                break;
-                            default:
-                                throw new Exception("クリア回数増加のk(0-2)が範囲外です。");
-                        }
-                    }
-                    //---------------------------------------------------------------------/
-				}
-                if( TJAPlayer3.ConfigIni.bScoreIniを出力する )
-				    ini.t書き出し( str );
-				//---------------------
-				#endregion
-
-				#region [ リザルト画面への演奏回数の更新 #24281 2011.1.30 yyagi]
-                if( TJAPlayer3.ConfigIni.bScoreIniを出力する )
-                {
-                    this.n演奏回数.Drums = ini.stファイル.PlayCountDrums;
-                    this.n演奏回数.Guitar = ini.stファイル.PlayCountGuitar;
-                    this.n演奏回数.Bass = ini.stファイル.PlayCountBass;
-                }
-				#endregion
-				#region [ 選曲画面の譜面情報の更新 ]
-				//---------------------
-				if( !TJAPlayer3.bコンパクトモード )
-				{
-					Cスコア cスコア = TJAPlayer3.stage選曲.r確定されたスコア;
-					bool[] b更新が必要か否か = new bool[ 3 ];
-					CScoreIni.t更新条件を取得する( out b更新が必要か否か[ 0 ], out b更新が必要か否か[ 1 ], out b更新が必要か否か[ 2 ] );
-					for( int m = 0; m < 3; m++ )
+					// 新記録スキルチェック
+					if (this.st演奏記録[0].db演奏型スキル値 > ini.stセクション[0].db演奏型スキル値)
 					{
-						if( b更新が必要か否か[ m ] )
+						this.b新記録スキル[0] = true;
+						ini.stセクション[0] = this.st演奏記録[0];
+					}
+
+					if (TJAPlayer3.stage選曲.n確定された曲の難易度 != (int)Difficulty.Dan && TJAPlayer3.stage選曲.n確定された曲の難易度 != (int)Difficulty.Tower && !TJAPlayer3.ConfigIni.b太鼓パートAutoPlay)
+					{ 	
+						if (st演奏記録[0].fゲージ >= 80.0f)
 						{
-							// FullCombo した記録を FullCombo なしで超えた場合、FullCombo マークが消えてしまう。
-							// → FullCombo は、最新記録と関係なく、一度達成したらずっとつくようにする。(2010.9.11)
-							cスコア.譜面情報.フルコンボ[ m ] = this.st演奏記録[ m ].bフルコンボである | b今までにフルコンボしたことがある[ m ];
-
-							if( this.b新記録スキル[ m ] )
+							if (st演奏記録[0].nMiss数 == 0 && st演奏記録[0].nPoor数 == 0 && st演奏記録[0].nGreat数 == 0 && st演奏記録[0].fゲージ >= 100.0f)
 							{
-								cスコア.譜面情報.最大スキル[ m ] = this.st演奏記録[ m ].db演奏型スキル値;
-		                    }
-
-                            if (this.b新記録ランク[ m ])
-                            {
-                                cスコア.譜面情報.最大ランク[ m ] = this.nランク値[ m ];
-                            }
+								this.st演奏記録[0].bIsDondaFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度] = true;
+								this.st演奏記録[0].bIsFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度] = true;
+								this.st演奏記録[0].bIsClear[TJAPlayer3.stage選曲.n確定された曲の難易度] = true;
+							}
+							else if (st演奏記録[0].nMiss数 == 0 && st演奏記録[0].nPoor数 == 0 && st演奏記録[0].fゲージ >= 100.0f)
+							{
+								this.st演奏記録[0].bIsDondaFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度] = false;
+								this.st演奏記録[0].bIsFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度] = true;
+								this.st演奏記録[0].bIsClear[TJAPlayer3.stage選曲.n確定された曲の難易度] = true;
+							}
+							else
+							{
+								this.st演奏記録[0].bIsDondaFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度] = false;
+								this.st演奏記録[0].bIsFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度] = false;
+								this.st演奏記録[0].bIsClear[TJAPlayer3.stage選曲.n確定された曲の難易度] = true;
+							}
+							ini.stセクション[0] = this.st演奏記録[0];
 						}
 					}
+
+					// ラストプレイ #23595 2011.1.9 ikanick
+					// オートじゃなければプレイ結果を書き込む
+					if (TJAPlayer3.ConfigIni.b太鼓パートAutoPlay == false)
+					{
+						ini.stセクション[0] = this.st演奏記録[0];
+					}
+
+					// #23596 10.11.16 add ikanick オートじゃないならクリア回数を1増やす
+					//        11.02.05 bオート to t更新条件を取得する use      ikanick
+					bool[] b更新が必要か否か = new bool[3];
+					CScoreIni.t更新条件を取得する(out b更新が必要か否か[0], out b更新が必要か否か[1], out b更新が必要か否か[2]);
+
+					if (b更新が必要か否か[0])
+					{
+						ini.stファイル.ClearCountDrums++;
+					}
+					//---------------------------------------------------------------------/
+					if (TJAPlayer3.ConfigIni.bScoreIniを出力する)
+						ini.t書き出し(str);
+
+					//---------------------
+					#endregion
+
+					#region [ リザルト画面への演奏回数の更新 #24281 2011.1.30 yyagi]
+					if (TJAPlayer3.ConfigIni.bScoreIniを出力する)
+					{
+						this.n演奏回数.Drums = ini.stファイル.PlayCountDrums;
+						this.n演奏回数.Guitar = ini.stファイル.PlayCountGuitar;
+						this.n演奏回数.Bass = ini.stファイル.PlayCountBass;
+					}
+					#endregion
+				}
+
+				#region [ 選曲画面の譜面情報の更新 ]
+				//---------------------
+				if (!TJAPlayer3.bコンパクトモード)
+				{
+					Cスコア cスコア = TJAPlayer3.stage選曲.r確定されたスコア;
 				}
                 //---------------------
                 #endregion
