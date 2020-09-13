@@ -189,7 +189,7 @@ namespace TJAPlayer3
                 //-----------------
 
                 //キー操作
-                if (b曲選択)
+                if (!b曲選択)
                 {
                     if (TJAPlayer3.Pad.b押されたDGB(Eパッド.RBlue))
                     {
