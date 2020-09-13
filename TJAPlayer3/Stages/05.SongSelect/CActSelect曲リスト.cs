@@ -923,7 +923,6 @@ namespace TJAPlayer3
                         this.stバー情報[ index ].strジャンル = song.strジャンル;
                         this.stバー情報[ index ].ar難易度 = song.nLevel;
 
-
 						for (int j = 0; j < 5; j++)
 						{
 							if (song.arスコア[j] != null)
@@ -2075,6 +2074,7 @@ namespace TJAPlayer3
 						{
 							TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 980) ;
 							TJAPlayer3.Tx.SongSelect_Bar_Genre[i].Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 980);
+							TJAPlayer3.Tx.SongSelect_Crown.Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 980);
 						}
 					}
                 }
@@ -2082,6 +2082,7 @@ namespace TJAPlayer3
                 {
 					TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.Opacity = 255.0f;
 					TJAPlayer3.Tx.SongSelect_Bar_Genre[i].Opacity = 255.0f;
+					TJAPlayer3.Tx.SongSelect_Crown.Opacity = 255.0f;
 				}
 			}
 
@@ -2180,7 +2181,7 @@ namespace TJAPlayer3
 			TJAPlayer3.Tx.SongSelect_Crown.vc拡大縮小倍率.X = 0.8f;
 			TJAPlayer3.Tx.SongSelect_Crown.vc拡大縮小倍率.Y = 0.8f;
 
-			if (eバー種別 != Eバー種別.BackBox)
+			if (eバー種別 != Eバー種別.BackBox && eバー種別 != Eバー種別.Box)
 			{
 				for (int i = 0; i < 5; i++)
 				{

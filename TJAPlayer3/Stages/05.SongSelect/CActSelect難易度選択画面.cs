@@ -99,8 +99,15 @@ namespace TJAPlayer3
             if (this.n現在の選択行 - 1 >= -2)
             {
                 縁カウント = 0;
-                this.n現在の選択行 -= 1;
                 ctBarAnime.t開始(0, 180, 1, TJAPlayer3.Timer);
+                if (this.n現在の選択行 == 4)
+                {
+                    n現在の選択行 -= 2;
+                }
+                else
+                {
+                    this.n現在の選択行 -= 1;
+                }
             }
         }
 
@@ -283,7 +290,7 @@ namespace TJAPlayer3
         private CCounter ct移動;
 		private long nスクロールタイマ;
 		private int n現在のスクロールカウンタ;
-		private int n現在の選択行;
+		public int n現在の選択行;
 		private int n目標のスクロールカウンタ;
 
         private CSound soundSelectAnnounce;

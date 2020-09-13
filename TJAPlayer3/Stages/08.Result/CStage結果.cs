@@ -213,9 +213,12 @@ namespace TJAPlayer3
 				if (!TJAPlayer3.bコンパクトモード)
 				{
 					Cスコア cスコア = TJAPlayer3.stage選曲.r確定されたスコア;
-					cスコア.譜面情報.クリア[TJAPlayer3.stage選曲.n確定された曲の難易度] = st演奏記録[0].bIsClear[TJAPlayer3.stage選曲.n確定された曲の難易度];
-					cスコア.譜面情報.フルコンボ[TJAPlayer3.stage選曲.n確定された曲の難易度] = st演奏記録[0].bIsFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度];
-					cスコア.譜面情報.ドンダフルコンボ[TJAPlayer3.stage選曲.n確定された曲の難易度] = st演奏記録[0].bIsDondaFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度];
+					if(cスコア.譜面情報.クリア[TJAPlayer3.stage選曲.n確定された曲の難易度] == false)
+						cスコア.譜面情報.クリア[TJAPlayer3.stage選曲.n確定された曲の難易度] = st演奏記録[0].bIsClear[TJAPlayer3.stage選曲.n確定された曲の難易度];
+					if (cスコア.譜面情報.フルコンボ[TJAPlayer3.stage選曲.n確定された曲の難易度] == false)
+						cスコア.譜面情報.フルコンボ[TJAPlayer3.stage選曲.n確定された曲の難易度] = st演奏記録[0].bIsFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度];
+					if (cスコア.譜面情報.ドンダフルコンボ[TJAPlayer3.stage選曲.n確定された曲の難易度] == false)
+						cスコア.譜面情報.ドンダフルコンボ[TJAPlayer3.stage選曲.n確定された曲の難易度] = st演奏記録[0].bIsDondaFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度];
 				}
                 //---------------------
                 #endregion
