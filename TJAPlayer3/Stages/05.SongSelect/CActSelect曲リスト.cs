@@ -1194,16 +1194,16 @@ namespace TJAPlayer3
 
 							if (ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).szテクスチャサイズ.Width > stバー情報[nパネル番号].ttkタイトル.maxWidht)
 							{
-								if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.SCORE)
+								if (this.stバー情報[nパネル番号].eバー種別 == Eバー種別.Score)
 									ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).vc拡大縮小倍率.X = (float)(((double)stバー情報[nパネル番号].ttkタイトル.maxWidht) / ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).szテクスチャサイズ.Width) - 0.1f;
-								else if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 != C曲リストノード.Eノード種別.BACKBOX)
+								else if (this.stバー情報[nパネル番号].eバー種別 != Eバー種別.BackBox)
 									ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).vc拡大縮小倍率.X = (float)(((double)stバー情報[nパネル番号].ttkタイトル.maxWidht) / ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).szテクスチャサイズ.Width) + 0.1f;
 							}
 							else
 							{
-								if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.SCORE)
+								if (this.stバー情報[nパネル番号].eバー種別 == Eバー種別.Score)
 									ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).vc拡大縮小倍率.X = 0.9f;
-								else if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 != C曲リストノード.Eノード種別.BACKBOX)
+								else if (this.stバー情報[nパネル番号].eバー種別 != Eバー種別.BackBox)
 									ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).vc拡大縮小倍率.X = 1.1f;
 							}
 
