@@ -1191,6 +1191,22 @@ namespace TJAPlayer3
 							{
 								ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).Opacity = 255;
 							}
+
+							if (ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).szテクスチャサイズ.Width > ttk選択している曲の曲名.maxWidht)
+							{
+								if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.SCORE)
+									ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).vc拡大縮小倍率.X = (float)(((double)stバー情報[nパネル番号].ttkタイトル.maxWidht) / ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).szテクスチャサイズ.Width) - 0.1f;
+								else if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 != C曲リストノード.Eノード種別.BACKBOX)
+									ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).vc拡大縮小倍率.X = (float)(((double)stバー情報[nパネル番号].ttkタイトル.maxWidht) / ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).szテクスチャサイズ.Width) + 0.1f;
+							}
+							else
+							{
+								if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.SCORE)
+									ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).vc拡大縮小倍率.X = 0.9f;
+								else if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 != C曲リストノード.Eノード種別.BACKBOX)
+									ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).vc拡大縮小倍率.X = 1.1f;
+							}
+
 							if (n現在のスクロールカウンタ != 0)
 								ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, xAnime + 318 + (int)BoxX, y + 62 + (int)BoxY);
 							else if (n見た目の行番号 != 5)
@@ -1582,6 +1598,20 @@ namespace TJAPlayer3
 
 								tx選択している曲のサブタイトル.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 647, 416 - (ctBarOpen.n現在の値 <= 100 ? 0 : (ctBarOpen.n現在の値 - 100)));
 
+									if (ResolveTitleTexture(this.ttk選択している曲の曲名).szテクスチャサイズ.Width > ttk選択している曲の曲名.maxWidht)
+									{
+										if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.SCORE)
+											ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.X = (float)(((double)ttk選択している曲の曲名.maxWidht) / ResolveTitleTexture(this.ttk選択している曲の曲名).szテクスチャサイズ.Width) - 0.1f;
+										else if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 != C曲リストノード.Eノード種別.BACKBOX)
+											ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.X = (float)(((double)ttk選択している曲の曲名.maxWidht) / ResolveTitleTexture(this.ttk選択している曲の曲名).szテクスチャサイズ.Width) + 0.1f;
+									}
+									else
+									{
+										if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.SCORE)
+											ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.X = 0.9f;
+										else if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 != C曲リストノード.Eノード種別.BACKBOX)
+											ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.X = 1.1f;
+									}
 									ResolveTitleTexture(this.ttk選択している曲の曲名).t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 647, 376 - (ctBarOpen.n現在の値 <= 97 ? 0 : ((ctBarOpen.n現在の値 - 97))));
 								}
 							}
@@ -1639,6 +1669,21 @@ namespace TJAPlayer3
 									}
 
 									#endregion
+
+									if (ResolveTitleTexture(this.ttk選択している曲の曲名).szテクスチャサイズ.Width > ttk選択している曲の曲名.maxWidht)
+									{
+										if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.SCORE)
+											ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.X = (float)(((double)ttk選択している曲の曲名.maxWidht) / ResolveTitleTexture(this.ttk選択している曲の曲名).szテクスチャサイズ.Width) - 0.1f;
+										else if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 != C曲リストノード.Eノード種別.BACKBOX)
+											ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.X = (float)(((double)ttk選択している曲の曲名.maxWidht) / ResolveTitleTexture(this.ttk選択している曲の曲名).szテクスチャサイズ.Width) + 0.1f;
+									}
+									else
+									{
+										if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.SCORE)
+											ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.X = 0.9f;
+										else if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 != C曲リストノード.Eノード種別.BACKBOX)
+											ResolveTitleTexture(this.ttk選択している曲の曲名).vc拡大縮小倍率.X = 1.1f;
+									}
 
 									ResolveTitleTexture(this.ttk選択している曲の曲名).t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 647, 376 - (ctBarOpen.n現在の値 <= 97 ? 0 : ((ctBarOpen.n現在の値 - 97))));
 								}
@@ -2122,17 +2167,6 @@ namespace TJAPlayer3
 	            titleTextureKey.str文字, titleTextureKey.forecolor, titleTextureKey.backcolor)))
 	        {
 	            CTexture tx文字テクスチャ = TJAPlayer3.tテクスチャの生成(bmp, false);
-	            if (tx文字テクスチャ.szテクスチャサイズ.Width > titleTextureKey.maxWidht)
-	            {
-	                tx文字テクスチャ.vc拡大縮小倍率.X = -0.18f + (float) (((double) titleTextureKey.maxWidht) / tx文字テクスチャ.szテクスチャサイズ.Width);
-	            }
-                else
-				{
-					if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.SCORE)
-						tx文字テクスチャ.vc拡大縮小倍率.X = 0.9f;
-					else if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 != C曲リストノード.Eノード種別.BACKBOX)
-						tx文字テクスチャ.vc拡大縮小倍率.X = 1.1f;
-				}
 	            return tx文字テクスチャ;
 	        }
 	    }

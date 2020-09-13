@@ -117,6 +117,7 @@ namespace TJAPlayer3
 			this.nスクロールタイマ = -1;
             ct決定待機 = new CCounter();
 
+            this.b曲選択 = false;
             // フォント作成。
             // 曲リスト文字は２倍（面積４倍）でテクスチャに描画してから縮小表示するので、フォントサイズは２倍とする。
             this.ctBarAnime = new CCounter();
@@ -188,40 +189,45 @@ namespace TJAPlayer3
                 //-----------------
 
                 //キー操作
-                if (TJAPlayer3.Pad.b押されたDGB(Eパッド.RBlue))
+                if (b曲選択)
                 {
-                    this.t次に移動();
-                }
-                else if (TJAPlayer3.Pad.b押されたDGB(Eパッド.LBlue))
-                {
-                    this.t前に移動();
-                }
-                else if ((TJAPlayer3.Pad.b押されたDGB(Eパッド.Decide) ||
-                        ((TJAPlayer3.ConfigIni.bEnterがキー割り当てのどこにも使用されていない && TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Return)))) || 
-                        TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed))
-                {
-                    if(n現在の選択行 >= 0)
+                    if (TJAPlayer3.Pad.b押されたDGB(Eパッド.RBlue))
                     {
-                        if(TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.nレベル[n現在の選択行] >= 0)
+                        this.t次に移動();
+                    }
+                    else if (TJAPlayer3.Pad.b押されたDGB(Eパッド.LBlue))
+                    {
+                        this.t前に移動();
+                    }
+                    else if ((TJAPlayer3.Pad.b押されたDGB(Eパッド.Decide) ||
+                            ((TJAPlayer3.ConfigIni.bEnterがキー割り当てのどこにも使用されていない && TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Return)))) ||
+                            TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed))
+                    {
+                        if (n現在の選択行 >= 0)
                         {
-                            TJAPlayer3.Skin.sound曲決定音.t再生する();
-                            ct決定待機.t開始(0, 2000, 1, TJAPlayer3.Timer);
+                            if (TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.nレベル[n現在の選択行] >= 0)
+                            {
+                                this.b曲選択 = true;
+                                TJAPlayer3.Skin.sound曲決定音.t再生する();
+                                ct決定待機.t開始(0, 2000, 1, TJAPlayer3.Timer);
+                            }
+                        }
+                        else if (n現在の選択行 == -1)
+                        {
+
+                        }
+                        else if (n現在の選択行 == -2)
+                        {
+                            this.b曲選択 = false;
+                            this.bIsDifficltSelect = false;
+                            TJAPlayer3.Skin.sound決定音.t再生する();
+                            TJAPlayer3.stage選曲.act曲リスト.ctBarOpen.t開始(0, 161, 2, TJAPlayer3.Timer);
                         }
                     }
-                    else if (n現在の選択行 == -1)
-                    {
-
-                    }
-                    else if (n現在の選択行 == -2)
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape))
                     {
                         this.bIsDifficltSelect = false;
-                        TJAPlayer3.Skin.sound決定音.t再生する();
-                        TJAPlayer3.stage選曲.act曲リスト.ctBarOpen.t開始(0, 161, 2, TJAPlayer3.Timer);
                     }
-                }
-                else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape))
-                {
-                    this.bIsDifficltSelect = false;
                 }
                 TJAPlayer3.Tx.Diffculty_Back[TJAPlayer3.stage選曲.act曲リスト.nStrジャンルtoNum(TJAPlayer3.stage選曲.r現在選択中の曲.strジャンル)].Opacity = TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 1235;
                 TJAPlayer3.Tx.Diffculty_Back[TJAPlayer3.stage選曲.act曲リスト.nStrジャンルtoNum(TJAPlayer3.stage選曲.r現在選択中の曲.strジャンル)].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 640, 280);
@@ -264,6 +270,8 @@ namespace TJAPlayer3
         //-----------------
 
         private Point[] ptバー座標 = { new Point(194, 174), new Point(278, 174), new Point(389, 174), new Point(528, 174), new Point(666, 174), new Point(804, 174), new Point(804, 174) };
+
+        public bool b曲選択;
 
         public CActSelect曲リスト.TitleTextureKey SongTitle;
         public CActSelect曲リスト.TitleTextureKey SongSubTitle;
