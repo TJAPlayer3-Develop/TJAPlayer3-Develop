@@ -1192,7 +1192,7 @@ namespace TJAPlayer3
 								ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).Opacity = 255;
 							}
 
-							if (ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).szテクスチャサイズ.Width > ttk選択している曲の曲名.maxWidht)
+							if (ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).szテクスチャサイズ.Width > stバー情報[nパネル番号].ttkタイトル.maxWidht)
 							{
 								if (TJAPlayer3.stage選曲.r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.SCORE)
 									ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).vc拡大縮小倍率.X = (float)(((double)stバー情報[nパネル番号].ttkタイトル.maxWidht) / ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).szテクスチャサイズ.Width) - 0.1f;
