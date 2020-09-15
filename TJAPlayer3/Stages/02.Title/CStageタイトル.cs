@@ -32,7 +32,8 @@ namespace TJAPlayer3
 			Trace.Indent();
 			try
 			{
-				for( int i = 0; i < 4; i++ )
+				TJAPlayer3.Skin.soundタイトルスタート音.t再生する();
+				for ( int i = 0; i < 4; i++ )
 				{
 					this.ctキー反復用[ i ] = new CCounter( 0, 0, 0, TJAPlayer3.Timer );
 				}
@@ -182,9 +183,22 @@ namespace TJAPlayer3
 //						Trace.TraceInformation( "DTXMania Title: SPACE key registered. " + CDTXMania.ct.nシステム時刻 );
 				}
 
-                // 描画
+				// 描画
 
-                if (TJAPlayer3.Tx.Title_Background != null )
+				if (!TJAPlayer3.Skin.soundタイトルスタート音.b再生中 && (base.eフェーズID == CStage.Eフェーズ.共通_通常状態))
+				{
+                    if (!b曲再生)
+                    {
+						TJAPlayer3.Skin.soundタイトル音.t再生する();
+						b曲再生 = true;
+					}
+				}
+                else
+                {
+					TJAPlayer3.Skin.soundタイトル音.n位置_現在のサウンド = 0;
+				}
+
+				if (TJAPlayer3.Tx.Title_Background != null )
                     TJAPlayer3.Tx.Title_Background.t2D描画( TJAPlayer3.app.Device, 0, 0 );
 
                 #region[ バージョン表示 ]
@@ -259,7 +273,7 @@ namespace TJAPlayer3
 					case CStage.Eフェーズ.共通_フェードイン:
 						if( this.actFI.On進行描画() != 0 )
 						{
-							TJAPlayer3.Skin.soundタイトル音.t再生する();
+							b曲再生 = false;
 							base.eフェーズID = CStage.Eフェーズ.共通_通常状態;
 						}
 						break;
@@ -360,6 +374,8 @@ namespace TJAPlayer3
 				}
 			}
 		}
+
+		private bool b曲再生;
 
 		private CActFIFOWhite actFI;
 		private CActFIFOWhite actFIfromSetup;

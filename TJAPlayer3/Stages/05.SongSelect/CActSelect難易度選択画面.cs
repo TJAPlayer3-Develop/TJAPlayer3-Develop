@@ -249,6 +249,31 @@ namespace TJAPlayer3
                 TJAPlayer3.stage選曲.act曲リスト.ResolveTitleTexture(SongSubTitle).vc拡大縮小倍率.Y = 1.0f;
                 TJAPlayer3.stage選曲.act曲リスト.ResolveTitleTexture(SongSubTitle).t2D中心基準描画(TJAPlayer3.app.Device, 640, 160);
 
+                for (int i = 0; i < 5; i++)
+                {
+                    if(TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i] != null)
+                    {
+                        if(i < 4)
+                        {
+                            if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.クリア[i])
+                                TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + i * 138, 292, new Rectangle(0 * 24, 0, 24, 26));
+                            if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.フルコンボ[i])
+                                TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + i * 138, 292, new Rectangle(1 * 24, 0, 24, 26));
+                            if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.ドンダフルコンボ[i])
+                                TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + i * 138, 292, new Rectangle(2 * 24, 0, 24, 26));
+                        }
+                        else
+                        {
+                            if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.クリア[i])
+                                TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + 4 * 138, 292, new Rectangle(0 * 24, 0, 24, 26));
+                            if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.フルコンボ[i])
+                                TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + 4 * 138, 292, new Rectangle(1 * 24, 0, 24, 26));
+                            if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.ドンダフルコンボ[i])
+                                TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + 4 * 138, 292, new Rectangle(2 * 24, 0, 24, 26));
+                        }
+                    }
+                }
+
                 if (ct決定待機.n現在の値 == 2000)
                 {
                     TJAPlayer3.stage選曲.actPresound.sound.tサウンドを停止する();

@@ -312,6 +312,7 @@ namespace TJAPlayer3
         public Cシステムサウンド soundゲーム終了音 = null;
         public Cシステムサウンド soundステージクリア音 = null;
         public Cシステムサウンド soundタイトル音 = null;
+        public Cシステムサウンド soundタイトルスタート音 = null;
         public Cシステムサウンド soundフルコンボ音 = null;
         public Cシステムサウンド sound歓声音 = null;
         public Cシステムサウンド sound曲読込開始音 = null;
@@ -615,7 +616,8 @@ namespace TJAPlayer3
             this.soundステージクリア音 = new Cシステムサウンド(@"Sounds\Stage clear.ogg", false, true, true, ESoundGroup.Voice);
             this.soundフルコンボ音 = new Cシステムサウンド(@"Sounds\Full combo.ogg", false, false, true, ESoundGroup.Voice);
             this.sound曲読込開始音 = new Cシステムサウンド(@"Sounds\Now loading.ogg", false, true, true, ESoundGroup.Unknown);
-            this.soundタイトル音 = new Cシステムサウンド(@"Sounds\Title.ogg", false, true, false, ESoundGroup.SongPlayback);
+            this.soundタイトル音 = new Cシステムサウンド(@"Sounds\Title.ogg", true, true, false, ESoundGroup.SongPreview);
+            this.soundタイトルスタート音 = new Cシステムサウンド(@"Sounds\Title_Start.ogg", false, true, false, ESoundGroup.SongPreview);
             this.bgm起動画面 = new Cシステムサウンド(@"Sounds\Setup BGM.ogg", true, true, false, ESoundGroup.SongPlayback);
             this.bgmオプション画面 = new Cシステムサウンド(@"Sounds\Option BGM.ogg", true, true, false, ESoundGroup.SongPlayback);
             this.bgmコンフィグ画面 = new Cシステムサウンド(@"Sounds\Config BGM.ogg", true, true, false, ESoundGroup.SongPlayback);

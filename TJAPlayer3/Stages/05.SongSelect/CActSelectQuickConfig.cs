@@ -53,7 +53,7 @@ namespace TJAPlayer3
 			#region [ 共通 Target/AutoMode/AutoLane ]
 			#endregion
 			#region [ 個別 ScrollSpeed ]
-			l.Add( new CItemInteger( "ばいそく", 0, 1999, TJAPlayer3.ConfigIni.n譜面スクロール速度[ nInst ],
+			l.Add( new CItemInteger("スクロール速度", 0, 1999, TJAPlayer3.ConfigIni.n譜面スクロール速度[ nInst ],
 				"演奏時のドラム譜面のスクロールの\n" +
 				"速度を指定します。\n" +
 				"x0.5 ～ x1000.0 を指定可能です。",
@@ -75,11 +75,11 @@ namespace TJAPlayer3
 				"Note: It also changes the songs' pitch." ) );
 			#endregion
 			#region [ 個別 Sud/Hid ]
-            l.Add( new CItemList( "ランダム", CItemBase.Eパネル種別.通常, (int) TJAPlayer3.ConfigIni.eRandom.Taiko,
+            l.Add( new CItemList( "ノーツの配置", CItemBase.Eパネル種別.通常, (int) TJAPlayer3.ConfigIni.eRandom.Taiko,
 				"いわゆるランダム。\n  RANDOM: ちょっと変わる\n  MIRROR: あべこべ \n  SUPER: そこそこヤバい\n  HYPER: 結構ヤバい\nなお、実装は適当な模様",
 				"Guitar chips come randomly.\n\n Part: swapping lanes randomly for each\n  measures.\n Super: swapping chip randomly\n Hyper: swapping randomly\n  (number of lanes also changes)",
 				new string[] { "OFF", "RANDOM", "あべこべ", "SUPER", "HYPER" } ) );
-            l.Add( new CItemList( "ドロン", CItemBase.Eパネル種別.通常, (int) TJAPlayer3.ConfigIni.eSTEALTH,
+            l.Add( new CItemList( "ノーツの表示", CItemBase.Eパネル種別.通常, (int) TJAPlayer3.ConfigIni.eSTEALTH,
 				"",
 				new string[] { "OFF", "ドロン", "ステルス" } ) );
             l.Add( new CItemList( "ゲーム", CItemBase.Eパネル種別.通常, (int)TJAPlayer3.ConfigIni.eGameMode,
@@ -96,7 +96,7 @@ namespace TJAPlayer3
 
 			#endregion
 			#region [ 共通 SET切り替え/More/Return ]
-			l.Add( new CSwitchItemList( "More...", CItemBase.Eパネル種別.通常, 0, "", "", new string[] { "" } ) );
+			l.Add( new CSwitchItemList( "Config", CItemBase.Eパネル種別.通常, 0, "", "", new string[] { "" } ) );
 			l.Add( new CSwitchItemList( "戻る", CItemBase.Eパネル種別.通常, 0, "", "", new string[] { "", "" } ) );
 			#endregion
 

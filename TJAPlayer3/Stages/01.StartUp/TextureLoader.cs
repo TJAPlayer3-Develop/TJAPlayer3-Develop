@@ -139,6 +139,7 @@ namespace TJAPlayer3
 
             Difficulty_Bar = TxC(SONGSELECT + @"Difficulty Select\Difficulty_Bar.png");
             Difficulty_SelectBar = TxC(SONGSELECT + @"Difficulty Select\Difficulty_SelectBar.png");
+            Difficulty_Crown = TxC(SONGSELECT + @"Difficulty Select\Difficulty_Crown.png");
             #endregion
 
             #region 4_読み込み画面
@@ -605,6 +606,7 @@ namespace TJAPlayer3
                 TJAPlayer3.tテクスチャの解放(ref Diffculty_Back[i]);
             }
             TJAPlayer3.tテクスチャの解放(ref Difficulty_Bar);
+            TJAPlayer3.tテクスチャの解放(ref Difficulty_Crown);
             TJAPlayer3.tテクスチャの解放(ref Difficulty_SelectBar);
             #endregion
 
@@ -918,7 +920,8 @@ namespace TJAPlayer3
             SongSelect_NamePlate = new CTexture[1];
 
         public CTexture Difficulty_Bar,
-                        Difficulty_SelectBar;
+                        Difficulty_SelectBar,
+                        Difficulty_Crown;
         public CTexture[] Diffculty_Back = new CTexture[8];
         #endregion
 
