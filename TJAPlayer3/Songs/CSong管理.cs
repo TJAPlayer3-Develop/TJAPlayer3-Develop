@@ -960,7 +960,7 @@ namespace TJAPlayer3
 				SlowOrSuspendSearchTask();      // #27060 中断要求があったら、解除要求が来るまで待機, #PREMOVIE再生中は検索負荷を落とす
 
 				int 曲数 = c曲リストノード.list子リスト.Count;//for文に直接書くと、もどるもカウントされてしまう。
-				for(int index = 0; index < ((曲数 - 1) / 7) + 2; index++)
+				for(int index = 0; index < (曲数 / 7) + 1; index++)
 				{
 					C曲リストノード itemBack = new C曲リストノード
 					{
