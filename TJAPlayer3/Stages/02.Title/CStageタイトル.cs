@@ -18,9 +18,9 @@ namespace TJAPlayer3
 		{
 			base.eステージID = CStage.Eステージ.タイトル;
 			base.b活性化してない = true;
-			base.list子Activities.Add( this.actFIfromSetup = new CActFIFOWhite() );
-			base.list子Activities.Add( this.actFI = new CActFIFOWhite() );
-			base.list子Activities.Add( this.actFO = new CActFIFOWhite() );
+			base.list子Activities.Add( this.actFIfromSetup = new CActFIFOBlack() );
+			base.list子Activities.Add( this.actFI = new CActFIFOBlack() );
+			base.list子Activities.Add( this.actFO = new CActFIFOBlack() );
 		}
 
 
@@ -166,6 +166,8 @@ namespace TJAPlayer3
 					{
 						if ( ( this.n現在のカーソル行 == (int) E戻り値.GAMESTART - 1 ) && TJAPlayer3.Skin.soundゲーム開始音.b読み込み成功 )
 						{
+							TJAPlayer3.Skin.soundタイトル音.t停止する();
+							TJAPlayer3.Skin.soundタイトルスタート音.t停止する();
 							TJAPlayer3.Skin.soundゲーム開始音.t再生する();
 						}
 						else
@@ -203,15 +205,12 @@ namespace TJAPlayer3
 
                 #region[ バージョン表示 ]
                 //string strVersion = "KTT:J:A:I:2017072200";
-                string strCreator = "https://github.com/AioiLight/TJAPlayer3";
+                string strCreator = "https://github.com/touhourenren/TJAPlayer3-Develop";
                 AssemblyName asmApp = Assembly.GetExecutingAssembly().GetName();
 #if DEBUG
                 TJAPlayer3.act文字コンソール.tPrint(4, 44, C文字コンソール.Eフォント種別.白, "DEBUG BUILD");
 #endif
-                TJAPlayer3.act文字コンソール.tPrint(4, 4, C文字コンソール.Eフォント種別.白, asmApp.Name + " Ver." + TJAPlayer3.VERSION + " (" + strCreator + ")" );
-                TJAPlayer3.act文字コンソール.tPrint(4, 24, C文字コンソール.Eフォント種別.白, "Skin:" + TJAPlayer3.Skin.Skin_Name + " Ver." + TJAPlayer3.Skin.Skin_Version + " (" + TJAPlayer3.Skin.Skin_Creator + ")");
-                //CDTXMania.act文字コンソール.tPrint(4, 24, C文字コンソール.Eフォント種別.白, strSubTitle);
-                TJAPlayer3.act文字コンソール.tPrint(4, (720 - 24), C文字コンソール.Eフォント種別.白, "TJAPlayer3 forked TJAPlayer2 forPC(kairera0467)");
+                TJAPlayer3.act文字コンソール.tPrint(4, (720 - 24), C文字コンソール.Eフォント種別.白, "TJAPlayer3-Develop Create touhou-renren(@ren43723591)");
                 #endregion
 
                 
@@ -258,7 +257,7 @@ namespace TJAPlayer3
                 var scaling = 1.000 * TJAPlayer3.app.Window.ClientSize.Width / 1280;
                 if(TJAPlayer3.Input管理.Mouse.bキーが押された((int) MouseObject.Button1))
                 {
-                    if (point.X >= 180 * scaling && point.X <= 490 * scaling && point.Y >= 0 && point.Y <= 20 * scaling)
+                    if (point.X >= 0 * scaling && point.X <= 190 * scaling && point.Y >= 700 && point.Y <= 720 * scaling)
                         System.Diagnostics.Process.Start(strCreator);
                 }
 
@@ -301,7 +300,6 @@ namespace TJAPlayer3
 					case CStage.Eフェーズ.タイトル_起動画面からのフェードイン:
 						if( this.actFIfromSetup.On進行描画() != 0 )
 						{
-							TJAPlayer3.Skin.soundタイトル音.t再生する();
 							base.eフェーズID = CStage.Eフェーズ.共通_通常状態;
 						}
 						break;
@@ -377,9 +375,9 @@ namespace TJAPlayer3
 
 		private bool b曲再生;
 
-		private CActFIFOWhite actFI;
-		private CActFIFOWhite actFIfromSetup;
-		private CActFIFOWhite actFO;
+		private CActFIFOBlack actFI;
+		private CActFIFOBlack actFIfromSetup;
+		private CActFIFOBlack actFO;
 		private CCounter ctカーソルフラッシュ用;
 		private STキー反復用カウンタ ctキー反復用;
 		private CCounter ct下移動用;

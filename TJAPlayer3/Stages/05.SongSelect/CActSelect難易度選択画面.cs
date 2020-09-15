@@ -118,10 +118,8 @@ namespace TJAPlayer3
 			if( this.b活性化してる )
 				return;
 
-			this.b登場アニメ全部完了 = false;
 			this.n目標のスクロールカウンタ = 0;
 			this.n現在のスクロールカウンタ = 0;
-			this.nスクロールタイマ = -1;
             ct決定待機 = new CCounter();
 
             this.b曲選択 = false;
@@ -177,9 +175,6 @@ namespace TJAPlayer3
 			{
 				for( int i = 0; i < 13; i++ )
 					this.ct登場アニメ用[ i ] = new CCounter( -i * 10, 100, 3, TJAPlayer3.Timer );
-				this.nスクロールタイマ = CSound管理.rc演奏用タイマ.n現在時刻;
-
-                this.n矢印スクロール用タイマ値 = CSound管理.rc演奏用タイマ.n現在時刻;
 
                 //this.soundSelectAnnounce.tサウンドを再生する();
 
@@ -312,22 +307,14 @@ namespace TJAPlayer3
         public CActSelect曲リスト.TitleTextureKey SongSubTitle;
         private CCounter ct決定待機;
         public int 縁カウント = 0;
-        private bool b登場アニメ全部完了;
 		private CCounter[] ct登場アニメ用 = new CCounter[ 13 ];
         private CCounter ctBarAnime;
         private CCounter ct移動;
-		private long nスクロールタイマ;
 		private int n現在のスクロールカウンタ;
 		public int n現在の選択行;
 		private int n目標のスクロールカウンタ;
 
         private CSound soundSelectAnnounce;
-
-
-        private long n矢印スクロール用タイマ値;
-
-        private int[] n描画順;
-        private int[] n踏み台座標;
 		//-----------------
 		#endregion
 	}
