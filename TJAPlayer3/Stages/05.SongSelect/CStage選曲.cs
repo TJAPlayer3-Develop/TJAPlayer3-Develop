@@ -508,7 +508,7 @@ namespace TJAPlayer3
 													this.act難易度選択画面.SongSubTitle = TJAPlayer3.stage選曲.act曲リスト.ttkサブタイトルテクスチャを生成する(TJAPlayer3.stage選曲.r現在選択中の曲.strサブタイトル, Color.White, Color.Black);
 
 													this.act難易度選択画面.n現在の選択行 = 3;
-													ctDiffSelect移動待ち.t開始(0, 1490, 1, TJAPlayer3.Timer);
+													ctDiffSelect移動待ち.t開始(0, 1190, 1, TJAPlayer3.Timer);
 													act難易度選択画面.bIsDifficltSelect = true;
 													TJAPlayer3.Skin.sound決定音.t再生する();
 												}
@@ -613,7 +613,7 @@ namespace TJAPlayer3
 				{
 					if (TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Dan && TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Tower)
 					{
-						if (this.ctDiffSelect移動待ち.n現在の値 >= 1235)
+						if (this.ctDiffSelect移動待ち.n現在の値 >= 935)
 						{
 							this.act難易度選択画面.On進行描画();
 						}

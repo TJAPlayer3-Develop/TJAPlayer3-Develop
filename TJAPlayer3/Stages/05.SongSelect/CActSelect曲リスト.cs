@@ -1200,11 +1200,11 @@ namespace TJAPlayer3
 
 							if (TJAPlayer3.stage選曲.act難易度選択画面.bIsDifficltSelect)
 							{
-								if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 >= 980)
+								if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 >= 725)
 								{
-									if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 <= 1490)
+									if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 <= 1190)
 									{
-										ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 980);
+										ResolveTitleTexture(this.stバー情報[nパネル番号].ttkタイトル).Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 725);
 									}
 								}
 							}
@@ -1448,15 +1448,15 @@ namespace TJAPlayer3
 												{
 													if (TJAPlayer3.stage選曲.act難易度選択画面.bIsDifficltSelect)
 													{
-														if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 >= 980)
+														if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 >= 725)
 														{
-															if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 <= 1490)
+															if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 <= 1190)
 															{
-																TJAPlayer3.Tx.SongSelect_Frame_Score.Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 980);
+																TJAPlayer3.Tx.SongSelect_Frame_Score.Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 725);
 																if (TJAPlayer3.Tx.SongSelect_Level_Number != null)
-																	TJAPlayer3.Tx.SongSelect_Level_Number.Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 980);
+																	TJAPlayer3.Tx.SongSelect_Level_Number.Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 725);
 																if (TJAPlayer3.Tx.SongSelect_Bar_Select != null)
-																	TJAPlayer3.Tx.SongSelect_Bar_Select.Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 980);
+																	TJAPlayer3.Tx.SongSelect_Bar_Select.Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 725);
 															}
 														}
 													}
@@ -1631,12 +1631,12 @@ namespace TJAPlayer3
 									{
 										if (TJAPlayer3.stage選曲.act難易度選択画面.bIsDifficltSelect)
 										{
-											if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 >= 980)
+											if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 >= 725)
 											{
-												if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 <= 1490)
+												if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 <= 1190)
 												{
-													tx選択している曲のサブタイトル.Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 980);
-													ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 980);
+													tx選択している曲のサブタイトル.Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 725);
+													ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 725);
 												}
 											}
 										}
@@ -1708,11 +1708,11 @@ namespace TJAPlayer3
 										{
 											if (TJAPlayer3.stage選曲.act難易度選択画面.bIsDifficltSelect)
 											{
-												if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 >= 980)
+												if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 >= 725)
 												{
-													if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 <= 1490)
+													if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 <= 1190)
 													{
-														ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 980);
+														ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 725);
 													}
 												}
 											}
@@ -2068,13 +2068,13 @@ namespace TJAPlayer3
 			{
                 if (TJAPlayer3.stage選曲.act難易度選択画面.bIsDifficltSelect)
                 {
-					if(TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 >= 980)
+					if(TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 >= 725)
                     {
-						if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 <= 1490)
+						if (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 <= 1190)
 						{
-							TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 980) ;
-							TJAPlayer3.Tx.SongSelect_Bar_Genre[i].Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 980);
-							TJAPlayer3.Tx.SongSelect_Crown.Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 980);
+							TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 725) ;
+							TJAPlayer3.Tx.SongSelect_Bar_Genre[i].Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 725);
+							TJAPlayer3.Tx.SongSelect_Crown.Opacity = 255.0f - (TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 725);
 						}
 					}
                 }

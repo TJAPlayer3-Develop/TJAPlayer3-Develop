@@ -393,7 +393,7 @@ namespace TJAPlayer3
 							base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
 							this.eフェードアウト完了時の戻り値 = E戻り値.完了;
 						}
-						if ( ( ( TJAPlayer3.Pad.b押されたDGB( Eパッド.CY ) || TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.RD ) ) || ( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.LC ) || TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.Return ) ) ) && this.bアニメが完了 )
+						if ( ( ( TJAPlayer3.Pad.b押されたDGB( Eパッド.CY ) || TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.RD ) ) || ( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.LC ) || (TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || (TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed) || TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.Return ) ) ) && this.bアニメが完了 )))
 						{
 							TJAPlayer3.Skin.sound取消音.t再生する();
 //							this.actFO.tフェードアウト開始();
