@@ -170,17 +170,11 @@
     <Compile Include="Stages\04.Config\CActConfigKeyAssign.cs" />
     <Compile Include="Stages\04.Config\CActConfigList.cs" />
     <Compile Include="Stages\04.Config\CStageコンフィグ.cs" />
-    <Compile Include="Stages\05.SongSelect\CActSelectArtistComment.cs" />
-    <Compile Include="Stages\05.SongSelect\CActSelectInformation.cs" />
     <Compile Include="Stages\05.SongSelect\CActSelectPopupMenu.cs" />
-    <Compile Include="Stages\05.SongSelect\CActSelectPreimageパネル.cs" />
     <Compile Include="Stages\05.SongSelect\CActSelectPresound.cs" />
     <Compile Include="Stages\05.SongSelect\CActSelectQuickConfig.cs" />
-    <Compile Include="Stages\05.SongSelect\CActSelectShowCurrentPosition.cs" />
-    <Compile Include="Stages\05.SongSelect\CActSelectステータスパネル.cs" />
     <Compile Include="Stages\05.SongSelect\CActSelect難易度選択画面.cs" />
     <Compile Include="Stages\05.SongSelect\CActSelect曲リスト.cs" />
-    <Compile Include="Stages\05.SongSelect\CActSelect演奏履歴パネル.cs" />
     <Compile Include="Stages\05.SongSelect\CActSortSongs.cs" />
     <Compile Include="Stages\05.SongSelect\CStage選曲.cs" />
     <Compile Include="Stages\06.SongLoading\CStage曲読み込み.cs" />

@@ -37,13 +37,6 @@ namespace TJAPlayer3
                 act曲リスト.bIsEnumeratingSongs = value;
             }
         }
-        public bool bIsPlayingPremovie
-        {
-            get
-            {
-                return this.actPreimageパネル.bIsPlayingPremovie;
-            }
-        }
         public bool bスクロール中
         {
             get
@@ -105,14 +98,8 @@ namespace TJAPlayer3
 			//base.list子Activities.Add( this.actFOtoNowLoading = new CActFIFOBlack() );
             base.list子Activities.Add( this.actFOtoNowLoading = new CActFIFOStart() );
 			base.list子Activities.Add( this.act曲リスト = new CActSelect曲リスト() );
-			base.list子Activities.Add( this.actステータスパネル = new CActSelectステータスパネル() );
-			base.list子Activities.Add( this.act演奏履歴パネル = new CActSelect演奏履歴パネル() );
-			base.list子Activities.Add( this.actPreimageパネル = new CActSelectPreimageパネル() );
 			base.list子Activities.Add( this.actPresound = new CActSelectPresound() );
-			base.list子Activities.Add( this.actArtistComment = new CActSelectArtistComment() );
-			base.list子Activities.Add( this.actInformation = new CActSelectInformation() );
 			base.list子Activities.Add( this.actSortSongs = new CActSortSongs() );
-			base.list子Activities.Add( this.actShowCurrentPosition = new CActSelectShowCurrentPosition() );
 			base.list子Activities.Add( this.actQuickConfig = new CActSelectQuickConfig() );
 			base.list子Activities.Add( this.act難易度選択画面 = new CActSelect難易度選択画面() );
 
@@ -124,11 +111,7 @@ namespace TJAPlayer3
 
 		public void t選択曲変更通知()
 		{
-			this.actPreimageパネル.t選択曲が変更された();
 			this.actPresound.t選択曲が変更された();
-			this.act演奏履歴パネル.t選択曲が変更された();
-			this.actステータスパネル.t選択曲が変更された();
-			this.actArtistComment.t選択曲が変更された();
 
 			#region [ プラグインにも通知する（BOX, RANDOM, BACK なら通知しない）]
 			//---------------------
@@ -184,7 +167,6 @@ namespace TJAPlayer3
 				//this.act難易度選択画面.bIsDifficltSelect = true;
 				base.On活性化();
 
-				this.actステータスパネル.t選択曲が変更された();	// 最大ランクを更新
                 // Discord Presenceの更新
                 Discord.UpdatePresence("", Properties.Discord.Stage_SongSelect, TJAPlayer3.StartupTime);
             }
@@ -320,8 +302,6 @@ namespace TJAPlayer3
 				this.act曲リスト.On進行描画();
 				int y = 0;
 
-				this.actInformation.On進行描画();
-
                 #region[ 下部テキスト ]
                 if (TJAPlayer3.Tx.SongSelect_Auto != null)
                 {
@@ -347,10 +327,6 @@ namespace TJAPlayer3
                 #endregion
 
                 this.actPresound.On進行描画();
-
-                this.act演奏履歴パネル.On進行描画();
-
-				this.actShowCurrentPosition.On進行描画();								// #27648 2011.3.28 yyagi
 
 				if( !this.bBGM再生済み && (base.eフェーズID == CStage.Eフェーズ.共通_通常状態) && !TJAPlayer3.Skin.bgm選曲画面In.b再生中)
 				{
@@ -733,19 +709,13 @@ namespace TJAPlayer3
 			}
 		}
 		private CCounter ctDonchanNormal;
-		private CActSelectArtistComment actArtistComment;
 		private CActFIFOBlack actFIFO;
 		private CActFIFOBlack actFIfrom結果画面;
 		//private CActFIFOBlack actFOtoNowLoading;
         private CActFIFOStart actFOtoNowLoading;
-		private CActSelectInformation actInformation;
-		private CActSelectPreimageパネル actPreimageパネル;
 		public CActSelectPresound actPresound;
 		private CActオプションパネル actオプションパネル;
-		private CActSelectステータスパネル actステータスパネル;
-		public CActSelect演奏履歴パネル act演奏履歴パネル;
 		public CActSelect曲リスト act曲リスト;
-		private CActSelectShowCurrentPosition actShowCurrentPosition;
         public CActSelect難易度選択画面 act難易度選択画面;
 
 		public CActSortSongs actSortSongs;

@@ -231,16 +231,35 @@ namespace TJAPlayer3
                         this.bIsDifficltSelect = false;
                     }
                 }
+
                 TJAPlayer3.Tx.Diffculty_Back[TJAPlayer3.stage選曲.act曲リスト.nStrジャンルtoNum(TJAPlayer3.stage選曲.r現在選択中の曲.strジャンル)].Opacity = TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 935;
                 TJAPlayer3.Tx.Diffculty_Back[TJAPlayer3.stage選曲.act曲リスト.nStrジャンルtoNum(TJAPlayer3.stage選曲.r現在選択中の曲.strジャンル)].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 640, 280);
+
+                TJAPlayer3.Tx.Difficulty_Bar.color4 = new Color4(1f, 1f, 1f);
                 TJAPlayer3.Tx.Difficulty_Bar.Opacity = TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 935;
-                TJAPlayer3.Tx.Difficulty_Bar.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 640, 380);
+                TJAPlayer3.Tx.Difficulty_Bar.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 515 - 150, 380, new Rectangle(0, 0, 163, 228));
+                for (int i = 0; i < 5; i++)
+                {
+                    if (TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.nレベル[i] >= 0)
+                    {
+                        TJAPlayer3.Tx.Difficulty_Bar.color4 = new Color4(1f, 1f, 1f);
+                        TJAPlayer3.Tx.Difficulty_Bar.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 515 + i * 136, 380, new Rectangle(163 + (i * 136), 0, 136, 228));
+                    }
+                    else
+                    {
+                        TJAPlayer3.Tx.Difficulty_Bar.color4 = new Color4(0.5f, 0.5f, 0.5f);
+                        TJAPlayer3.Tx.Difficulty_Bar.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 515 + i * 136, 380, new Rectangle(163 + (i * 136), 0, 136, 228));
+                    }
+                }
+
                 TJAPlayer3.Tx.Difficulty_SelectBar.Opacity = TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 935;
                 TJAPlayer3.Tx.Difficulty_SelectBar.t2D描画(TJAPlayer3.app.Device, ptバー座標[n現在の選択行 + 2].X, (float)(ptバー座標[n現在の選択行 + 2].Y) + (float)Math.Sin(this.ctBarAnime.n現在の値 * (Math.PI / 180)) * 11.0f, new Rectangle(0, 0, 260, 122));
+
                 TJAPlayer3.stage選曲.act曲リスト.ResolveTitleTexture(SongTitle).vc拡大縮小倍率.X = 1.0f;
                 TJAPlayer3.stage選曲.act曲リスト.ResolveTitleTexture(SongTitle).vc拡大縮小倍率.Y = 1.0f;
                 TJAPlayer3.stage選曲.act曲リスト.ResolveTitleTexture(SongTitle).Opacity = TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 935;
                 TJAPlayer3.stage選曲.act曲リスト.ResolveTitleTexture(SongTitle).t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 640, 130);
+
                 TJAPlayer3.stage選曲.act曲リスト.ResolveTitleTexture(SongSubTitle).vc拡大縮小倍率.X = 1.0f;
                 TJAPlayer3.stage選曲.act曲リスト.ResolveTitleTexture(SongSubTitle).vc拡大縮小倍率.Y = 1.0f;
                 TJAPlayer3.stage選曲.act曲リスト.ResolveTitleTexture(SongSubTitle).Opacity = TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 935;
