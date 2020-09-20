@@ -203,7 +203,7 @@ namespace TJAPlayer3
                 //キー操作
                 if (!b曲選択)
                 {
-                    if (TJAPlayer3.Pad.b押されたDGB(Eパッド.RBlue) &&
+                    if (TJAPlayer3.Pad.b押されたDGB(Eパッド.RBlue) ||
                             TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.RightArrow))
                     {
                         this.t次に移動();
@@ -330,12 +330,12 @@ namespace TJAPlayer3
                         {
                             if (b裏譜面)
                             {
-                                if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.クリア[i])
-                                    TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + 4 * 138, 292, new Rectangle(0 * 24, 0, 24, 26));
-                                if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.フルコンボ[i])
-                                    TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + 4 * 138, 292, new Rectangle(1 * 24, 0, 24, 26));
-                                if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.ドンダフルコンボ[i])
-                                    TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + 4 * 138, 292, new Rectangle(2 * 24, 0, 24, 26));
+                                if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[4].譜面情報.クリア[4])
+                                    TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + 3 * 138, 292, new Rectangle(0 * 24, 0, 24, 26));
+                                if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[4].譜面情報.フルコンボ[4])
+                                    TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + 3 * 138, 292, new Rectangle(1 * 24, 0, 24, 26));
+                                if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[4].譜面情報.ドンダフルコンボ[4])
+                                    TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + 3 * 138, 292, new Rectangle(2 * 24, 0, 24, 26));
                             }
                         }
                     }
