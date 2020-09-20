@@ -261,6 +261,7 @@ namespace TJAPlayer3
 				//---------------------
 				if( base.b初めての進行描画 )
 				{
+					this.act難易度選択画面.n現在の選択行 = 3;
 					this.ct登場時アニメ用共通 = new CCounter( 0, 100, 3, TJAPlayer3.Timer );
 					if( TJAPlayer3.r直前のステージ == TJAPlayer3.stage結果 )
 					{
@@ -478,12 +479,12 @@ namespace TJAPlayer3
 										switch (this.act曲リスト.r現在選択中の曲.eノード種別)
 										{
 											case C曲リストノード.Eノード種別.SCORE:
+												this.act難易度選択画面.n現在の選択行 = 3;
 												if (TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Dan && TJAPlayer3.stage選曲.n現在選択中の曲の難易度 != (int)Difficulty.Tower)
 												{
 													this.act難易度選択画面.SongTitle = TJAPlayer3.stage選曲.act曲リスト.ttk曲名テクスチャを生成する(TJAPlayer3.stage選曲.r現在選択中の曲.strタイトル, Color.White, Color.Black);
 													this.act難易度選択画面.SongSubTitle = TJAPlayer3.stage選曲.act曲リスト.ttkサブタイトルテクスチャを生成する(TJAPlayer3.stage選曲.r現在選択中の曲.strサブタイトル, Color.White, Color.Black);
 
-													this.act難易度選択画面.n現在の選択行 = 3;
 													ctDiffSelect移動待ち.t開始(0, 1190, 1, TJAPlayer3.Timer);
 													act難易度選択画面.bIsDifficltSelect = true;
 													TJAPlayer3.Skin.sound決定音.t再生する();

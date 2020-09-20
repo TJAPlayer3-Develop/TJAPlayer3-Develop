@@ -182,8 +182,10 @@ namespace TJAPlayer3
 			#region [ 初めての進行描画 ]
 			//-----------------
 			if( this.b初めての進行描画 )
-			{
-				for( int i = 0; i < 13; i++ )
+            {
+                this.n現在の選択行 = 3;
+                this.b裏譜面 = false;
+                for ( int i = 0; i < 13; i++ )
 					this.ct登場アニメ用[ i ] = new CCounter( -i * 10, 100, 3, TJAPlayer3.Timer );
 
                 //this.soundSelectAnnounce.tサウンドを再生する();
@@ -326,7 +328,7 @@ namespace TJAPlayer3
                                     TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + i * 138, 292, new Rectangle(2 * 24, 0, 24, 26));
                             }
                         }
-                        else
+                        if (i == 4)
                         {
                             if (b裏譜面)
                             {
@@ -352,7 +354,6 @@ namespace TJAPlayer3
 				//-----------------
 				#endregion
 			}
-            TJAPlayer3.act文字コンソール.tPrint(0, 0, C文字コンソール.Eフォント種別.白, n現在の選択行.ToString());
 
 			// 描画。
 
