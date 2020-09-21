@@ -345,7 +345,7 @@ namespace TJAPlayer3
 
                 if (ct決定待機.n現在の値 == 2000)
                 {
-                    TJAPlayer3.stage選曲.actPresound.sound.tサウンドを停止する();
+                    TJAPlayer3.stage選曲.actPresound.sound?.tサウンドを停止する();
                     TJAPlayer3.stage選曲.t曲を選択する(this.n現在の選択行);
                     ct決定待機.t停止();
                     ct決定待機.n現在の値 = 0;

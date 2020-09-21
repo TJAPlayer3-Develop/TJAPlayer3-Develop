@@ -515,17 +515,22 @@ namespace TJAPlayer3
             Result_FadeIn = TxC(RESULT + @"FadeIn.png");
             Result_Gauge = TxC(RESULT + @"Gauge.png");
             Result_Gauge_Base = TxC(RESULT + @"Gauge_Base.png");
-            Result_Judge = TxC(RESULT + @"Judge.png");
             Result_Header = TxC(RESULT + @"Header.png");
             Result_Number = TxC(RESULT + @"Number.png");
             Result_Panel = TxC(RESULT + @"Panel.png");
-            Result_Score_Text = TxC(RESULT + @"Score_Text.png");
+            Result_Soul_Text = TxC(RESULT + @"Soul_Text.png");
+            Result_Soul_Fire = TxC(RESULT + @"Result_Soul_Fire.png");
             Result_Score_Number = TxC(RESULT + @"Score_Number.png");
             Result_Dan = TxC(RESULT + @"Dan.png");
+
+            for (int i = 0; i < 41; i++)
+            {
+                Result_Rainbow[i] = TxC(RESULT + @"Rainbow\" + i.ToString() + ".png");
+            }
             #endregion
 
-            #region 7_終了画面
-            Exit_Background = TxC(EXIT + @"Background.png");
+                #region 7_終了画面
+                Exit_Background = TxC(EXIT + @"Background.png");
             #endregion
 
         }
@@ -854,13 +859,18 @@ namespace TJAPlayer3
             TJAPlayer3.tテクスチャの解放(ref Result_FadeIn);
             TJAPlayer3.tテクスチャの解放(ref Result_Gauge);
             TJAPlayer3.tテクスチャの解放(ref Result_Gauge_Base);
-            TJAPlayer3.tテクスチャの解放(ref Result_Judge);
             TJAPlayer3.tテクスチャの解放(ref Result_Header);
             TJAPlayer3.tテクスチャの解放(ref Result_Number);
             TJAPlayer3.tテクスチャの解放(ref Result_Panel);
-            TJAPlayer3.tテクスチャの解放(ref Result_Score_Text);
+            TJAPlayer3.tテクスチャの解放(ref Result_Soul_Text);
+            TJAPlayer3.tテクスチャの解放(ref Result_Soul_Fire);
             TJAPlayer3.tテクスチャの解放(ref Result_Score_Number);
             TJAPlayer3.tテクスチャの解放(ref Result_Dan);
+
+            for (int i = 0; i < 41; i++)
+            {
+                TJAPlayer3.tテクスチャの解放(ref Result_Rainbow[i]);
+            }
             #endregion
 
             #region 7_終了画面
@@ -1071,13 +1081,15 @@ namespace TJAPlayer3
             Result_FadeIn,
             Result_Gauge,
             Result_Gauge_Base,
-            Result_Judge,
             Result_Header,
             Result_Number,
             Result_Panel,
-            Result_Score_Text,
+            Result_Soul_Text,
+            Result_Soul_Fire,
             Result_Score_Number,
             Result_Dan;
+        public CTexture[]
+            Result_Rainbow = new CTexture[41];
         #endregion
 
         #region 7_終了画面

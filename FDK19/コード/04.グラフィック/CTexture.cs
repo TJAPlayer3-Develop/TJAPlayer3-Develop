@@ -485,7 +485,11 @@ namespace FDK
         {
             this.t2D描画(device, (int)x, (int)y, 1f, rc画像内の描画領域);
         }
-        public void t2D描画(Device device, float x, float y, float depth, Rectangle rc画像内の描画領域)
+        public void t2D描画(Device device, float x, float y, RectangleF rc画像内の描画領域)
+        {
+            this.t2D描画(device, (int)x, (int)y, 1f, rc画像内の描画領域);
+        }
+        public void t2D描画(Device device, float x, float y, float depth, RectangleF rc画像内の描画領域)
         {
             if (this.texture == null)
                 return;

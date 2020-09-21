@@ -325,7 +325,8 @@ namespace TJAPlayer3
         public Cシステムサウンド bgmリザルト = null;
         public Cシステムサウンド bgmリザルトループ = null;
         public Cシステムサウンド sound曲決定音 = null;
-        public Cシステムサウンド sound成績発表 = null;
+        public Cシステムサウンド bgmリザルトイン音 = null;
+        public Cシステムサウンド bgmリザルト音 = null;
 
         //public Cシステムサウンド soundRed = null;
         //public Cシステムサウンド soundBlue = null;
@@ -400,7 +401,7 @@ namespace TJAPlayer3
                         return this.sound曲決定音;
 
                     case Eシステムサウンド.SOUND成績発表:
-                        return this.sound成績発表;
+                        return this.bgmリザルトイン音;
                 }
                 throw new IndexOutOfRangeException();
             }
@@ -472,7 +473,7 @@ namespace TJAPlayer3
                         return this.sound曲決定音;
 
                     case 18:
-                        return this.sound成績発表;
+                        return this.bgmリザルトイン音;
                 }
                 throw new IndexOutOfRangeException();
             }
@@ -629,7 +630,8 @@ namespace TJAPlayer3
             //this.soundBlue              = new Cシステムサウンド( @"Sounds\ka.ogg",              false, false, true, ESoundType.SoundEffect );
             this.soundBalloon = new Cシステムサウンド(@"Sounds\balloon.ogg", false, false, true, ESoundGroup.SoundEffect);
             this.sound曲決定音 = new Cシステムサウンド(@"Sounds\SongDecide.ogg", false, false, true, ESoundGroup.Voice);
-            this.sound成績発表 = new Cシステムサウンド(@"Sounds\ResultIn.ogg", false, false, false, ESoundGroup.Voice);
+            this.bgmリザルトイン音 = new Cシステムサウンド(@"Sounds\ResultIn.ogg", false, false, false, ESoundGroup.Voice);
+            this.bgmリザルト音 = new Cシステムサウンド(@"Sounds\Result.ogg", true, false, false, ESoundGroup.Voice);
             ReloadSkin();
             tReadSkinConfig();
         }
@@ -2378,38 +2380,38 @@ namespace TJAPlayer3
 
         //リザルト画面
         //現在のデフォルト値はダミーです。
-        public int nResultPanelP1X = 515;
-        public int nResultPanelP1Y = 75;
+        public int nResultPanelP1X = 0;
+        public int nResultPanelP1Y = 0;
         public int nResultPanelP2X = 515;
         public int nResultPanelP2Y = 75;
-        public int nResultScoreP1X = 582;
-        public int nResultScoreP1Y = 252;
-        public int nResultJudge1_P1X = 815;
+        public int nResultScoreP1X = 295;
+        public int nResultScoreP1Y = 212;
+        public int nResultJudge1_P1X = 495;
         public int nResultJudge1_P1Y = 182;
         public int nResultJudge2_P1X = 968;
         public int nResultJudge2_P1Y = 174;
-        public int nResultGreatP1X = 875;
+        public int nResultGreatP1X = 490;
         public int nResultGreatP1Y = 188;
         public int nResultGreatP2X = 875;
         public int nResultGreatP2Y = 188;
-        public int nResultGoodP1X = 875;
-        public int nResultGoodP1Y = 226;
+        public int nResultGoodP1X = 490;
+        public int nResultGoodP1Y = 230;
         public int nResultGoodP2X = 875;
         public int nResultGoodP2Y = 226;
-        public int nResultBadP1X = 875;
-        public int nResultBadP1Y = 266;
+        public int nResultBadP1X = 490;
+        public int nResultBadP1Y = 272;
         public int nResultBadP2X = 875;
         public int nResultBadP2Y = 266;
-        public int nResultComboP1X = 1144;
-        public int nResultComboP1Y = 188;
+        public int nResultComboP1X = 490;
+        public int nResultComboP1Y = 314;
         public int nResultComboP2X = 1144;
         public int nResultComboP2Y = 188;
-        public int nResultRollP1X = 1144;
-        public int nResultRollP1Y = 226;
+        public int nResultRollP1X = 490;
+        public int nResultRollP1Y = 356;
         public int nResultRollP2X = 1144;
         public int nResultRollP2Y = 226;
-        public int nResultGaugeBaseP1X = 555;
-        public int nResultGaugeBaseP1Y = 122;
+        public int nResultGaugeBaseP1X = 56;
+        public int nResultGaugeBaseP1Y = 141;
         public int nResultGaugeBaseP2X = 555;
         public int nResultGaugeBaseP2Y = 122;
         public int nResultGaugeBodyP1X = 559;
@@ -2705,10 +2707,10 @@ namespace TJAPlayer3
         #endregion
         #endregion
         #region Result
-        public int Result_MusicName_X = 1254;
-        public int Result_MusicName_Y = 6;
-        public int Result_MusicName_FontSize = 30;
-        public ReferencePoint Result_MusicName_ReferencePoint = ReferencePoint.Right;
+        public int Result_MusicName_X = 640;
+        public int Result_MusicName_Y = 30;
+        public int Result_MusicName_FontSize = 25;
+        public ReferencePoint Result_MusicName_ReferencePoint = ReferencePoint.Center;
         public int Result_StageText_X = 230;
         public int Result_StageText_Y = 6;
         public int Result_StageText_FontSize = 30;
@@ -2721,8 +2723,8 @@ namespace TJAPlayer3
         public Color Result_StageText_BackColor = ColorTranslator.FromHtml("#000000");
         //public Color Result_StageText_BackColor_Red = ColorTranslator.FromHtml("#FF0000");
 
-        public int[] Result_NamePlate_X = new int[] { 260, 260 };
-        public int[] Result_NamePlate_Y = new int[] { 96, 390 };
+        public int[] Result_NamePlate_X = new int[] { 6, 260 };
+        public int[] Result_NamePlate_Y = new int[] { 611, 611 };
 
         public int[] Result_Dan = new int[] { 500, 500 };
         public int[] Result_Dan_XY = new int[] { 100, 0 };

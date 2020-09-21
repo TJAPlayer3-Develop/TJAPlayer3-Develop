@@ -14,12 +14,12 @@ namespace TJAPlayer3
 		public void tフェードアウト開始()
 		{
 			this.mode = EFIFOモード.フェードアウト;
-			this.counter = new CCounter( 0, 150, 5, TJAPlayer3.Timer );
+			this.counter = new CCounter( 0, 100, 5, TJAPlayer3.Timer );
 		}
 		public void tフェードイン開始()
 		{
 			this.mode = EFIFOモード.フェードイン;
-			this.counter = new CCounter( 0, 150, 5, TJAPlayer3.Timer );
+			this.counter = new CCounter( 0, 300, 2, TJAPlayer3.Timer );
 		}
 
 		
@@ -51,15 +51,20 @@ namespace TJAPlayer3
 			// Size clientSize = CDTXMania.app.Window.ClientSize;	// #23510 2010.10.31 yyagi: delete as of no one use this any longer.
 			if (TJAPlayer3.Tx.Tile_Black != null)
 			{
-				if (counter.n現在の値 >= 50)
-					TJAPlayer3.Tx.Tile_Black.Opacity = (this.mode == EFIFOモード.フェードイン) ? (((100 - (this.counter.n現在の値 - 50)) * 0xff) / 100) : (((this.counter.n現在の値 - 50) * 0xff) / 100);
+				if (this.mode == EFIFOモード.フェードイン)
+				{
+					if (counter.n現在の値 >= 200)
+					{
+						TJAPlayer3.Tx.Tile_Black.Opacity = (((100 - (this.counter.n現在の値 - 200)) * 0xff) / 100);
+					}
+					else
+					{
+						TJAPlayer3.Tx.Tile_Black.Opacity = 255;
+					}
+				}
                 else
 				{
-					if (this.mode == EFIFOモード.フェードイン)
-						TJAPlayer3.Tx.Tile_Black.Opacity = 255;
-					else
-						TJAPlayer3.Tx.Tile_Black.Opacity = 0;
-
+					TJAPlayer3.Tx.Tile_Black.Opacity = (((this.counter.n現在の値) * 0xff) / 100);
 				}
 
 				for (int i = 0; i <= (SampleFramework.GameWindowSize.Width / 64); i++)		// #23510 2010.10.31 yyagi: change "clientSize.Width" to "640" to fix FIFO drawing size
@@ -70,9 +75,19 @@ namespace TJAPlayer3
 					}
 				}
 			}
-			if( this.counter.n現在の値 != 150 )
+			if (this.mode == EFIFOモード.フェードアウト)
 			{
-				return 0;
+				if (this.counter.n現在の値 != 100)
+				{
+					return 0;
+				}
+			}
+            else
+            {
+				if (this.counter.n現在の値 != 300)
+				{
+					return 0;
+				}
 			}
 			return 1;
 		}
