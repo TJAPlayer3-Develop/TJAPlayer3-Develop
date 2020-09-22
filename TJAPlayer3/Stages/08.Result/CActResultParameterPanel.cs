@@ -203,6 +203,7 @@ namespace TJAPlayer3
 				ctEndAnime = new CCounter();
 				ctBackgroundAnime = new CCounter(0, 1000, 1, TJAPlayer3.Timer);
 				ctBackgroundAnime_Clear = new CCounter(0, 1000, 1, TJAPlayer3.Timer);
+				ctMountain_ClearIn = new CCounter();
 				Dan_Plate = TJAPlayer3.tテクスチャの生成(Path.GetDirectoryName(TJAPlayer3.DTX.strファイル名の絶対パス) + @"\Dan_Plate.png");
                 base.OnManagedリソースの作成();
 			}
@@ -231,6 +232,7 @@ namespace TJAPlayer3
             ctゲージアニメーション.t進行();
 			ctEndAnime.t進行();
 			ctBackgroundAnime.t進行Loop();
+			ctMountain_ClearIn.t進行();
 			if (TJAPlayer3.Tx.Result_Panel != null)
 			{
 				TJAPlayer3.Tx.Result_Panel.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.nResultPanelP1X, TJAPlayer3.Skin.nResultPanelP1Y);
@@ -375,6 +377,10 @@ namespace TJAPlayer3
 
 					}
 
+					if (ct全体アニメ.n現在の値 >= 2000 + (this.ctゲージアニメーション.n終了値 * 66) + 6360 - 85)
+						if(!this.ctMountain_ClearIn.b進行中)
+							this.ctMountain_ClearIn.t開始(0, 515, 3, TJAPlayer3.Timer);
+
 				}
 			}
 			if (TJAPlayer3.Tx.Result_Soul_Text != null)
@@ -452,6 +458,7 @@ namespace TJAPlayer3
 		private CCounter ctSoul;
 		private CCounter ctRainbowGauge;
 		public CCounter ctEndAnime;
+		public CCounter ctMountain_ClearIn;
 		public CCounter ctBackgroundAnime;
 		public CCounter ctBackgroundAnime_Clear;
 

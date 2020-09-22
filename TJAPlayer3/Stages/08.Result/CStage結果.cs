@@ -311,22 +311,43 @@ namespace TJAPlayer3
 						if(this.st演奏記録.Drums.fゲージ >= 80.0)
                         {
 							TJAPlayer3.Tx.Result_Background[1].Opacity = (this.actParameterPanel.ct全体アニメ.n現在の値 - (8275 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66))) * 3;
+							TJAPlayer3.Tx.Result_Mountain[1].Opacity = (this.actParameterPanel.ct全体アニメ.n現在の値 - (8275 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66))) * 3;
 							TJAPlayer3.Tx.Result_Mountain[0].Opacity = 255 - (this.actParameterPanel.ct全体アニメ.n現在の値 - (8275 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66))) * 3;
-						}
-                        else
-						{
-							TJAPlayer3.Tx.Result_Background[1].Opacity = 0;
-							TJAPlayer3.Tx.Result_Mountain[0].Opacity = 255;
+
+							if (this.actParameterPanel.ctMountain_ClearIn.n現在の値 <= 90)
+                            {
+								TJAPlayer3.Tx.Result_Mountain[1].vc拡大縮小倍率.Y = 1.0f - (float)Math.Sin((float)this.actParameterPanel.ctMountain_ClearIn.n現在の値 * (Math.PI / 180)) * 0.18f; 
+							}
+							else if (this.actParameterPanel.ctMountain_ClearIn.n現在の値 <= 225)
+							{
+								TJAPlayer3.Tx.Result_Mountain[1].vc拡大縮小倍率.Y = 0.82f + (float)Math.Sin((float)(this.actParameterPanel.ctMountain_ClearIn.n現在の値 - 90) / 1.5f * (Math.PI / 180)) * 0.58f;
+							}
+							else if (this.actParameterPanel.ctMountain_ClearIn.n現在の値 <= 245)
+							{
+								TJAPlayer3.Tx.Result_Mountain[1].vc拡大縮小倍率.Y = 1.4f;
+							}
+							else if (this.actParameterPanel.ctMountain_ClearIn.n現在の値 <= 335)
+							{
+								TJAPlayer3.Tx.Result_Mountain[1].vc拡大縮小倍率.Y = 0.9f + (float)Math.Sin((float)(this.actParameterPanel.ctMountain_ClearIn.n現在の値 - 155) * (Math.PI / 180)) * 0.5f;
+							}
+							else if (this.actParameterPanel.ctMountain_ClearIn.n現在の値 <= 515)
+							{
+								TJAPlayer3.Tx.Result_Mountain[1].vc拡大縮小倍率.Y = 0.9f + (float)Math.Sin((float)(this.actParameterPanel.ctMountain_ClearIn.n現在の値 - 335) * (Math.PI / 180)) * 0.4f;
+							}
 						}
 					}
                     else
 					{
+						
 						TJAPlayer3.Tx.Result_Background[1].Opacity = 0;
 						TJAPlayer3.Tx.Result_Mountain[0].Opacity = 255;
+						TJAPlayer3.Tx.Result_Mountain[1].Opacity = 0;
 					}
+
 					TJAPlayer3.Tx.Result_Background[0].t2D描画(TJAPlayer3.app.Device, 0, 0);
 					TJAPlayer3.Tx.Result_Background[1].t2D描画(TJAPlayer3.app.Device, 0, 0);
 					TJAPlayer3.Tx.Result_Mountain[0].t2D描画(TJAPlayer3.app.Device, 0, 0);
+					TJAPlayer3.Tx.Result_Mountain[1].t2D拡大率考慮下基準描画(TJAPlayer3.app.Device, 0, 720);
 				}
 				
 
@@ -418,12 +439,13 @@ namespace TJAPlayer3
 						}
 						if ( ( ( TJAPlayer3.Pad.b押されたDGB( Eパッド.CY ) || TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.RD ) ) || ( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.LC ) || (TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || (TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed) || TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.Return ) ) ))))
 						{
-                            if (this.actParameterPanel.ct全体アニメ.n現在の値 <= 11575)
+                            if (this.actParameterPanel.ct全体アニメ.n現在の値 <= 2000 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66) + 6360 - 85)
                             {
-								this.actParameterPanel.ct全体アニメ.n現在の値 = 11575;
+								this.actParameterPanel.ct全体アニメ.n現在の値 = 2000 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66) + 6360 - 85;
 								this.actParameterPanel.ctゲージアニメーション.n現在の値 = actParameterPanel.ctゲージアニメーション.n終了値;
 								EndAnime = true;
 								this.actParameterPanel.ctEndAnime.t開始(0, 360, 1, TJAPlayer3.Timer);
+								this.actParameterPanel.ctMountain_ClearIn.t開始(0, 515, 3, TJAPlayer3.Timer);
 							}
                             else
 							{
