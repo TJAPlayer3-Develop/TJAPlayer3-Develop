@@ -214,11 +214,11 @@ namespace TJAPlayer3
 				if (!TJAPlayer3.bコンパクトモード)
 				{
 					Cスコア cスコア = TJAPlayer3.stage選曲.r確定されたスコア;
-					if(st演奏記録[0].bIsClear[TJAPlayer3.stage選曲.n確定された曲の難易度] != false)
+					if(cスコア.譜面情報.クリア[TJAPlayer3.stage選曲.n確定された曲の難易度] == false)
 						cスコア.譜面情報.クリア[TJAPlayer3.stage選曲.n確定された曲の難易度] = st演奏記録[0].bIsClear[TJAPlayer3.stage選曲.n確定された曲の難易度];
-					if (st演奏記録[0].bIsFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度] != false)
+					if (cスコア.譜面情報.フルコンボ[TJAPlayer3.stage選曲.n確定された曲の難易度] == false)
 						cスコア.譜面情報.フルコンボ[TJAPlayer3.stage選曲.n確定された曲の難易度] = st演奏記録[0].bIsFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度];
-					if (st演奏記録[0].bIsDondaFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度] != false)
+					if (cスコア.譜面情報.ドンダフルコンボ[TJAPlayer3.stage選曲.n確定された曲の難易度] == false)
 						cスコア.譜面情報.ドンダフルコンボ[TJAPlayer3.stage選曲.n確定された曲の難易度] = st演奏記録[0].bIsDondaFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度];
 				}
                 //---------------------
@@ -432,8 +432,9 @@ namespace TJAPlayer3
 					{
 						if ( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int)SlimDX.DirectInput.Key.Escape ) )
 						{
-							TJAPlayer3.Skin.sound取消音.t再生する();
-							this.actFO.tフェードアウト開始();
+							TJAPlayer3.Skin.bgmリザルト音.t停止する();
+							TJAPlayer3.Skin.sound決定音.t再生する();
+							actFI.tフェードアウト開始();
 							base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
 							this.eフェードアウト完了時の戻り値 = E戻り値.完了;
 						}
@@ -450,6 +451,8 @@ namespace TJAPlayer3
                             else
 							{
 								TJAPlayer3.Skin.bgmリザルト音.t停止する();
+								TJAPlayer3.Skin.sound決定音.t再生する();
+								actFI.tフェードアウト開始();
 								base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
 								this.eフェードアウト完了時の戻り値 = E戻り値.完了;
 							}

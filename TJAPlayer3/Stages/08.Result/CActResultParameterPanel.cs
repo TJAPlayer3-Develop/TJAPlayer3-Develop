@@ -235,7 +235,9 @@ namespace TJAPlayer3
 			ctMountain_ClearIn.t進行();
 			if (TJAPlayer3.Tx.Result_Panel != null)
 			{
+				int[] y補正 = { 0, 1, 0, 11, 12};
 				TJAPlayer3.Tx.Result_Panel.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.nResultPanelP1X, TJAPlayer3.Skin.nResultPanelP1Y);
+				TJAPlayer3.Tx.Result_Diff_Bar.t2D描画(TJAPlayer3.app.Device, 27, 120 - y補正[TJAPlayer3.stage選曲.n確定された曲の難易度], new Rectangle(0, TJAPlayer3.stage選曲.n確定された曲の難易度 * 50, 153, 50));
 			}
 			if (TJAPlayer3.Tx.Result_Gauge_Base != null && TJAPlayer3.Tx.Result_Gauge != null)
 			{

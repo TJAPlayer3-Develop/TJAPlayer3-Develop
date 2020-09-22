@@ -322,8 +322,6 @@ namespace TJAPlayer3
         public Cシステムサウンド bgm選曲画面In = null;
         public Cシステムサウンド soundSongSelectChara = null;
         //add
-        public Cシステムサウンド bgmリザルト = null;
-        public Cシステムサウンド bgmリザルトループ = null;
         public Cシステムサウンド sound曲決定音 = null;
         public Cシステムサウンド bgmリザルトイン音 = null;
         public Cシステムサウンド bgmリザルト音 = null;
@@ -2473,9 +2471,9 @@ namespace TJAPlayer3
         public int SongLoading_Plate_X = 640;
         public int SongLoading_Plate_Y = 360;
         public int SongLoading_Title_X = 640;
-        public int SongLoading_Title_Y = 340;
+        public int SongLoading_Title_Y = 260;
         public int SongLoading_SubTitle_X = 640;
-        public int SongLoading_SubTitle_Y = 390;
+        public int SongLoading_SubTitle_Y = 310;
         public int SongLoading_Title_FontSize = 30;
         public int SongLoading_SubTitle_FontSize = 22;
         public ReferencePoint SongLoading_Plate_ReferencePoint = ReferencePoint.Center;
@@ -2485,7 +2483,7 @@ namespace TJAPlayer3
         public Color SongLoading_Title_BackColor = ColorTranslator.FromHtml("#000000");
         public Color SongLoading_SubTitle_ForeColor = ColorTranslator.FromHtml("#FFFFFF");
         public Color SongLoading_SubTitle_BackColor = ColorTranslator.FromHtml("#000000");
-        public bool SongLoading_Plate_ScreenBlend = true;
+        public bool SongLoading_Plate_ScreenBlend = false;
 
         #endregion
         #region Game

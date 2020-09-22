@@ -145,6 +145,8 @@ namespace TJAPlayer3
             #region 4_読み込み画面
             SongLoading_Plate = TxC(SONGLOADING + @"Plate.png");
             SongLoading_FadeIn = TxC(SONGLOADING + @"FadeIn.png");
+            SongLoading_Chara = TxC(SONGLOADING + @"Chara.png");
+            SongLoading_Background = TxC(SONGLOADING + @"Background.png");
             SongLoading_FadeOut = TxC(SONGLOADING + @"FadeOut.png");
             #endregion
 
@@ -519,6 +521,7 @@ namespace TJAPlayer3
             Result_Panel = TxC(RESULT + @"Panel.png");
             Result_Soul_Text = TxC(RESULT + @"Soul_Text.png");
             Result_Soul_Fire = TxC(RESULT + @"Result_Soul_Fire.png");
+            Result_Diff_Bar = TxC(RESULT + @"DifficultyBar.png");
             Result_Score_Number = TxC(RESULT + @"Score_Number.png");
             Result_Dan = TxC(RESULT + @"Dan.png");
 
@@ -620,7 +623,9 @@ namespace TJAPlayer3
 
             #region 4_読み込み画面
             TJAPlayer3.tテクスチャの解放(ref SongLoading_Plate);
+            TJAPlayer3.tテクスチャの解放(ref SongLoading_Chara);
             TJAPlayer3.tテクスチャの解放(ref SongLoading_FadeIn);
+            TJAPlayer3.tテクスチャの解放(ref SongLoading_Background);
             TJAPlayer3.tテクスチャの解放(ref SongLoading_FadeOut);
             #endregion
 
@@ -866,6 +871,7 @@ namespace TJAPlayer3
             TJAPlayer3.tテクスチャの解放(ref Result_Panel);
             TJAPlayer3.tテクスチャの解放(ref Result_Soul_Text);
             TJAPlayer3.tテクスチャの解放(ref Result_Soul_Fire);
+            TJAPlayer3.tテクスチャの解放(ref Result_Diff_Bar);
             TJAPlayer3.tテクスチャの解放(ref Result_Score_Number);
             TJAPlayer3.tテクスチャの解放(ref Result_Dan);
 
@@ -943,7 +949,9 @@ namespace TJAPlayer3
 
         #region 4_読み込み画面
         public CTexture SongLoading_Plate,
+            SongLoading_Background,
             SongLoading_FadeIn,
+            SongLoading_Chara,
             SongLoading_FadeOut;
         #endregion
 
@@ -1091,6 +1099,7 @@ namespace TJAPlayer3
             Result_Panel,
             Result_Soul_Text,
             Result_Soul_Fire,
+            Result_Diff_Bar,
             Result_Score_Number,
             Result_Dan;
         public CTexture[]

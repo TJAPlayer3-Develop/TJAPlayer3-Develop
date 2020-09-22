@@ -19,7 +19,7 @@ namespace TJAPlayer3
 		public void tフェードイン開始()
 		{
 			this.mode = EFIFOモード.フェードイン;
-			this.counter = new CCounter( 0, 640, 1, TJAPlayer3.Timer );
+			this.counter = new CCounter( 0, 940, 1, TJAPlayer3.Timer );
 		}
 		public void tフェードイン完了()		// #25406 2011.6.9 yyagi
 		{
@@ -68,12 +68,21 @@ namespace TJAPlayer3
 			}
             else
             {
-                if(TJAPlayer3.Tx.SongLoading_FadeIn != null )
+				if(this.counter.n現在の値 >= 300)
 				{
-					int x = this.counter.n現在の値;
-					TJAPlayer3.Tx.SongLoading_FadeIn.vc拡大縮小倍率.X = 1.0f - this.counter.n現在の値 / 3200.0f;
-					TJAPlayer3.Tx.SongLoading_FadeIn.t2D拡大率考慮右描画(TJAPlayer3.app.Device, 640 - x, 0, new Rectangle(0, 0, 640, 720));
-					TJAPlayer3.Tx.SongLoading_FadeIn.t2D描画(TJAPlayer3.app.Device, 640 + x, 0, new Rectangle(640, 0, 640, 720));
+					if (TJAPlayer3.Tx.SongLoading_FadeIn != null)
+					{
+						int x = (this.counter.n現在の値 - 300);
+						TJAPlayer3.Tx.SongLoading_FadeIn.vc拡大縮小倍率.X = 1.0f - (this.counter.n現在の値 - 300) / 3200.0f;
+						TJAPlayer3.Tx.SongLoading_FadeIn.t2D拡大率考慮右描画(TJAPlayer3.app.Device, 640 - x, 0, new Rectangle(0, 0, 640, 720));
+						TJAPlayer3.Tx.SongLoading_FadeIn.t2D描画(TJAPlayer3.app.Device, 640 + x, 0, new Rectangle(640, 0, 640, 720));
+					}
+				}
+                else
+                {
+					TJAPlayer3.Tx.SongLoading_Background.t2D描画(TJAPlayer3.app.Device, 0, 0);
+					TJAPlayer3.Tx.SongLoading_Chara.Opacity = 255 - counter.n現在の値;
+					TJAPlayer3.Tx.SongLoading_Chara.t2D描画(TJAPlayer3.app.Device, 0, counter.n現在の値 <= 50 ? 0 + counter.n現在の値 : -50 - counter.n現在の値);
 				}
             }
 
@@ -86,7 +95,7 @@ namespace TJAPlayer3
             }
             else if( this.mode == EFIFOモード.フェードイン )
             {
-			    if( this.counter.n現在の値 != 640)
+			    if( this.counter.n現在の値 != 940)
 			    {
 				    return 0;
 			    }
