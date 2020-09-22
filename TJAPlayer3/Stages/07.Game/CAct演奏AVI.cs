@@ -51,7 +51,7 @@ namespace TJAPlayer3
                         this.n表示側終了位置X = n表示側終了位置X;
                         this.n表示側終了位置Y = n表示側終了位置Y;
                         this.n総移動時間ms = n総移動時間ms;
-                        this.n移動開始時刻ms = (n移動開始時刻ms != -1) ? n移動開始時刻ms : CSound管理.rc演奏用タイマ.n現在時刻;
+                        this.n移動開始時刻ms = (n移動開始時刻ms != -1) ? n移動開始時刻ms : (long)(CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0)); ;
                         this.n前回表示したフレーム番号 = -1;
 
                         this.vclip = new Vector3(1.42f, 1.42f, 1f);
@@ -279,12 +279,12 @@ namespace TJAPlayer3
 				Point point4 = new Point( this.n表示側終了位置X, this.n表示側終了位置Y );
 				long num3 = this.n総移動時間ms;
 				long num4 = this.n移動開始時刻ms;
-				if ( CSound管理.rc演奏用タイマ.n現在時刻 < num4 )
-				{
-					num4 = CSound管理.rc演奏用タイマ.n現在時刻;
-				}
-				time = (int) ( ( CSound管理.rc演奏用タイマ.n現在時刻 - num4 ) * ( ( (double) TJAPlayer3.ConfigIni.n演奏速度 ) / 20.0 ) );
-				if ( num3 == 0 )
+                if ((CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0)) < num4)
+                {
+                    num4 = (long)(CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0));
+                }
+                time = (int)(((CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0)) - num4));
+                if ( num3 == 0 )
 				{
 					rectangle = new Rectangle( location, size3 );
 					rectangle2 = new Rectangle( point3, size3 );

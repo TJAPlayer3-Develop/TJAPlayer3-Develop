@@ -533,6 +533,9 @@ namespace TJAPlayer3
 
             for (int i = 0; i < 2; i++)
                 Result_Mountain[i] = TxC(RESULT + @"Background_Mountain_" + i.ToString() + ".png");
+
+            for (int i = 0; i < 3; i++)
+                Result_Crown[i] = TxC(RESULT + @"Crown\Crown_" + i.ToString() + ".png");
             #endregion
 
                 #region 7_終了画面
@@ -883,6 +886,9 @@ namespace TJAPlayer3
 
             for (int i = 0; i < 2; i++)
                 TJAPlayer3.tテクスチャの解放(ref Result_Mountain[i]);
+
+            for (int i = 0; i < 3; i++)
+                TJAPlayer3.tテクスチャの解放(ref Result_Crown[i]);
             #endregion
 
             #region 7_終了画面
@@ -1105,6 +1111,7 @@ namespace TJAPlayer3
         public CTexture[]
             Result_Rainbow = new CTexture[41],
             Result_Background = new CTexture[2],
+            Result_Crown = new CTexture[3],
             Result_Mountain = new CTexture[2];
         #endregion
 

@@ -559,13 +559,13 @@ namespace FDK
 
 						if ( CSound管理.bIsTimeStretch )
 						{
-							Bass.BASS_ChannelSetAttribute( this.hBassStream, BASSAttribute.BASS_ATTRIB_TEMPO, (float) ( db再生速度 * 100 - 100 ) );
+							Bass.BASS_ChannelSetAttribute(this.hBassStream, BASSAttribute.BASS_ATTRIB_TEMPO, (float)(db再生速度 * 100 - 100));
 							//double seconds = Bass.BASS_ChannelBytes2Seconds( this.hTempoStream, nBytes );
 							//this.n総演奏時間ms = (int) ( seconds * 1000 );
 						}
 						else
 						{
-							Bass.BASS_ChannelSetAttribute( this.hBassStream, BASSAttribute.BASS_ATTRIB_FREQ, ( float ) ( _db周波数倍率 * _db再生速度 * nオリジナルの周波数 ) );
+							Bass.BASS_ChannelSetAttribute(this.hBassStream, BASSAttribute.BASS_ATTRIB_FREQ, (float)(_db周波数倍率 * _db再生速度 * nオリジナルの周波数));
 						}
 					}
 					else
@@ -573,13 +573,22 @@ namespace FDK
 //						if ( b再生中 )	// #30838 2012.2.24 yyagi (delete b再生中)
 //						{
 							this.Buffer.Frequency = ( int ) ( _db周波数倍率 * _db再生速度 * nオリジナルの周波数 );
-//						}
+						//						}
+						try
+						{
+							this.Buffer.Frequency = (int)(_db周波数倍率 * _db再生速度 * nオリジナルの周波数);
+						}
+						catch
+						{
+							//例外処理は出さない
+							this.b速度上げすぎ問題 = true;
+						}
 					}
 				}
 			}
 		}
 		#endregion
-
+		public bool b速度上げすぎ問題 = false;
 		public bool b演奏終了後も再生が続くチップである = false;	// これがtrueなら、本サウンドの再生終了のコールバック時に自動でミキサーから削除する
 
 		//private STREAMPROC _cbStreamXA;		// make it global, so that the GC can not remove it
@@ -1204,7 +1213,8 @@ namespace FDK
 		}
 		public void tサウンドを再生する()
 		{
-			tサウンドを再生する( false );
+			if (!b速度上げすぎ問題)
+				tサウンドを再生する( false );
 		}
 		private void tサウンドを再生する( bool bループする )
 		{

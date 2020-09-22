@@ -37,7 +37,7 @@ namespace TJAPlayer3
 			{
 				if( base.b初めての進行描画 )
 				{
-					this.n速度変更制御タイマ.Drums = this.n速度変更制御タイマ.Guitar = this.n速度変更制御タイマ.Bass = CSound管理.rc演奏用タイマ.n現在時刻;
+					this.n速度変更制御タイマ.Drums = this.n速度変更制御タイマ.Guitar = this.n速度変更制御タイマ.Bass = (long)(CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0));
 					base.b初めての進行描画 = false;
 				}
 				long n現在時刻 = CSound管理.rc演奏用タイマ.n現在時刻;

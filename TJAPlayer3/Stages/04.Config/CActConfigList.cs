@@ -97,7 +97,7 @@ namespace TJAPlayer3
 				"Risky mode:\nSet over 1, in case you'd like to specify\n the number of Poor/Miss times to be\n FAILED.\nSet 0 to disable Risky mode." );
 			this.list項目リスト.Add( this.iSystemRisky );
 
-			this.iCommonPlaySpeed = new CItemInteger("再生速度", 5, 40, TJAPlayer3.ConfigIni.n演奏速度,
+			this.iCommonPlaySpeed = new CItemInteger("再生速度", 5, 400, TJAPlayer3.ConfigIni.n演奏速度,
 				"曲の演奏速度を、速くしたり遅くした\n" +
 				"りすることができます。\n" +
 				"（※一部のサウンドカードでは正しく\n" +
@@ -1666,7 +1666,7 @@ namespace TJAPlayer3
 			//-----------------
 			if( base.b初めての進行描画 )
 			{
-                this.nスクロール用タイマ値 = CSound管理.rc演奏用タイマ.n現在時刻;
+				this.nスクロール用タイマ値 = (long)(CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0));
 				this.ct三角矢印アニメ.t開始( 0, 9, 50, TJAPlayer3.Timer );
 			
 				base.b初めての進行描画 = false;

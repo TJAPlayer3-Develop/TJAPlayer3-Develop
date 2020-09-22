@@ -138,12 +138,12 @@ namespace TJAPlayer3
 			{
 				if( base.b初めての進行描画 )
 				{
-					this.nフラッシュ制御タイマ = FDK.CSound管理.rc演奏用タイマ.n現在時刻;
-					this.nY座標制御タイマ = FDK.CSound管理.rc演奏用タイマ.n現在時刻;
+					this.nフラッシュ制御タイマ = (long)(CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0));
+					this.nY座標制御タイマ = (long)(CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0));
 					base.b初めての進行描画 = false;
 				}
-				long num = FDK.CSound管理.rc演奏用タイマ.n現在時刻;
-				if( num < this.nフラッシュ制御タイマ )
+				long num = (long)(CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0));
+				if ( num < this.nフラッシュ制御タイマ )
 				{
 					this.nフラッシュ制御タイマ = num;
 				}

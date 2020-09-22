@@ -409,8 +409,8 @@ namespace TJAPlayer3
 				    if( !this.st叩ききりまショー.ct残り時間.b停止中 || this.st叩ききりまショー.b加算アニメ中 == true )
 				    {
                         this.st叩ききりまショー.ct残り時間.t進行();
-					    if( !TJAPlayer3.stage演奏ドラム画面.r検索範囲内にチップがあるか調べる( CSound管理.rc演奏用タイマ.n現在時刻ms, 0, 5000, 0 ) || this.st叩ききりまショー.b加算アニメ中 == true )
-					    {
+                        if (!TJAPlayer3.stage演奏ドラム画面.r検索範囲内にチップがあるか調べる((long)(CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0)), 0, 5000, 0) || this.st叩ききりまショー.b加算アニメ中 == true)
+                        {
                             this.st叩ききりまショー.bタイマー使用中 = false;
 						    this.st叩ききりまショー.ct残り時間.t停止();
 					    }
@@ -529,7 +529,7 @@ namespace TJAPlayer3
             double n延長する時間 = 0;
 
             //最後に延長した時刻から11秒経過していなければ延長を行わない。
-            if( this.n最後に時間延長した時刻 + 11000 <= CSound管理.rc演奏用タイマ.n現在時刻ms )
+            if (this.n最後に時間延長した時刻 + 11000 <= (CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0)))
             {
                 //1項目につき5秒
                 //-精度
@@ -647,8 +647,8 @@ namespace TJAPlayer3
                 #endregion
 
 
-                this.n最後に時間延長した時刻 = (int)CSound管理.rc演奏用タイマ.n現在時刻ms;
-                if( n延長する時間 < 0 )
+                this.n最後に時間延長した時刻 = (int)(CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0));
+                if ( n延長する時間 < 0 )
                     n延長する時間 = 0;
                 if( this.st叩ききりまショー.n区間ノート数 == 0 )
                     n延長する時間 = 15;
@@ -718,8 +718,8 @@ namespace TJAPlayer3
                 }
 
 
-                this.n最後に時間延長した時刻 = (int)CSound管理.rc演奏用タイマ.n現在時刻ms;
-                if( n延長する時間 < 0 )
+                this.n最後に時間延長した時刻 = (int)(CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0));
+                if ( n延長する時間 < 0 )
                     n延長する時間 = 0;
 
                 //各数値を初期化
