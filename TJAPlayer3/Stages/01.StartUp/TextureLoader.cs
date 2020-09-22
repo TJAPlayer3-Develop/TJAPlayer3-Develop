@@ -511,7 +511,6 @@ namespace TJAPlayer3
             #endregion
 
             #region 6_結果発表
-            Result_Background = TxC(RESULT + @"Background.png");
             Result_FadeIn = TxC(RESULT + @"FadeIn.png");
             Result_Gauge = TxC(RESULT + @"Gauge.png");
             Result_Gauge_Base = TxC(RESULT + @"Gauge_Base.png");
@@ -524,9 +523,13 @@ namespace TJAPlayer3
             Result_Dan = TxC(RESULT + @"Dan.png");
 
             for (int i = 0; i < 41; i++)
-            {
                 Result_Rainbow[i] = TxC(RESULT + @"Rainbow\" + i.ToString() + ".png");
-            }
+
+            for (int i = 0; i < 2; i++)
+                Result_Background[i] = TxC(RESULT + @"Background_" + i.ToString() + ".png");
+
+            for (int i = 0; i < 2; i++)
+                Result_Mountain[i] = TxC(RESULT + @"Background_Mountain_" + i.ToString() + ".png");
             #endregion
 
                 #region 7_終了画面
@@ -855,7 +858,6 @@ namespace TJAPlayer3
             #endregion
 
             #region 6_結果発表
-            TJAPlayer3.tテクスチャの解放(ref Result_Background);
             TJAPlayer3.tテクスチャの解放(ref Result_FadeIn);
             TJAPlayer3.tテクスチャの解放(ref Result_Gauge);
             TJAPlayer3.tテクスチャの解放(ref Result_Gauge_Base);
@@ -868,9 +870,13 @@ namespace TJAPlayer3
             TJAPlayer3.tテクスチャの解放(ref Result_Dan);
 
             for (int i = 0; i < 41; i++)
-            {
                 TJAPlayer3.tテクスチャの解放(ref Result_Rainbow[i]);
-            }
+
+            for (int i = 0; i < 2; i++)
+                TJAPlayer3.tテクスチャの解放(ref Result_Background[i]);
+
+            for (int i = 0; i < 2; i++)
+                TJAPlayer3.tテクスチャの解放(ref Result_Mountain[i]);
             #endregion
 
             #region 7_終了画面
@@ -1077,8 +1083,7 @@ namespace TJAPlayer3
         #endregion
 
         #region 6_結果発表
-        public CTexture Result_Background,
-            Result_FadeIn,
+        public CTexture Result_FadeIn,
             Result_Gauge,
             Result_Gauge_Base,
             Result_Header,
@@ -1089,7 +1094,9 @@ namespace TJAPlayer3
             Result_Score_Number,
             Result_Dan;
         public CTexture[]
-            Result_Rainbow = new CTexture[41];
+            Result_Rainbow = new CTexture[41],
+            Result_Background = new CTexture[2],
+            Result_Mountain = new CTexture[2];
         #endregion
 
         #region 7_終了画面

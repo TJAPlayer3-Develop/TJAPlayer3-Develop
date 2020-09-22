@@ -248,6 +248,7 @@ namespace TJAPlayer3
 		{
 			if( !base.b活性化してない )
 			{
+				b音声再生 = false;
 				this.EndAnime = false;
 				//this.tx背景 = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\8_background.png" ) );
 				//this.tx上部パネル = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\8_header.png" ) );
@@ -303,10 +304,32 @@ namespace TJAPlayer3
 
 				// 描画
 
-				if(TJAPlayer3.Tx.Result_Background != null )
+				if (TJAPlayer3.Tx.Result_Background != null)
 				{
-                    TJAPlayer3.Tx.Result_Background.t2D描画( TJAPlayer3.app.Device, 0, 0 );
+					if (this.actParameterPanel.ct全体アニメ.n現在の値 >= 2000 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66) + 6360 - 85)
+					{
+						if(this.st演奏記録.Drums.fゲージ >= 80.0)
+                        {
+							TJAPlayer3.Tx.Result_Background[1].Opacity = (this.actParameterPanel.ct全体アニメ.n現在の値 - (8275 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66))) * 3;
+							TJAPlayer3.Tx.Result_Mountain[0].Opacity = 255 - (this.actParameterPanel.ct全体アニメ.n現在の値 - (8275 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66))) * 3;
+						}
+                        else
+						{
+							TJAPlayer3.Tx.Result_Background[1].Opacity = 0;
+							TJAPlayer3.Tx.Result_Mountain[0].Opacity = 255;
+						}
+					}
+                    else
+					{
+						TJAPlayer3.Tx.Result_Background[1].Opacity = 0;
+						TJAPlayer3.Tx.Result_Mountain[0].Opacity = 255;
+					}
+					TJAPlayer3.Tx.Result_Background[0].t2D描画(TJAPlayer3.app.Device, 0, 0);
+					TJAPlayer3.Tx.Result_Background[1].t2D描画(TJAPlayer3.app.Device, 0, 0);
+					TJAPlayer3.Tx.Result_Mountain[0].t2D描画(TJAPlayer3.app.Device, 0, 0);
 				}
+				
+
 				if( this.ct登場用.b進行中 && ( TJAPlayer3.Tx.Result_Header != null ) )
 				{
 					double num2 = ( (double) this.ct登場用.n現在の値 ) / 100.0;
@@ -395,9 +418,9 @@ namespace TJAPlayer3
 						}
 						if ( ( ( TJAPlayer3.Pad.b押されたDGB( Eパッド.CY ) || TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.RD ) ) || ( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.LC ) || (TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || (TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed) || TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.Return ) ) ))))
 						{
-                            if (this.actParameterPanel.ct全体アニメ.n現在の値 <= 4500)
+                            if (this.actParameterPanel.ct全体アニメ.n現在の値 <= 11575)
                             {
-								this.actParameterPanel.ct全体アニメ.n現在の値 = actParameterPanel.ct全体アニメ.n終了値;
+								this.actParameterPanel.ct全体アニメ.n現在の値 = 11575;
 								this.actParameterPanel.ctゲージアニメーション.n現在の値 = actParameterPanel.ctゲージアニメーション.n終了値;
 								EndAnime = true;
 								this.actParameterPanel.ctEndAnime.t開始(0, 360, 1, TJAPlayer3.Timer);

@@ -196,11 +196,13 @@ namespace TJAPlayer3
 				for (int i = 0; i < 6; i++)
 					b音声再生[i] = false;
                 ctゲージアニメーション = new CCounter();
-                ct全体アニメ = new CCounter(0, 30000, 1, TJAPlayer3.Timer);
+                ct全体アニメ = new CCounter(0, 11660, 1, TJAPlayer3.Timer);
 				ctSoulFlash = new CCounter(0, 1, 33, TJAPlayer3.Timer);
 				ctSoul = new CCounter(0, 8, 33, TJAPlayer3.Timer);
 				ctRainbowGauge = new CCounter(0, 40, 1000 / 60, TJAPlayer3.Timer);
 				ctEndAnime = new CCounter();
+				ctBackgroundAnime = new CCounter(0, 1000, 1, TJAPlayer3.Timer);
+				ctBackgroundAnime_Clear = new CCounter(0, 1000, 1, TJAPlayer3.Timer);
 				Dan_Plate = TJAPlayer3.tテクスチャの生成(Path.GetDirectoryName(TJAPlayer3.DTX.strファイル名の絶対パス) + @"\Dan_Plate.png");
                 base.OnManagedリソースの作成();
 			}
@@ -228,6 +230,7 @@ namespace TJAPlayer3
             ct全体アニメ.t進行();
             ctゲージアニメーション.t進行();
 			ctEndAnime.t進行();
+			ctBackgroundAnime.t進行Loop();
 			if (TJAPlayer3.Tx.Result_Panel != null)
 			{
 				TJAPlayer3.Tx.Result_Panel.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.nResultPanelP1X, TJAPlayer3.Skin.nResultPanelP1Y);
@@ -239,7 +242,14 @@ namespace TJAPlayer3
 				//nRectX = CDTXMania.stage結果.st演奏記録.Drums.fゲージ >= 80.0f ? 80 : nRectX;
 				TJAPlayer3.Tx.Result_Gauge_Base.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.nResultGaugeBaseP1X, TJAPlayer3.Skin.nResultGaugeBaseP1Y);
 				if (ctゲージアニメーション.n現在の値 <= 49)
+				{
 					TJAPlayer3.Tx.Result_Gauge.t2D描画(TJAPlayer3.app.Device, 57, 141, new RectangleF(3, 0, 9.78f * ctゲージアニメーション.n現在の値, 37));
+
+					if(ctゲージアニメーション.n現在の値 < 40)
+						TJAPlayer3.Tx.Result_Gauge.t2D描画(TJAPlayer3.app.Device, 441, 145, new RectangleF(45, 38, 40, 17));
+					else
+						TJAPlayer3.Tx.Result_Gauge.t2D描画(TJAPlayer3.app.Device, 441, 145, new RectangleF(2, 38, 37, 17));
+				}
                 else
                 {
 					ctRainbowGauge.t進行Loop();
@@ -413,7 +423,7 @@ namespace TJAPlayer3
             }
             #endregion
 
-            TJAPlayer3.act文字コンソール.tPrint(0, 0, C文字コンソール.Eフォント種別.白, ctEndAnime.n現在の値.ToString());
+            TJAPlayer3.act文字コンソール.tPrint(0, 0, C文字コンソール.Eフォント種別.白, ct全体アニメ.n現在の値.ToString());
 
             if ( !this.ct表示用.b終了値に達した )
 			{
@@ -442,6 +452,8 @@ namespace TJAPlayer3
 		private CCounter ctSoul;
 		private CCounter ctRainbowGauge;
 		public CCounter ctEndAnime;
+		public CCounter ctBackgroundAnime;
+		public CCounter ctBackgroundAnime_Clear;
 
 		private bool bフルコンボ音再生済み;
 		private CCounter ct表示用;
