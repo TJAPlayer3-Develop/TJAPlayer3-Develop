@@ -164,22 +164,25 @@ namespace TJAPlayer3
 
 					if( ( TJAPlayer3.Pad.b押されたDGB( Eパッド.CY ) || TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.RD ) ) || ( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.LC ) || ( TJAPlayer3.ConfigIni.bEnterがキー割り当てのどこにも使用されていない && TJAPlayer3.Input管理.Keyboard.bキーが押された( (int)SlimDX.DirectInput.Key.Return ) ) ) )
 					{
-						if ( ( this.n現在のカーソル行 == (int) E戻り値.GAMESTART - 1 ) && TJAPlayer3.Skin.soundゲーム開始音.b読み込み成功 )
+						if (TJAPlayer3.stage選曲.act曲リスト.r現在選択中の曲 != null)
 						{
-							TJAPlayer3.Skin.soundタイトル音.t停止する();
-							TJAPlayer3.Skin.soundタイトルスタート音.t停止する();
-							TJAPlayer3.Skin.soundゲーム開始音.t再生する();
+							if ((this.n現在のカーソル行 == (int)E戻り値.GAMESTART - 1) && TJAPlayer3.Skin.soundゲーム開始音.b読み込み成功)
+							{
+								TJAPlayer3.Skin.soundタイトル音.t停止する();
+								TJAPlayer3.Skin.soundタイトルスタート音.t停止する();
+								TJAPlayer3.Skin.soundゲーム開始音.t再生する();
+							}
+							else
+							{
+								TJAPlayer3.Skin.sound決定音.t再生する();
+							}
+							if (this.n現在のカーソル行 == (int)E戻り値.EXIT - 1)
+							{
+								return (int)E戻り値.EXIT;
+							}
+							this.actFO.tフェードアウト開始();
+							base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
 						}
-						else
-						{
-							TJAPlayer3.Skin.sound決定音.t再生する();
-						}
-						if( this.n現在のカーソル行 == (int)E戻り値.EXIT - 1 )
-						{
-							return (int)E戻り値.EXIT;
-						}
-						this.actFO.tフェードアウト開始();
-						base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
 					}
 //					if ( CDTXMania.Input管理.Keyboard.bキーが押された( (int) Key.Space ) )
 //						Trace.TraceInformation( "DTXMania Title: SPACE key registered. " + CDTXMania.ct.nシステム時刻 );
