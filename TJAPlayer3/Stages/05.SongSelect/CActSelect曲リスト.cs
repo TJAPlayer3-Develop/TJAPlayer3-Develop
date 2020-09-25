@@ -703,21 +703,21 @@ namespace TJAPlayer3
 		}
 		public override int On進行描画()
 		{
-			if( this.b活性化してない )
+			if (this.b活性化してない)
 				return 0;
 
 			#region [ 初めての進行描画 ]
 			//-----------------
-			if( this.b初めての進行描画 )
+			if (this.b初めての進行描画)
 			{
-				for( int i = 0; i < 13; i++ )
-					this.ct登場アニメ用[ i ] = new CCounter( -i * 10, 100, 3, TJAPlayer3.Timer );
+				for (int i = 0; i < 13; i++)
+					this.ct登場アニメ用[i] = new CCounter(-i * 10, 100, 3, TJAPlayer3.Timer);
 
 				this.nスクロールタイマ = CSound管理.rc演奏用タイマ.n現在時刻;
 				TJAPlayer3.stage選曲.t選択曲変更通知();
 
-                this.n矢印スクロール用タイマ値 = CSound管理.rc演奏用タイマ.n現在時刻;
-				this.ct三角矢印アニメ.t開始( 0, 1000, 1, TJAPlayer3.Timer );
+				this.n矢印スクロール用タイマ値 = CSound管理.rc演奏用タイマ.n現在時刻;
+				this.ct三角矢印アニメ.t開始(0, 1000, 1, TJAPlayer3.Timer);
 				ctBarOpen.t開始(0, 161, 2, TJAPlayer3.Timer);
 				this.ctBoxExplanationOpacity.t開始(0, 210, 2, TJAPlayer3.Timer);
 				TJAPlayer3.stage選曲.act難易度選択画面.bIsDifficltSelect = false;
@@ -728,8 +728,8 @@ namespace TJAPlayer3
 
 			// まだ選択中の曲が決まってなければ、曲ツリールートの最初の曲にセットする。
 
-			if( ( this.r現在選択中の曲 == null ) && ( TJAPlayer3.Songs管理.list曲ルート.Count > 0 ) )
-				this.r現在選択中の曲 = TJAPlayer3.Songs管理.list曲ルート[ 0 ];
+			if ((this.r現在選択中の曲 == null) && (TJAPlayer3.Songs管理.list曲ルート.Count > 0))
+				this.r現在選択中の曲 = TJAPlayer3.Songs管理.list曲ルート[0];
 
 
 			// 本ステージは、(1)登場アニメフェーズ → (2)通常フェーズ　と二段階にわけて進む。
@@ -740,18 +740,21 @@ namespace TJAPlayer3
 			ctBoxExplanationOpacity.t進行();
 
 
-			if(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2] != OldBoxExplanetion)
+			if (TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] != null && TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] != null && TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2] != null)
 			{
-				for(int i = 0; i < 3; i++)
+				if (TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2] != OldBoxExplanetion)
 				{
-					using (var pfBE = pfBoxExplanation.DrawPrivateFont(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[i], TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor, TJAPlayer3.stage選曲.r現在選択中の曲.BackColor))
+					for (int i = 0; i < 3; i++)
 					{
-						OldBoxExplanetion = TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2];
-						txBoxExplanation[i] = TJAPlayer3.tテクスチャの生成(pfBE);
-						this.txBoxExplanation[i].vc拡大縮小倍率.X = this.txBoxExplanation[i].szテクスチャサイズ.Width >= 540f ? 540f / this.txBoxExplanation[i].szテクスチャサイズ.Width : 1.0f;
+						using (var pfBE = pfBoxExplanation.DrawPrivateFont(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[i], TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor, TJAPlayer3.stage選曲.r現在選択中の曲.BackColor))
+						{
+							OldBoxExplanetion = TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2];
+							txBoxExplanation[i] = TJAPlayer3.tテクスチャの生成(pfBE);
+							this.txBoxExplanation[i].vc拡大縮小倍率.X = this.txBoxExplanation[i].szテクスチャサイズ.Width >= 540f ? 540f / this.txBoxExplanation[i].szテクスチャサイズ.Width : 1.0f;
+						}
 					}
 				}
-			}
+		}
 
 			// 進行。
 			if (n現在のスクロールカウンタ == 0) ct三角矢印アニメ.t進行Loop();

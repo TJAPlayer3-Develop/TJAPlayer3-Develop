@@ -446,6 +446,10 @@ namespace TJAPlayer3
 							{
 								c曲リストノード.strボックス説明[i] = boxdef.BoxExplanation[i];
 							}
+                            else
+                            {
+								c曲リストノード.strボックス説明[i] = " ";
+							}
 						}
 						if (boxdef.IsChangedForeColor)
 						{
