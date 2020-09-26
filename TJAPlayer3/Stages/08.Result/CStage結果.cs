@@ -157,7 +157,7 @@ namespace TJAPlayer3
 						{
 							if (st演奏記録[0].nスコア >= TJAPlayer3.stage演奏ドラム画面.actScoreRank.ScoreRank[i])
 								if(st演奏記録[0].nスコア >= 500000)
-									this.st演奏記録[0].nScoreRank = i;
+									this.st演奏記録[0].nScoreRank[TJAPlayer3.stage選曲.n確定された曲の難易度] = i;
 						}
 						if (st演奏記録[0].fゲージ >= 80.0f)
 						{
@@ -230,8 +230,8 @@ namespace TJAPlayer3
 					if (st演奏記録[0].bIsDondaFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度] == true)
 						cスコア.譜面情報.ドンダフルコンボ[TJAPlayer3.stage選曲.n確定された曲の難易度] = st演奏記録[0].bIsDondaFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度];
 
-					if (cスコア.譜面情報.nスコアランク <= st演奏記録[0].nScoreRank + 1)
-						cスコア.譜面情報.nスコアランク = st演奏記録[0].nScoreRank + 1;
+					if (cスコア.譜面情報.nスコアランク[TJAPlayer3.stage選曲.n確定された曲の難易度] <= st演奏記録[0].nScoreRank[TJAPlayer3.stage選曲.n確定された曲の難易度] + 1)
+						cスコア.譜面情報.nスコアランク[TJAPlayer3.stage選曲.n確定された曲の難易度] = st演奏記録[0].nScoreRank[TJAPlayer3.stage選曲.n確定された曲の難易度] + 1;
 				} 
                 //---------------------
                 #endregion

@@ -1556,8 +1556,8 @@ Debug.WriteLine( dBPM + ":" + c曲リストノード.strタイトル );
 					score.譜面情報.ドンダフルコンボ[i] = ini.stセクション[0].bIsDondaFullCombo[i];
 					score.譜面情報.フルコンボ[i] = ini.stセクション[0].bIsFullCombo[i];
 					score.譜面情報.クリア[i] = ini.stセクション[0].bIsClear[i];
+					score.譜面情報.nスコアランク[i] = ini.stセクション[0].nScoreRank[i];
 				}
-				score.譜面情報.nスコアランク = ini.stセクション[0].nScoreRank;
 
 				#region socre.譜面情報.最大ランク[ n楽器番号 ] = ... 
 				//-----------------

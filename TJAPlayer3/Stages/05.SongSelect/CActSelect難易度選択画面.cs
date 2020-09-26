@@ -316,14 +316,25 @@ namespace TJAPlayer3
                 {
                     if(TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i] != null)
                     {
-                        if(i < 3)
+                        if (i < 3)
                         {
-                                if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.クリア[i])
-                                    TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + i * 138, 292, new Rectangle(0 * 24, 0, 24, 26));
-                                if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.フルコンボ[i])
-                                    TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + i * 138, 292, new Rectangle(1 * 24, 0, 24, 26));
-                                if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.ドンダフルコンボ[i])
-                                    TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + i * 138, 292, new Rectangle(2 * 24, 0, 24, 26));
+                            if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.クリア[i])
+                                TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + i * 138, 292, new Rectangle(0 * 24, 0, 24, 26));
+                            if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.フルコンボ[i])
+                                TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + i * 138, 292, new Rectangle(1 * 24, 0, 24, 26));
+                            if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.ドンダフルコンボ[i])
+                                TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + i * 138, 292, new Rectangle(2 * 24, 0, 24, 26));
+
+                            if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[i].譜面情報.nスコアランク[i] >= 1)
+                            {
+                                TJAPlayer3.Tx.SongSelect_ScoreRank.Opacity = 255;
+                                TJAPlayer3.Tx.SongSelect_ScoreRank.vc拡大縮小倍率.X = 0.5f;
+                                TJAPlayer3.Tx.SongSelect_ScoreRank.vc拡大縮小倍率.Y = 0.5f;
+                                TJAPlayer3.Tx.SongSelect_ScoreRank.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + i * 138 + 25, 292, new RectangleF(0, 41f * (TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.nスコアランク[i] - 1), 48, 41f));
+                                TJAPlayer3.Tx.SongSelect_ScoreRank.vc拡大縮小倍率.X = 1.0f;
+                                TJAPlayer3.Tx.SongSelect_ScoreRank.vc拡大縮小倍率.Y = 1.0f;
+                                TJAPlayer3.Tx.SongSelect_ScoreRank.Opacity = 0;
+                            }
                         }
                         if (i >= 3)
                         {
@@ -335,6 +346,17 @@ namespace TJAPlayer3
                                     TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + 3 * 138, 292, new Rectangle(1 * 24, 0, 24, 26));
                                 if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[4].譜面情報.ドンダフルコンボ[4])
                                     TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + 3 * 138, 292, new Rectangle(2 * 24, 0, 24, 26));
+
+                                if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[4].譜面情報.nスコアランク[i] >= 1)
+                                {
+                                    TJAPlayer3.Tx.SongSelect_ScoreRank.Opacity = 255;
+                                    TJAPlayer3.Tx.SongSelect_ScoreRank.vc拡大縮小倍率.X = 0.5f;
+                                    TJAPlayer3.Tx.SongSelect_ScoreRank.vc拡大縮小倍率.Y = 0.5f;
+                                    TJAPlayer3.Tx.SongSelect_ScoreRank.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + 3 * 138 + 25, 292, new RectangleF(0, 41f * (TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.nスコアランク[i] - 1), 48, 41f));
+                                    TJAPlayer3.Tx.SongSelect_ScoreRank.vc拡大縮小倍率.X = 1.0f;
+                                    TJAPlayer3.Tx.SongSelect_ScoreRank.vc拡大縮小倍率.Y = 1.0f;
+                                    TJAPlayer3.Tx.SongSelect_ScoreRank.Opacity = 0;
+                                }
                             }
                             else
                             {
@@ -344,6 +366,17 @@ namespace TJAPlayer3
                                     TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + 3 * 138, 292, new Rectangle(1 * 24, 0, 24, 26));
                                 if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[3].譜面情報.ドンダフルコンボ[3])
                                     TJAPlayer3.Tx.Difficulty_Crown.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + 3 * 138, 292, new Rectangle(2 * 24, 0, 24, 26));
+
+                                if (TJAPlayer3.stage選曲.r現在選択中の曲.arスコア[3].譜面情報.nスコアランク[i] >= 1)
+                                {
+                                    TJAPlayer3.Tx.SongSelect_ScoreRank.Opacity = 255;
+                                    TJAPlayer3.Tx.SongSelect_ScoreRank.vc拡大縮小倍率.X = 0.5f;
+                                    TJAPlayer3.Tx.SongSelect_ScoreRank.vc拡大縮小倍率.Y = 0.5f;
+                                    TJAPlayer3.Tx.SongSelect_ScoreRank.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 480 + 3 * 138 + 25, 292, new RectangleF(0, 41f * (TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.nスコアランク[i] - 1), 48, 41f));
+                                    TJAPlayer3.Tx.SongSelect_ScoreRank.vc拡大縮小倍率.X = 1.0f;
+                                    TJAPlayer3.Tx.SongSelect_ScoreRank.vc拡大縮小倍率.Y = 1.0f;
+                                    TJAPlayer3.Tx.SongSelect_ScoreRank.Opacity = 0;
+                                }
                             }
                         }
                     }

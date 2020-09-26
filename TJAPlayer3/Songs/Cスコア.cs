@@ -65,7 +65,7 @@ namespace TJAPlayer3
 			public bool[] ドンダフルコンボ;
 			public bool[] フルコンボ;
 			public bool[] クリア;
-			public int nスコアランク;
+			public int[] nスコアランク;
 			public STDGBVALUE<int> 演奏回数;
 			public STHISTORY 演奏履歴;
 			public bool レベルを非表示にする;
@@ -288,7 +288,7 @@ namespace TJAPlayer3
 			this.譜面情報.クリア = new bool[5];
 			this.譜面情報.フルコンボ = new bool[5];
 			this.譜面情報.ドンダフルコンボ = new bool[5];
-			this.譜面情報.nスコアランク = 0;
+			this.譜面情報.nスコアランク = new int[5];
 			this.譜面情報.演奏回数 = new STDGBVALUE<int>();
 			this.譜面情報.演奏履歴 = new ST譜面情報.STHISTORY();
 			this.譜面情報.演奏履歴.行1 = "";
