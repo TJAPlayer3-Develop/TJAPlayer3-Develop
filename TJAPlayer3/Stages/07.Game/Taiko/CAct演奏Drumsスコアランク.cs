@@ -81,7 +81,7 @@ namespace TJAPlayer3
             return base.On進行描画();
         }
 
-        private int[] ScoreRank;
+        public int[] ScoreRank;
         private CCounter[] counter = new CCounter[7];
     }
 }

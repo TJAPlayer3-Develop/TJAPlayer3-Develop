@@ -109,6 +109,7 @@ namespace TJAPlayer3
             SongSelect_Level_Number = TxC(SONGSELECT + @"Level_Number.png");
             SongSelect_Bar_Select = TxC(SONGSELECT + @"Bar_Select.png");
             SongSelect_Crown = TxC(SONGSELECT + @"SongSelect_Crown.png");
+            SongSelect_ScoreRank = TxC(SONGSELECT + @"ScoreRank.png");
             SongSelect_Header = TxC(SONGSELECT + @"Header.png");
             SongSelect_Bar_Genre_Back = TxC(SONGSELECT + @"Bar_Genre\Bar_Genre_Back.png");
             for (int i = 0; i < SongSelect_Bar_Genre.Length; i++)
@@ -594,6 +595,7 @@ namespace TJAPlayer3
             TJAPlayer3.tテクスチャの解放(ref SongSelect_Bar_Select);
             TJAPlayer3.tテクスチャの解放(ref SongSelect_Level_Number);
             TJAPlayer3.tテクスチャの解放(ref SongSelect_Crown);
+            TJAPlayer3.tテクスチャの解放(ref SongSelect_ScoreRank);
             TJAPlayer3.tテクスチャの解放(ref SongSelect_Header);
             for (int i = 0; i < SongSelect_Bar_Genre.Length; i++)
             {
@@ -941,6 +943,7 @@ namespace TJAPlayer3
             SongSelect_Bar_Select,
             SongSelect_Crown,
             SongSelect_Header,
+            SongSelect_ScoreRank,
             SongSelect_ScoreWindow_Text;
         public CTexture[] SongSelect_GenreBack = new CTexture[9],
             SongSelect_ScoreWindow = new CTexture[(int)Difficulty.Total],

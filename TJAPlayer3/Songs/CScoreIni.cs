@@ -102,6 +102,7 @@ namespace TJAPlayer3
 			public bool[] bIsDondaFullCombo = new bool[5];
 			public bool[] bIsFullCombo = new bool[5];
 			public bool[] bIsClear = new bool[5];
+			public int nScoreRank;
 			public STDGBVALUE<bool> bSudden;
 			public STDGBVALUE<EInvisible> eInvisible;
 			public bool bTight;
@@ -171,7 +172,8 @@ namespace TJAPlayer3
 				this.bAutoPlay.BsB = false;
 				this.bAutoPlay.BsPick = false;
 				this.bAutoPlay.BsW = false;
-				for(int i = 0; i < 5; i++)
+				this.nScoreRank = 0;
+				for (int i = 0; i < 5; i++)
 				{
 					this.bIsDondaFullCombo[i] = false;
 					this.bIsFullCombo[i] = false;
@@ -1054,6 +1056,10 @@ namespace TJAPlayer3
 											{
 											    c演奏記録.nハイスコア[ 4 ] = int.Parse( para );
 											}
+											if ( item.Equals("ScoreRank") )
+											{
+											    c演奏記録.nScoreRank = int.Parse( para );
+											}
 
 											for (int i = 0; i < 5; i++)
 											{
@@ -1176,6 +1182,7 @@ namespace TJAPlayer3
 			writer.WriteLine("Roll3={0}", this.stセクション[0].n連打[2]);
 			writer.WriteLine("Roll4={0}", this.stセクション[0].n連打[3]);
 			writer.WriteLine("Roll5={0}", this.stセクション[0].n連打[4]);
+			writer.WriteLine("ScoreRank={0}", this.stセクション[0].nScoreRank);
 			for(int i = 0; i < 5; i++)
 			{
 				string[] Diff = { "Eazy", "Normal", "Hard", "Oni", "Edit" };

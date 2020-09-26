@@ -21,6 +21,7 @@ namespace TJAPlayer3
                                                 //        10.11.17 change (int to bool) ikanick
 		public STDGBVALUE<int> nランク値;
 		public STDGBVALUE<int> n演奏回数;
+		public STDGBVALUE<int> nScoreRank;
 		public int n総合ランク値;
 		public CDTX.CChip[] r空うちドラムチップ;
 		public STDGBVALUE<CScoreIni.C演奏記録> st演奏記録;
@@ -152,6 +153,12 @@ namespace TJAPlayer3
 
 					if (TJAPlayer3.stage選曲.n確定された曲の難易度 != (int)Difficulty.Dan && TJAPlayer3.stage選曲.n確定された曲の難易度 != (int)Difficulty.Tower && !TJAPlayer3.ConfigIni.b太鼓パートAutoPlay)
 					{ 	
+						for(int i = 0; i < 7; i++)
+						{
+							if (st演奏記録[0].nスコア >= TJAPlayer3.stage演奏ドラム画面.actScoreRank.ScoreRank[i])
+								if(st演奏記録[0].nスコア >= 500000)
+									this.st演奏記録[0].nScoreRank = i;
+						}
 						if (st演奏記録[0].fゲージ >= 80.0f)
 						{
 							if (st演奏記録[0].nMiss数 == 0 && st演奏記録[0].nPoor数 == 0 && st演奏記録[0].nGreat数 == 0 && st演奏記録[0].fゲージ >= 100.0f)
@@ -216,10 +223,15 @@ namespace TJAPlayer3
 					Cスコア cスコア = TJAPlayer3.stage選曲.r確定されたスコア;
 					if(st演奏記録[0].bIsClear[TJAPlayer3.stage選曲.n確定された曲の難易度] == true)
 						cスコア.譜面情報.クリア[TJAPlayer3.stage選曲.n確定された曲の難易度] = st演奏記録[0].bIsClear[TJAPlayer3.stage選曲.n確定された曲の難易度];
+
 					if (st演奏記録[0].bIsFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度] == true)
 						cスコア.譜面情報.フルコンボ[TJAPlayer3.stage選曲.n確定された曲の難易度] = st演奏記録[0].bIsFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度];
+
 					if (st演奏記録[0].bIsDondaFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度] == true)
 						cスコア.譜面情報.ドンダフルコンボ[TJAPlayer3.stage選曲.n確定された曲の難易度] = st演奏記録[0].bIsDondaFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度];
+
+					if (cスコア.譜面情報.nスコアランク <= st演奏記録[0].nScoreRank + 1)
+						cスコア.譜面情報.nスコアランク = st演奏記録[0].nScoreRank + 1;
 				} 
                 //---------------------
                 #endregion
