@@ -156,6 +156,7 @@ namespace TJAPlayer3
             Judge_Frame = TxC(GAME + @"Notes.png");
             SENotes = TxC(GAME + @"SENotes.png");
             Notes_Arm = TxC(GAME + @"Notes_Arm.png");
+            ScoreRank = TxC(GAME + @"ScoreRank.png");
             Judge = TxC(GAME + @"Judge.png");
 
             Judge_Meter = TxC(GAME + @"Judge_Meter.png");
@@ -639,6 +640,7 @@ namespace TJAPlayer3
             TJAPlayer3.tテクスチャの解放(ref SENotes);
             TJAPlayer3.tテクスチャの解放(ref Notes_Arm);
             TJAPlayer3.tテクスチャの解放(ref Judge);
+            TJAPlayer3.tテクスチャの解放(ref ScoreRank);
 
             TJAPlayer3.tテクスチャの解放(ref Judge_Meter);
             TJAPlayer3.tテクスチャの解放(ref Bar);
@@ -967,6 +969,7 @@ namespace TJAPlayer3
             Judge_Frame,
             SENotes,
             Notes_Arm,
+            ScoreRank,
             Judge;
         public CTexture Judge_Meter,
             Bar,

@@ -25,9 +25,9 @@ namespace TJAPlayer3
 
 		// メソッド
 
-		private int nNoteCount;
-		private int nBalloonCount;
-		private double nAddScoreNiji;
+		public int nNoteCount;
+		public int nBalloonCount;
+		public double nAddScoreNiji;
 
 		#region [ t演奏結果を格納する_ドラム() ]
 		public void t演奏結果を格納する_ドラム(out CScoreIni.C演奏記録 Drums)
@@ -191,22 +191,13 @@ namespace TJAPlayer3
 				}
 			}
 
-			double RollTimems = 0;
-			foreach (var chip in TJAPlayer3.DTX.listChip)
-            {
-				if(chip.nチャンネル番号 == 21 || chip.nチャンネル番号 == 22)
-                {
-					RollTimems += (chip.nノーツ終了時刻ms - chip.nノーツ出現時刻ms) / 60.0;
-				}
-            }
-
 			for (int i = 0; i < TJAPlayer3.DTX.listChip.Count; i++)
 			{
 				nNoteCount = TJAPlayer3.DTX.listChip.Where(num => num.nチャンネル番号 > 16 && num.nチャンネル番号 < 21).Count();
-				nBalloonCount += TJAPlayer3.DTX.listChip[i].nBalloon;
+				nBalloonCount += TJAPlayer3.DTX.listChip[i].nRollCount;
 			}
 			//nAddScoreNiji = (1000000 - (15 * RollTimems * 100) - (nBalloonCount * 100)) / TJAPlayer3.DTX.listChip.Count;
-			nAddScoreNiji = (1000000 - (nBalloonCount * 100)) / nNoteCount;
+			nAddScoreNiji = (double)Math.Ceiling((decimal)(1000000 - (nBalloonCount * 100)) / nNoteCount / 10) * 10;
 
 			this.ct制御タイマ = new CCounter();
 			ctChipAnime = new CCounter[2];
@@ -2886,6 +2877,10 @@ namespace TJAPlayer3
 		protected void t進行描画_スコア()
 		{
 			this.actScore.On進行描画();
+		}
+		protected void t進行描画_スコアランク()
+		{
+			TJAPlayer3.stage演奏ドラム画面.actScoreRank.On進行描画();
 		}
 		protected void t進行描画_ステータスパネル()
 		{

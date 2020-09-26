@@ -197,6 +197,7 @@
     <Compile Include="Stages\07.Game\CLagLogger.cs" />
     <Compile Include="Stages\07.Game\CStage演奏画面共通.cs" />
     <Compile Include="Stages\07.Game\C演奏判定ライン座標共通.cs" />
+    <Compile Include="Stages\07.Game\Taiko\CAct演奏Drumsスコアランク.cs" />
     <Compile Include="Stages\07.Game\Taiko\Dan_Cert.cs" />
     <Compile Include="Stages\07.Game\Taiko\CAct演奏DrumsFooter.cs" />
     <Compile Include="Stages\07.Game\Taiko\CAct演奏DrumsMob.cs" />

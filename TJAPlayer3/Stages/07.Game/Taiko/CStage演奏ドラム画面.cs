@@ -48,6 +48,7 @@ namespace TJAPlayer3
 			base.list子Activities.Add(this.actEnd = new CAct演奏Drums演奏終了演出());
 			base.list子Activities.Add(this.actDancer = new CAct演奏DrumsDancer());
 			base.list子Activities.Add(this.actMtaiko = new CAct演奏DrumsMtaiko());
+			base.list子Activities.Add(this.actScoreRank = new CAct演奏Drumsスコアランク());
 			base.list子Activities.Add(this.actLaneTaiko = new CAct演奏Drumsレーン太鼓());
 			base.list子Activities.Add(this.actRoll = new CAct演奏Drums連打());
 			base.list子Activities.Add(this.actBalloon = new CAct演奏Drums風船());
@@ -430,6 +431,7 @@ namespace TJAPlayer3
 					actBackground.On進行描画();
 				}
 
+
 				if (!TJAPlayer3.ConfigIni.bAVI有効)
 				{
 					actRollChara.On進行描画();
@@ -497,6 +499,8 @@ namespace TJAPlayer3
 				//}
 				this.GoGoSplash.On進行描画();
 				this.t進行描画_リアルタイム判定数表示();
+
+				t進行描画_スコアランク();
 
 				if (!TJAPlayer3.ConfigIni.bNoInfo)
 					this.t進行描画_コンボ();
@@ -607,6 +611,7 @@ namespace TJAPlayer3
 		private CAct演奏Drumsパッド actPad;
 		public CAct演奏Drumsレーン actLane;
 		public CAct演奏DrumsMtaiko actMtaiko;
+		public CAct演奏Drumsスコアランク actScoreRank;
 		public CAct演奏Drumsレーン太鼓 actLaneTaiko;
 		public CAct演奏Drums演奏終了演出 actEnd;
 		private CAct演奏Drumsゲームモード actGame;
