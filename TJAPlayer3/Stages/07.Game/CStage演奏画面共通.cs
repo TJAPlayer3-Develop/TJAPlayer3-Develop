@@ -6,6 +6,7 @@ using System.Diagnostics;
 using FDK;
 using FDK.ExtensionMethods;
 using TJAPlayer3;
+using System.Linq;
 
 namespace TJAPlayer3
 {
@@ -23,6 +24,10 @@ namespace TJAPlayer3
 		}
 
 		// メソッド
+
+		private int nNoteCount;
+		private int nBalloonCount;
+		private double nAddScoreNiji;
 
 		#region [ t演奏結果を格納する_ドラム() ]
 		public void t演奏結果を格納する_ドラム(out CScoreIni.C演奏記録 Drums)
@@ -185,6 +190,23 @@ namespace TJAPlayer3
 					n整数値管理++;
 				}
 			}
+
+			double RollTimems = 0;
+			foreach (var chip in TJAPlayer3.DTX.listChip)
+            {
+				if(chip.nチャンネル番号 == 21 || chip.nチャンネル番号 == 22)
+                {
+					RollTimems += (chip.nノーツ終了時刻ms - chip.nノーツ出現時刻ms) / 60.0;
+				}
+            }
+
+			for (int i = 0; i < TJAPlayer3.DTX.listChip.Count; i++)
+			{
+				nNoteCount = TJAPlayer3.DTX.listChip.Where(num => num.nチャンネル番号 > 16 && num.nチャンネル番号 < 21).Count();
+				nBalloonCount += TJAPlayer3.DTX.listChip[i].nBalloon;
+			}
+			//nAddScoreNiji = (1000000 - (15 * RollTimems * 100) - (nBalloonCount * 100)) / TJAPlayer3.DTX.listChip.Count;
+			nAddScoreNiji = (1000000 - (nBalloonCount * 100)) / nNoteCount;
 
 			this.ct制御タイマ = new CCounter();
 			ctChipAnime = new CCounter[2];
@@ -1139,11 +1161,12 @@ namespace TJAPlayer3
 				}
 				else
 				{
+					this.actScore.Add(E楽器パート.TAIKO, this.bIsAutoPlay, 100L, nPlayer);
+					/*
 					// 旧配点・旧筐体配点
 					if (TJAPlayer3.DTX.nScoreModeTmp == 0 || TJAPlayer3.DTX.nScoreModeTmp == 1)
 					{
 						if (pChip.nチャンネル番号 == 0x15)
-							this.actScore.Add(E楽器パート.TAIKO, this.bIsAutoPlay, 300L, nPlayer);
 						else
 							this.actScore.Add(E楽器パート.TAIKO, this.bIsAutoPlay, 360L, nPlayer);
 					}
@@ -1154,7 +1177,7 @@ namespace TJAPlayer3
 							this.actScore.Add(E楽器パート.TAIKO, this.bIsAutoPlay, 100L, nPlayer);
 						else
 							this.actScore.Add(E楽器パート.TAIKO, this.bIsAutoPlay, 200L, nPlayer);
-					}
+					}*/
 				}
 
 
@@ -1252,7 +1275,7 @@ namespace TJAPlayer3
 					}
 					else
 					{
-						this.actScore.Add(E楽器パート.TAIKO, this.bIsAutoPlay, 5000L, player);
+						//this.actScore.Add(E楽器パート.TAIKO, this.bIsAutoPlay, 5000L, player);
 					}
 					pChip.bHit = true;
 					pChip.IsHitted = true;
@@ -1278,7 +1301,7 @@ namespace TJAPlayer3
 					}
 					else
 					{
-						this.actScore.Add(E楽器パート.TAIKO, this.bIsAutoPlay, 300L, player);
+						this.actScore.Add(E楽器パート.TAIKO, this.bIsAutoPlay, 100L, player);
 					}
 					//CDTXMania.Skin.soundRed.t再生する();
 					this.soundRed?.t再生を開始する();
@@ -1779,7 +1802,8 @@ namespace TJAPlayer3
 
 				if (TJAPlayer3.ConfigIni.ShinuchiMode)  //2016.07.04 kairera0467 真打モード。
 				{
-					nAddScore = TJAPlayer3.DTX.nScoreInit[1, TJAPlayer3.stage選曲.n確定された曲の難易度];
+					//nAddScore = TJAPlayer3.DTX.nScoreInit[1, TJAPlayer3.stage選曲.n確定された曲の難易度];
+					/*
 					if (nAddScore == 0)
 					{
 						//可の時に0除算をするとエラーが発生するため、それらしい数値を自動算出する。
@@ -1802,8 +1826,8 @@ namespace TJAPlayer3
 					{
 						nAddScore = nAddScore * 2;
 					}
-
-					this.actScore.Add(E楽器パート.TAIKO, bIsAutoPlay, nAddScore, nPlayer);
+					*/
+					this.actScore.Add(E楽器パート.TAIKO, bIsAutoPlay, (long)nAddScoreNiji, nPlayer);
 				}
 				else if (TJAPlayer3.DTX.nScoreModeTmp == 2)
 				{
