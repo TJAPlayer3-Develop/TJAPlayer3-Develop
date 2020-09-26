@@ -3681,9 +3681,9 @@ namespace TJAPlayer3
 					var f連打の長さの半分 = (c小節前の小節線情報.n発声時刻ms - c小節前の連打開始位置.n発声時刻ms) / 2.0f;
 					*/
 
-                    chip.n発声時刻ms = c小節前の小節線情報.n発声時刻ms;
+                    chip.n発声時刻ms = this.dbNowTime - ((15000.0 / this.dbNowBPM * (this.fNow_Measure_s / this.fNow_Measure_m)) * 16.0);
                 }
-                else chip.n発声時刻ms = c小節前の小節線情報.n発声時刻ms;
+                else chip.n発声時刻ms = this.dbNowTime - ((15000.0 / this.dbNowBPM * (this.fNow_Measure_s / this.fNow_Measure_m)) * 16.0);
 
                 chip.nチャンネル番号 = 0xDE;
                 chip.fNow_Measure_m = c小節前の小節線情報.fNow_Measure_m;
