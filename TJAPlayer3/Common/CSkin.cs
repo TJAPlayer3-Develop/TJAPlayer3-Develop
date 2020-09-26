@@ -173,31 +173,31 @@ namespace TJAPlayer3
                 if (string.IsNullOrEmpty(this.strファイル名))
                     throw new InvalidOperationException("ファイル名が無効です。");
 
-				if( !File.Exists( CSkin.Path( this.strファイル名 ) ) )
-				{
+                if (!File.Exists(CSkin.Path(this.strファイル名)))
+                {
                     Trace.TraceWarning($"ファイルが存在しません。: {this.strファイル名}");
-				    return;
-				}
-////				for( int i = 0; i < 2; i++ )		// #27790 2012.3.10 yyagi 2回読み出しを、1回読みだし＋1回メモリコピーに変更
-////				{
-//                    try
-//                    {
-//                        this.rSound[ 0 ] = CDTXMania.Sound管理.tサウンドを生成する( CSkin.Path( this.strファイル名 ) );
-//                    }
-//                    catch
-//                    {
-//                        this.rSound[ 0 ] = null;
-//                        throw;
-//                    }
-//                    if ( this.rSound[ 0 ] == null )	// #28243 2012.5.3 yyagi "this.rSound[ 0 ].bストリーム再生する"時もCloneするようにし、rSound[1]がnullにならないよう修正→rSound[1]の再生正常化
-//                    {
-//                        this.rSound[ 1 ] = null;
-//                    }
-//                    else
-//                    {
-//                        this.rSound[ 1 ] = ( CSound ) this.rSound[ 0 ].Clone();	// #27790 2012.3.10 yyagi add: to accelerate loading chip sounds
-//                        CDTXMania.Sound管理.tサウンドを登録する( this.rSound[ 1 ] );	// #28243 2012.5.3 yyagi add (登録漏れによりストリーム再生処理が発生していなかった)
-//                    }
+                    return;
+                }
+                ////				for( int i = 0; i < 2; i++ )		// #27790 2012.3.10 yyagi 2回読み出しを、1回読みだし＋1回メモリコピーに変更
+                ////				{
+                //                    try
+                //                    {
+                //                        this.rSound[ 0 ] = CDTXMania.Sound管理.tサウンドを生成する( CSkin.Path( this.strファイル名 ) );
+                //                    }
+                //                    catch
+                //                    {
+                //                        this.rSound[ 0 ] = null;
+                //                        throw;
+                //                    }
+                //                    if ( this.rSound[ 0 ] == null )	// #28243 2012.5.3 yyagi "this.rSound[ 0 ].bストリーム再生する"時もCloneするようにし、rSound[1]がnullにならないよう修正→rSound[1]の再生正常化
+                //                    {
+                //                        this.rSound[ 1 ] = null;
+                //                    }
+                //                    else
+                //                    {
+                //                        this.rSound[ 1 ] = ( CSound ) this.rSound[ 0 ].Clone();	// #27790 2012.3.10 yyagi add: to accelerate loading chip sounds
+                //                        CDTXMania.Sound管理.tサウンドを登録する( this.rSound[ 1 ] );	// #28243 2012.5.3 yyagi add (登録漏れによりストリーム再生処理が発生していなかった)
+                //                    }
 
                 ////				}
 
@@ -1011,6 +1011,30 @@ namespace TJAPlayer3
                                 {
                                     SongSelect_Overall_Y = int.Parse(strParam);
                                 }
+                            }
+                            else if (strCommand == "SongSelect_BoxExplanation_X")
+                            {
+                                SongSelect_BoxExplanation_X = int.Parse(strParam);
+                            }
+                            else if (strCommand == "SongSelect_BoxExplanation_Y")
+                            {
+                                SongSelect_BoxExplanation_Y = int.Parse(strParam);
+                            }
+                            else if (strCommand == "SongSelect_Title_X")
+                            {
+                                SongSelect_Title_Y = int.Parse(strParam);
+                            }
+                            else if (strCommand == "SongSelect_Title_Y")
+                            {
+                                SongSelect_Title_Y = int.Parse(strParam);
+                            }
+                            else if (strCommand == "Difficulty_Title_X")
+                            {
+                                Difficulty_Title_X = int.Parse(strParam);
+                            }
+                            else if (strCommand == "Difficulty_Title_Y")
+                            {
+                                Difficulty_Title_Y = int.Parse(strParam);
                             }
                             else if (strCommand == "SongSelect_NamePlate_X")
                             {
@@ -2441,6 +2465,12 @@ namespace TJAPlayer3
         #endregion
         #region SongSelect
         public int SongSelect_Overall_Y = 123;
+        public int SongSelect_BoxExplanation_X = 0;
+        public int SongSelect_BoxExplanation_Y = 0;
+        public int SongSelect_Title_X = 0;
+        public int SongSelect_Title_Y = 0;
+        public int Difficulty_Title_X = 0;
+        public int Difficulty_Title_Y = 0;
         public int[] SongSelect_NamePlate_X = new int[] { 60, 950 };
         public int[] SongSelect_NamePlate_Y = new int[] { 650, 650 };
         public int[] SongSelect_Auto_X = new int[] { 60, 950 };
