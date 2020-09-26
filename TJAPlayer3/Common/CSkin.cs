@@ -2501,18 +2501,18 @@ namespace TJAPlayer3
         public int SongLoading_Plate_X = 640;
         public int SongLoading_Plate_Y = 360;
         public int SongLoading_Title_X = 640;
-        public int SongLoading_Title_Y = 260;
+        public int SongLoading_Title_Y = 280;
         public int SongLoading_SubTitle_X = 640;
-        public int SongLoading_SubTitle_Y = 310;
-        public int SongLoading_Title_FontSize = 30;
-        public int SongLoading_SubTitle_FontSize = 22;
+        public int SongLoading_SubTitle_Y = 325;
+        public int SongLoading_Title_FontSize = 31;
+        public int SongLoading_SubTitle_FontSize = 20;
         public ReferencePoint SongLoading_Plate_ReferencePoint = ReferencePoint.Center;
         public ReferencePoint SongLoading_Title_ReferencePoint = ReferencePoint.Center;
         public ReferencePoint SongLoading_SubTitle_ReferencePoint = ReferencePoint.Center;
         public Color SongLoading_Title_ForeColor = ColorTranslator.FromHtml("#FFFFFF");
         public Color SongLoading_Title_BackColor = ColorTranslator.FromHtml("#000000");
-        public Color SongLoading_SubTitle_ForeColor = ColorTranslator.FromHtml("#FFFFFF");
-        public Color SongLoading_SubTitle_BackColor = ColorTranslator.FromHtml("#000000");
+        public Color SongLoading_SubTitle_ForeColor = ColorTranslator.FromHtml("#000000");
+        public Color SongLoading_SubTitle_BackColor = ColorTranslator.FromHtml("#00000000");
         public bool SongLoading_Plate_ScreenBlend = false;
 
         #endregion

@@ -538,10 +538,17 @@ namespace TJAPlayer3
 
             for (int i = 0; i < 3; i++)
                 Result_Crown[i] = TxC(RESULT + @"Crown\Crown_" + i.ToString() + ".png");
+
+            for (int i = 0; i < Result_Donchan_Normal.Length; i++)
+                Result_Donchan_Normal[i] = TxC(RESULT + @"Result_Donchan_Normal\" + i.ToString() + ".png");
+
+            for (int i = 0; i < TJAPlayer3.Tx.Result_Donchan_Normal.Length; i++)
+                Result_Donchan_Clear[i] = TxC(RESULT + @"Result_Donchan_Clear\" + i.ToString() + ".png");
+
             #endregion
 
-                #region 7_終了画面
-                Exit_Background = TxC(EXIT + @"Background.png");
+            #region 7_終了画面
+            Exit_Background = TxC(EXIT + @"Background.png");
             #endregion
 
         }
@@ -893,6 +900,12 @@ namespace TJAPlayer3
 
             for (int i = 0; i < 3; i++)
                 TJAPlayer3.tテクスチャの解放(ref Result_Crown[i]);
+
+            for(int i = 0; i < Result_Donchan_Normal.Length; i++)
+                TJAPlayer3.tテクスチャの解放(ref Result_Donchan_Normal[i]);
+
+            for (int i = 0; i < TJAPlayer3.Tx.Result_Donchan_Normal.Length; i++)
+                TJAPlayer3.tテクスチャの解放(ref Result_Donchan_Clear[i]);
             #endregion
 
             #region 7_終了画面
@@ -1118,6 +1131,8 @@ namespace TJAPlayer3
             Result_Rainbow = new CTexture[41],
             Result_Background = new CTexture[2],
             Result_Crown = new CTexture[3],
+            Result_Donchan_Normal = new CTexture[15],
+            Result_Donchan_Clear = new CTexture[39],
             Result_Mountain = new CTexture[2];
         #endregion
 

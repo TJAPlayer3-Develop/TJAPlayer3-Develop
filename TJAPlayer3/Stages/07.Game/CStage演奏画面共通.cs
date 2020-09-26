@@ -1266,7 +1266,7 @@ namespace TJAPlayer3
 					}
 					else
 					{
-						//this.actScore.Add(E楽器パート.TAIKO, this.bIsAutoPlay, 5000L, player);
+						this.actScore.Add(E楽器パート.TAIKO, this.bIsAutoPlay, 100L, player);
 					}
 					pChip.bHit = true;
 					pChip.IsHitted = true;

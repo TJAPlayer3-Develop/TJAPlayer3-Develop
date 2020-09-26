@@ -204,6 +204,8 @@ namespace TJAPlayer3
 				ctBackgroundAnime = new CCounter(0, 1000, 1, TJAPlayer3.Timer);
 				ctBackgroundAnime_Clear = new CCounter(0, 1000, 1, TJAPlayer3.Timer);
 				ctMountain_ClearIn = new CCounter();
+				ctDonchan_Normal = new CCounter(0, TJAPlayer3.Tx.Result_Donchan_Normal.Length - 1, 1000 / 32, TJAPlayer3.Timer);
+				ctDonchan_Clear = new CCounter();
 				Dan_Plate = TJAPlayer3.tテクスチャの生成(Path.GetDirectoryName(TJAPlayer3.DTX.strファイル名の絶対パス) + @"\Dan_Plate.png");
                 base.OnManagedリソースの作成();
 			}
@@ -233,6 +235,8 @@ namespace TJAPlayer3
 			ctEndAnime.t進行();
 			ctBackgroundAnime.t進行Loop();
 			ctMountain_ClearIn.t進行();
+			ctDonchan_Clear.t進行Loop();
+			ctDonchan_Normal.t進行Loop();
 			if (TJAPlayer3.Tx.Result_Panel != null)
 			{
 				int[] y補正 = { 0, 1, 0, 11, 12};
@@ -331,6 +335,10 @@ namespace TJAPlayer3
 				{
 					TJAPlayer3.Tx.Result_Crown[2].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
 				}
+
+				if (TJAPlayer3.stage結果.st演奏記録[0].fゲージ >= 80.0f)
+					if (!this.ctDonchan_Clear.b進行中)
+						this.ctDonchan_Clear.t開始(0, TJAPlayer3.Tx.Result_Donchan_Normal.Length - 1, 1000 / 25, TJAPlayer3.Timer);
 			}
 			else
 			{
@@ -431,15 +439,30 @@ namespace TJAPlayer3
 						{
 							TJAPlayer3.Tx.Result_Crown[2].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
 						}
-
 					}
 
 					if (ct全体アニメ.n現在の値 >= 2000 + (this.ctゲージアニメーション.n終了値 * 66) + 7360 - 85)
-						if(!this.ctMountain_ClearIn.b進行中)
+					{
+						if (!this.ctMountain_ClearIn.b進行中)
 							this.ctMountain_ClearIn.t開始(0, 515, 3, TJAPlayer3.Timer);
+
+						if (TJAPlayer3.stage結果.st演奏記録[0].fゲージ >= 80.0f)
+							if (!this.ctDonchan_Clear.b進行中)
+								this.ctDonchan_Clear.t開始(0, TJAPlayer3.Tx.Result_Donchan_Normal.Length - 1, 1000 / 25, TJAPlayer3.Timer);
+					}
 
 				}
 			}
+
+			if (!this.ctDonchan_Clear.b進行中)
+			{
+				TJAPlayer3.Tx.Result_Donchan_Normal[ctDonchan_Normal.n現在の値].t2D中心基準描画(TJAPlayer3.app.Device, 157, 527);
+			}
+			else
+			{
+				TJAPlayer3.Tx.Result_Donchan_Clear[ctDonchan_Clear.n現在の値].t2D中心基準描画(TJAPlayer3.app.Device, 157, 527);
+			}
+
 			if (TJAPlayer3.Tx.Result_Soul_Text != null)
 			{
 				if (ctゲージアニメーション.n現在の値 <= 30)
@@ -518,6 +541,8 @@ namespace TJAPlayer3
 		public CCounter ctMountain_ClearIn;
 		public CCounter ctBackgroundAnime;
 		public CCounter ctBackgroundAnime_Clear;
+		private CCounter ctDonchan_Normal;
+		private CCounter ctDonchan_Clear;
 
 		private bool bフルコンボ音再生済み;
 		private CCounter ct表示用;
