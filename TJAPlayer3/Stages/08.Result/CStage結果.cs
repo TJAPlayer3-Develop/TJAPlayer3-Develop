@@ -318,13 +318,13 @@ namespace TJAPlayer3
 
 				if (TJAPlayer3.Tx.Result_Background != null)
 				{
-					if (this.actParameterPanel.ct全体アニメ.n現在の値 >= 2000 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66) + 7360 - 85)
+					if (this.actParameterPanel.ct全体アニメ.n現在の値 >= 2000 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66) + 8360 - 85)
 					{
 						if(this.st演奏記録.Drums.fゲージ >= 80.0)
                         {
-							TJAPlayer3.Tx.Result_Background[1].Opacity = (this.actParameterPanel.ct全体アニメ.n現在の値 - (9275 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66))) * 3;
-							TJAPlayer3.Tx.Result_Mountain[1].Opacity = (this.actParameterPanel.ct全体アニメ.n現在の値 - (9275 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66))) * 3;
-							TJAPlayer3.Tx.Result_Mountain[0].Opacity = 255 - (this.actParameterPanel.ct全体アニメ.n現在の値 - (9275 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66))) * 3;
+							TJAPlayer3.Tx.Result_Background[1].Opacity = (this.actParameterPanel.ct全体アニメ.n現在の値 - (10275 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66))) * 3;
+							TJAPlayer3.Tx.Result_Mountain[1].Opacity = (this.actParameterPanel.ct全体アニメ.n現在の値 - (10275 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66))) * 3;
+							TJAPlayer3.Tx.Result_Mountain[0].Opacity = 255 - (this.actParameterPanel.ct全体アニメ.n現在の値 - (10275 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66))) * 3;
 
 							if (this.actParameterPanel.ctMountain_ClearIn.n現在の値 <= 90)
                             {
@@ -452,9 +452,9 @@ namespace TJAPlayer3
 						}
 						if ( ( ( TJAPlayer3.Pad.b押されたDGB( Eパッド.CY ) || TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.RD ) ) || ( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.LC ) || (TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || (TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed) || TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.Return ) ) ))))
 						{
-                            if (this.actParameterPanel.ct全体アニメ.n現在の値 <= 2000 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66) + 7360 - 85)
+                            if (this.actParameterPanel.ct全体アニメ.n現在の値 <= 2000 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66) + 8360 - 85)
                             {
-								this.actParameterPanel.ct全体アニメ.n現在の値 = 2000 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66) + 7360 - 85;
+								this.actParameterPanel.ct全体アニメ.n現在の値 = 2000 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66) + 8360 - 85;
 								this.actParameterPanel.ctゲージアニメーション.n現在の値 = actParameterPanel.ctゲージアニメーション.n終了値;
 								EndAnime = true;
 								this.actParameterPanel.ctEndAnime.t開始(0, 360, 1, TJAPlayer3.Timer);

@@ -196,7 +196,7 @@ namespace TJAPlayer3
 				for (int i = 0; i < 6; i++)
 					b音声再生[i] = false;
                 ctゲージアニメーション = new CCounter();
-                ct全体アニメ = new CCounter(0, 12660, 1, TJAPlayer3.Timer);
+                ct全体アニメ = new CCounter(0, 13660, 1, TJAPlayer3.Timer);
 				ctSoulFlash = new CCounter(0, 1, 33, TJAPlayer3.Timer);
 				ctSoul = new CCounter(0, 8, 33, TJAPlayer3.Timer);
 				ctRainbowGauge = new CCounter(0, 40, 1000 / 60, TJAPlayer3.Timer);
@@ -405,21 +405,39 @@ namespace TJAPlayer3
 
 					}
 
-
-					if (ct全体アニメ.n現在の値 >= 2000 + (ctゲージアニメーション.n終了値 * 66) + 5500)
+					if (ct全体アニメ.n現在の値 >= 2000 + (ctゲージアニメーション.n終了値 * 66) + 5000)
 					{
-						if (ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 5680)
+						if (ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 5180)
 							for (int i = 0; i < 3; i++)
 							{
-								TJAPlayer3.Tx.Result_Crown[i].Opacity = (ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 5500)) / 180.0f * 255.0f;
-								TJAPlayer3.Tx.Result_Crown[i].vc拡大縮小倍率.X = 1.0f + (float)Math.Sin((float)(ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 5410)) / 1.5f * (Math.PI / 180)) * 1.4f;
-								TJAPlayer3.Tx.Result_Crown[i].vc拡大縮小倍率.Y = 1.0f + (float)Math.Sin((float)(ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 5410)) / 1.5f * (Math.PI / 180)) * 1.4f;
+								TJAPlayer3.Tx.ScoreRank.Opacity = (ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 5000)) / 180.0f * 255.0f;
+								TJAPlayer3.Tx.ScoreRank.vc拡大縮小倍率.X = 1.0f + (float)Math.Sin((float)(ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 4910)) / 1.5f * (Math.PI / 180)) * 1.4f;
+								TJAPlayer3.Tx.ScoreRank.vc拡大縮小倍率.Y = 1.0f + (float)Math.Sin((float)(ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 4910)) / 1.5f * (Math.PI / 180)) * 1.4f;
 							}
-						else if (ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 5770)
+						else if (ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 5270)
 							for (int i = 0; i < 3; i++)
 							{
-								TJAPlayer3.Tx.Result_Crown[i].vc拡大縮小倍率.X = 0.5f + (float)Math.Sin((float)(ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 5680)) * (Math.PI / 180)) * 0.5f;
-								TJAPlayer3.Tx.Result_Crown[i].vc拡大縮小倍率.Y = 0.5f + (float)Math.Sin((float)(ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 5680)) * (Math.PI / 180)) * 0.5f;
+								TJAPlayer3.Tx.ScoreRank.vc拡大縮小倍率.X = 0.5f + (float)Math.Sin((float)(ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 5180)) * (Math.PI / 180)) * 0.5f;
+								TJAPlayer3.Tx.ScoreRank.vc拡大縮小倍率.Y = 0.5f + (float)Math.Sin((float)(ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 5180)) * (Math.PI / 180)) * 0.5f;
+							}
+
+						TJAPlayer3.Tx.ScoreRank.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 135, 339, new Rectangle(0, (TJAPlayer3.stage結果.st演奏記録[0].nScoreRank[TJAPlayer3.stage選曲.n確定された曲の難易度]) * 120, 140, 120));
+					}
+
+					if (ct全体アニメ.n現在の値 >= 2000 + (ctゲージアニメーション.n終了値 * 66) + 6500)
+					{
+						if (ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 6680)
+							for (int i = 0; i < 3; i++)
+							{
+								TJAPlayer3.Tx.Result_Crown[i].Opacity = (ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 6500)) / 180.0f * 255.0f;
+								TJAPlayer3.Tx.Result_Crown[i].vc拡大縮小倍率.X = 1.0f + (float)Math.Sin((float)(ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 6410)) / 1.5f * (Math.PI / 180)) * 1.4f;
+								TJAPlayer3.Tx.Result_Crown[i].vc拡大縮小倍率.Y = 1.0f + (float)Math.Sin((float)(ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 6410)) / 1.5f * (Math.PI / 180)) * 1.4f;
+							}
+						else if (ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 6770)
+							for (int i = 0; i < 3; i++)
+							{
+								TJAPlayer3.Tx.Result_Crown[i].vc拡大縮小倍率.X = 0.5f + (float)Math.Sin((float)(ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 6680)) * (Math.PI / 180)) * 0.5f;
+								TJAPlayer3.Tx.Result_Crown[i].vc拡大縮小倍率.Y = 0.5f + (float)Math.Sin((float)(ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 6680)) * (Math.PI / 180)) * 0.5f;
 							}
 
 						if (TJAPlayer3.stage結果.st演奏記録[0].bAutoPlay.Bass)
@@ -441,7 +459,7 @@ namespace TJAPlayer3
 						}
 					}
 
-					if (ct全体アニメ.n現在の値 >= 2000 + (this.ctゲージアニメーション.n終了値 * 66) + 7360 - 85)
+					if (ct全体アニメ.n現在の値 >= 2000 + (this.ctゲージアニメーション.n終了値 * 66) + 8360 - 85)
 					{
 						if (!this.ctMountain_ClearIn.b進行中)
 							this.ctMountain_ClearIn.t開始(0, 515, 3, TJAPlayer3.Timer);
