@@ -848,7 +848,7 @@ namespace TJAPlayer3
 		}
 		public int nRisky;						// #23559 2011.6.20 yyagi Riskyでの残ミス数。0で閉店
 		public bool bIsAllowedDoubleClickFullscreen;	// #26752 2011.11.27 yyagi ダブルクリックしてもフルスクリーンに移行しない
-		public STAUTOPLAY bAutoPlay;
+		public bool bAutoPlay;
 		public int nSoundDeviceType;				// #24820 2012.12.23 yyagi 出力サウンドデバイス(0=ACM(にしたいが設計がきつそうならDirectShow), 1=ASIO, 2=WASAPI)
 		public int nWASAPIBufferSizeMs;				// #24820 2013.1.15 yyagi WASAPIのバッファサイズ
 //		public int nASIOBufferSizeMs;				// #24820 2012.12.28 yyagi ASIOのバッファサイズ
@@ -1335,7 +1335,7 @@ namespace TJAPlayer3
 			}
 			this.n演奏速度 = 20;
 			#region [ AutoPlay ]
-			this.bAutoPlay = new STAUTOPLAY();
+			this.bAutoPlay = false;
 
             this.b太鼓パートAutoPlay = true;
             this.b太鼓パートAutoPlay2P = true;

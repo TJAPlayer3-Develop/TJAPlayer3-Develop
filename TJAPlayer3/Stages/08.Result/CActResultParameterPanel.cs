@@ -204,8 +204,10 @@ namespace TJAPlayer3
 				ctBackgroundAnime = new CCounter(0, 1000, 1, TJAPlayer3.Timer);
 				ctBackgroundAnime_Clear = new CCounter(0, 1000, 1, TJAPlayer3.Timer);
 				ctMountain_ClearIn = new CCounter();
-				ctDonchan_Normal = new CCounter(0, TJAPlayer3.Tx.Result_Donchan_Normal.Length - 1, 1000 / 32, TJAPlayer3.Timer);
+
+				ctDonchan_Normal = new CCounter(0, TJAPlayer3.Tx.Result_Donchan_Normal.Length - 1, 1000 / 60, TJAPlayer3.Timer);
 				ctDonchan_Clear = new CCounter();
+
 				Dan_Plate = TJAPlayer3.tテクスチャの生成(Path.GetDirectoryName(TJAPlayer3.DTX.strファイル名の絶対パス) + @"\Dan_Plate.png");
                 base.OnManagedリソースの作成();
 			}
@@ -318,27 +320,31 @@ namespace TJAPlayer3
 					this.tスコア文字表示(TJAPlayer3.Skin.nResultScoreP1X, TJAPlayer3.Skin.nResultScoreP1Y, string.Format("{0,7:######0}", TJAPlayer3.stage結果.st演奏記録.Drums.nスコア));
 				}
 
-				if (TJAPlayer3.stage結果.st演奏記録[0].bAutoPlay.Bass)
-				{
-					TJAPlayer3.Tx.Result_Crown[2].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
-				}
+				TJAPlayer3.Tx.ScoreRank.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 135, 339, new Rectangle(0, (TJAPlayer3.stage結果.st演奏記録[0].nScoreRank[TJAPlayer3.stage選曲.n確定された曲の難易度]) * 120, 140, 120));
 
-				if (TJAPlayer3.stage結果.st演奏記録[0].bIsClear[TJAPlayer3.stage選曲.n確定された曲の難易度])
-				{
-					TJAPlayer3.Tx.Result_Crown[0].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
-				}
-				else if (TJAPlayer3.stage結果.st演奏記録[0].bIsFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度])
-				{
-					TJAPlayer3.Tx.Result_Crown[1].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
-				}
-				else if (TJAPlayer3.stage結果.st演奏記録[0].bIsDondaFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度])
+				if (TJAPlayer3.ConfigIni.b太鼓パートAutoPlay)
 				{
 					TJAPlayer3.Tx.Result_Crown[2].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
+				}
+                else
+				{
+					if (TJAPlayer3.stage結果.st演奏記録[0].bIsClear[TJAPlayer3.stage選曲.n確定された曲の難易度])
+					{
+						TJAPlayer3.Tx.Result_Crown[0].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
+					}
+					else if (TJAPlayer3.stage結果.st演奏記録[0].bIsFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度])
+					{
+						TJAPlayer3.Tx.Result_Crown[1].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
+					}
+					else if (TJAPlayer3.stage結果.st演奏記録[0].bIsDondaFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度])
+					{
+						TJAPlayer3.Tx.Result_Crown[2].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
+					}
 				}
 
 				if (TJAPlayer3.stage結果.st演奏記録[0].fゲージ >= 80.0f)
 					if (!this.ctDonchan_Clear.b進行中)
-						this.ctDonchan_Clear.t開始(0, TJAPlayer3.Tx.Result_Donchan_Normal.Length - 1, 1000 / 25, TJAPlayer3.Timer);
+						this.ctDonchan_Clear.t開始(0, TJAPlayer3.Tx.Result_Donchan_Clear.Length - 1, 1000 / 60, TJAPlayer3.Timer);
 			}
 			else
 			{
@@ -440,22 +446,24 @@ namespace TJAPlayer3
 								TJAPlayer3.Tx.Result_Crown[i].vc拡大縮小倍率.Y = 0.5f + (float)Math.Sin((float)(ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 6680)) * (Math.PI / 180)) * 0.5f;
 							}
 
-						if (TJAPlayer3.stage結果.st演奏記録[0].bAutoPlay.Bass)
+						if (TJAPlayer3.ConfigIni.b太鼓パートAutoPlay)
 						{
 							TJAPlayer3.Tx.Result_Crown[2].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
 						}
-
-						if (TJAPlayer3.stage結果.st演奏記録[0].bIsClear[TJAPlayer3.stage選曲.n確定された曲の難易度])
+                        else
 						{
-							TJAPlayer3.Tx.Result_Crown[0].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
-						}
-						else if (TJAPlayer3.stage結果.st演奏記録[0].bIsFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度])
-						{
-							TJAPlayer3.Tx.Result_Crown[1].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
-						}
-						else if (TJAPlayer3.stage結果.st演奏記録[0].bIsDondaFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度])
-						{
-							TJAPlayer3.Tx.Result_Crown[2].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
+							if (TJAPlayer3.stage結果.st演奏記録[0].bIsClear[TJAPlayer3.stage選曲.n確定された曲の難易度])
+							{
+								TJAPlayer3.Tx.Result_Crown[0].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
+							}
+							else if (TJAPlayer3.stage結果.st演奏記録[0].bIsFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度])
+							{
+								TJAPlayer3.Tx.Result_Crown[1].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
+							}
+							else if (TJAPlayer3.stage結果.st演奏記録[0].bIsDondaFullCombo[TJAPlayer3.stage選曲.n確定された曲の難易度])
+							{
+								TJAPlayer3.Tx.Result_Crown[2].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 262, 336);
+							}
 						}
 					}
 
@@ -466,7 +474,7 @@ namespace TJAPlayer3
 
 						if (TJAPlayer3.stage結果.st演奏記録[0].fゲージ >= 80.0f)
 							if (!this.ctDonchan_Clear.b進行中)
-								this.ctDonchan_Clear.t開始(0, TJAPlayer3.Tx.Result_Donchan_Normal.Length - 1, 1000 / 25, TJAPlayer3.Timer);
+								this.ctDonchan_Clear.t開始(0, TJAPlayer3.Tx.Result_Donchan_Clear.Length - 1, 1000 / 60, TJAPlayer3.Timer);
 					}
 
 				}

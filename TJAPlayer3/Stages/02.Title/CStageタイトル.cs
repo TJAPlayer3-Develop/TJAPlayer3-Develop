@@ -40,6 +40,7 @@ namespace TJAPlayer3
 				this.ct上移動用 = new CCounter();
 				this.ct下移動用 = new CCounter();
 				this.ctカーソルフラッシュ用 = new CCounter();
+				//TJAPlayer3.NamePlate.tNamePlateInit();
 				base.On活性化();
 			}
 			finally
@@ -166,7 +167,7 @@ namespace TJAPlayer3
 					{
 						if (TJAPlayer3.stage選曲.act曲リスト.r現在選択中の曲 != null)
 						{
-							if ((this.n現在のカーソル行 == (int)E戻り値.GAMESTART - 1) && TJAPlayer3.Skin.soundゲーム開始音.b読み込み成功)
+							if ((this.n現在のカーソル行 == (int)E戻り値.GAMESTART - 1))
 							{
 								TJAPlayer3.Skin.soundタイトル音.t停止する();
 								TJAPlayer3.Skin.soundタイトルスタート音.t停止する();
@@ -214,10 +215,11 @@ namespace TJAPlayer3
                 TJAPlayer3.act文字コンソール.tPrint(4, 44, C文字コンソール.Eフォント種別.白, "DEBUG BUILD");
 #endif
                 TJAPlayer3.act文字コンソール.tPrint(4, (720 - 24), C文字コンソール.Eフォント種別.白, "TJAPlayer3-Develop Create touhou-renren(@ren43723591)");
-                #endregion
+				#endregion
 
-                
-				if( TJAPlayer3.Tx.Title_Menu != null )
+				//TJAPlayer3.NamePlate.tNamePlateDraw(0, 0);
+
+				if ( TJAPlayer3.Tx.Title_Menu != null )
 				{
 					int x = MENU_X;
 					int y = MENU_Y + ( this.n現在のカーソル行 * MENU_H );

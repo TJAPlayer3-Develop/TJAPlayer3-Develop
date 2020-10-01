@@ -221,6 +221,12 @@ namespace TJAPlayer3
 	        get;
 	        private set;
 	    }
+		
+	    public static CNamePlate NamePlate
+		{
+	        get;
+	        private set;
+	    }
 
 		public static CStage起動 stage起動 
 		{
@@ -2219,6 +2225,7 @@ for (int i = 0; i < 3; i++) {
 			//---------------------
 			r現在のステージ = null;
 			r直前のステージ = null;
+			NamePlate = new CNamePlate();
 			stage起動 = new CStage起動();
 			stageタイトル = new CStageタイトル();
 //			stageオプション = new CStageオプション();

@@ -180,7 +180,7 @@ namespace TJAPlayer3
 		/// <param name="part"></param>
 		/// <param name="bAutoPlay"></param>
 		/// <param name="delta"></param>
-		public void Add( E楽器パート part, STAUTOPLAY bAutoPlay, long delta, int player )
+		public void Add( E楽器パート part, bool bAutoPlay, long delta, int player )
 		{
 			double rev = 1.0;
 			switch ( part )

@@ -542,7 +542,7 @@ namespace TJAPlayer3
             for (int i = 0; i < Result_Donchan_Normal.Length; i++)
                 Result_Donchan_Normal[i] = TxC(RESULT + @"Result_Donchan_Normal\" + i.ToString() + ".png");
 
-            for (int i = 0; i < TJAPlayer3.Tx.Result_Donchan_Normal.Length; i++)
+            for (int i = 0; i < Result_Donchan_Clear.Length; i++)
                 Result_Donchan_Clear[i] = TxC(RESULT + @"Result_Donchan_Clear\" + i.ToString() + ".png");
 
             #endregion
@@ -1131,8 +1131,8 @@ namespace TJAPlayer3
             Result_Rainbow = new CTexture[41],
             Result_Background = new CTexture[2],
             Result_Crown = new CTexture[3],
-            Result_Donchan_Normal = new CTexture[15],
-            Result_Donchan_Clear = new CTexture[39],
+            Result_Donchan_Normal = new CTexture[28],
+            Result_Donchan_Clear = new CTexture[38],
             Result_Mountain = new CTexture[2];
         #endregion
 

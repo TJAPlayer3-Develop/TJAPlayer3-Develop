@@ -52,10 +52,7 @@ namespace TJAPlayer3
 				Drums.n連打数 = this.n合計連打数[0];
 				Drums.n最大コンボ数 = this.actCombo.n現在のコンボ数.P1最高値;
 				Drums.n全チップ数 = TJAPlayer3.DTX.n可視チップ数.Drums;
-				for (int i = 0; i < (int)Eレーン.MAX; i++)
-				{
-					Drums.bAutoPlay[i] = bIsAutoPlay[i];
-				}
+				Drums.bAutoPlay = bIsAutoPlay;
 				Drums.bTight = TJAPlayer3.ConfigIni.bTight;
 				for (int i = 0; i < 3; i++)
 				{
@@ -122,10 +119,7 @@ namespace TJAPlayer3
 				Drums.n連打数 = this.n合計連打数[0];
 				Drums.n最大コンボ数 = this.actCombo.n現在のコンボ数.P2;
 				Drums.n全チップ数 = TJAPlayer3.DTX.nノーツ数[3];
-				for (int i = 0; i < (int)Eレーン.MAX; i++)
-				{
-					Drums.bAutoPlay[i] = TJAPlayer3.ConfigIni.b太鼓パートAutoPlay;
-				}
+				Drums.bAutoPlay = TJAPlayer3.ConfigIni.b太鼓パートAutoPlay;
 				Drums.bTight = TJAPlayer3.ConfigIni.bTight;
 				for (int i = 0; i < 3; i++)
 				{
@@ -697,7 +691,7 @@ namespace TJAPlayer3
 
 		protected CTexture tx背景;
 
-		protected STAUTOPLAY bIsAutoPlay;       // #24239 2011.1.23 yyagi
+		protected bool bIsAutoPlay;       // #24239 2011.1.23 yyagi
 												//		protected int nRisky_InitialVar, nRiskyTime;		// #23559 2011.7.28 yyagi → CAct演奏ゲージ共通クラスに隠蔽
 		protected int nPolyphonicSounds;
 		protected List<CDTX.CChip>[] listChip = new List<CDTX.CChip>[4];
@@ -4346,27 +4340,7 @@ namespace TJAPlayer3
 		/// </summary>
 		protected void tDTXV用の設定()
 		{
-			TJAPlayer3.ConfigIni.bAutoPlay.HH = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.SD = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.BD = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.HT = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.LT = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.CY = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.FT = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.RD = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.LC = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.LP = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.LBD = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.GtR = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.GtB = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.GtB = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.GtPick = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.GtW = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.BsR = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.BsB = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.BsB = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.BsPick = true;
-			TJAPlayer3.ConfigIni.bAutoPlay.BsW = true;
+			TJAPlayer3.ConfigIni.bAutoPlay = true;
 
 			this.bIsAutoPlay = TJAPlayer3.ConfigIni.bAutoPlay;
 

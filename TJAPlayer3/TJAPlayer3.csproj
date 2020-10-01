@@ -248,6 +248,7 @@
     <Compile Include="Stages\CActLVLNFont.cs" />
     <Compile Include="Stages\CActオプションパネル.cs" />
     <Compile Include="Stages\CDTXVmode.cs" />
+    <Compile Include="Stages\CNamePlate.cs" />
     <Compile Include="Stages\CStage.cs" />
     <Compile Include="Plugins\CPluginHost.cs" />
     <Compile Include="Plugins\IPluginActivity.cs" />

@@ -132,7 +132,7 @@ namespace FDK
 		/// <summary>
 		/// <para>WASAPI 共有モード出力における再生遅延[ms]。ユーザが決定する。</para>
 		/// </summary>
-		public static int SoundDelaySharedWASAPI = 100;
+		public static int SoundDelaySharedWASAPI = 0;
 		/// <summary>
 		/// <para>排他WASAPIバッファの更新間隔。出力間隔ではないので注意。</para>
 		/// <para>→ 自動設定されるのでSoundDelay よりも小さい値であること。（小さすぎる場合はBASSによって自動修正される。）</para>
@@ -331,7 +331,7 @@ namespace FDK
 			switch ( SoundDeviceType )
 			{
 				case ESoundDeviceType.ExclusiveWASAPI:
-					SoundDevice = new CSoundDeviceWASAPI( CSoundDeviceWASAPI.Eデバイスモード.排他, SoundDelayExclusiveWASAPI, SoundUpdatePeriodExclusiveWASAPI );
+					SoundDevice = new CSoundDeviceWASAPI( CSoundDeviceWASAPI.Eデバイスモード.共有, SoundDelayExclusiveWASAPI, SoundUpdatePeriodSharedWASAPI);
 					break;
 
 				case ESoundDeviceType.SharedWASAPI:
