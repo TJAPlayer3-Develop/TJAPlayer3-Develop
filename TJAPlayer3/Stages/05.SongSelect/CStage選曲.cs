@@ -162,7 +162,9 @@ namespace TJAPlayer3
 				for( int i = 0; i < 4; i++ )
 					this.ctキー反復用[ i ] = new CCounter( 0, 0, 0, TJAPlayer3.Timer );
 
-				this.ctDonchanNormal = new CCounter(0, 60, 1000 / 60, TJAPlayer3.Timer);
+				this.ctDonchanNormal = new CCounter(0, TJAPlayer3.Tx.SongSelect_Donchan_Normal.Length - 1, 1000 / 45, TJAPlayer3.Timer);
+				this.ctDonchanSelect = new CCounter();
+				this.ctDonchanStart = new CCounter();
 				ctDiffSelect移動待ち = new CCounter();
 				//this.act難易度選択画面.bIsDifficltSelect = true;
 				base.On活性化();
@@ -280,6 +282,8 @@ namespace TJAPlayer3
 				#endregion
 
 				ctDonchanNormal.t進行Loop();
+				ctDonchanSelect.t進行();
+				ctDonchanStart.t進行();
 
 				this.ct登場時アニメ用共通.t進行();
 
@@ -485,17 +489,20 @@ namespace TJAPlayer3
 													this.act難易度選択画面.SongTitle = TJAPlayer3.stage選曲.act曲リスト.ttk曲名テクスチャを生成する(TJAPlayer3.stage選曲.r現在選択中の曲.strタイトル, Color.White, Color.Black);
 													this.act難易度選択画面.SongSubTitle = TJAPlayer3.stage選曲.act曲リスト.ttkサブタイトルテクスチャを生成する(TJAPlayer3.stage選曲.r現在選択中の曲.strサブタイトル, Color.White, Color.Black);
 
+													ctDonchanSelect.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Select.Length - 1, 1000 / 45, TJAPlayer3.Timer);
 													ctDiffSelect移動待ち.t開始(0, 1190, 1, TJAPlayer3.Timer);
 													act難易度選択画面.bIsDifficltSelect = true;
 													TJAPlayer3.Skin.sound決定音.t再生する();
 												}
 												else
 												{
+													ctDonchanStart.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Start.Length - 1, 1000 / 45, TJAPlayer3.Timer);
 													this.t曲を選択する();
 												}
 												break;
 											case C曲リストノード.Eノード種別.BOX:
 												{
+													ctDonchanSelect.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Select.Length - 1, 1000 / 45, TJAPlayer3.Timer);
 													this.act曲リスト.bBoxOpenAnime = true;
 													this.act曲リスト.bBoxOpen = true;
 													this.act曲リスト.bBoxClose = false;
@@ -505,6 +512,7 @@ namespace TJAPlayer3
 												break;
 											case C曲リストノード.Eノード種別.BACKBOX:
 												{
+													ctDonchanSelect.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Select.Length - 1, 1000 / 45, TJAPlayer3.Timer);
 													this.act曲リスト.bBoxOpenAnime = true;
 													this.act曲リスト.bBoxClose = true;
 													this.act曲リスト.bBoxOpen = false;
@@ -596,7 +604,25 @@ namespace TJAPlayer3
 						}
 					}
 				}
-				TJAPlayer3.Tx.SongSelect_Donchan_Normal[ctDonchanNormal.n現在の値].t2D描画(TJAPlayer3.app.Device, 0, 330);
+
+				if(!ctDonchanSelect.b進行中 && !ctDonchanStart.b進行中)
+					TJAPlayer3.Tx.SongSelect_Donchan_Normal[ctDonchanNormal.n現在の値].t2D描画(TJAPlayer3.app.Device, 0, 330);
+				else
+				{
+                    if (ctDonchanSelect.b進行中)
+					{
+						if (ctDonchanSelect.n現在の値 >= ctDonchanSelect.n終了値)
+						{
+							ctDonchanSelect.t停止();
+						}
+						TJAPlayer3.Tx.SongSelect_Donchan_Select[ctDonchanSelect.n現在の値].t2D描画(TJAPlayer3.app.Device, 0, 330);
+					}
+                    if (ctDonchanStart.b進行中)
+					{
+						TJAPlayer3.Tx.SongSelect_Donchan_Start[ctDonchanStart.n現在の値].t2D描画(TJAPlayer3.app.Device, 0, 330);
+					}
+				}
+
 
 				#region ネームプレート
 				for (int i = 0; i < TJAPlayer3.ConfigIni.nPlayerCount; i++)
@@ -710,6 +736,8 @@ namespace TJAPlayer3
 			}
 		}
 		private CCounter ctDonchanNormal;
+		private CCounter ctDonchanSelect;
+		public CCounter ctDonchanStart;
 		private CActFIFOBlack actFIFO;
 		private CActFIFOBlack actFIfrom結果画面;
 		//private CActFIFOBlack actFOtoNowLoading;

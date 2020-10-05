@@ -23,12 +23,12 @@ namespace TJAPlayer3
                 pfTitle = new CPrivateFastFont(new FontFamily("MS Gothic UI"), 8);
             }
 
-            using (var NameTexture = pfName.DrawPrivateFont("れんくん！", Color.White, Color.Black))
+            using (var NameTexture = pfName.DrawPrivateFont(TJAPlayer3.ConfigIni.strNamePlateName, Color.White, Color.Black))
             {
                 txName = TJAPlayer3.tテクスチャの生成(NameTexture);
             }
 
-            using (var TitleTexture = pfTitle.DrawPrivateFont("ニジイロ八段は神", Color.Black, Color.Empty))
+            using (var TitleTexture = pfTitle.DrawPrivateFont(TJAPlayer3.ConfigIni.strNamePlateTitle, Color.Black, Color.Empty))
             {
                 txTitle = TJAPlayer3.tテクスチャの生成(TitleTexture);
             }

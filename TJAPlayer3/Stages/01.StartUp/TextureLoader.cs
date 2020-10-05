@@ -129,7 +129,15 @@ namespace TJAPlayer3
 
             for (int i = 0; i < SongSelect_Donchan_Normal.Length; i++)
             {
-                SongSelect_Donchan_Normal[i] = TxC(SONGSELECT + @"Donchan_Normal\" + i.ToString() + ".png");
+                SongSelect_Donchan_Normal[i] = TxC(SONGSELECT + @"Donchan\Loop\" + i.ToString() + ".png");
+            }
+            for (int i = 0; i < SongSelect_Donchan_Select.Length; i++)
+            {
+                SongSelect_Donchan_Select[i] = TxC(SONGSELECT + @"Donchan\Select\" + i.ToString() + ".png");
+            }
+            for (int i = 0; i < SongSelect_Donchan_Start.Length; i++)
+            {
+                SongSelect_Donchan_Start[i] = TxC(SONGSELECT + @"Donchan\Start\" + i.ToString() + ".png");
             }
             SongSelect_ScoreWindow_Text = TxC(SONGSELECT + @"ScoreWindow_Text.png");
 
@@ -623,6 +631,14 @@ namespace TJAPlayer3
             {
                 TJAPlayer3.tテクスチャの解放(ref SongSelect_Donchan_Normal[i]);
             }
+            for (int i = 0; i < SongSelect_Donchan_Select.Length; i++)
+            {
+                TJAPlayer3.tテクスチャの解放(ref SongSelect_Donchan_Select[i]);
+            }
+            for (int i = 0; i < SongSelect_Donchan_Start.Length; i++)
+            {
+                TJAPlayer3.tテクスチャの解放(ref SongSelect_Donchan_Start[i]);
+            }
             TJAPlayer3.tテクスチャの解放(ref SongSelect_ScoreWindow_Text);
 
             for (int i = 0; i < Diffculty_Back.Length; i++)
@@ -962,7 +978,9 @@ namespace TJAPlayer3
             SongSelect_ScoreWindow = new CTexture[(int)Difficulty.Total],
             SongSelect_Bar_Genre = new CTexture[9],
             SongSelect_Bar_Box = new CTexture[9],
-            SongSelect_Donchan_Normal = new CTexture[61],
+            SongSelect_Donchan_Normal = new CTexture[49],
+            SongSelect_Donchan_Select = new CTexture[47],
+            SongSelect_Donchan_Start = new CTexture[18],
             SongSelect_NamePlate = new CTexture[1];
 
         public CTexture Difficulty_Bar,

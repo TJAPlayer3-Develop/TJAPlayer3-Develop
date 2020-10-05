@@ -846,6 +846,8 @@ namespace TJAPlayer3
 				}
 			}
 		}
+		public string strNamePlateName;
+		public string strNamePlateTitle;
 		public int nRisky;						// #23559 2011.6.20 yyagi Riskyでの残ミス数。0で閉店
 		public bool bIsAllowedDoubleClickFullscreen;	// #26752 2011.11.27 yyagi ダブルクリックしてもフルスクリーンに移行しない
 		public bool bAutoPlay;
@@ -1372,6 +1374,8 @@ namespace TJAPlayer3
 														// #24820 2013.1.17 yyagi 初期値を4に戻した。動的なミキサー制御がうまく動作しているため。
 			this.bIsEnabledSystemMenu = true;			// #28200 2012.5.1 yyagi System Menuの利用可否切替(使用可)
 			this.strSystemSkinSubfolderFullName = "";	// #28195 2012.5.2 yyagi 使用中のSkinサブフォルダ名
+			this.strNamePlateName = "";
+			this.strNamePlateTitle = "";
 			this.bTight = false;                        // #29500 2012.9.11 kairera0467 TIGHTモード
 			#region [ WASAPI/ASIO ]
 			this.nSoundDeviceType = FDK.COS.bIsVistaOrLater ?
@@ -1557,9 +1561,19 @@ namespace TJAPlayer3
 			sw.WriteLine( "; A sleep time[ms] while the window is inactive." );	//
 			sw.WriteLine( "BackSleep={0}", this.n非フォーカス時スリープms );		// そのまま引用（苦笑）
 			sw.WriteLine();                                                             //
-            #endregion
-            #region [ フォント ]
-            sw.WriteLine("; フォントレンダリングに使用するフォント名");
+			#endregion
+			#region [ NamePlate関連 ]
+			sw.WriteLine("ネームプレートに表示する名前");//strNamePlateName
+			sw.WriteLine("; The name to display on the nameplate");
+			sw.WriteLine("NamePlateName={0}", this.strNamePlateName);
+			sw.WriteLine();
+			sw.WriteLine("ネームプレートに表示する称号");
+			sw.WriteLine("; The title to display on the nameplate");
+			sw.WriteLine("NamePlateTitle={0}", this.strNamePlateTitle);
+			sw.WriteLine();
+			#endregion
+			#region [ フォント ]
+			sw.WriteLine("; フォントレンダリングに使用するフォント名");
             sw.WriteLine("; Font name used for font rendering.");
             sw.WriteLine("FontName={0}", this.FontName);
             sw.WriteLine();
@@ -2144,8 +2158,18 @@ namespace TJAPlayer3
 												this.strDTXManiaのバージョン = str4;
 											}
 											#endregion
+											#region [ NamePlate関連 ]
+											else if (str3.Equals("NamePlateName"))
+											{
+												this.strNamePlateName = str4;
+											}
+											else if (str3.Equals("NamePlateTitle"))
+											{
+												this.strNamePlateTitle = str4;
+											}
+											#endregion
 											#region [ TJAPath ]
-											else if( str3.Equals( "TJAPath" ) )
+											else if ( str3.Equals( "TJAPath" ) )
 											{
 												this.str曲データ検索パス = str4;
 											}

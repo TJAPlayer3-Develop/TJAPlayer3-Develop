@@ -1965,8 +1965,8 @@ namespace TJAPlayer3
 		private Font ft曲リスト用フォント;
 		private long nスクロールタイマ;
 		public float n現在のスクロールカウンタ;
-		private int n現在の選択行;
 		public float n目標のスクロールカウンタ;
+		private int n現在の選択行;
 		private Point[] ptバーの座標 = new Point[]
         { new Point( 215, -123 ), new Point( 215, -123 ), new Point( 241, -36  ), new Point( 268, 53 ), new Point( 295, 143 ), 
 			new Point( 328, 312 ),

@@ -223,6 +223,7 @@ namespace TJAPlayer3
                         {
                             if (TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.nレベル[n現在の選択行] >= 0)
                             {
+                                TJAPlayer3.stage選曲.ctDonchanStart.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Start.Length - 1, 1000 / 45, TJAPlayer3.Timer);
                                 this.b曲選択 = true;
                                 TJAPlayer3.Skin.sound曲決定音.t再生する();
                                 ct決定待機.t開始(0, 2000, 1, TJAPlayer3.Timer);

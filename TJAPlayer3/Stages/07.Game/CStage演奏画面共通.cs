@@ -34,6 +34,7 @@ namespace TJAPlayer3
 		{
 			Drums = new CScoreIni.C演奏記録();
 
+
 			//if (  )
 			{
 				Drums.nスコア = (long)this.actScore.Get(E楽器パート.DRUMS, 0);
@@ -54,17 +55,6 @@ namespace TJAPlayer3
 				Drums.n全チップ数 = TJAPlayer3.DTX.n可視チップ数.Drums;
 				Drums.bAutoPlay = bIsAutoPlay;
 				Drums.bTight = TJAPlayer3.ConfigIni.bTight;
-				for (int i = 0; i < 3; i++)
-				{
-					Drums.bSudden[i] = TJAPlayer3.ConfigIni.bSudden[i];
-					Drums.bHidden[i] = TJAPlayer3.ConfigIni.bHidden[i];
-					Drums.eInvisible[i] = TJAPlayer3.ConfigIni.eInvisible[i];
-					Drums.bReverse[i] = TJAPlayer3.ConfigIni.bReverse[i];
-					Drums.eRandom[i] = TJAPlayer3.ConfigIni.eRandom[i];
-					Drums.bLight[i] = TJAPlayer3.ConfigIni.bLight[i];
-					Drums.bLeft[i] = TJAPlayer3.ConfigIni.bLeft[i];
-					Drums.f譜面スクロール速度[i] = ((float)(TJAPlayer3.ConfigIni.n譜面スクロール速度[i] + 1)) * 0.5f;
-				}
 				Drums.eDark = TJAPlayer3.ConfigIni.eDark;
 				Drums.n演奏速度分子 = TJAPlayer3.ConfigIni.n演奏速度;
 				Drums.n演奏速度分母 = 20;
@@ -121,17 +111,6 @@ namespace TJAPlayer3
 				Drums.n全チップ数 = TJAPlayer3.DTX.nノーツ数[3];
 				Drums.bAutoPlay = TJAPlayer3.ConfigIni.b太鼓パートAutoPlay;
 				Drums.bTight = TJAPlayer3.ConfigIni.bTight;
-				for (int i = 0; i < 3; i++)
-				{
-					Drums.bSudden[i] = TJAPlayer3.ConfigIni.bSudden[i];
-					Drums.bHidden[i] = TJAPlayer3.ConfigIni.bHidden[i];
-					Drums.eInvisible[i] = TJAPlayer3.ConfigIni.eInvisible[i];
-					Drums.bReverse[i] = TJAPlayer3.ConfigIni.bReverse[i];
-					Drums.eRandom[i] = TJAPlayer3.ConfigIni.eRandom[i];
-					Drums.bLight[i] = TJAPlayer3.ConfigIni.bLight[i];
-					Drums.bLeft[i] = TJAPlayer3.ConfigIni.bLeft[i];
-					Drums.f譜面スクロール速度[i] = ((float)(TJAPlayer3.ConfigIni.n譜面スクロール速度[i] + 1)) * 0.5f;
-				}
 				Drums.eDark = TJAPlayer3.ConfigIni.eDark;
 				Drums.n演奏速度分子 = TJAPlayer3.ConfigIni.n演奏速度;
 				Drums.n演奏速度分母 = 20;
@@ -419,6 +398,7 @@ namespace TJAPlayer3
 		//-----------------
 		public class CHITCOUNTOFRANK
 		{
+			// Fields
 			// Fields
 			public int Good;
 			public int Great;
