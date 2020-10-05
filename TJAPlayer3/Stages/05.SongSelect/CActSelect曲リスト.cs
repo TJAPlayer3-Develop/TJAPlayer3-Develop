@@ -1292,9 +1292,15 @@ namespace TJAPlayer3
 							{
 								if (ctBoxOpen.b進行中)
 								{
-									if (ctBoxOpen.n現在の値 >= 730)
-										if (ctBoxOpen.n現在の値 <= 1000)
-											TJAPlayer3.Tx.SongSelect_Bar_Genre[this.nStrジャンルtoNum(TJAPlayer3.stage選曲.r現在選択中の曲.strジャンル)].vc拡大縮小倍率.X = 1.0f - (float)Math.Sin((((ctBoxOpen.n現在の値 - 730) / 3f) * (Math.PI / 180))) * 1.0f;
+									if (ctBoxOpen.n現在の値 >= 575)
+										if (ctBoxOpen.n現在の値 <= 800)
+										{
+											TJAPlayer3.Tx.SongSelect_Bar_Genre[this.nStrジャンルtoNum(TJAPlayer3.stage選曲.r現在選択中の曲.strジャンル)].vc拡大縮小倍率.X = (float)Math.Sin((((ctBoxOpen.n現在の値 - 575) / 2.5f + 90) * (Math.PI / 180))) * 1.0f;
+										}
+                                        else
+                                        {
+											TJAPlayer3.Tx.SongSelect_Bar_Genre[this.nStrジャンルtoNum(TJAPlayer3.stage選曲.r現在選択中の曲.strジャンル)].vc拡大縮小倍率.X = 0;
+										}
 								}
 								else if (ctBoxClose.b進行中)
 								{
@@ -1329,7 +1335,7 @@ namespace TJAPlayer3
 
 										if (TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.nスコアランク[i] >= 1)
 										{
-											TJAPlayer3.Tx.SongSelect_ScoreRank.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 358, 372 - (ctBarOpen.n現在の値 - 100), new RectangleF(0, 41f * (TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.nスコアランク[i] - 1), 48, 41f));
+											TJAPlayer3.Tx.SongSelect_ScoreRank.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 358, 372 - ((ctBarOpen.n現在の値 - 100) / 1.17f), new RectangleF(0, 41f * (TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.nスコアランク[i] - 1), 48, 41f));
 										}
 									}
 
@@ -1350,12 +1356,17 @@ namespace TJAPlayer3
 							{
 								if (ctBoxOpen.b進行中)
 								{
-									if (ctBoxOpen.n現在の値 >= 730)
+									if (ctBoxOpen.n現在の値 >= 575)
 									{
-										if (ctBoxOpen.n現在の値 <= 1000)
+										if (ctBoxOpen.n現在の値 <= 800)
 										{
-											TJAPlayer3.Tx.SongSelect_Bar_Box[this.nStrジャンルtoNum(TJAPlayer3.stage選曲.r現在選択中の曲.strジャンル)].vc拡大縮小倍率.X = 1.0f - (float)Math.Sin((((ctBoxOpen.n現在の値 - 730) / 3f) * (Math.PI / 180))) * 1.0f;
-											TJAPlayer3.Tx.SongSelect_Bar_Box[8].vc拡大縮小倍率.X = 1.0f - (float)Math.Sin((((ctBoxOpen.n現在の値 - 730) / 3f) * (Math.PI / 180))) * 1.0f;
+											TJAPlayer3.Tx.SongSelect_Bar_Box[this.nStrジャンルtoNum(TJAPlayer3.stage選曲.r現在選択中の曲.strジャンル)].vc拡大縮小倍率.X = (float)Math.Sin((((ctBoxOpen.n現在の値 - 575) / 2.5f + 90) * (Math.PI / 180))) * 1.0f;
+											TJAPlayer3.Tx.SongSelect_Bar_Box[8].vc拡大縮小倍率.X = (float)Math.Sin((((ctBoxOpen.n現在の値 - 575) / 2.5f + 90) * (Math.PI / 180))) * 1.0f;
+										}
+										else
+										{
+											TJAPlayer3.Tx.SongSelect_Bar_Box[this.nStrジャンルtoNum(TJAPlayer3.stage選曲.r現在選択中の曲.strジャンル)].vc拡大縮小倍率.X = 0;
+											TJAPlayer3.Tx.SongSelect_Bar_Box[8].vc拡大縮小倍率.X = 0;
 										}
 									}
 								}
@@ -1403,9 +1414,15 @@ namespace TJAPlayer3
 								{
 									if (ctBoxOpen.b進行中)
 									{
-										if (ctBoxOpen.n現在の値 >= 730)
-											if (ctBoxOpen.n現在の値 <= 1000)
-												TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.vc拡大縮小倍率.X = 1.0f - (float)Math.Sin((((ctBoxOpen.n現在の値 - 730) / 3f) * (Math.PI / 180))) * 1.0f;
+										if (ctBoxOpen.n現在の値 >= 575)
+											if (ctBoxOpen.n現在の値 <= 800)
+											{
+												TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.vc拡大縮小倍率.X = (float)Math.Sin((((ctBoxOpen.n現在の値 - 575) / 2.5f + 90) * (Math.PI / 180))) * 1.0f;
+											}
+                                            else
+											{
+												TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.vc拡大縮小倍率.X = 0;
+											}
 									}
 									else if (ctBoxClose.b進行中)
 									{
@@ -1424,9 +1441,15 @@ namespace TJAPlayer3
 
 									if (ctBoxOpen.b進行中)
 									{
-										if (ctBoxOpen.n現在の値 >= 730)
-											if (ctBoxOpen.n現在の値 <= 1000)
-												TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.Opacity = 270 - (ctBoxOpen.n現在の値 - 730);
+										if (ctBoxOpen.n現在の値 >= 575)
+											if (ctBoxOpen.n現在の値 <= 800)
+											{
+												TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.Opacity = 270 - (ctBoxOpen.n現在の値 - 575);
+											}
+                                            else
+											{
+												TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.Opacity = 0;
+											}
 									}
 									else if (ctBoxClose.b進行中)
 									{
