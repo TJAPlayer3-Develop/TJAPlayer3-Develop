@@ -28,7 +28,7 @@ namespace TJAPlayer3
 				this.long再生位置 = -1;
 				if ((cスコア.譜面情報.strBGMファイル名 != null) && (cスコア.譜面情報.strBGMファイル名.Length > 0))
 				{
-					this.ct再生待ちウェイト = new CCounter(0, 1, 130, TJAPlayer3.Timer);
+					this.ct再生待ちウェイト = new CCounter(0, 1, 330, TJAPlayer3.Timer);
 				}
 			}
 		}

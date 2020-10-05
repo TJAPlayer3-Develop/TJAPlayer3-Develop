@@ -1720,13 +1720,21 @@ namespace TJAPlayer3
 										{
 											if (ctBoxOpen.n現在の値 >= 645)
 											{
-												if (ctBoxOpen.n現在の値 <= 730)
+												if (ctBoxOpen.n現在の値 <= 900)
 												{
 													if (txBoxExplanation != null)
 														for (int j = 0; j < 3; j++)
-															this.txBoxExplanation[j].Opacity = 255 - ((ctBoxOpen.n現在の値 - 645) * 3);
+															this.txBoxExplanation[j].Opacity = 255 - ((ctBoxOpen.n現在の値 - 645));
 
-													ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 255 - ((ctBoxOpen.n現在の値 - 645) * 3);
+													ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 255 - ((ctBoxOpen.n現在の値 - 645));
+												}
+                                                else
+												{
+													if (txBoxExplanation != null)
+														for (int j = 0; j < 3; j++)
+															this.txBoxExplanation[j].Opacity = 0;
+
+													ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 0;
 												}
 											}
 										}
@@ -1757,7 +1765,7 @@ namespace TJAPlayer3
 											}
 											else
 											{
-												ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 255;
+												//ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 255;
 											}
 										}
 									}
