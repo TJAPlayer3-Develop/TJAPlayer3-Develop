@@ -138,6 +138,7 @@ namespace TJAPlayer3
             this.ctBarAnime = new CCounter();
             this.ct移動 = new CCounter();
 
+            this.n現在の選択行 = 3;
             base.On活性化();
 		}
 		public override void On非活性化()
@@ -183,7 +184,6 @@ namespace TJAPlayer3
 			//-----------------
 			if( this.b初めての進行描画 )
             {
-                this.n現在の選択行 = 3;
                 this.b裏譜面 = false;
                 for ( int i = 0; i < 13; i++ )
 					this.ct登場アニメ用[ i ] = new CCounter( -i * 10, 100, 3, TJAPlayer3.Timer );
@@ -238,6 +238,8 @@ namespace TJAPlayer3
                             this.b曲選択 = false;
                             this.bIsDifficltSelect = false;
                             TJAPlayer3.Skin.sound決定音.t再生する();
+                            TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 = 0;
+                            TJAPlayer3.stage選曲.ctDiffSelect移動待ち.t停止();
                             TJAPlayer3.stage選曲.act曲リスト.ctBarOpen.t開始(0, 161, 2, TJAPlayer3.Timer);
                         }
                     }

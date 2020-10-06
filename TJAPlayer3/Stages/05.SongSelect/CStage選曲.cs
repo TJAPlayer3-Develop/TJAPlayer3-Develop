@@ -367,8 +367,6 @@ namespace TJAPlayer3
 					if (this.act曲リスト.ctBoxClose.n現在の値 == 130)
 					{
 						this.act曲リスト.bBoxOpenAnime = false;
-						act曲リスト.ctBoxClose.t停止();
-						act曲リスト.ctBoxClose.n現在の値 = 0;
 					}
 				}
 				// キー入力
@@ -387,7 +385,7 @@ namespace TJAPlayer3
 						return 0;
 					}
 					#endregion
-					if ( !this.actSortSongs.bIsActivePopupMenu && !this.actQuickConfig.bIsActivePopupMenu && !this.act難易度選択画面.bIsDifficltSelect && !this.act曲リスト.ctBoxOpen.b進行中 && !this.act曲リスト.ctBoxClose.b進行中)
+					if ( !this.actSortSongs.bIsActivePopupMenu && !this.actQuickConfig.bIsActivePopupMenu && !this.act難易度選択画面.bIsDifficltSelect && !this.act曲リスト.ctBoxOpen.b進行中 && !act曲リスト.bBoxOpenAnime)
 					{
                         #region [ ESC ]
                         if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape) && (this.act曲リスト.r現在選択中の曲 != null))// && (  ) ) )
