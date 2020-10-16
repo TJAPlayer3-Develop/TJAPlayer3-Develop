@@ -28,6 +28,7 @@ namespace TJAPlayer3
 																	//public static readonly string D3DXDLL = "d3dx9_42.dll";	// February 2010
 																	//public static readonly string D3DXDLL = "d3dx9_41.dll";	// March 2009
 
+		//returns assembly name
 		public static readonly string AppDisplayName = Assembly.GetExecutingAssembly().GetName().Name;
 
 		public static TJAPlayer3 app
