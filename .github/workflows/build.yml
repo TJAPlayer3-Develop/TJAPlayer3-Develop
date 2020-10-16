@@ -2,11 +2,12 @@ name: build
 
 on: [push]
 
+env:
+  TZ: Asia/Tokyo
+
 jobs:
   build:
-
     runs-on: windows-2019
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v1
@@ -19,8 +20,32 @@ jobs:
     - name: Build the Solution
       run: MSBuild.exe $Env:GITHUB_WORKSPACE\TJAPlayer3.sln -p:Configuration=Release
       timeout-minutes: 5
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v1.0.0
+    - name: Create Archive
+      run: |
+        cd $Env:GITHUB_WORKSPACE
+        tar -a -cvf OpenTJAP3Develop.zip -C Test *
+    - name: Get Current Time
+      id: time
+      shell: pwsh
+      run: |
+        echo "::set-output name=time::$((Get-Date).addHours(9))"
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: TJAPlayer3-Develop
-        path: Test
+        tag_name: release-auto
+        release_name: Release on ${{ steps.time.outputs.time }}
+        draft: false
+        prerelease: false
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./OpenTJAP3Develop.zip
+        asset_name: OpenTJAP3Develop.zip
+        asset_content_type: application/zip
