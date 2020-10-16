@@ -23,7 +23,7 @@ jobs:
     - name: Create Archive
       run: |
         cd $Env:GITHUB_WORKSPACE
-        tar -a -cvf OpenTJAP3Develop.zip -C Test *
+        tar -a -cvf TJAPlayer3-Develop.zip -C Test *
     - name: Get Current Time
       id: time
       shell: pwsh
@@ -46,6 +46,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./OpenTJAP3Develop.zip
-        asset_name: OpenTJAP3Develop.zip
+        asset_path: ./TJAPlayer3-Develop.zip
+        asset_name: TJAPlayer3-Develop.zip
         asset_content_type: application/zip
