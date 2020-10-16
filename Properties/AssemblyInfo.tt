@@ -1,0 +1,25 @@
+<#@ template language="C#" #>
+		using System.Reflection;
+		using System.Runtime.InteropServices;
+		
+		[assembly: AssemblyTitle("OpenTJAP3Develop")]
+		[assembly: AssemblyDescription("An unofficial contiunation of TJAPlayer3-Develop")]
+		[assembly: AssemblyConfiguration("")]
+		[assembly: AssemblyCompany("")]
+		[assembly: AssemblyProduct("OpenTJAP3Develop")]
+		[assembly: AssemblyCopyright("")]
+		[assembly: AssemblyTrademark("")]
+		[assembly: AssemblyCulture("")]
+		
+		[assembly: ComVisible(false)]
+		
+		[assembly: Guid("00000000-0000-0000-0000-000000000000")]
+		
+		[assembly: AssemblyVersion("<#= this.MajorNumber #>.<#= this.MinorNumber #>.<#= this.BuildNumber #>.*")]
+		[assembly: AssemblyFileVersion("<#= this.MajorNumber #>.<#= this.MinorNumber #>.<#= this.BuildNumber #>.*")]
+		<#+
+			// you can go all in here, but we just change the 1.0.0.xxxx part as an example
+			int MajorNumber = (int)DateTime.Now.Year;
+			int MinorNumber = (int)DateTime.Now.Month;
+			int BuildNumber = (int)DateTime.Now.Day;
+		#>

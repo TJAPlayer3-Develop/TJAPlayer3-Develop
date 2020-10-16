@@ -1,3 +1,4 @@
+<#@ template language="C#" #>
 		using System.Reflection;
 		using System.Runtime.InteropServices;
 		
@@ -14,6 +15,11 @@
 		
 		[assembly: Guid("00000000-0000-0000-0000-000000000000")]
 		
-		[assembly: AssemblyVersion("2020.10.16.*")]
-		[assembly: AssemblyFileVersion("2020.10.16.*")]
-		
+		[assembly: AssemblyVersion("<#= this.MajorNumber #>.<#= this.MinorNumber #>.<#= this.BuildNumber #>.*")]
+		[assembly: AssemblyFileVersion("<#= this.MajorNumber #>.<#= this.MinorNumber #>.<#= this.BuildNumber #>.*")]
+		<#+
+			// you can go all in here, but we just change the 1.0.0.xxxx part as an example
+			int MajorNumber = (int)DateTime.Now.Year;
+			int MinorNumber = (int)DateTime.Now.Month;
+			int BuildNumber = (int)DateTime.Now.Day;
+		#>

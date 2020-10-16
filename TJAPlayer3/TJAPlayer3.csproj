@@ -105,7 +105,6 @@
     <Compile Include="Animations\IAnimatable.cs" />
     <Compile Include="Animations\Linear.cs" />
     <Compile Include="Common\Discord.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Discord.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Discord.Designer.cs</LastGenOutput>
@@ -115,6 +114,11 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Discord.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -271,6 +275,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="dtx.ico" />
+    <Content Include="Properties\AssemblyInfo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
+    </Content>
     <None Include="Resources\TJAPlayer3.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -307,7 +315,9 @@
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
