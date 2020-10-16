@@ -209,12 +209,12 @@ namespace TJAPlayer3
 
                 #region[ バージョン表示 ]
                 //string strVersion = "KTT:J:A:I:2017072200";
-                string strCreator = "https://github.com/touhourenren/TJAPlayer3-Develop";
+                string strCreator = "https://github.com/TJAPlayer3-Develop/TJAPlayer3-Develop";
                 AssemblyName asmApp = Assembly.GetExecutingAssembly().GetName();
 #if DEBUG
                 TJAPlayer3.act文字コンソール.tPrint(4, 44, C文字コンソール.Eフォント種別.白, "DEBUG BUILD");
 #endif
-                TJAPlayer3.act文字コンソール.tPrint(4, (720 - 24), C文字コンソール.Eフォント種別.白, "TJAPlayer3-Develop Create touhou-renren(@ren43723591)");
+                TJAPlayer3.act文字コンソール.tPrint(4, (720 - 24), C文字コンソール.Eフォント種別.白, "TJAPlayer3-Develop Forked by touhou-renren(@ren43723591)");
 				#endregion
 
 				TJAPlayer3.NamePlate.tNamePlateDraw(0, 0);
