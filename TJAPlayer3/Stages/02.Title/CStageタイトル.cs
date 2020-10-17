@@ -214,7 +214,7 @@ namespace TJAPlayer3
 #if DEBUG
                 TJAPlayer3.act文字コンソール.tPrint(4, 44, C文字コンソール.Eフォント種別.白, "DEBUG BUILD");
 #endif
-                TJAPlayer3.act文字コンソール.tPrint(4, (720 - 24), C文字コンソール.Eフォント種別.白, strCreator);
+                TJAPlayer3.act文字コンソール.tPrint(4, (720 - 32), C文字コンソール.Eフォント種別.白, strCreator);
 				#endregion
 
 				TJAPlayer3.NamePlate.tNamePlateDraw(0, 0);

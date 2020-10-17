@@ -62,6 +62,42 @@ namespace TJAPlayer3
 			}
 		}
 
+		public void tPrintCenter(int x, int y, Eフォント種別 font, string str英数字文字列)
+		{
+			if (!base.b活性化してない && !string.IsNullOrEmpty(str英数字文字列))
+			{
+				int textWidth = nFontWidth * str英数字文字列.Length;
+
+				x -= textWidth / 2;
+				int BOL = x;
+				for (int i = 0; i < str英数字文字列.Length; i++)
+				{
+					char ch = str英数字文字列[i];
+					if (ch == '\n')
+					{
+						x = BOL;
+						y += nFontHeight;
+					}
+					else
+					{
+						int index = str表記可能文字.IndexOf(ch);
+						if (index < 0)
+						{
+							x += nFontWidth;
+						}
+						else
+						{
+							if (this.txフォント8x16[(int)((int)font / (int)Eフォント種別.白細)] != null)
+							{
+								this.txフォント8x16[(int)((int)font / (int)Eフォント種別.白細)].t2D描画(TJAPlayer3.app.Device, x, y, this.rc文字の矩形領域[(int)((int)font % (int)Eフォント種別.白細), index]);
+							}
+							x += nFontWidth;
+						}
+					}
+				}
+			}
+		}
+
 
 		// CActivity 実装
 
@@ -120,7 +156,7 @@ namespace TJAPlayer3
 		//-----------------
 		private Rectangle[,] rc文字の矩形領域;
 		private const string str表記可能文字 = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ";
-		private const int nFontWidth = 8, nFontHeight = 16;
+		private const int nFontWidth = 16, nFontHeight = 32;
 		private CTexture[] txフォント8x16 = new CTexture[ 2 ];
 		//-----------------
 		#endregion

@@ -106,7 +106,7 @@ namespace TJAPlayer3
 		private static string GetLatestReleaseJson()
 		{
 			var client = new WebClientWithTimeout(TimeSpan.FromSeconds(2));
-			client.Headers.Add("User-Agent", "twopointzero/TJAPlayer3");
+			client.Headers.Add("User-Agent", "TJAPlayer3-Develop");
 
 			return client.DownloadString(
 				"https://api.github.com/repos/TJAPlayer3-Develop/TJAPlayer3-Develop/releases/latest");
@@ -131,8 +131,23 @@ namespace TJAPlayer3
 			{
 				if (startupState == 2)
                 {
+					TJAPlayer3.act文字コンソール.tPrint(1120, 688, C文字コンソール.Eフォント種別.白, "LOADING...");
+
 					this.t読込開始();
                 }
+
+				TJAPlayer3.act文字コンソール.tPrintCenter(640, 70, C文字コンソール.Eフォント種別.白, "TJAPlayer3-Develop");
+				TJAPlayer3.act文字コンソール.tPrintCenter(640, 95, C文字コンソール.Eフォント種別.白, "An open source Taiko no Tatsujin simulator");
+
+				TJAPlayer3.act文字コンソール.tPrintCenter(640, 145, C文字コンソール.Eフォント種別.白, "https://github.com/TJAPlayer3-Develop/TJAPlayer3-Develop");
+
+				TJAPlayer3.act文字コンソール.tPrintCenter(640, 550, C文字コンソール.Eフォント種別.白, "OFFICIAL DEVELOPMENT SERVER");
+				TJAPlayer3.act文字コンソール.tPrintCenter(640, 575, C文字コンソール.Eフォント種別.白, "https://discord.gg/jN7tUk7");
+
+				if (startupState < 1)
+                {
+					TJAPlayer3.act文字コンソール.tPrintCenter(640, 285, C文字コンソール.Eフォント種別.白, "Checking for Update...");
+				}
 
 				if (startupState == 0 && !base.b初めての進行描画)
 				{
@@ -149,16 +164,14 @@ namespace TJAPlayer3
 
 						var latestDateTime = DateTime.ParseExact(release.ReleaseName.Replace("Release on ", ""), "MM/dd/yyyy HH:mm:ss", null).AddMinutes(-1.5);
 
-						buildDate = buildDateTime.ToString() + "  " + latestDateTime.ToString() + "  " + latestDateTime.CompareTo(buildDateTime).ToString();
-
                         if (latestDateTime.CompareTo(buildDateTime) > 0)
                         {
-							buildDate2 = "Update found! :)";
+							updateState = 1;
                         }
 					}
 					catch (Exception e)
 					{
-						buildDate = "ERROR!";
+						updateState = -1;
 					}
 				}
 
@@ -167,14 +180,25 @@ namespace TJAPlayer3
 					base.b初めての進行描画 = false;
 				}
 
-				TJAPlayer3.act文字コンソール.tPrint(0, 10, C文字コンソール.Eフォント種別.白, "UPDATE CHECKER TEST");
-				TJAPlayer3.act文字コンソール.tPrint(0, 30, C文字コンソール.Eフォント種別.白, buildDate);
-				TJAPlayer3.act文字コンソール.tPrint(0, 60, C文字コンソール.Eフォント種別.白, buildDate2);
-				TJAPlayer3.act文字コンソール.tPrint(0, 120, C文字コンソール.Eフォント種別.白, "The game will start loading in a moment.");
-
-                if (startupState == 1)
+                if (startupState > 0)
                 {
-					startupState = 2;
+					if (updateState == 0)
+                    {
+						TJAPlayer3.act文字コンソール.tPrintCenter(640, 285, C文字コンソール.Eフォント種別.白, "You are using the latest version! :)");
+					}
+					else if (updateState == 1)
+                    {
+						TJAPlayer3.act文字コンソール.tPrintCenter(640, 285, C文字コンソール.Eフォント種別.白, "UPDATE FOUND!");
+						TJAPlayer3.act文字コンソール.tPrintCenter(640, 335, C文字コンソール.Eフォント種別.白, "Download it on GitHub:");
+						TJAPlayer3.act文字コンソール.tPrintCenter(640, 360, C文字コンソール.Eフォント種別.白, "https://github.com/TJAPlayer3-Develop/TJAPlayer3-Develop/releases");
+					}
+					else
+                    {
+						TJAPlayer3.act文字コンソール.tPrintCenter(640, 285, C文字コンソール.Eフォント種別.白, "Checking for Update...");
+						TJAPlayer3.act文字コンソール.tPrintCenter(640, 335, C文字コンソール.Eフォント種別.白, "Error while checking for updates :(");
+					}
+					
+					if (startupState == 1) startupState = 2;
                 }
 
 				#region [ this.str現在進行中 の決定 ]
@@ -206,8 +230,7 @@ namespace TJAPlayer3
 		private CTexture tx背景;
 		private CEnumSongs es;
 
-		private string buildDate = "";
-		private string buildDate2 = "";
+		private int updateState = 0;
 
 		private int startupState = 0;
 
