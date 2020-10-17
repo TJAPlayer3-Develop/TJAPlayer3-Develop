@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Drawing;
@@ -165,24 +166,36 @@ namespace TJAPlayer3
 
 					if( ( TJAPlayer3.Pad.b押されたDGB( Eパッド.CY ) || TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.RD ) ) || ( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.LC ) || ( TJAPlayer3.ConfigIni.bEnterがキー割り当てのどこにも使用されていない && TJAPlayer3.Input管理.Keyboard.bキーが押された( (int)SlimDX.DirectInput.Key.Return ) ) ) )
 					{
-						if (TJAPlayer3.stage選曲.act曲リスト.r現在選択中の曲 != null)
+						if ((this.n現在のカーソル行 == (int)E戻り値.GAMESTART - 1))
 						{
-							if ((this.n現在のカーソル行 == (int)E戻り値.GAMESTART - 1))
-							{
+							if (TJAPlayer3.stage選曲.act曲リスト.r現在選択中の曲 != null)
+                            {
 								TJAPlayer3.Skin.soundタイトル音.t停止する();
 								TJAPlayer3.Skin.soundタイトルスタート音.t停止する();
 								TJAPlayer3.Skin.soundゲーム開始音.t再生する();
+
+								this.actFO.tフェードアウト開始();
+								base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
 							}
 							else
-							{
-								TJAPlayer3.Skin.sound決定音.t再生する();
+                            {
+								MessageBox.Show(
+									"曲の読み込みが終わっていない、または曲が1つもないため、\nゲームをスタートできません。\n\nCannot start the game without songs loaded.\nIf you haven't installed any song yet,\nplease install some into the same directory as this game.",
+									"TJAPlayer3-Develop",
+									MessageBoxButtons.OK,
+									MessageBoxIcon.Warning);
 							}
-							if (this.n現在のカーソル行 == (int)E戻り値.EXIT - 1)
-							{
-								return (int)E戻り値.EXIT;
-							}
+						}
+						else
+						{
+							TJAPlayer3.Skin.sound決定音.t再生する();
+
 							this.actFO.tフェードアウト開始();
 							base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
+						}
+						if (this.n現在のカーソル行 == (int)E戻り値.EXIT - 1)
+						{
+							return (int)E戻り値.EXIT;
 						}
 					}
 //					if ( CDTXMania.Input管理.Keyboard.bキーが押された( (int) Key.Space ) )
