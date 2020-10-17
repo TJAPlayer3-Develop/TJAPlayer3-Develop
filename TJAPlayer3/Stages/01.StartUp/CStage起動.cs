@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Reflection;
+using System.Net;
 using System.Diagnostics;
-using System.Threading;
-using System.IO;
 using FDK;
-using System.Runtime.Serialization.Formatters.Binary;
+using Newtonsoft.Json;
 
 
 namespace TJAPlayer3
@@ -80,6 +79,44 @@ namespace TJAPlayer3
 				base.OnManagedリソースの解放();
 			}
 		}
+		private sealed class WebClientWithTimeout : WebClient
+		{
+			private readonly TimeSpan _timeout;
+
+			public WebClientWithTimeout(TimeSpan timeout)
+			{
+				_timeout = timeout;
+			}
+
+			protected override WebRequest GetWebRequest(Uri address)
+			{
+				var webRequest = base.GetWebRequest(address);
+				webRequest.Timeout = (int)_timeout.TotalMilliseconds;
+				return webRequest;
+			}
+		}
+		public sealed class GitHubRelease
+		{
+			public string Name { get; set; }
+
+			[JsonProperty("name")]
+			public string ReleaseName { get; set; }
+		}
+
+		private static string GetLatestReleaseJson()
+		{
+			var client = new WebClientWithTimeout(TimeSpan.FromSeconds(2));
+			client.Headers.Add("User-Agent", "twopointzero/TJAPlayer3");
+
+			return client.DownloadString(
+				"https://api.github.com/repos/TJAPlayer3-Develop/TJAPlayer3-Develop/releases/latest");
+		}
+
+		public static GitHubRelease Deserialize(string releaseJson)
+		{
+			return JsonConvert.DeserializeObject<GitHubRelease>(releaseJson);
+		}
+
 		public void t読込開始()
 		{
 			this.list進行文字列.Add("TEST");
@@ -92,14 +129,57 @@ namespace TJAPlayer3
 		{
 			if( !base.b活性化してない )
 			{
-				if( base.b初めての進行描画 )
+				if (startupState == 2)
+                {
+					this.t読込開始();
+                }
+
+				if (startupState == 0 && !base.b初めての進行描画)
+				{
+					startupState = 1;
+
+					try
+					{
+						var release = Deserialize(GetLatestReleaseJson());
+
+						var version = Assembly.GetExecutingAssembly().GetName().Version;
+						var buildDateTime = new DateTime(2000, 1, 1).Add(new TimeSpan(
+						TimeSpan.TicksPerDay * version.Build + // days since 1 January 2000
+						TimeSpan.TicksPerSecond * 2 * version.Revision)); // seconds since midnight, (multiply by 2 to get original)
+
+						var latestDateTime = DateTime.ParseExact(release.ReleaseName.Replace("Release on ", ""), "MM/dd/yyyy HH:mm:ss", null);
+
+						buildDate = buildDateTime.ToString() + "  " + latestDateTime.ToString();
+
+                        if (latestDateTime.AddMinutes(-3).CompareTo(buildDateTime) > 0)
+                        {
+							buildDate2 = "Update found! :)";
+                        }
+					}
+					catch (Exception e)
+					{
+						buildDate = "ERROR!";
+					}
+				}
+
+				if ( base.b初めての進行描画 )
 				{
 					base.b初めての進行描画 = false;
 				}
 
+				TJAPlayer3.act文字コンソール.tPrint(0, 10, C文字コンソール.Eフォント種別.白, "UPDATE CHECKER TEST");
+				TJAPlayer3.act文字コンソール.tPrint(0, 30, C文字コンソール.Eフォント種別.白, buildDate);
+				TJAPlayer3.act文字コンソール.tPrint(0, 60, C文字コンソール.Eフォント種別.白, buildDate2);
+				TJAPlayer3.act文字コンソール.tPrint(0, 120, C文字コンソール.Eフォント種別.白, "The game will start loading in a moment.");
+
+                if (startupState == 1)
+                {
+					startupState = 2;
+                }
+
 				#region [ this.str現在進行中 の決定 ]
 				//-----------------
-				switch( base.eフェーズID )
+				switch ( base.eフェーズID )
 				{
 					case CStage.Eフェーズ.起動7_完了:
                         TJAPlayer3.Tx.LoadTexture();
@@ -126,7 +206,10 @@ namespace TJAPlayer3
 		private CTexture tx背景;
 		private CEnumSongs es;
 
-		private bool bLoadStarted;
+		private string buildDate = "";
+		private string buildDate2 = "";
+
+		private int startupState = 0;
 
 #if false
 		private void t曲リストの構築()
@@ -288,6 +371,23 @@ namespace TJAPlayer3
 			}
 		}
 #endif
+		#endregion
+
+		#region Gets the build date and time (by reading the COFF header)
+
+		// http://msdn.microsoft.com/en-us/library/ms680313
+
+		struct _IMAGE_FILE_HEADER
+		{
+			public ushort Machine;
+			public ushort NumberOfSections;
+			public uint TimeDateStamp;
+			public uint PointerToSymbolTable;
+			public uint NumberOfSymbols;
+			public ushort SizeOfOptionalHeader;
+			public ushort Characteristics;
+		};
+
 		#endregion
 	}
 }

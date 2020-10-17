@@ -21,9 +21,10 @@ namespace TJAPlayer3
 	{
 		// プロパティ
 		#region [ properties ]
-		public static readonly string VERSION = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+		public static readonly string VERSION = $"{Assembly.GetExecutingAssembly().GetName().Version.Major}.{Assembly.GetExecutingAssembly().GetName().Version.Minor}";
 
-        public static readonly string SLIMDXDLL = "c_net20x86_Jun2010";
+
+		public static readonly string SLIMDXDLL = "c_net20x86_Jun2010";
 		public static readonly string D3DXDLL = "d3dx9_43.dll";     // June 2010
 																	//public static readonly string D3DXDLL = "d3dx9_42.dll";	// February 2010
 																	//public static readonly string D3DXDLL = "d3dx9_41.dll";	// March 2009
@@ -2341,7 +2342,7 @@ for (int i = 0; i < 3; i++) {
 				delay = "(" + Sound管理.GetSoundDelay() + "ms)";
 			}
             AssemblyName asmApp = Assembly.GetExecutingAssembly().GetName();
-            base.Window.Text = asmApp.Name + " - Build " + VERSION + " (" + Sound管理.GetCurrentSoundDeviceType() + delay + ")";
+			base.Window.Text = $"{asmApp.Name} - v{VERSION} ({Sound管理.GetCurrentSoundDeviceType()}{delay})";
 		}
 
 		private void t終了処理()
