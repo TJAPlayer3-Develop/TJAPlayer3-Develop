@@ -94,7 +94,6 @@ namespace TJAPlayer3
 			{
 				if( base.b初めての進行描画 )
 				{
-					this.t読込開始();
 					base.b初めての進行描画 = false;
 				}
 
