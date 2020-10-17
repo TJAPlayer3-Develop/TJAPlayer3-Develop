@@ -180,7 +180,7 @@ namespace TJAPlayer3
 							else
                             {
 								MessageBox.Show(
-									"曲の読み込みが終わっていない、または曲が1つもないため、\nゲームをスタートできません。\n\nCannot start the game without songs loaded.\nIf you haven't installed any song yet,\nplease install some into the same directory as this game.",
+									"曲の読み込みが終わっていない、または曲が1つもないため、\nゲームをスタートできません。\n\nThe songs are either not loaded yet or not existing.\nIf you haven't installed any song yet,\nplease install some into the same directory as this game.",
 									"TJAPlayer3-Develop",
 									MessageBoxButtons.OK,
 									MessageBoxIcon.Warning);
