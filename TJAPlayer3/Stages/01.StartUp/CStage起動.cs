@@ -189,8 +189,8 @@ namespace TJAPlayer3
 					else if (updateState == 1)
                     {
 						TJAPlayer3.act文字コンソール.tPrintCenter(640, 285, C文字コンソール.Eフォント種別.白, "UPDATE FOUND!");
-						TJAPlayer3.act文字コンソール.tPrintCenter(640, 335, C文字コンソール.Eフォント種別.白, "Download it on GitHub:");
-						TJAPlayer3.act文字コンソール.tPrintCenter(640, 360, C文字コンソール.Eフォント種別.白, "https://github.com/TJAPlayer3-Develop/TJAPlayer3-Develop/releases");
+						TJAPlayer3.act文字コンソール.tPrintCenter(640, 335, C文字コンソール.Eフォント種別.白, "Download it at here:");
+						TJAPlayer3.act文字コンソール.tPrintCenter(640, 360, C文字コンソール.Eフォント種別.白, "http://bit.ly/tjap3dev-update");
 					}
 					else
                     {
