@@ -147,11 +147,11 @@ namespace TJAPlayer3
 						TimeSpan.TicksPerDay * version.Build + // days since 1 January 2000
 						TimeSpan.TicksPerSecond * 2 * version.Revision)); // seconds since midnight, (multiply by 2 to get original)
 
-						var latestDateTime = DateTime.ParseExact(release.ReleaseName.Replace("Release on ", ""), "MM/dd/yyyy HH:mm:ss", null);
+						var latestDateTime = DateTime.ParseExact(release.ReleaseName.Replace("Release on ", ""), "MM/dd/yyyy HH:mm:ss", null).AddMinutes(-1.5);
 
-						buildDate = buildDateTime.ToString() + "  " + latestDateTime.ToString();
+						buildDate = buildDateTime.ToString() + "  " + latestDateTime.ToString() + "  " + latestDateTime.CompareTo(buildDateTime).ToString();
 
-                        if (latestDateTime.AddMinutes(-3).CompareTo(buildDateTime) > 0)
+                        if (latestDateTime.CompareTo(buildDateTime) > 0)
                         {
 							buildDate2 = "Update found! :)";
                         }
