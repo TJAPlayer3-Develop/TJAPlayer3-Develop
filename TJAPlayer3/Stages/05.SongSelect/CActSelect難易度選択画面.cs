@@ -188,7 +188,7 @@ namespace TJAPlayer3
                 for ( int i = 0; i < 13; i++ )
 					this.ct登場アニメ用[ i ] = new CCounter( -i * 10, 100, 3, TJAPlayer3.Timer );
 
-                //this.soundSelectAnnounce.tサウンドを再生する();
+                this.soundSelectAnnounce.tサウンドを再生する();
 
                 base.b初めての進行描画 = false;
 			}
