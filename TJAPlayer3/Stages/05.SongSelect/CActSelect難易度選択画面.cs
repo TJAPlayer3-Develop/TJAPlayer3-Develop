@@ -233,7 +233,7 @@ namespace TJAPlayer3
                         {
 
                         }
-                        else if (n現在の選択行 == -2 || TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape))
+                        else if (n現在の選択行 == -2)
                         {
                             this.b曲選択 = false;
                             this.bIsDifficltSelect = false;
@@ -242,6 +242,15 @@ namespace TJAPlayer3
                             TJAPlayer3.stage選曲.ctDiffSelect移動待ち.t停止();
                             TJAPlayer3.stage選曲.act曲リスト.ctBarOpen.t開始(0, 161, 2, TJAPlayer3.Timer);
                         }
+                    }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape))
+                    {
+                        this.b曲選択 = false;
+                        this.bIsDifficltSelect = false;
+                        TJAPlayer3.Skin.sound取消音.t再生する();
+                        TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 = 0;
+                        TJAPlayer3.stage選曲.ctDiffSelect移動待ち.t停止();
+                        TJAPlayer3.stage選曲.act曲リスト.ctBarOpen.t開始(0, 161, 2, TJAPlayer3.Timer);
                     }
                 }
 
