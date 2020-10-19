@@ -180,8 +180,6 @@ namespace TJAPlayer3
 			if( this.b活性化してない )
 				return 0;
 
-			this.soundSelectAnnounce.tサウンドを再生する();
-
 			#region [ 初めての進行描画 ]
 			//-----------------
 			if( this.b初めての進行描画 )
@@ -189,6 +187,9 @@ namespace TJAPlayer3
                 this.b裏譜面 = false;
                 for ( int i = 0; i < 13; i++ )
 					this.ct登場アニメ用[ i ] = new CCounter( -i * 10, 100, 3, TJAPlayer3.Timer );
+
+		this.soundSelectAnnounce.tサウンドを再生する();
+
                 base.b初めての進行描画 = false;
 			}
             //-----------------
@@ -232,19 +233,15 @@ namespace TJAPlayer3
                         {
 
                         }
-                        else if (n現在の選択行 == -2)
+                        else if (n現在の選択行 == -2 || TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape))
                         {
                             this.b曲選択 = false;
                             this.bIsDifficltSelect = false;
-                            TJAPlayer3.Skin.sound決定音.t再生する();
+                            TJAPlayer3.Skin.sound取消音.t再生する();
                             TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 = 0;
                             TJAPlayer3.stage選曲.ctDiffSelect移動待ち.t停止();
                             TJAPlayer3.stage選曲.act曲リスト.ctBarOpen.t開始(0, 161, 2, TJAPlayer3.Timer);
                         }
-                    }
-                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape))
-                    {
-                        this.bIsDifficltSelect = false;
                     }
                 }
 
