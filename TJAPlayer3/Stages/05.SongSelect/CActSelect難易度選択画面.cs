@@ -180,6 +180,8 @@ namespace TJAPlayer3
 			if( this.b活性化してない )
 				return 0;
 
+			this.soundSelectAnnounce.tサウンドを再生する();
+
 			#region [ 初めての進行描画 ]
 			//-----------------
 			if( this.b初めての進行描画 )
@@ -187,9 +189,6 @@ namespace TJAPlayer3
                 this.b裏譜面 = false;
                 for ( int i = 0; i < 13; i++ )
 					this.ct登場アニメ用[ i ] = new CCounter( -i * 10, 100, 3, TJAPlayer3.Timer );
-
-                this.soundSelectAnnounce.tサウンドを再生する();
-
                 base.b初めての進行描画 = false;
 			}
             //-----------------
