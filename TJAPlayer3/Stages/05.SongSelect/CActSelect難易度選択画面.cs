@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
@@ -89,12 +89,14 @@ namespace TJAPlayer3
                 {
                     if (this.n現在の選択行 == 3 && TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.nレベル[4] >= 0)
                     {
+                        this.sound裏切り替え音.tサウンドを再生する();
                         b裏譜面 = true;
                         this.n現在の選択行 = 4;
                         縁カウント = 0;
                     }
                     else if (this.n現在の選択行 == 4)
                     {
+                        this.sound裏切り替え音.tサウンドを再生する();
                         b裏譜面 = false;
                         this.n現在の選択行 = 3;
                         縁カウント = 0;
@@ -163,6 +165,7 @@ namespace TJAPlayer3
 				return;
 
             this.soundSelectAnnounce = TJAPlayer3.Sound管理.tサウンドを生成する( CSkin.Path( @"Sounds\DiffSelect.ogg" ), ESoundGroup.SoundEffect );
+            this.sound裏切り替え音 = TJAPlayer3.Sound管理.tサウンドを生成する( CSkin.Path( @"Sounds\Edit_Switch.ogg" ), ESoundGroup.SoundEffect );
 
 			base.OnManagedリソースの作成();
 		}
@@ -172,6 +175,7 @@ namespace TJAPlayer3
 				return;
 
             TJAPlayer3.t安全にDisposeする( ref this.soundSelectAnnounce );
+            TJAPlayer3.t安全にDisposeする( ref this.sound裏切り替え音 );
 
 			base.OnManagedリソースの解放();
 		}
@@ -231,7 +235,8 @@ namespace TJAPlayer3
                         }
                         else if (n現在の選択行 == -1)
                         {
-
+                            TJAPlayer3.Skin.sound曲決定音.t再生する();
+                            //TODO: Implement this feature.
                         }
                         else if (n現在の選択行 == -2)
                         {
@@ -433,6 +438,7 @@ namespace TJAPlayer3
 		private int n目標のスクロールカウンタ;
 
         private CSound soundSelectAnnounce;
+        private CSound sound裏切り替え音;
 		//-----------------
 		#endregion
 	}
