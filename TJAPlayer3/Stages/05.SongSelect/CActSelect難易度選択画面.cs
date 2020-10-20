@@ -174,8 +174,8 @@ namespace TJAPlayer3
 			if( this.b活性化してない )
 				return;
 
-            //TJAPlayer3.t安全にDisposeする( ref this.soundSelectAnnounce );
-            //TJAPlayer3.t安全にDisposeする( ref this.sound裏切り替え音 );
+            TJAPlayer3.t安全にDisposeする( ref this.soundSelectAnnounce );
+            TJAPlayer3.t安全にDisposeする( ref this.sound裏切り替え音 );
 
 			base.OnManagedリソースの解放();
 		}
