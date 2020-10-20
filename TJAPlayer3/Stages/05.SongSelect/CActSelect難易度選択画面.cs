@@ -174,8 +174,8 @@ namespace TJAPlayer3
 			if( this.b活性化してない )
 				return;
 
-            TJAPlayer3.t安全にDisposeする( ref this.soundSelectAnnounce );
-            TJAPlayer3.t安全にDisposeする( ref this.sound裏切り替え音 );
+            //TJAPlayer3.t安全にDisposeする( ref this.soundSelectAnnounce );
+            //TJAPlayer3.t安全にDisposeする( ref this.sound裏切り替え音 );
 
 			base.OnManagedリソースの解放();
 		}
@@ -235,7 +235,7 @@ namespace TJAPlayer3
                         }
                         else if (n現在の選択行 == -1)
                         {
-                            TJAPlayer3.Skin.sound曲決定音.t再生する();
+                            TJAPlayer3.Skin.sound決定音.t再生する();
                             //TODO: Implement this feature.
                         }
                         else if (n現在の選択行 == -2)
