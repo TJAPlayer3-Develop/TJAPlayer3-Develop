@@ -128,6 +128,7 @@ namespace TJAPlayer3
             this.b曲選択 = false;
             this.bIsDifficltSelect = false;
             this.b初めての進行描画 = true;
+            縁カウント = 0;
             TJAPlayer3.Skin.sound取消音.t再生する();
             TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 = 0;
             TJAPlayer3.stage選曲.ctDiffSelect移動待ち.t停止();
