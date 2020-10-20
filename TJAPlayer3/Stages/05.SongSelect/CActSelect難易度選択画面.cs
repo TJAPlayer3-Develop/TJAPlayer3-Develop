@@ -89,14 +89,14 @@ namespace TJAPlayer3
                 {
                     if (this.n現在の選択行 == 3 && TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.nレベル[4] >= 0)
                     {
-                        this.sound裏切り替え音.tサウンドを再生する();
+                        this.sound裏切り替え音.t再生を開始する();
                         b裏譜面 = true;
                         this.n現在の選択行 = 4;
                         縁カウント = 0;
                     }
                     else if (this.n現在の選択行 == 4)
                     {
-                        this.sound裏切り替え音.tサウンドを再生する();
+                        this.sound裏切り替え音.t再生を開始する();
                         b裏譜面 = false;
                         this.n現在の選択行 = 3;
                         縁カウント = 0;
@@ -192,7 +192,7 @@ namespace TJAPlayer3
                 for ( int i = 0; i < 13; i++ )
 					this.ct登場アニメ用[ i ] = new CCounter( -i * 10, 100, 3, TJAPlayer3.Timer );
 
-		this.soundSelectAnnounce.tサウンドを再生する();
+		this.soundSelectAnnounce.t再生を開始する();
 
                 base.b初めての進行描画 = false;
 			}
