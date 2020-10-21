@@ -38,6 +38,9 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <LargeAddressAware>true</LargeAddressAware>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -324,14 +327,28 @@
   <PropertyGroup>
     <PostBuildEvent>
 move /y "$(TargetDir)FDK.dll" "$(SolutionDir)Test\dll\"
+
 move /y "$(TargetDir)FDK.pdb" "$(SolutionDir)Test\dll\"
+
 move /y "$(TargetDir)Bass.Net.dll" "$(SolutionDir)Test\dll\"
+
 move /y "$(TargetDir)DirectShowLib-2005.dll" "$(SolutionDir)Test\dll\"
+
 move /y "$(TargetDir)SlimDX.dll" "$(SolutionDir)Test\dll\"
+
 move /y "$(TargetDir)CSharpTest.Net.Collections.*" "$(SolutionDir)Test\dll\"
+
 copy /y "$(SolutionDir)Readme.txt" "$(SolutionDir)Test\"
+
 call "$(DevEnvDir)..\Tools\VsDevCmd.bat"
-"$(SolutionDir)editbin\editbin.exe" /LARGEADDRESSAWARE "$(SolutionDir)Test\TJAPlayer3-Develop.exe"</PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
   <Import Project="packages\SharpDX.2.6.3\build\SharpDX.targets" Condition="Exists('packages\SharpDX.2.6.3\build\SharpDX.targets')" />
+  <Import Project="..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets" Condition="Exists('..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets'))" />
+  </Target>
 </Project>
