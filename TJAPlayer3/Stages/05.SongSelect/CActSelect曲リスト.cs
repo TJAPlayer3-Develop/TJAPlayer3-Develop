@@ -1634,14 +1634,8 @@ namespace TJAPlayer3
 						TJAPlayer3.Tx.SongSelect_Branch.Opacity = (ctBarOpen.n現在の値 - 100) * 5.1f;
 						for (int i = 0; i < 5; i++)
 						{
-							if(i < 5)
-                            {
-								if (TJAPlayer3.Tx.SongSelect_Branch != null && TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.b譜面分岐[i])
-									TJAPlayer3.Tx.SongSelect_Branch.t2D中心基準描画(TJAPlayer3.app.Device, 447 + (3 * 122) - 31, TJAPlayer3.Skin.SongSelect_Overall_Y + 273);
-							}
-							else 
-								if (TJAPlayer3.Tx.SongSelect_Branch != null && TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.b譜面分岐[i])
-									TJAPlayer3.Tx.SongSelect_Branch.t2D中心基準描画(TJAPlayer3.app.Device, 447 + (3 * 122) - 31, TJAPlayer3.Skin.SongSelect_Overall_Y + 273);
+						    if (TJAPlayer3.Tx.SongSelect_Branch != null && TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.b譜面分岐[i])
+						        TJAPlayer3.Tx.SongSelect_Branch.t2D中心基準描画(TJAPlayer3.app.Device, 447 + (i * 122) - 31, TJAPlayer3.Skin.SongSelect_Overall_Y + 273);
 						}
 
 					}
