@@ -46,7 +46,10 @@ namespace TJAPlayer3
                 {
                     if (TJAPlayer3.stage演奏ドラム画面.actGauge.db現在のゲージ値[i] >= 80)
                     {
-                        this.Mode[i] = EndMode.StageCleared;
+                        if (TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Miss == 0)
+                            this.Mode[i] = EndMode.StageFullCombo;
+                        else
+                            this.Mode[i] = EndMode.StageCleared;
                     }
                     else
                     {
