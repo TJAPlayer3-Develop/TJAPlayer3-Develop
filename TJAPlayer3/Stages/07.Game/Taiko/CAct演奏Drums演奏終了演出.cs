@@ -100,8 +100,9 @@ namespace TJAPlayer3
             base.OnManagedリソースの解放();
         }
 
-        public void showEndEffect_Clear()
+        public void showEndEffect_Clear(int i)
         {
+                                int[] y = new int[] { 210, 386 };
                                 #region[ 文字 ]
                                 //登場アニメは20フレーム。うち最初の5フレームは半透過状態。
                                 float[] f文字拡大率 = new float[] { 1.04f, 1.11f, 1.15f, 1.19f, 1.23f, 1.26f, 1.30f, 1.31f, 1.32f, 1.32f, 1.32f, 1.30f, 1.30f, 1.26f, 1.25f, 1.19f, 1.15f, 1.11f, 1.05f, 1.0f };
@@ -281,7 +282,7 @@ namespace TJAPlayer3
                             }
                             break;
                         case EndMode.StageCleared:
-                            int[] y = new int[] { 210, 386 };
+                            //int[] y = new int[] { 210, 386 };
                             //this.ct進行メイン.n現在の値 = 18;
                             if (this.soundClear != null && !this.b再生済み)
                             {
@@ -290,7 +291,7 @@ namespace TJAPlayer3
                             }
                             if (TJAPlayer3.Tx.End_Clear_Text != null)
                             {
-                                this.showEndEffect_Clear();
+                                this.showEndEffect_Clear(i);
                             }
                             break;
                         case EndMode.StageFullCombo:
@@ -302,7 +303,7 @@ namespace TJAPlayer3
                             }
                             if (TJAPlayer3.Tx.End_Clear_Text != null)
                             {
-                                this.showEndEffect_Clear();
+                                this.showEndEffect_Clear(i);
                             }
                             break;
                         case EndMode.StageDonderFullCombo:
@@ -314,7 +315,7 @@ namespace TJAPlayer3
                             }
                             if (TJAPlayer3.Tx.End_Clear_Text != null)
                             {
-                                this.showEndEffect_Clear();
+                                this.showEndEffect_Clear(i);
                             }
                             break;
                         default:
