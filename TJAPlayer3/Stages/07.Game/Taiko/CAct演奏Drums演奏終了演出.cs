@@ -73,6 +73,8 @@ namespace TJAPlayer3
         {
             this.b再生済み = false;
             this.soundClear = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Clear.ogg"), ESoundGroup.SoundEffect);
+            this.soundFailed = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Failed.ogg"), ESoundGroup.SoundEffect);
+            this.soundFullCombo = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Full combo.ogg"), ESoundGroup.SoundEffect);
             base.OnManagedリソースの作成();
         }
 
@@ -80,6 +82,10 @@ namespace TJAPlayer3
         {
             if (this.soundClear != null)
                 this.soundClear.t解放する();
+            if (this.soundFailed != null)
+                this.soundFailed.t解放する();
+            if (this.soundFullCombo != null)
+                this.soundFullCombo.t解放する();
             base.OnManagedリソースの解放();
         }
 
@@ -100,18 +106,20 @@ namespace TJAPlayer3
                     switch (this.Mode[i])
                     {
                         case EndMode.StageFailed:
+                            //this.ct進行メイン.n現在の値 = 18;
+                            if (this.soundFailed != null && !this.b再生済み)
+                            {
+                                this.soundFailed.t再生を開始する();
+                                this.b再生済み = true;
+                            }
                             break;
                         case EndMode.StageCleared:
                             int[] y = new int[] { 210, 386 };
-                            for (int j = 0; j < TJAPlayer3.ConfigIni.nPlayerCount; j++)
+                            //this.ct進行メイン.n現在の値 = 18;
+                            if (this.soundClear != null && !this.b再生済み)
                             {
-
-                                //this.ct進行メイン.n現在の値 = 18;
-                                if (this.soundClear != null && !this.b再生済み)
-                                {
-                                    this.soundClear.t再生を開始する();
-                                    this.b再生済み = true;
-                                }
+                                this.soundClear.t再生を開始する();
+                                this.b再生済み = true;
                             }
                             if (TJAPlayer3.Tx.End_Clear_Text != null)
                             {
@@ -277,6 +285,12 @@ namespace TJAPlayer3
                             }
                             break;
                         case EndMode.StageFullCombo:
+                            //this.ct進行メイン.n現在の値 = 18;
+                            if (this.soundFullCombo != null && !this.b再生済み)
+                            {
+                                this.soundFullCombo.t再生を開始する();
+                                this.b再生済み = true;
+                            }
                             break;
                         default:
                             break;
@@ -305,6 +319,8 @@ namespace TJAPlayer3
         //CTexture tx文字;
         //CTexture tx文字マスク;
         CSound soundClear;
+        CSound soundFailed;
+        CSound soundFullCombo;
         EndMode[] Mode;
         enum EndMode
         {
