@@ -47,7 +47,12 @@ namespace TJAPlayer3
                     if (TJAPlayer3.stage演奏ドラム画面.actGauge.db現在のゲージ値[i] >= 80)
                     {
                         if (TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Miss == 0)
-                            this.Mode[i] = EndMode.StageFullCombo;
+                        {
+                            if (TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Great == 0)
+                                this.Mode[i] = EndMode.StageDonderFullCombo;
+                            else
+                                this.Mode[i] = EndMode.StageFullCombo;
+                        }
                         else
                             this.Mode[i] = EndMode.StageCleared;
                     }
@@ -78,6 +83,7 @@ namespace TJAPlayer3
             this.soundClear = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Clear.ogg"), ESoundGroup.SoundEffect);
             this.soundFailed = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Failed.ogg"), ESoundGroup.SoundEffect);
             this.soundFullCombo = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Full combo.ogg"), ESoundGroup.SoundEffect);
+            this.soundDonderFullCombo = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Donder Full Combo.ogg"), ESoundGroup.SoundEffect);
             base.OnManagedリソースの作成();
         }
 
@@ -89,6 +95,8 @@ namespace TJAPlayer3
                 this.soundFailed.t解放する();
             if (this.soundFullCombo != null)
                 this.soundFullCombo.t解放する();
+            if (this.soundDonderFullCombo != null)
+                this.soundDonderFullCombo.t解放する();
             base.OnManagedリソースの解放();
         }
 
@@ -295,6 +303,14 @@ namespace TJAPlayer3
                                 this.b再生済み = true;
                             }
                             break;
+                        case EndMode.StageDonderFullCombo:
+                            //this.ct進行メイン.n現在の値 = 18;
+                            if (this.soundDonderFullCombo != null && !this.b再生済み)
+                            {
+                                this.soundDonderFullCombo.t再生を開始する();
+                                this.b再生済み = true;
+                            }
+                            break;
                         default:
                             break;
                     }
@@ -324,12 +340,14 @@ namespace TJAPlayer3
         CSound soundClear;
         CSound soundFailed;
         CSound soundFullCombo;
+        CSound soundDonderFullCombo
         EndMode[] Mode;
         enum EndMode
         {
             StageFailed,
             StageCleared,
-            StageFullCombo
+            StageFullCombo,
+            StageDonderFullCombo
         }
         //-----------------
         #endregion
