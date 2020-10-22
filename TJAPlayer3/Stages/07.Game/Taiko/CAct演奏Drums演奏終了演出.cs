@@ -340,7 +340,7 @@ namespace TJAPlayer3
         CSound soundClear;
         CSound soundFailed;
         CSound soundFullCombo;
-        CSound soundDonderFullCombo
+        CSound soundDonderFullCombo;
         EndMode[] Mode;
         enum EndMode
         {
