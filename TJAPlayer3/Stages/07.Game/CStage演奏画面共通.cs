@@ -1660,7 +1660,7 @@ namespace TJAPlayer3
 					#region[ コンボ音声 ]
 					if (pChip.nチャンネル番号 < 0x15 || (pChip.nチャンネル番号 >= 0x1A))
 					{
-						if (this.actCombo.n現在のコンボ数[nPlayer] % 100 == 0 && this.actCombo.n現在のコンボ数[nPlayer] > 0)
+						if (this.actCombo.n現在のコンボ数[nPlayer] == 50 || this.actCombo.n現在のコンボ数[nPlayer] % 100 == 0 && this.actCombo.n現在のコンボ数[nPlayer] > 0)
 						{
 							this.actComboBalloon.Start(this.actCombo.n現在のコンボ数[nPlayer], nPlayer);
 						}
