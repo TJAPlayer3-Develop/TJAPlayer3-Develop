@@ -94,9 +94,9 @@ namespace TJAPlayer3
                     {
                         this.txGENRE = TJAPlayer3.Tx.TxCGen("Anime");
                     }
-                    else if(genreName.Equals( "J-POP" ) )
+                    else if(genreName.Equals( "ポップス" ) )
                     {
-                        this.txGENRE = TJAPlayer3.Tx.TxCGen("J-POP");
+                        this.txGENRE = TJAPlayer3.Tx.TxCGen("Pops");
                     }
                     else if(genreName.Equals( "ゲームミュージック" ) )
                     {
