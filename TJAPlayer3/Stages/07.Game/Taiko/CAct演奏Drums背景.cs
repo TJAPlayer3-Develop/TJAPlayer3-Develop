@@ -277,6 +277,10 @@ namespace TJAPlayer3
                 {
                     TJAPlayer3.Tx.Background_Down.t2D描画(TJAPlayer3.app.Device, 0, 360);
                 }
+                if (TJAPlayer3.Tx.Background_Down_2nd != null)
+                {
+                    TJAPlayer3.Tx.Background_Down_2nd.t2D描画(TJAPlayer3.app.Device, 0, 360);
+                }
                 if (TJAPlayer3.stage演奏ドラム画面.bIsAlreadyCleared[0])
                 {
                     if (TJAPlayer3.Tx.Background_Down_Clear != null && TJAPlayer3.Tx.Background_Down_Scroll != null && ct下背景スクロール用タイマー1 != null)
