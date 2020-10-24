@@ -365,7 +365,7 @@ namespace TJAPlayer3
         private CCounter ct下背景スクロール用タイマー1; //下背景パーツ1のX方向スクロール用
         private CCounter ct上背景FIFOタイマー;
         private CCounter[] ct上背景クリアインタイマー;
-	private CCounter ct桜X移動用タイマー1;
+        private CCounter ct桜X移動用タイマー1;
         private CCounter ct桜Y移動用タイマー1;
         private CCounter ct桜X移動用タイマー2;
         private CCounter ct桜Y移動用タイマー2;
