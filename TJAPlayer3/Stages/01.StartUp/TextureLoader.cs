@@ -349,6 +349,7 @@ namespace TJAPlayer3
             Background_Down_2nd = TxC(GAME + BACKGROUND + @"0\" + @"Down_2nd.png");
             Background_Down_Clear = TxC(GAME + BACKGROUND + @"0\" + @"Down_Clear.png");
             Background_Down_Scroll = TxC(GAME + BACKGROUND + @"0\" + @"Down_Scroll.png");
+            Background_Down_Sakura = TxC(GAME + BACKGROUND + @"0\" + @"Sakura.png");
 
             #endregion
             #region 太鼓
@@ -759,6 +760,7 @@ namespace TJAPlayer3
             TJAPlayer3.tテクスチャの解放(ref Background_Down_2nd);
             TJAPlayer3.tテクスチャの解放(ref Background_Down_Clear);
             TJAPlayer3.tテクスチャの解放(ref Background_Down_Scroll);
+            TJAPlayer3.tテクスチャの解放(ref Background_Down_Sakura);
 
             #endregion
             #region 太鼓
@@ -1039,7 +1041,8 @@ namespace TJAPlayer3
             Background_Down,
             Background_Down_2nd,
             Background_Down_Clear,
-            Background_Down_Scroll;
+            Background_Down_Scroll,
+            Background_Down_Sakura;
         public CTexture[] Background_Up_1st,
                           Background_Up_2nd,
                           Background_Up_3rd;
