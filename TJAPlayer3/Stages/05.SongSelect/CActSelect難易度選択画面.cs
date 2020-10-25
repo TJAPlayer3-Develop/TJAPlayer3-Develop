@@ -280,11 +280,6 @@ namespace TJAPlayer3
                             C共通.bToggleBoolian(ref TJAPlayer3.ConfigIni.b太鼓パートAutoPlay2P);
                         }
                     }
-                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F5))
-                    {
-                        TJAPlayer3.Skin.sound変更音.t再生する();
-                        C共通.bToggleBoolian( ref TJAPlayer3.ConfigIni.bSuperHard );
-                    }
                 }
 
                 TJAPlayer3.Tx.Diffculty_Back[TJAPlayer3.stage選曲.act曲リスト.nStrジャンルtoNum(TJAPlayer3.stage選曲.r現在選択中の曲.strジャンル)].Opacity = TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 935;

@@ -415,9 +415,12 @@ namespace TJAPlayer3
                             }
                             else
                             {
+                                ctDonchanSelect.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Select.Length - 1, 1000 / 45, TJAPlayer3.Timer);
+                                this.act曲リスト.bBoxOpenAnime = true;
+                                this.act曲リスト.bBoxClose = true;
+                                this.act曲リスト.bBoxOpen = false;
                                 TJAPlayer3.Skin.sound取消音.t再生する();
-                                bool bNeedChangeSkin = this.act曲リスト.tBOXを出る();
-                                this.actPresound.tサウンドの停止MT();
+                                this.act曲リスト.ctBoxOpen.t開始(0, 1000, 1, TJAPlayer3.Timer);
                             }
                         #endregion
                         #region [ Shift-F1: CONFIG画面 ]
@@ -450,17 +453,25 @@ namespace TJAPlayer3
                             }
                         }
                         #endregion
-                        #region [ F5 スーパーハード ]
+                        #region [ F5 曲データ一覧の再読み込み ]
                         if ( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.F5 ) )
-						{
-							TJAPlayer3.Skin.sound変更音.t再生する();
-                            C共通.bToggleBoolian( ref TJAPlayer3.ConfigIni.bSuperHard );
-						}
-						#endregion
-						#region [ F6 SCROLL ]
-						if ( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.F6 ) )
-						{
-							TJAPlayer3.Skin.sound変更音.t再生する();
+                        {
+                            TJAPlayer3.Skin.sound決定音.t再生する();
+                            if ( TJAPlayer3.EnumSongs.IsEnumerating )
+                            {
+                                TJAPlayer3.EnumSongs.Abort();
+                                TJAPlayer3.actEnumSongs.On非活性化();
+                            }
+                            TJAPlayer3.EnumSongs.StartEnumFromDisk();
+                            TJAPlayer3.EnumSongs.ChangeEnumeratePriority( ThreadPriority.Normal );
+                            TJAPlayer3.actEnumSongs.bコマンドでの曲データ取得 = true;
+                            TJAPlayer3.actEnumSongs.On活性化();
+                        }
+                        #endregion
+                        #region [ F6 SCROLL ]
+                        if ( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.F6 ) )
+                        {
+                            TJAPlayer3.Skin.sound変更音.t再生する();
                             TJAPlayer3.ConfigIni.bスクロールモードを上書き = true;
                             switch( (int)TJAPlayer3.ConfigIni.eScrollMode )
                             {
@@ -475,21 +486,13 @@ namespace TJAPlayer3
                                     TJAPlayer3.ConfigIni.bスクロールモードを上書き = false;
                                     break;
                             }
-						}
-						#endregion
-                        #region [ F7 曲データ一覧の再読み込み ]
+                        }
+                        #endregion
+                        #region [ F7 スーパーハード ]
                         if ( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.F7 ) )
                         {
-                            TJAPlayer3.Skin.sound取消音.t再生する();
-                            if ( TJAPlayer3.EnumSongs.IsEnumerating )
-                            {
-                                TJAPlayer3.EnumSongs.Abort();
-                                TJAPlayer3.actEnumSongs.On非活性化();
-                            }
-                            TJAPlayer3.EnumSongs.StartEnumFromDisk();
-                            TJAPlayer3.EnumSongs.ChangeEnumeratePriority( ThreadPriority.Normal );
-                            TJAPlayer3.actEnumSongs.bコマンドでの曲データ取得 = true;
-                            TJAPlayer3.actEnumSongs.On活性化();
+                            TJAPlayer3.Skin.sound変更音.t再生する();
+                            C共通.bToggleBoolian( ref TJAPlayer3.ConfigIni.bSuperHard );
                         }
                         #endregion
 						if (this.act曲リスト.r現在選択中の曲 != null)
