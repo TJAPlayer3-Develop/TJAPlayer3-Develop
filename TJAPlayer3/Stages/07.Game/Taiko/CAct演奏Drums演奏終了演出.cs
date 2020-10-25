@@ -49,7 +49,7 @@ namespace TJAPlayer3
                         if (TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Miss == 0)
                         {
                             if (TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Great == 0)
-                                this.Mode[i] = EndMode.StageDonderFullCombo;
+                                this.Mode[i] = EndMode.StageDondaFullCombo;
                             else
                                 this.Mode[i] = EndMode.StageFullCombo;
                         }
@@ -83,7 +83,7 @@ namespace TJAPlayer3
             this.soundClear = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Clear.ogg"), ESoundGroup.SoundEffect);
             this.soundFailed = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Failed.ogg"), ESoundGroup.SoundEffect);
             this.soundFullCombo = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Full combo.ogg"), ESoundGroup.SoundEffect);
-            this.soundDonderFullCombo = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Donder Full Combo.ogg"), ESoundGroup.SoundEffect);
+            this.soundDondaFullCombo = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Donda Full Combo.ogg"), ESoundGroup.SoundEffect);
             base.OnManagedリソースの作成();
         }
 
@@ -95,8 +95,8 @@ namespace TJAPlayer3
                 this.soundFailed.t解放する();
             if (this.soundFullCombo != null)
                 this.soundFullCombo.t解放する();
-            if (this.soundDonderFullCombo != null)
-                this.soundDonderFullCombo.t解放する();
+            if (this.soundDondaFullCombo != null)
+                this.soundDondaFullCombo.t解放する();
             base.OnManagedリソースの解放();
         }
 
@@ -282,7 +282,6 @@ namespace TJAPlayer3
                             }
                             break;
                         case EndMode.StageCleared:
-                            //int[] y = new int[] { 210, 386 };
                             //this.ct進行メイン.n現在の値 = 18;
                             if (this.soundClear != null && !this.b再生済み)
                             {
@@ -306,11 +305,11 @@ namespace TJAPlayer3
                                 this.showEndEffect_Clear(i);
                             }
                             break;
-                        case EndMode.StageDonderFullCombo:
+                        case EndMode.StageDondaFullCombo:
                             //this.ct進行メイン.n現在の値 = 18;
-                            if (this.soundDonderFullCombo != null && !this.b再生済み)
+                            if (this.soundDondaFullCombo != null && !this.b再生済み)
                             {
-                                this.soundDonderFullCombo.t再生を開始する();
+                                this.soundDondaFullCombo.t再生を開始する();
                                 this.b再生済み = true;
                             }
                             if (TJAPlayer3.Tx.End_Clear_Text != null)
@@ -347,14 +346,14 @@ namespace TJAPlayer3
         CSound soundClear;
         CSound soundFailed;
         CSound soundFullCombo;
-        CSound soundDonderFullCombo;
+        CSound soundDondaFullCombo;
         EndMode[] Mode;
         enum EndMode
         {
             StageFailed,
             StageCleared,
             StageFullCombo,
-            StageDonderFullCombo
+            StageDondaFullCombo
         }
         //-----------------
         #endregion
