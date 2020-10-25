@@ -476,7 +476,20 @@ namespace TJAPlayer3
                             }
 						}
 						#endregion
-
+                        #region [ F7 曲データ一覧の再読み込み ]
+                        if ( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.F7 ) )
+                        {
+                            if ( TJAPlayer3.EnumSongs.IsEnumerating )
+                            {
+                                TJAPlayer3.EnumSongs.Abort();
+                                TJAPlayer3.actEnumSongs.On非活性化();
+                            }
+                            TJAPlayer3.EnumSongs.StartEnumFromDisk();
+                            TJAPlayer3.EnumSongs.ChangeEnumeratePriority( ThreadPriority.Normal );
+                            TJAPlayer3.actEnumSongs.bコマンドでの曲データ取得 = true;
+                            TJAPlayer3.actEnumSongs.On活性化();
+                        }
+                        #endregion
 						if (this.act曲リスト.r現在選択中の曲 != null)
 						{
 							#region [ Decide ]
