@@ -746,7 +746,7 @@ namespace TJAPlayer3
         public CActSelect難易度選択画面 act難易度選択画面;
 
 		public CActSortSongs actSortSongs;
-		private CActSelectQuickConfig actQuickConfig;
+		public CActSelectQuickConfig actQuickConfig;
 
                 private int nGenreBack;
 		public bool bBGM再生済み;
