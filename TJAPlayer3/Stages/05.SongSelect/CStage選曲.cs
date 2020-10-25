@@ -144,7 +144,6 @@ namespace TJAPlayer3
                     this.actFIFO.tフェードアウト開始();
                     base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
                     TJAPlayer3.Skin.sound取消音.t再生する();
-                    return 0;
                 }
 
                 public void showQuickConfig()
