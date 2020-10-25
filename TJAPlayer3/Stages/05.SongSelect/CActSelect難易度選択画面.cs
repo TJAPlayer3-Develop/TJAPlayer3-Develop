@@ -259,11 +259,14 @@ namespace TJAPlayer3
                     {
                         this.t難易度選択画面を閉じる();
                     }
-                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F2))
+                    else if ( ( TJAPlayer3.Input管理.Keyboard.bキーが押されている( (int) SlimDX.DirectInput.Key.RightShift ) || TJAPlayer3.Input管理.Keyboard.bキーが押されている( (int) SlimDX.DirectInput.Key.LeftShift ) ) && TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.F1 ) )
                     {
-                        TJAPlayer3.Skin.sound変更音.t再生する();
-                        TJAPlayer3.stage選曲.actQuickConfig.tActivatePopupMenu( E楽器パート.DRUMS );
+                        TJAPlayer3.stage選曲.enterConfigStage();
                     }
+                    /*else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F2))
+                    {
+                        TJAPlayer3.stage選曲.showQuickConfig();
+                    }*/
                     else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F3))
                     {
                         TJAPlayer3.Skin.sound変更音.t再生する();
