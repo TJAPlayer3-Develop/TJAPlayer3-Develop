@@ -575,10 +575,8 @@ namespace TJAPlayer3
             TJAPlayer3.tテクスチャの解放(ref Enum_Song);
             TJAPlayer3.tテクスチャの解放(ref Scanning_Loudness);
             TJAPlayer3.tテクスチャの解放(ref Overlay);
-            for (int i = 0; i < 2; i++)
-            {
-                TJAPlayer3.tテクスチャの解放(ref NamePlate[i]);
-            }
+            TJAPlayer3.tテクスチャの解放(ref NamePlate[0]);
+            TJAPlayer3.tテクスチャの解放(ref NamePlate[1]);
 
             #endregion
             #region 1_タイトル画面
