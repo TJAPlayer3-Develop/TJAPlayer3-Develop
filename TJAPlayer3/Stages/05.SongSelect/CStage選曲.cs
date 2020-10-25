@@ -137,6 +137,22 @@ namespace TJAPlayer3
 			#endregion
 		}
 
+                public void enterConfigStage()
+                {
+                    this.actPresound.tサウンドの停止MT();
+                    this.eフェードアウト完了時の戻り値 = E戻り値.コンフィグ呼び出し;
+                    this.actFIFO.tフェードアウト開始();
+                    base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
+                    TJAPlayer3.Skin.sound取消音.t再生する();
+                    return 0;
+                }
+
+                public void showQuickConfig()
+                {
+                    TJAPlayer3.Skin.sound変更音.t再生する();
+                    this.actQuickConfig.tActivatePopupMenu( E楽器パート.DRUMS );
+                }
+
 		// CStage 実装
 
 		/// <summary>
@@ -408,19 +424,13 @@ namespace TJAPlayer3
                         if ( ( TJAPlayer3.Input管理.Keyboard.bキーが押されている( (int) SlimDX.DirectInput.Key.RightShift ) || TJAPlayer3.Input管理.Keyboard.bキーが押されている( (int) SlimDX.DirectInput.Key.LeftShift ) ) &&
 							TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.F1 ) )
 						{	// [SHIFT] + [F1] CONFIG
-							this.actPresound.tサウンドの停止MT();
-							this.eフェードアウト完了時の戻り値 = E戻り値.コンフィグ呼び出し;	// #24525 2011.3.16 yyagi: [SHIFT]-[F1]でCONFIG呼び出し
-							this.actFIFO.tフェードアウト開始();
-							base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
-							TJAPlayer3.Skin.sound取消音.t再生する();
-							return 0;
+                                                    this.enterConfigStage();
 						}
 						#endregion
 						#region [ F2 簡易オプション ]
 						if ( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.F2 ) )
 						{
-                            TJAPlayer3.Skin.sound変更音.t再生する();
-                            this.actQuickConfig.tActivatePopupMenu( E楽器パート.DRUMS );
+                                                    this.showQuickConfig();
 						}
 						#endregion
 						#region [ F3 1PオートON/OFF ]
@@ -746,7 +756,7 @@ namespace TJAPlayer3
         public CActSelect難易度選択画面 act難易度選択画面;
 
 		public CActSortSongs actSortSongs;
-		public CActSelectQuickConfig actQuickConfig;
+		private CActSelectQuickConfig actQuickConfig;
 
                 private int nGenreBack;
 		public bool bBGM再生済み;
