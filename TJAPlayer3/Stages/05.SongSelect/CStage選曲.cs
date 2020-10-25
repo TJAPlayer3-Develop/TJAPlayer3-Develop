@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using FDK;
 
 namespace TJAPlayer3
@@ -479,6 +480,7 @@ namespace TJAPlayer3
                         #region [ F7 曲データ一覧の再読み込み ]
                         if ( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.F7 ) )
                         {
+                            TJAPlayer3.Skin.sound取消音.t再生する();
                             if ( TJAPlayer3.EnumSongs.IsEnumerating )
                             {
                                 TJAPlayer3.EnumSongs.Abort();
