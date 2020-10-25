@@ -305,7 +305,7 @@ namespace TJAPlayer3
             #region 1P-下背景
             if (!TJAPlayer3.stage演奏ドラム画面.bDoublePlay)
             {
-                if (TJAPlayer3.Tx.Background_Down != null)
+                if (TJAPlayer3.Tx.Background_Down != null && TJAPlayer3.Tx.Background_Down_2nd == null)
                 {
                     TJAPlayer3.Tx.Background_Down.t2D描画(TJAPlayer3.app.Device, 0, 360);
 
@@ -324,7 +324,7 @@ namespace TJAPlayer3
                     }
                     #endregion
                 }
-                if (TJAPlayer3.Tx.Background_Down_2nd != null)
+                else if (TJAPlayer3.Tx.Background_Down_2nd != null)
                 {
                     TJAPlayer3.Tx.Background_Down_2nd.t2D描画(TJAPlayer3.app.Device, 0, 360);
                 }
