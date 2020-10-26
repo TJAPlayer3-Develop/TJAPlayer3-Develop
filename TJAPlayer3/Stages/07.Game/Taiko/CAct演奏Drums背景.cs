@@ -92,6 +92,8 @@ namespace TJAPlayer3
                 this.ct桜Y移動用タイマー3 = new CCounter(0, 500, 10, TJAPlayer3.Timer);
             }
 
+            this.Background_Down_Index = TJAPlayer3.Random.Next(TJAPlayer3.Skin.Game_Background_Down_Ptn);
+
             this.ct上背景FIFOタイマー = new CCounter();
             base.OnManagedリソースの作成();
         }
@@ -307,11 +309,10 @@ namespace TJAPlayer3
             {
                 if (TJAPlayer3.Skin.Game_Background_Down_Ptn != 0)
                 {
-                    int Background_Down_Index = TJAPlayer3.Random.Next(TJAPlayer3.Skin.Game_Background_Down_Ptn);
-                    TJAPlayer3.Tx.Background_Down[Background_Down_Index].t2D描画(TJAPlayer3.app.Device, 0, 360);
+                    TJAPlayer3.Tx.Background_Down[this.Background_Down_Index].t2D描画(TJAPlayer3.app.Device, 0, 360);
 
 		    #region 桜モーション
-                    if (TJAPlayer3.Tx.Background_Down_Sakura != null && Background_Down_Index == 0)
+                    if (TJAPlayer3.Tx.Background_Down_Sakura != null && this.Background_Down_Index == 0)
                     {
                         TJAPlayer3.Tx.Background_Down_Sakura.t2D描画(TJAPlayer3.app.Device, 900 - this.ct桜X移動用タイマー1.n現在の値, 400 + this.ct桜Y移動用タイマー1.n現在の値);
                         TJAPlayer3.Tx.Background_Down_Sakura.t2D描画(TJAPlayer3.app.Device, 100 + this.ct桜X移動用タイマー1.n現在の値, 350 + this.ct桜Y移動用タイマー1.n現在の値);
@@ -373,6 +374,7 @@ namespace TJAPlayer3
         //private CTexture tx下背景メイン;
         //private CTexture tx下背景クリアメイン;
         //private CTexture tx下背景クリアサブ1;
+	private int Background_Down_Index;
         private EFIFOモード eFadeMode;
         //-----------------
         #endregion
