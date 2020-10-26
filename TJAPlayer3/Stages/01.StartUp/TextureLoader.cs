@@ -347,7 +347,7 @@ namespace TJAPlayer3
 
             TJAPlayer3.Skin.Game_Background_Down_Ptn = TJAPlayer3.t連番画像の枚数を数える(CSkin.Path(BASE + GAME + BACKGROUND + @"Down\"));
             Background_Down = new CTexture[TJAPlayer3.Skin.Game_Background_Down_Ptn];
-            for(int i = 0; i < TJAPlayer3.Skin.Game_Background_Down_Ptn; i++) Background_Down[i] = TxC(GAME + BACKGROUND + i.ToString() + ".png");
+            for(int i = 0; i < TJAPlayer3.Skin.Game_Background_Down_Ptn; i++) Background_Down[i] = TxC(GAME + BACKGROUND + @"Down\" + i.ToString() + ".png");
 
             Background_Down_Clear = TxC(GAME + BACKGROUND + @"0\" + @"Down_Clear.png");
             Background_Down_Scroll = TxC(GAME + BACKGROUND + @"0\" + @"Down_Scroll.png");
