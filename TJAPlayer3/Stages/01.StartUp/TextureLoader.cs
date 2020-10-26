@@ -345,8 +345,10 @@ namespace TJAPlayer3
             Background_Up_3rd[1] = TxC(GAME + BACKGROUND + @"0\" + @"2P_Up_3rd.png");
             Background_Up_3rd[2] = TxC(GAME + BACKGROUND + @"0\" + @"Clear_Up_3rd.png");
 
-            Background_Down = TxC(GAME + BACKGROUND + @"0\" + @"Down.png");
-            Background_Down_2nd = TxC(GAME + BACKGROUND + @"0\" + @"Down_2nd.png");
+            TJAPlayer3.Skin.Game_Background_Down_Ptn = TJAPlayer3.t連番画像の枚数を数える(CSkin.Path(BASE + GAME + BACKGROUND + @"Down\"));
+            Background_Down = new CTexture[TJAPlayer3.Skin.Game_Background_Down_Ptn];
+            for(int i = 0; i < TJAPlayer3.Skin.Game_Background_Down_Ptn; i++) Background_Down[i] = TxC(GAME + BACKGROUND + @"Down\" + i.ToString() + ".png");
+
             Background_Down_Clear = TxC(GAME + BACKGROUND + @"0\" + @"Down_Clear.png");
             Background_Down_Scroll = TxC(GAME + BACKGROUND + @"0\" + @"Down_Scroll.png");
             Background_Down_Sakura = TxC(GAME + BACKGROUND + @"0\" + @"Sakura.png");
@@ -754,8 +756,7 @@ namespace TJAPlayer3
             TJAPlayer3.tテクスチャの解放(ref Background_Up_3rd[0]);
             TJAPlayer3.tテクスチャの解放(ref Background_Up_3rd[1]);
             TJAPlayer3.tテクスチャの解放(ref Background_Up_3rd[2]);
-            TJAPlayer3.tテクスチャの解放(ref Background_Down);
-            TJAPlayer3.tテクスチャの解放(ref Background_Down_2nd);
+            for(int i = 0; i < TJAPlayer3.Skin.Game_Background_Down_Ptn; i++) TJAPlayer3.tテクスチャの解放(ref Background_Down[i]);
             TJAPlayer3.tテクスチャの解放(ref Background_Down_Clear);
             TJAPlayer3.tテクスチャの解放(ref Background_Down_Scroll);
             TJAPlayer3.tテクスチャの解放(ref Background_Down_Sakura);
@@ -1036,12 +1037,11 @@ namespace TJAPlayer3
         #endregion
         #region 背景
         public CTexture Background,
-            Background_Down,
-            Background_Down_2nd,
             Background_Down_Clear,
             Background_Down_Scroll,
             Background_Down_Sakura;
-        public CTexture[] Background_Up_1st,
+        public CTexture[] Background_Down,
+                          Background_Up_1st,
                           Background_Up_2nd,
                           Background_Up_3rd;
         #endregion

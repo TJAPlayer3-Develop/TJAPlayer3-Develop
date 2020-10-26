@@ -2561,6 +2561,9 @@ namespace TJAPlayer3
         public int Game_Mob_Beat,
             Game_Mob_Ptn_Beat = 1;
         #endregion
+        #region Background
+        public int Game_Background_Down_Ptn = 0;
+        #endregion
         #region CourseSymbol
         public int[] Game_CourseSymbol_X = new int[] { 64, 64 };
         public int[] Game_CourseSymbol_Y = new int[] { 232, 432 };
