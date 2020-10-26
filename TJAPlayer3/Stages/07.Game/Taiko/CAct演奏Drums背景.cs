@@ -305,12 +305,13 @@ namespace TJAPlayer3
             #region 1P-下背景
             if (!TJAPlayer3.stage演奏ドラム画面.bDoublePlay)
             {
-                if (TJAPlayer3.Tx.Background_Down != null && TJAPlayer3.Tx.Background_Down_2nd == null)
+                if (TJAPlayer3.Skin.Game_Background_Down_Ptn != 0)
                 {
-                    TJAPlayer3.Tx.Background_Down.t2D描画(TJAPlayer3.app.Device, 0, 360);
+                    int Background_Down_Index = TJAPlayer3.Random.Next(TJAPlayer3.Skin.Game_Background_Down_Ptn);
+                    TJAPlayer3.Tx.Background_Down[Background_Down_Index].t2D描画(TJAPlayer3.app.Device, 0, 360);
 
 		    #region 桜モーション
-                    if (TJAPlayer3.Tx.Background_Down_Sakura != null)
+                    if (TJAPlayer3.Tx.Background_Down_Sakura != null && Background_Down_Index == 0)
                     {
                         TJAPlayer3.Tx.Background_Down_Sakura.t2D描画(TJAPlayer3.app.Device, 900 - this.ct桜X移動用タイマー1.n現在の値, 400 + this.ct桜Y移動用タイマー1.n現在の値);
                         TJAPlayer3.Tx.Background_Down_Sakura.t2D描画(TJAPlayer3.app.Device, 100 + this.ct桜X移動用タイマー1.n現在の値, 350 + this.ct桜Y移動用タイマー1.n現在の値);
@@ -323,10 +324,6 @@ namespace TJAPlayer3
                         TJAPlayer3.Tx.Background_Down_Sakura.t2D描画(TJAPlayer3.app.Device, 1100 - this.ct桜X移動用タイマー1.n現在の値, 250 + this.ct桜Y移動用タイマー1.n現在の値);
                     }
                     #endregion
-                }
-                else if (TJAPlayer3.Tx.Background_Down_2nd != null)
-                {
-                    TJAPlayer3.Tx.Background_Down_2nd.t2D描画(TJAPlayer3.app.Device, 0, 360);
                 }
                 if (TJAPlayer3.stage演奏ドラム画面.bIsAlreadyCleared[0])
                 {
