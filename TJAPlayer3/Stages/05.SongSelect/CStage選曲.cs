@@ -881,20 +881,32 @@ namespace TJAPlayer3
 		}
 		private CCommandHistory CommandHistory;
 
-		private void tカーソルを下へ移動する(int move = 1)
+		private void tカーソルを下へ移動する(int move)
 		{
 			if(move == 1) TJAPlayer3.Skin.soundカーソル移動音.t再生する();
 			else TJAPlayer3.Skin.soundスキップ音.t再生する();
 			for(int i = 0; i < move; i++)
 			this.act曲リスト.t次に移動();
 		}
-		private void tカーソルを上へ移動する(int move = 1)
+
+                private void tカーソルを下へ移動する()
+                {
+                    this.tカーソルを下へ移動する(1);
+                }
+
+		private void tカーソルを上へ移動する(int move)
 		{
 			if(move == 1) TJAPlayer3.Skin.soundカーソル移動音.t再生する();
 			else TJAPlayer3.Skin.soundスキップ音.t再生する();
 			for(int i = 0; i < move; i++)
 			this.act曲リスト.t前に移動();
 		}
+
+                private void tカーソルを上へ移動する()
+                {
+                    this.tカーソルを上へ移動する(1);
+                }
+
 		private void t曲をランダム選択する()
 		{
 			C曲リストノード song = this.act曲リスト.r現在選択中の曲;
