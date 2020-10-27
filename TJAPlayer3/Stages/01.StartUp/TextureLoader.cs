@@ -327,7 +327,9 @@ namespace TJAPlayer3
             }
             #endregion
             #region フッター
-            Mob_Footer = TxC(GAME + FOOTER + @"0.png");
+            TJAPlayer3.Skin.Game_Mob_Footer_Ptn = TJAPlayer3.t連番画像の枚数を数える(CSkin.Path(BASE + GAME + FOOTER));
+            Mob_Footer = new CTexture[TJAPlayer3.Skin.Game_Mob_Footer_Ptn];
+            for(int i = 0; i < TJAPlayer3.Skin.Game_Mob_Footer_Ptn; i++) Mob_Footer[i] = TxC(GAME + FOOTER + i.ToString() + ".png");
             #endregion
             #region 背景
             Background = TxC(GAME + Background + @"0\" + @"Background.png");
@@ -745,7 +747,7 @@ namespace TJAPlayer3
             }
             #endregion
             #region フッター
-            TJAPlayer3.tテクスチャの解放(ref Mob_Footer);
+            for(int i = 0; i < TJAPlayer3.Skin.Game_Mob_Footer_Ptn; i++) TJAPlayer3.tテクスチャの解放(ref Mob_Footer[i]);
             #endregion
             #region 背景
             TJAPlayer3.tテクスチャの解放(ref Background);
@@ -1034,8 +1036,8 @@ namespace TJAPlayer3
         public CTexture[][] Dancer;
         #endregion
         #region モブ
-        public CTexture[] Mob;
-        public CTexture Mob_Footer;
+        public CTexture[] Mob,
+                          Mob_Footer;
         #endregion
         #region 背景
         public CTexture Background,
