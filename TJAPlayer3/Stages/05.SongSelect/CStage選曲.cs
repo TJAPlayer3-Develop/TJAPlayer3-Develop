@@ -578,6 +578,12 @@ namespace TJAPlayer3
 								if ( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.RBlue ) )
 									this.tカーソルを下へ移動する();
 							#endregion
+							#region [ Skip-Up ]
+							if( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.LeftControl ) ) this.tカーソルを上へ移動する(7);
+							#endregion
+							#region [ Skip-Down ]
+							if( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.RightControl ) ) this.tカーソルを下へ移動する(7);
+							#endregion
 							#region [ Upstairs ]
 							if ( ( ( this.act曲リスト.r現在選択中の曲 != null ) && ( this.act曲リスト.r現在選択中の曲.r親ノード != null ) ) && ( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.FT ) || TJAPlayer3.Pad.b押されたGB( Eパッド.Cancel ) ) )
 							{
@@ -875,14 +881,18 @@ namespace TJAPlayer3
 		}
 		private CCommandHistory CommandHistory;
 
-		private void tカーソルを下へ移動する()
+		private void tカーソルを下へ移動する(int move = 1)
 		{
-			TJAPlayer3.Skin.soundカーソル移動音.t再生する();
+			if(move == 1) TJAPlayer3.Skin.soundカーソル移動音.t再生する();
+			else TJAPlayer3.Skin.soundスキップ音.t再生する();
+			for(int i = 0; i < move; i++)
 			this.act曲リスト.t次に移動();
 		}
-		private void tカーソルを上へ移動する()
+		private void tカーソルを上へ移動する(int move = 1)
 		{
-			TJAPlayer3.Skin.soundカーソル移動音.t再生する();
+			if(move == 1) TJAPlayer3.Skin.soundカーソル移動音.t再生する();
+			else TJAPlayer3.Skin.soundスキップ音.t再生する();
+			for(int i = 0; i < move; i++)
 			this.act曲リスト.t前に移動();
 		}
 		private void t曲をランダム選択する()

@@ -34,6 +34,7 @@ namespace TJAPlayer3
         SOUND風船,
         SOUND曲決定音,
         SOUND成績発表,
+		SOUNDスキップ音,
 		Count				// システムサウンド総数の計算用
     }
 
@@ -325,6 +326,7 @@ namespace TJAPlayer3
         public Cシステムサウンド sound曲決定音 = null;
         public Cシステムサウンド bgmリザルトイン音 = null;
         public Cシステムサウンド bgmリザルト音 = null;
+        public Cシステムサウンド soundスキップ音 = null;
 
         //public Cシステムサウンド soundRed = null;
         //public Cシステムサウンド soundBlue = null;
@@ -400,6 +402,9 @@ namespace TJAPlayer3
 
                     case Eシステムサウンド.SOUND成績発表:
                         return this.bgmリザルトイン音;
+
+                    case Eシステムサウンド.SOUNDスキップ音:
+                        return this.soundスキップ音;
                 }
                 throw new IndexOutOfRangeException();
             }
@@ -472,6 +477,9 @@ namespace TJAPlayer3
 
                     case 18:
                         return this.bgmリザルトイン音;
+
+                    case 19:
+                        return this.soundスキップ音;
                 }
                 throw new IndexOutOfRangeException();
             }
@@ -630,6 +638,7 @@ namespace TJAPlayer3
             this.sound曲決定音 = new Cシステムサウンド(@"Sounds\SongDecide.ogg", false, false, true, ESoundGroup.Voice);
             this.bgmリザルトイン音 = new Cシステムサウンド(@"Sounds\ResultIn.ogg", false, false, false, ESoundGroup.Voice);
             this.bgmリザルト音 = new Cシステムサウンド(@"Sounds\Result.ogg", true, false, false, ESoundGroup.Voice);
+            this.soundスキップ音 = new Cシステムサウンド(@"Sounds\Skip.ogg", false, false, false, ESoundGroup.SoundEffect);
             ReloadSkin();
             tReadSkinConfig();
         }
