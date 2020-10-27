@@ -326,7 +326,7 @@ namespace TJAPlayer3
         public Cシステムサウンド sound曲決定音 = null;
         public Cシステムサウンド bgmリザルトイン音 = null;
         public Cシステムサウンド bgmリザルト音 = null;
-	public Cシステムサウンド soundスキップ音 = null;
+        public Cシステムサウンド soundスキップ音 = null;
 
         //public Cシステムサウンド soundRed = null;
         //public Cシステムサウンド soundBlue = null;
@@ -638,7 +638,7 @@ namespace TJAPlayer3
             this.sound曲決定音 = new Cシステムサウンド(@"Sounds\SongDecide.ogg", false, false, true, ESoundGroup.Voice);
             this.bgmリザルトイン音 = new Cシステムサウンド(@"Sounds\ResultIn.ogg", false, false, false, ESoundGroup.Voice);
             this.bgmリザルト音 = new Cシステムサウンド(@"Sounds\Result.ogg", true, false, false, ESoundGroup.Voice);
-	    this.soundスキップ音 = new Cシステムサウンド(@"Sounds\Skip.ogg", false, false, false, ESoundGroup.SoundEffect);
+            this.soundスキップ音 = new Cシステムサウンド(@"Sounds\Skip.ogg", false, false, false, ESoundGroup.SoundEffect);
             ReloadSkin();
             tReadSkinConfig();
         }
