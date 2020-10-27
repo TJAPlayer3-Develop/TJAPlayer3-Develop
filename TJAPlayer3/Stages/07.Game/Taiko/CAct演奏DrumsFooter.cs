@@ -42,7 +42,7 @@ namespace TJAPlayer3
         {
             if (TJAPlayer3.Skin.Game_Mob_Footer_Ptn != 0)
             {
-                TJAPlayer3.Tx.Mob_Footer[this.Mob_Footer_Index].t2D描画(TJAPlayer3.app.Device, 0, 720 - TJAPlayer3.Tx.Mob_Footer.szテクスチャサイズ.Height);
+                TJAPlayer3.Tx.Mob_Footer[this.Mob_Footer_Index].t2D描画(TJAPlayer3.app.Device, 0, 720 - TJAPlayer3.Tx.Mob_Footer[i].szテクスチャサイズ.Height);
             }
             return base.On進行描画();
         }
