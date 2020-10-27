@@ -2462,6 +2462,7 @@ namespace TJAPlayer3
         #region Config
         public int Config_ItemText_Correction_X = 0;
         public int Config_ItemText_Correction_Y = 0;
+        public int Config_Enum_Song_Ptn = 0;
         #endregion
         #region SongSelect
         public int SongSelect_Overall_Y = 123;

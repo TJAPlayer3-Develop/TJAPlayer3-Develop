@@ -92,7 +92,9 @@ namespace TJAPlayer3
             Config_KeyAssign = TxC(CONFIG + @"KeyAssign.png");
             Config_Font = TxC(CONFIG + @"Font.png");
             Config_Font_Bold = TxC(CONFIG + @"Font_Bold.png");
-            Config_Enum_Song = TxC(CONFIG + @"Enum_Song.png");
+            TJAPlayer3.Skin.Config_Enum_Song_Ptn = TJAPlayer3.t連番画像の枚数を数える(CSkin.Path(BASE + CONFIG + @"Enum_Song\"));
+            Config_Enum_Song = new CTexture[TJAPlayer3.Skin.Config_Enum_Song_Ptn];
+            for(int i = 0; i < TJAPlayer3.Skin.Config_Enum_Song_Ptn; i++) Config_Enum_Song[i] = TxC(CONFIG + @"Enum_Song\" + i.ToString() + ".png");
             #endregion
 
             #region 3_選曲画面
@@ -594,7 +596,7 @@ namespace TJAPlayer3
             TJAPlayer3.tテクスチャの解放(ref Config_KeyAssign);
             TJAPlayer3.tテクスチャの解放(ref Config_Font);
             TJAPlayer3.tテクスチャの解放(ref Config_Font_Bold);
-            TJAPlayer3.tテクスチャの解放(ref Config_Enum_Song);
+            for(int i = 0; i < TJAPlayer3.Skin.Config_Enum_Song_Ptn; i++) TJAPlayer3.tテクスチャの解放(ref Config_Enum_Song[i]);
             #endregion
 
             #region 3_選曲画面
@@ -955,8 +957,8 @@ namespace TJAPlayer3
             Config_Arrow,
             Config_KeyAssign,
             Config_Font,
-            Config_Font_Bold,
-            Config_Enum_Song;
+            Config_Font_Bold;
+        public CTexture[] Config_Enum_Song;
         #endregion
 
         #region 3_選曲画面
