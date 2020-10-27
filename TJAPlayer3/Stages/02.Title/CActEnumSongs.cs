@@ -124,7 +124,8 @@ namespace TJAPlayer3
 				Trace.TraceError( "例外が発生しましたが処理を継続します。 (761b726d-d27c-470d-be0b-a702971601b5)" );
 				this.txMessage = null;
 			}
-	
+			this.Config_Enum_Song_Index = TJAPlayer3.Random.Next(TJAPlayer3.Skin.Config_Enum_Song_Ptn);
+
 			base.OnManagedリソースの作成();
 		}
 		public override void OnManagedリソースの解放()
@@ -147,12 +148,12 @@ namespace TJAPlayer3
 			this.ctNowEnumeratingSongs.t進行Loop();
 			if ( TJAPlayer3.Tx.Enum_Song != null )
 			{
-                TJAPlayer3.Tx.Enum_Song.Opacity = (int) ( 176.0 + 80.0 * Math.Sin( (double) (2 * Math.PI * this.ctNowEnumeratingSongs.n現在の値 * 2 / 100.0 ) ) );
-                TJAPlayer3.Tx.Enum_Song.t2D描画( TJAPlayer3.app.Device, 18, 7 );
+				TJAPlayer3.Tx.Enum_Song.Opacity = (int) ( 176.0 + 80.0 * Math.Sin( (double) (2 * Math.PI * this.ctNowEnumeratingSongs.n現在の値 * 2 / 100.0 ) ) );
+				TJAPlayer3.Tx.Enum_Song.t2D描画( TJAPlayer3.app.Device, 18, 7 );
 			}
-			if ( bコマンドでの曲データ取得 && TJAPlayer3.Tx.Config_Enum_Song != null )
+			if ( bコマンドでの曲データ取得 && TJAPlayer3.Skin.Config_Enum_Song_Ptn != 0 )
 			{
-                TJAPlayer3.Tx.Config_Enum_Song.t2D描画( TJAPlayer3.app.Device, 180, 177 );
+				TJAPlayer3.Tx.Config_Enum_Song[Config_Enum_Song_Index].t2D描画( TJAPlayer3.app.Device, 180, 177 );
 				this.txMessage.t2D描画( TJAPlayer3.app.Device, 190, 197 );
 			}
 
@@ -164,5 +165,6 @@ namespace TJAPlayer3
 		//private CTexture txNowEnumeratingSongs = null;
 		//private CTexture txDialogNowEnumeratingSongs = null;
 		private CTexture txMessage;
+		private int Config_Enum_Song_Index;
 	}
 }
