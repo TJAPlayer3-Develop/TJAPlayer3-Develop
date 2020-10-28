@@ -2640,7 +2640,7 @@ namespace TJAPlayer3
         public int[] Game_Balloon_Combo_X = new int[] { 253, 253 };
         public int[] Game_Balloon_Combo_Y = new int[] { -11, 498 };
         public int[] Game_Balloon_Combo_Number_X = new int[] { 312, 312 };
-        public int[] Game_Balloon_Combo_Number_Y = new int[] { 34, 540 };
+        public int[] Game_Balloon_Combo_Number_Y = new int[] { 46, 540 };
         public int[] Game_Balloon_Combo_Number_Ex_X = new int[] { 335, 335 };
         public int[] Game_Balloon_Combo_Number_Ex_Y = new int[] { 34, 540 };
         public int[] Game_Balloon_Combo_Text_X = new int[] { 471, 471 };
