@@ -578,11 +578,11 @@ namespace TJAPlayer3
 								if ( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.RBlue ) )
 									this.tカーソルを下へ移動する();
 							#endregion
-							#region [ Skip-Up ]
-							if( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.LeftControl ) ) this.tカーソルを上へ移動する(7);
+							#region [ Skip_Up ]
+							this.ctキー反復用.Skip_Up.tキー反復( TJAPlayer3.Input管理.Keyboard.bキーが押されている( (int) SlimDX.DirectInput.Key.LeftControl ), new CCounter.DGキー処理( this.tカーソルを上へ移動する(7) ) );
 							#endregion
-							#region [ Skip-Down ]
-							if( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.RightControl ) ) this.tカーソルを下へ移動する(7);
+							#region [ Skip_Down ]
+							this.ctキー反復用.Skip_Down.tキー反復( TJAPlayer3.Input管理.Keyboard.bキーが押されている( (int) SlimDX.DirectInput.Key.RightControl ), new CCounter.DGキー処理( this.tカーソルを下へ移動する(7) ) );
 							#endregion
 							#region [ Upstairs ]
 							if ( ( ( this.act曲リスト.r現在選択中の曲 != null ) && ( this.act曲リスト.r現在選択中の曲.r親ノード != null ) ) && ( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.FT ) || TJAPlayer3.Pad.b押されたGB( Eパッド.Cancel ) ) )
@@ -722,6 +722,8 @@ namespace TJAPlayer3
 			public CCounter Down;
 			public CCounter R;
 			public CCounter B;
+			public CCounter Skip_Up;
+			public CCounter Skip_Down;
 			public CCounter this[ int index ]
 			{
 				get
@@ -739,6 +741,12 @@ namespace TJAPlayer3
 
 						case 3:
 							return this.B;
+
+						case 4:
+							return this.Skip_Up;
+
+						case 5:
+							return this.Skip_Down;
 					}
 					throw new IndexOutOfRangeException();
 				}
@@ -760,6 +768,14 @@ namespace TJAPlayer3
 
 						case 3:
 							this.B = value;
+							return;
+
+						case 4:
+							this.Skip_Up = value;
+							return;
+
+						case 5:
+							this.Skip_Down = value;
 							return;
 					}
 					throw new IndexOutOfRangeException();
