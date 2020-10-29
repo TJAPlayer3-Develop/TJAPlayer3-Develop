@@ -78,7 +78,7 @@ namespace TJAPlayer3
 				if ((this.ctBGMフェードアウト用 != null) && this.ctBGMフェードアウト用.b進行中)
 				{
 					this.ctBGMフェードアウト用.t進行();
-					this.sound.AutomationLevel = this.ctBGMフェードアウト用.n現在の値;
+					TJAPlayer3.Skin.bgm選曲画面.nAutomationLevel_現在のサウンド = CSound.MaximumAutomationLevel - this.ctBGMフェードアウト用.n現在の値;
 					if (this.ctBGMフェードアウト用.b終了値に達した)
 					{
 						this.ctBGMフェードアウト用.t停止();
@@ -172,10 +172,6 @@ namespace TJAPlayer3
 					TJAPlayer3.SongGainController.Set(cスコア.譜面情報.SongVol, loudnessMetadata, this.sound);
 
 					this.long再生位置 = -1;
-
-					if(ctBGMフェードイン用 != null)
-						this.sound.AutomationLevel = 100 - this.ctBGMフェードイン用.n現在の値;
-
 					this.sound.t再生を開始する(true);
 					if (this.long再生位置 == -1)
 					{
@@ -228,8 +224,6 @@ namespace TJAPlayer3
 				{
 					token.Cancel();
 				}
-				if (ctBGMフェードアウト用 != null)
-					this.sound.AutomationLevel = this.ctBGMフェードアウト用.n現在の値;
 				this.sound.t再生を停止する();
 				TJAPlayer3.Sound管理.tサウンドを破棄する(this.sound);
 				this.sound = null;
