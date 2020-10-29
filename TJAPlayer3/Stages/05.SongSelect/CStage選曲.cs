@@ -183,7 +183,6 @@ namespace TJAPlayer3
 				this.ctDonchanStart = new CCounter();
 				ctDiffSelect移動待ち = new CCounter();
 				//this.act難易度選択画面.bIsDifficltSelect = true;
-				base.b初めての進行描画 = true;
 				base.On活性化();
 
                 // Discord Presenceの更新

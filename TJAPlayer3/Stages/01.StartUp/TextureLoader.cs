@@ -571,6 +571,8 @@ namespace TJAPlayer3
 
         public void DisposeTexture()
         {
+    try
+    {
             TJAPlayer3.tテクスチャの解放(ref Title_Background);
             TJAPlayer3.tテクスチャの解放(ref Title_Menu);
             #region 共通
@@ -934,7 +936,12 @@ namespace TJAPlayer3
             #region 7_終了画面
             TJAPlayer3.tテクスチャの解放(ref Exit_Background);
             #endregion
-
+    }
+    catch(NullReferenceException e)
+    {
+        Trace.TraceError(e.ToString());
+        Trace.TraceError("例外が発生しましたが処理を継続します。");
+    }
         }
 
         #region 共通
