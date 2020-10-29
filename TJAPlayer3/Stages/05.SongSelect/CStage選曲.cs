@@ -415,7 +415,6 @@ namespace TJAPlayer3
                                 this.act曲リスト.bBoxOpenAnime = true;
                                 this.act曲リスト.bBoxClose = true;
                                 this.act曲リスト.bBoxOpen = false;
-                                this.actPresound.tサウンドの停止MT();
                                 TJAPlayer3.Skin.sound取消音.t再生する();
                                 this.act曲リスト.ctBoxOpen.t開始(0, 1000, 1, TJAPlayer3.Timer);
                             }
@@ -538,7 +537,6 @@ namespace TJAPlayer3
 													this.act曲リスト.bBoxOpenAnime = true;
 													this.act曲リスト.bBoxClose = true;
 													this.act曲リスト.bBoxOpen = false;
-													this.actPresound.tサウンドの停止MT();
 													TJAPlayer3.Skin.sound取消音.t再生する();
 													this.act曲リスト.ctBoxOpen.t開始(0, 1000, 1, TJAPlayer3.Timer);
 												}
@@ -585,7 +583,6 @@ namespace TJAPlayer3
 							#region [ Upstairs ]
 							if ( ( ( this.act曲リスト.r現在選択中の曲 != null ) && ( this.act曲リスト.r現在選択中の曲.r親ノード != null ) ) && ( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.FT ) || TJAPlayer3.Pad.b押されたGB( Eパッド.Cancel ) ) )
 							{
-								this.actPresound.tサウンドの停止MT();
 								TJAPlayer3.Skin.sound取消音.t再生する();
 								this.act曲リスト.bBoxClose = true;
 							}
