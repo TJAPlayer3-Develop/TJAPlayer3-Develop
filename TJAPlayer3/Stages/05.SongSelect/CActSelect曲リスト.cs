@@ -985,7 +985,7 @@ namespace TJAPlayer3
 						#endregion
 					}
 
-                    if(this.b選択曲が変更された && n現在のスクロールカウンタ == 0)
+                    if(this.b選択曲が変更された && n現在のスクロールカウンタ == 0　&& n目標のスクロールカウンタ == 0)
                     {
                         if (this.ttk選択している曲の曲名 != null)
                         {
