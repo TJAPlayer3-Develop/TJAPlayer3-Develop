@@ -182,8 +182,8 @@ namespace TJAPlayer3
 				this.ctDonchanSelect = new CCounter();
 				this.ctDonchanStart = new CCounter();
 				ctDiffSelect移動待ち = new CCounter();
-				this.actPresound.t選択曲が変更された();
 				//this.act難易度選択画面.bIsDifficltSelect = true;
+				base.b初めての進行描画 = true;
 				base.On活性化();
 
                 // Discord Presenceの更新
@@ -369,13 +369,11 @@ namespace TJAPlayer3
 						if (this.act曲リスト.bBoxOpen)
 						{
 							this.act曲リスト.tBOXに入る();
-							this.t選択曲変更通知();
 							this.act曲リスト.bBoxOpen = false;
 						}
 						if (this.act曲リスト.bBoxClose)
 						{
 							this.act曲リスト.tBOXを出る();
-							this.t選択曲変更通知();
 							this.act曲リスト.bBoxClose = false;
 						}
 					}

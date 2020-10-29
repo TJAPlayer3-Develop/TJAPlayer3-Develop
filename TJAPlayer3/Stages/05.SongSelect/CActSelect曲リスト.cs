@@ -297,7 +297,8 @@ namespace TJAPlayer3
 				}
 			}
 			this.t現在選択中の曲を元に曲バーを再構成する();
-			this.t選択曲が変更された(false);                                 // #27648 項目数変更を反映させる
+			this.t選択曲が変更された(false);
+			TJAPlayer3.stage選曲.t選択曲変更通知();                                 // #27648 項目数変更を反映させる
 			this.b選択曲が変更された = true;
 			TJAPlayer3.stage選曲.bBGM再生済み = false;
 			TJAPlayer3.Skin.bgm選曲画面In.t再生する();
