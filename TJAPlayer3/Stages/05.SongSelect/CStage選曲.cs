@@ -368,11 +368,13 @@ namespace TJAPlayer3
 						if (this.act曲リスト.bBoxOpen)
 						{
 							this.act曲リスト.tBOXに入る();
+							this.t選択曲変更通知();
 							this.act曲リスト.bBoxOpen = false;
 						}
 						if (this.act曲リスト.bBoxClose)
 						{
 							this.act曲リスト.tBOXを出る();
+							this.t選択曲変更通知();
 							this.act曲リスト.bBoxClose = false;
 						}
 					}
@@ -394,7 +396,6 @@ namespace TJAPlayer3
 					{	// 詳細CONFIG呼び出し
 						actQuickConfig.tDeativatePopupMenu();
 						this.enterConfigStage();
-						return 0;
 					}
 					#endregion
 					if ( !this.actSortSongs.bIsActivePopupMenu && !this.actQuickConfig.bIsActivePopupMenu && !this.act難易度選択画面.bIsDifficltSelect && !this.act曲リスト.ctBoxOpen.b進行中 && !act曲リスト.bBoxOpenAnime)
@@ -415,8 +416,8 @@ namespace TJAPlayer3
                                 this.act曲リスト.bBoxOpenAnime = true;
                                 this.act曲リスト.bBoxClose = true;
                                 this.act曲リスト.bBoxOpen = false;
-                                TJAPlayer3.Skin.sound取消音.t再生する();
                                 this.actPresound.tサウンドの停止MT();
+                                TJAPlayer3.Skin.sound取消音.t再生する();
                                 this.act曲リスト.ctBoxOpen.t開始(0, 1000, 1, TJAPlayer3.Timer);
                             }
                         #endregion
@@ -425,7 +426,6 @@ namespace TJAPlayer3
 							TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.F1 ) )
 						{	// [SHIFT] + [F1] CONFIG
                                                     this.enterConfigStage();
-                                                    return 0;
 						}
 						#endregion
 						#region [ F2 簡易オプション ]
@@ -539,8 +539,8 @@ namespace TJAPlayer3
 													this.act曲リスト.bBoxOpenAnime = true;
 													this.act曲リスト.bBoxClose = true;
 													this.act曲リスト.bBoxOpen = false;
-													TJAPlayer3.Skin.sound取消音.t再生する();
 													this.actPresound.tサウンドの停止MT();
+													TJAPlayer3.Skin.sound取消音.t再生する();
 													this.act曲リスト.ctBoxOpen.t開始(0, 1000, 1, TJAPlayer3.Timer);
 												}
 												break;
