@@ -1,6 +1,7 @@
 using FDK;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -939,7 +940,9 @@ namespace TJAPlayer3
     }
     catch(NullReferenceException e)
     {
-        // Do nothing.
+
+        Trace.TraceError(e.ToString());
+        Trace.TraceError("例外が発生しましたが処理を継続します。");
     }
         }
 
