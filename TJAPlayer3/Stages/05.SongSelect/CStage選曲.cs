@@ -182,6 +182,7 @@ namespace TJAPlayer3
 				this.ctDonchanSelect = new CCounter();
 				this.ctDonchanStart = new CCounter();
 				ctDiffSelect移動待ち = new CCounter();
+				this.actPresound.t選択曲が変更された();
 				//this.act難易度選択画面.bIsDifficltSelect = true;
 				base.On活性化();
 
@@ -588,8 +589,7 @@ namespace TJAPlayer3
 							{
 								this.actPresound.tサウンドの停止MT();
 								TJAPlayer3.Skin.sound取消音.t再生する();
-								this.act曲リスト.tBOXを出る();
-								this.t選択曲変更通知();
+								this.act曲リスト.bBoxClose = true;
 							}
 							#endregion
 							#region [ BDx2: 簡易CONFIG ]
