@@ -939,8 +939,7 @@ namespace TJAPlayer3
     }
     catch(NullReferenceException e)
     {
-        Trace.TraceError(e.ToString());
-        Trace.TraceError("例外が発生しましたが処理を継続します。");
+        // Do nothing.
     }
         }
 

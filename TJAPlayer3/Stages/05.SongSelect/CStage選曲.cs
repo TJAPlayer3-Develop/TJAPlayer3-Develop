@@ -172,6 +172,7 @@ namespace TJAPlayer3
 			{
 				TJAPlayer3.Skin.bgm選曲画面In.t再生する();
 				TJAPlayer3.Skin.soundSongSelectChara.t再生する();
+				this.actPresound.t選択曲が変更された();
 				this.eフェードアウト完了時の戻り値 = E戻り値.継続;
 				this.bBGM再生済み = false;
 				this.ftフォント = new Font("MS UI Gothic", 26f, GraphicsUnit.Pixel );
