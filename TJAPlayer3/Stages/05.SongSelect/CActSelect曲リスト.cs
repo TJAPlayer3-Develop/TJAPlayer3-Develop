@@ -325,103 +325,6 @@ namespace TJAPlayer3
 			}
 			this.b選択曲が変更された = true;
 		}
-		public void t難易度レベルをひとつ進める()
-		{
-			if( ( this.r現在選択中の曲 == null ) || ( this.r現在選択中の曲.nスコア数 <= 1 ) )
-				return;		// 曲にスコアが０～１個しかないなら進める意味なし。
-			
-
-			// 難易度レベルを＋１し、現在選曲中のスコアを変更する。
-
-			this.n現在のアンカ難易度レベル = this.n現在のアンカ難易度レベルに最も近い難易度レベルを返す( this.r現在選択中の曲 );
-
-			for( int i = 0; i < (int)Difficulty.Total; i++ )
-			{
-				this.n現在のアンカ難易度レベル = ( this.n現在のアンカ難易度レベル + 1 ) % (int)Difficulty.Total;	// ５以上になったら０に戻る。
-				if( this.r現在選択中の曲.arスコア[ this.n現在のアンカ難易度レベル ] != null )	// 曲が存在してるならここで終了。存在してないなら次のレベルへGo。
-					break;
-			}
-
-
-			// 曲毎に表示しているスキル値を、新しい難易度レベルに合わせて取得し直す。（表示されている13曲全部。）
-
-			C曲リストノード song = this.r現在選択中の曲;
-			for( int i = 0; i < 5; i++ )
-				song = this.r前の曲( song );
-
-			for( int i = this.n現在の選択行 - 5; i < ( ( this.n現在の選択行 - 5 ) + 13 ); i++ )
-			{
-				int index = ( i + 13 ) % 13;
-				for( int m = 0; m < 3; m++ )
-				{
-					this.stバー情報[ index ].nスキル値[ m ] = (int) song.arスコア[ this.n現在のアンカ難易度レベルに最も近い難易度レベルを返す( song ) ].譜面情報.最大スキル[ m ];
-				}
-				song = this.r次の曲( song );
-			}
-			// 選曲ステージに変更通知を発出し、関係Activityの対応を行ってもらう。
-			TJAPlayer3.stage選曲.t選択曲変更通知();
-		}
-        /// <summary>
-        /// 不便だったから作った。
-        /// </summary>
-		public void t難易度レベルをひとつ戻す()
-		{
-			if( ( this.r現在選択中の曲 == null ) || ( this.r現在選択中の曲.nスコア数 <= 1 ) )
-				return;		// 曲にスコアが０～１個しかないなら進める意味なし。
-			
-
-			// 難易度レベルを＋１し、現在選曲中のスコアを変更する。
-
-			this.n現在のアンカ難易度レベル = this.n現在のアンカ難易度レベルに最も近い難易度レベルを返す( this.r現在選択中の曲 );
-
-            this.n現在のアンカ難易度レベル--;
-            if( this.n現在のアンカ難易度レベル < 0 ) // 0より下になったら4に戻す。
-            {
-                this.n現在のアンカ難易度レベル = 4;
-            }
-
-            //2016.08.13 kairera0467 かんたん譜面が無い譜面(ふつう、むずかしいのみ)で、難易度を最上位に戻せない不具合の修正。
-            bool bLabel0NotFound = true;
-            for( int i = this.n現在のアンカ難易度レベル; i >= 0; i-- )
-            {
-                if( this.r現在選択中の曲.arスコア[ i ] != null )
-                {
-                    this.n現在のアンカ難易度レベル = i;
-                    bLabel0NotFound = false;
-                    break;
-                }
-            }
-            if( bLabel0NotFound )
-            {
-                for( int i = 4; i >= 0; i-- )
-                {
-                    if( this.r現在選択中の曲.arスコア[ i ] != null )
-                    {
-                        this.n現在のアンカ難易度レベル = i;
-                        break;
-                    }
-                }
-            }
-
-			// 曲毎に表示しているスキル値を、新しい難易度レベルに合わせて取得し直す。（表示されている13曲全部。）
-
-			C曲リストノード song = this.r現在選択中の曲;
-			for( int i = 0; i < 5; i++ )
-				song = this.r前の曲( song );
-
-			for (int i = this.n現在の選択行 - 5; i < ((this.n現在の選択行 - 5) + 13); i++)
-			{
-				int index = (i + 13) % 13;
-				for (int m = 0; m < 3; m++)
-				{
-					this.stバー情報[index].nスキル値[m] = (int)song.arスコア[this.n現在のアンカ難易度レベルに最も近い難易度レベルを返す(song)].譜面情報.最大スキル[m];
-				}
-				song = this.r次の曲(song);
-			}
-			// 選曲ステージに変更通知を発出し、関係Activityの対応を行ってもらう。
-			TJAPlayer3.stage選曲.t選択曲変更通知();
-		}
-
 
 		/// <summary>
 		/// 曲リストをリセットする
@@ -714,7 +617,6 @@ namespace TJAPlayer3
 					this.ct登場アニメ用[i] = new CCounter(-i * 10, 100, 3, TJAPlayer3.Timer);
 				ctBoxClose.n現在の値 = 130;
 				this.nスクロールタイマ = CSound管理.rc演奏用タイマ.n現在時刻;
-				TJAPlayer3.stage選曲.t選択曲変更通知();
 
 				this.n矢印スクロール用タイマ値 = CSound管理.rc演奏用タイマ.n現在時刻;
 				this.ct三角矢印アニメ.t開始(0, 1000, 1, TJAPlayer3.Timer);
