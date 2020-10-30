@@ -267,7 +267,6 @@ namespace TJAPlayer3
 			this.t選択曲が変更された(false);
 			TJAPlayer3.stage選曲.t選択曲変更通知();                          // #27648 項目数変更を反映させる
 			this.b選択曲が変更された = true;
-			TJAPlayer3.Skin.bgm選曲画面.t停止する();
 			return ret;
 		}
 		public bool tBOXを出る()
@@ -300,9 +299,6 @@ namespace TJAPlayer3
 			this.t選択曲が変更された(false);
 			TJAPlayer3.stage選曲.t選択曲変更通知();                                 // #27648 項目数変更を反映させる
 			this.b選択曲が変更された = true;
-			TJAPlayer3.stage選曲.bBGM再生済み = false;
-			TJAPlayer3.Skin.bgm選曲画面In.t再生する();
-			TJAPlayer3.Skin.soundSongSelectChara.t再生する();
 			return ret;
 		}
 		public void t現在選択中の曲を元に曲バーを再構成する()
@@ -362,7 +358,8 @@ namespace TJAPlayer3
 				}
 				song = this.r次の曲( song );
 			}
-			
+			// 選曲ステージに変更通知を発出し、関係Activityの対応を行ってもらう。
+			TJAPlayer3.stage選曲.t選択曲変更通知();
 		}
         /// <summary>
         /// 不便だったから作った。
@@ -421,6 +418,8 @@ namespace TJAPlayer3
 				}
 				song = this.r次の曲(song);
 			}
+			// 選曲ステージに変更通知を発出し、関係Activityの対応を行ってもらう。
+			TJAPlayer3.stage選曲.t選択曲変更通知();
 		}
 
 

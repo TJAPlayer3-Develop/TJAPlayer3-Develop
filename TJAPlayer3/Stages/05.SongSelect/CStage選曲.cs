@@ -140,11 +140,11 @@ namespace TJAPlayer3
 
                 public void enterConfigStage()
                 {
+                    TJAPlayer3.Skin.sound取消音.t再生する();
                     this.actPresound.tサウンドの停止MT();
                     this.eフェードアウト完了時の戻り値 = E戻り値.コンフィグ呼び出し;
                     this.actFIFO.tフェードアウト開始();
                     base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
-                    TJAPlayer3.Skin.sound取消音.t再生する();
                 }
 
                 public void showQuickConfig()
@@ -410,11 +410,11 @@ namespace TJAPlayer3
                             }
                             else
                             {
+                                TJAPlayer3.Skin.sound取消音.t再生する();
                                 ctDonchanSelect.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Select.Length - 1, 1000 / 45, TJAPlayer3.Timer);
                                 this.act曲リスト.bBoxOpenAnime = true;
                                 this.act曲リスト.bBoxClose = true;
                                 this.act曲リスト.bBoxOpen = false;
-                                TJAPlayer3.Skin.sound取消音.t再生する();
                                 this.act曲リスト.ctBoxOpen.t開始(0, 1000, 1, TJAPlayer3.Timer);
                             }
                         #endregion
@@ -532,11 +532,11 @@ namespace TJAPlayer3
 												break;
 											case C曲リストノード.Eノード種別.BACKBOX:
 												{
+													TJAPlayer3.Skin.sound取消音.t再生する();
 													ctDonchanSelect.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Select.Length - 1, 1000 / 45, TJAPlayer3.Timer);
 													this.act曲リスト.bBoxOpenAnime = true;
 													this.act曲リスト.bBoxClose = true;
 													this.act曲リスト.bBoxOpen = false;
-													TJAPlayer3.Skin.sound取消音.t再生する();
 													this.act曲リスト.ctBoxOpen.t開始(0, 1000, 1, TJAPlayer3.Timer);
 												}
 												break;
@@ -1021,6 +1021,7 @@ namespace TJAPlayer3
 				this.actFOtoNowLoading.tフェードアウト開始();				// #27787 2012.3.10 yyagi 曲決定時の画面フェードアウトの省略
 				base.eフェーズID = CStage.Eフェーズ.選曲_NowLoading画面へのフェードアウト;
 			}
+			TJAPlayer3.Skin.bgm選曲画面.t停止する();
 		}
 		private List<C曲リストノード> t指定された曲が存在する場所の曲を列挙する_子リスト含む( C曲リストノード song )
 		{
