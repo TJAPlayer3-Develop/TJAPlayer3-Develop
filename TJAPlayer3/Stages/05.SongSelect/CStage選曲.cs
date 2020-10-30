@@ -347,13 +347,12 @@ namespace TJAPlayer3
                     TJAPlayer3.act文字コンソール.tPrint(0, 32, C文字コンソール.Eフォント種別.赤, "HBSCROLL : ON");
                 #endregion
 
+                if( !this.bBGM再生済み && (base.eフェーズID == CStage.Eフェーズ.共通_通常状態) && !TJAPlayer3.Skin.bgm選曲画面In.b再生中)
+                {
+                    TJAPlayer3.Skin.bgm選曲画面.t再生する();
+                    this.bBGM再生済み = true;
+                }
                 this.actPresound.On進行描画();
-
-				if( !this.bBGM再生済み && (base.eフェーズID == CStage.Eフェーズ.共通_通常状態) && !TJAPlayer3.Skin.bgm選曲画面In.b再生中)
-				{
-					TJAPlayer3.Skin.bgm選曲画面.t再生する();
-					this.bBGM再生済み = true;
-				}
 
                 if( this.ctDiffSelect移動待ち != null )
                     this.ctDiffSelect移動待ち.t進行();
