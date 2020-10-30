@@ -617,6 +617,7 @@ namespace TJAPlayer3
 					this.ct登場アニメ用[i] = new CCounter(-i * 10, 100, 3, TJAPlayer3.Timer);
 				ctBoxClose.n現在の値 = 130;
 				this.nスクロールタイマ = CSound管理.rc演奏用タイマ.n現在時刻;
+				TJAPlayer3.stage選曲.t選択曲変更通知();
 
 				this.n矢印スクロール用タイマ値 = CSound管理.rc演奏用タイマ.n現在時刻;
 				this.ct三角矢印アニメ.t開始(0, 1000, 1, TJAPlayer3.Timer);
