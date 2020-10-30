@@ -243,7 +243,6 @@ namespace TJAPlayer3
                                 this.b曲選択 = true;
                                 TJAPlayer3.Skin.sound曲決定音.t再生する();
                                 ct決定待機.t開始(0, 2000, 1, TJAPlayer3.Timer);
-                                TJAPlayer3.stage選曲.actPresound.tサウンドの停止MT();
                             }
                         }
                         else if (n現在の選択行 == -1)
