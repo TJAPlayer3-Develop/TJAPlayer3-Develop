@@ -17,7 +17,7 @@ namespace TJAPlayer3
 		{
 			if( !base.b活性化してない )
 			{
-				TJAPlayer3.tテクスチャの解放( ref this.txオプションパネル );
+				TJAPlayer3.t安全にDisposeする( ref this.txオプションパネル );
 				base.On非活性化();
 			}
 		}

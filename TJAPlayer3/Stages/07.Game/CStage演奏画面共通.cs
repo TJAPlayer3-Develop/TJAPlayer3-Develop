@@ -386,7 +386,7 @@ namespace TJAPlayer3
 		{
 			if (!base.b活性化してない)
 			{
-				TJAPlayer3.tテクスチャの解放(ref this.tx背景);
+				TJAPlayer3.t安全にDisposeする(ref this.tx背景);
 				Trace.TraceInformation("CStage演奏画面共通 リソースの開放");
 				base.OnManagedリソースの解放();
 			}

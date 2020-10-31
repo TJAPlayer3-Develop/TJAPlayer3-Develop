@@ -593,14 +593,14 @@ namespace TJAPlayer3
 
 			for( int i = 0; i < 13; i++ )
             {
-                TJAPlayer3.tテクスチャの解放( ref this.stバー情報[ i ].txタイトル名 );
+                TJAPlayer3.t安全にDisposeする( ref this.stバー情報[ i ].txタイトル名 );
                 this.stバー情報[ i ].ttkタイトル = null;
             }
 
 		    ClearTitleTextureCache();
 
-            TJAPlayer3.tテクスチャの解放( ref this.txEnumeratingSongs );
-            TJAPlayer3.tテクスチャの解放( ref this.txSongNotFound );
+            TJAPlayer3.t安全にDisposeする( ref this.txEnumeratingSongs );
+            TJAPlayer3.t安全にDisposeする( ref this.txSongNotFound );
 
 			base.OnManagedリソースの解放();
 		}
