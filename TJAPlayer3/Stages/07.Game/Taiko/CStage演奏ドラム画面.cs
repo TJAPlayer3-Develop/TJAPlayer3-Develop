@@ -464,9 +464,6 @@ namespace TJAPlayer3
 				this.t進行描画_譜面スクロール速度();
 				this.t進行描画_チップアニメ();
 
-				if (!TJAPlayer3.ConfigIni.bNoInfo)
-					this.t進行描画_パネル文字列();
-
 				this.actLaneTaiko.On進行描画();
 				//this.t進行描画_レーン();
 				//this.t進行描画_レーンフラッシュD();
@@ -513,6 +510,9 @@ namespace TJAPlayer3
 				this.actChipEffects.On進行描画();
 				this.FlyingNotes.On進行描画();
 				this.t進行描画_チップファイアD();
+
+				if (!TJAPlayer3.ConfigIni.bNoInfo)
+					this.t進行描画_パネル文字列();
 
 				this.actComboBalloon.On進行描画();
 
