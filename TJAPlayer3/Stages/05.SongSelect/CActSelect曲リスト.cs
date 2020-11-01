@@ -2002,12 +2002,14 @@ namespace TJAPlayer3
 		private void tバーの初期化()
 		{
 			C曲リストノード song = this.r現在選択中の曲;
-			
+
 			if( song == null )
 				return;
-
-			for( int i = 0; i < 5; i++ )
+			else
 				song = this.r前の曲( song );
+
+			if( song == null )
+				return;
 
 			for( int i = 0; i < 13; i++ )
 			{
