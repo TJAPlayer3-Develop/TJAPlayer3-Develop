@@ -127,6 +127,8 @@ namespace TJAPlayer3
         {
             this.b曲選択 = false;
             this.bIsDifficltSelect = false;
+            this.b初めての進行描画 = true;
+            縁カウント = 0;
             TJAPlayer3.Skin.sound取消音.t再生する();
             TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 = 0;
             TJAPlayer3.stage選曲.ctDiffSelect移動待ち.t停止();
@@ -137,17 +139,16 @@ namespace TJAPlayer3
 
 		public override void On活性化()
 		{
-			if( this.b活性化してる )
-				return;
+            if( this.b活性化してる )
+                return;
 
-			TJAPlayer3.Skin.soundSelectAnnounce.t再生する();
+            for ( int i = 0; i < 13; i++ )
+                this.ct登場アニメ用[ i ] = new CCounter( -i * 10, 100, 3, TJAPlayer3.Timer );
 
-			this.n目標のスクロールカウンタ = 0;
-			this.n現在のスクロールカウンタ = 0;
+            this.n目標のスクロールカウンタ = 0;
+            this.n現在のスクロールカウンタ = 0;
             ct決定待機 = new CCounter();
 
-            this.b曲選択 = false;
-            this.b裏譜面 = false;
             // フォント作成。
             // 曲リスト文字は２倍（面積４倍）でテクスチャに描画してから縮小表示するので、フォントサイズは２倍とする。
             this.ctBarAnime = new CCounter();
@@ -166,7 +167,6 @@ namespace TJAPlayer3
 
             this.ct移動 = null;
             this.ctBarAnime = null;
-            縁カウント = 0;
 
             TJAPlayer3.t安全にDisposeする(ref SongTitle);
             TJAPlayer3.t安全にDisposeする(ref SongSubTitle);
@@ -196,8 +196,10 @@ namespace TJAPlayer3
 			//-----------------
 			if( this.b初めての進行描画 )
             {
-                for ( int i = 0; i < 13; i++ )
-					this.ct登場アニメ用[ i ] = new CCounter( -i * 10, 100, 3, TJAPlayer3.Timer );
+                TJAPlayer3.Skin.soundSelectAnnounce.t再生する();
+                this.b曲選択 = false;
+                this.b裏譜面 = false;
+                縁カウント = 0;
 
                 base.b初めての進行描画 = false;
 			}

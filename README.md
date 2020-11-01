@@ -1,5 +1,5 @@
 # TJAPlayer3-Develop
-DTXManiaをいじってtja再生プログラムにしちゃった[TJAPlayer2fPC](https://github.com/kairera0467/TJAP2fPC)をForkしてグリーン風に改造したアレをForkしてニジイロ風に改造したアレ。
+DTXManiaをいじってtja再生プログラムにしちゃった[TJAPlayer2fPC](https://github.com/kairera0467/TJAP2fPC)をForkしてグリーン風に改造したアレをForkしてニジイロ風に改造したアレ。  
 公式開発Discordサーバーはこちら: <https://discord.gg/jN7tUk7>
 
 このプログラムを使用した不具合・問題については責任を負いかねます。
