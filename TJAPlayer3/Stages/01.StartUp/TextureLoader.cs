@@ -464,12 +464,12 @@ namespace TJAPlayer3
                 Effects_Hit_Good_Big[i] = TxC(GAME + EFFECTS + @"Hit\" + @"Good_Big\" + i.ToString() + ".png");
             }
             TJAPlayer3.Skin.Game_Effect_Roll_Ptn = Directory.GetDirectories(CSkin.Path(BASE + GAME + EFFECTS + ROLL)).Length;
-            Effects_Roll = new CTexture[TJAPlayer3.Skin.Game_Effect_Roll_Ptn][6];
+            Effects_Roll = new CTexture[TJAPlayer3.Skin.Game_Effect_Roll_Ptn, 6];
             for (int i = 0; i < TJAPlayer3.Skin.Game_Effect_Roll_Ptn; i++)
             {
                 for (int j = 0; j < 6; j++)
                 {
-                    Effects_Roll[i][j] = TxC(GAME + EFFECTS + ROLL + @"\" + i.ToString() + @"\" + j.ToString() + ".png");
+                    Effects_Roll[i, j] = TxC(GAME + EFFECTS + ROLL + @"\" + i.ToString() + @"\" + j.ToString() + ".png");
                 }
             }
             #endregion
@@ -849,7 +849,7 @@ namespace TJAPlayer3
             {
                 for (int j = 0; j < 6; j++)
                 {
-                    TJAPlayer3.t安全にDisposeする(ref Effects_Roll[i][j]);
+                    TJAPlayer3.t安全にDisposeする(ref Effects_Roll[i, j]);
                 }
             }
             #endregion
@@ -1103,7 +1103,7 @@ namespace TJAPlayer3
             Effects_Hit_Good,
             Effects_Hit_Great_Big,
             Effects_Hit_Good_Big;
-        public CTexture[][] Effects_Roll;
+        public CTexture[,] Effects_Roll;
         #endregion
         #region レーン
         public CTexture[] Lane_Base,
