@@ -13,29 +13,31 @@ namespace TJAPlayer3
 
 	public enum Eシステムサウンド
 	{
-		BGMオプション画面 = 0,
-		BGMコンフィグ画面,
-		BGM起動画面,
-		BGM選曲画面,
-		SOUNDステージ失敗音,
-		SOUNDカーソル移動音,
-		SOUNDゲーム開始音,
-		SOUNDゲーム終了音,
-		SOUNDステージクリア音,
-		SOUNDタイトル音,
-		SOUNDフルコンボ音,
-		SOUND歓声音,
-		SOUND曲読込開始音,
-		SOUND決定音,
-		SOUND取消音,
-		SOUND変更音,
+        BGMオプション画面 = 0,
+        BGMコンフィグ画面,
+        BGM起動画面,
+        BGM選曲画面,
+        SOUNDステージ失敗音,
+        SOUNDカーソル移動音,
+        SOUNDゲーム開始音,
+        SOUNDゲーム終了音,
+        SOUNDステージクリア音,
+        SOUNDタイトル音,
+        SOUNDフルコンボ音,
+        SOUND歓声音,
+        SOUND曲読込開始音,
+        SOUND決定音,
+        SOUND取消音,
+        SOUND変更音,
         //SOUND赤,
         //SOUND青,
         SOUND風船,
         SOUND曲決定音,
         SOUND成績発表,
-		SOUNDスキップ音,
-		Count				// システムサウンド総数の計算用
+        SOUNDスキップ音,
+        SOUNDSELECTANNOUNCE,
+        SOUND裏切り替え音,
+        Count				// システムサウンド総数の計算用
     }
 
     internal class CSkin : IDisposable
@@ -327,6 +329,8 @@ namespace TJAPlayer3
         public Cシステムサウンド bgmリザルトイン音 = null;
         public Cシステムサウンド bgmリザルト音 = null;
         public Cシステムサウンド soundスキップ音 = null;
+        public Cシステムサウンド soundSelectAnnounce = null;
+        public Cシステムサウンド sound裏切り替え音 = null;
 
         //public Cシステムサウンド soundRed = null;
         //public Cシステムサウンド soundBlue = null;
@@ -405,6 +409,12 @@ namespace TJAPlayer3
 
                     case Eシステムサウンド.SOUNDスキップ音:
                         return this.soundスキップ音;
+
+                    case Eシステムサウンド.SOUNDSELECTANNOUNCE:
+                        return this.soundSelectAnnounce;
+
+                    case Eシステムサウンド.SOUND裏切り替え音:
+                        return this.sound裏切り替え音;
                 }
                 throw new IndexOutOfRangeException();
             }
@@ -480,6 +490,12 @@ namespace TJAPlayer3
 
                     case 19:
                         return this.soundスキップ音;
+
+                    case 20:
+                        return this.soundSelectAnnounce;
+
+                    case 21:
+                        return this.sound裏切り替え音;
                 }
                 throw new IndexOutOfRangeException();
             }
@@ -639,6 +655,8 @@ namespace TJAPlayer3
             this.bgmリザルトイン音 = new Cシステムサウンド(@"Sounds\ResultIn.ogg", false, false, false, ESoundGroup.Voice);
             this.bgmリザルト音 = new Cシステムサウンド(@"Sounds\Result.ogg", true, false, false, ESoundGroup.Voice);
             this.soundスキップ音 = new Cシステムサウンド(@"Sounds\Skip.ogg", false, false, false, ESoundGroup.SoundEffect);
+            this.soundSelectAnnounce = new Cシステムサウンド(@"Sounds\DiffSelect.ogg", false, false, true, ESoundGroup.Voice);
+            this.sound裏切り替え音 = new Cシステムサウンド(@"Sounds\Ura Switch.ogg", false, false, false, ESoundGroup.SoundEffect);
             ReloadSkin();
             tReadSkinConfig();
         }
