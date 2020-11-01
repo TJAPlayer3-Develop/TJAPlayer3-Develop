@@ -37,6 +37,7 @@ namespace TJAPlayer3
         SOUNDスキップ音,
         SOUNDSELECTANNOUNCE,
         SOUND裏切り替え音,
+        SOUNDENTRY,
         Count				// システムサウンド総数の計算用
     }
 
@@ -331,6 +332,7 @@ namespace TJAPlayer3
         public Cシステムサウンド soundスキップ音 = null;
         public Cシステムサウンド soundSelectAnnounce = null;
         public Cシステムサウンド sound裏切り替え音 = null;
+        public Cシステムサウンド soundEntry = null;
 
         //public Cシステムサウンド soundRed = null;
         //public Cシステムサウンド soundBlue = null;
@@ -415,6 +417,9 @@ namespace TJAPlayer3
 
                     case Eシステムサウンド.SOUND裏切り替え音:
                         return this.sound裏切り替え音;
+
+                    case Eシステムサウンド.SOUNDENTRY:
+                        return this.soundEntry;
                 }
                 throw new IndexOutOfRangeException();
             }
@@ -496,6 +501,9 @@ namespace TJAPlayer3
 
                     case 21:
                         return this.sound裏切り替え音;
+
+                    case 22:
+                        return this.soundEntry;
                 }
                 throw new IndexOutOfRangeException();
             }
@@ -657,6 +665,7 @@ namespace TJAPlayer3
             this.soundスキップ音 = new Cシステムサウンド(@"Sounds\Skip.ogg", false, false, false, ESoundGroup.SoundEffect);
             this.soundSelectAnnounce = new Cシステムサウンド(@"Sounds\DiffSelect.ogg", false, false, true, ESoundGroup.Voice);
             this.sound裏切り替え音 = new Cシステムサウンド(@"Sounds\Ura Switch.ogg", false, false, false, ESoundGroup.SoundEffect);
+            this.soundEntry = new Cシステムサウンド(@"Sounds\Entry.ogg", true, false, true, ESoundGroup.Voice);
             ReloadSkin();
             tReadSkinConfig();
         }
