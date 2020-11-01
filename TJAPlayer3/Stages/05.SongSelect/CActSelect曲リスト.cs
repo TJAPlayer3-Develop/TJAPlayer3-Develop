@@ -2005,7 +2005,8 @@ namespace TJAPlayer3
 
 			if( song == null )
 				return;
-			else
+
+			for( int i = 0; i < 5; i++ )
 				song = this.r前の曲( song );
 
 			if( song == null )
