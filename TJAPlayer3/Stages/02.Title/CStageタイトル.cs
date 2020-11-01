@@ -34,6 +34,7 @@ namespace TJAPlayer3
 			try
 			{
 				TJAPlayer3.Skin.soundタイトルスタート音.t再生する();
+				TJAPlayer3.Skin.soundEntry.t再生する();
 				for ( int i = 0; i < 4; i++ )
 				{
 					this.ctキー反復用[ i ] = new CCounter( 0, 0, 0, TJAPlayer3.Timer );
@@ -210,14 +211,12 @@ namespace TJAPlayer3
                     if (!b曲再生)
                     {
 						TJAPlayer3.Skin.soundタイトル音.t再生する();
-						TJAPlayer3.Skin.soundEntry.t再生する();
 						b曲再生 = true;
 					}
 				}
                 else
                 {
 					TJAPlayer3.Skin.soundタイトル音.n位置_現在のサウンド = 0;
-					TJAPlayer3.Skin.soundEntry.n位置_現在のサウンド = 0;
 				}
 
 				if (TJAPlayer3.Tx.Title_Background != null )

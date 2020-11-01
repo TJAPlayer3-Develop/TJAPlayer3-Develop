@@ -637,22 +637,24 @@ namespace TJAPlayer3
 			ctBoxClose.t進行();
 			ctBoxExplanationOpacity.t進行();
 
-
-			if (TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] != null && TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] != null && TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2] != null)
-			{
-				if (TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2] != OldBoxExplanetion)
-				{
-					for (int i = 0; i < 3; i++)
-					{
-						using (var pfBE = pfBoxExplanation.DrawPrivateFont(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[i], TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor, TJAPlayer3.stage選曲.r現在選択中の曲.BackColor))
-						{
-							OldBoxExplanetion = TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2];
-							txBoxExplanation[i] = TJAPlayer3.tテクスチャの生成(pfBE);
-							this.txBoxExplanation[i].vc拡大縮小倍率.X = this.txBoxExplanation[i].szテクスチャサイズ.Width >= 540f ? 540f / this.txBoxExplanation[i].szテクスチャサイズ.Width : 1.0f;
-						}
-					}
-				}
-		}
+            if (TJAPlayer3.stage選曲.r現在選択中の曲 != null)
+            {
+                if (TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] != null && TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] != null && TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2] != null)
+                {
+                    if (TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2] != OldBoxExplanetion)
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            using (var pfBE = pfBoxExplanation.DrawPrivateFont(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[i], TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor, TJAPlayer3.stage選曲.r現在選択中の曲.BackColor))
+                            {
+                                OldBoxExplanetion = TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2];
+                                txBoxExplanation[i] = TJAPlayer3.tテクスチャの生成(pfBE);
+                                this.txBoxExplanation[i].vc拡大縮小倍率.X = this.txBoxExplanation[i].szテクスチャサイズ.Width >= 540f ? 540f / this.txBoxExplanation[i].szテクスチャサイズ.Width : 1.0f;
+                            }
+                        }
+                    }
+                }
+            }
 
 			// 進行。
 			if (n現在のスクロールカウンタ == 0) ct三角矢印アニメ.t進行Loop();
