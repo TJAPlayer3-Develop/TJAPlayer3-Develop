@@ -481,9 +481,6 @@ namespace TJAPlayer3
 
 			TJAPlayer3.t安全にDisposeする( ref this.ft曲リスト用フォント );
 
-			for( int i = 0; i < 13; i++ )
-				this.ct登場アニメ用[ i ] = null;
-
             this.ct三角矢印アニメ = null;
 
 			base.On非活性化();
@@ -613,8 +610,6 @@ namespace TJAPlayer3
 			//-----------------
 			if (this.b初めての進行描画)
 			{
-				for (int i = 0; i < 13; i++)
-					this.ct登場アニメ用[i] = new CCounter(-i * 10, 100, 3, TJAPlayer3.Timer);
 				ctBoxClose.n現在の値 = 130;
 				this.nスクロールタイマ = CSound管理.rc演奏用タイマ.n現在時刻;
 				TJAPlayer3.stage選曲.t選択曲変更通知();
@@ -1911,7 +1906,6 @@ namespace TJAPlayer3
         public bool b選択曲が変更された = true;
 		private bool b登場アニメ全部完了;
 		private Color color文字影 = Color.FromArgb( 0x40, 10, 10, 10 );
-		private CCounter[] ct登場アニメ用 = new CCounter[ 13 ];
         private CCounter ct三角矢印アニメ;
         private CCounter counter;
         private EFIFOモード mode;

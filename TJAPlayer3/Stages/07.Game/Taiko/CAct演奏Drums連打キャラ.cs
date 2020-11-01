@@ -85,7 +85,6 @@ namespace TJAPlayer3
                     break;
                 }
             }
-            Effects_Roll_Series = random.Next(TJAPlayer3.Skin.Game_Effect_Roll_Ptn);
 		}
 
 		// CActivity 実装
@@ -104,6 +103,7 @@ namespace TJAPlayer3
                 RollCharas[i].IsUsing = false;
                 RollCharas[i].Counter = new CCounter();
             }
+            Effects_Roll_Series = random.Next(TJAPlayer3.Skin.Game_Effect_Roll_Ptn);
             // SkinConfigで指定されたいくつかの変数からこのクラスに合ったものに変換していく
 
             base.On活性化();

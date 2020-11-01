@@ -142,9 +142,6 @@ namespace TJAPlayer3
             if( this.b活性化してる )
                 return;
 
-            for ( int i = 0; i < 13; i++ )
-                this.ct登場アニメ用[ i ] = new CCounter( -i * 10, 100, 3, TJAPlayer3.Timer );
-
             this.n目標のスクロールカウンタ = 0;
             this.n現在のスクロールカウンタ = 0;
             ct決定待機 = new CCounter();
@@ -161,9 +158,6 @@ namespace TJAPlayer3
 		{
 			if( this.b活性化してない )
 				return;
-
-			for( int i = 0; i < 13; i++ )
-				this.ct登場アニメ用[ i ] = null;
 
             this.ct移動 = null;
             this.ctBarAnime = null;
@@ -448,7 +442,6 @@ namespace TJAPlayer3
         public CActSelect曲リスト.TitleTextureKey SongSubTitle;
         private CCounter ct決定待機;
         public int 縁カウント = 0;
-		private CCounter[] ct登場アニメ用 = new CCounter[ 13 ];
         private CCounter ctBarAnime;
         private CCounter ct移動;
 		private int n現在のスクロールカウンタ;
