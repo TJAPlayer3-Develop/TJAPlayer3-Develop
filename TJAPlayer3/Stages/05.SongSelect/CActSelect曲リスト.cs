@@ -289,10 +289,13 @@ namespace TJAPlayer3
 			this.r現在選択中の曲 = this.r次の曲(r現在選択中の曲);
 			for (int index = 0; index < list.Count; index++)
 			{
-				if (this.r現在選択中の曲.list子リスト.Contains(list[index]))
+				if (this.r現在選択中の曲 != null)
 				{
-					list.RemoveAt(index);
-					index--;
+					if (this.r現在選択中の曲.list子リスト.Contains(list[index]))
+					{
+						list.RemoveAt(index);
+						index--;
+					}
 				}
 			}
 			this.t現在選択中の曲を元に曲バーを再構成する();
