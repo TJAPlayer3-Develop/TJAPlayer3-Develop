@@ -172,7 +172,7 @@ namespace TJAPlayer3
 					TJAPlayer3.SongGainController.Set(cスコア.譜面情報.SongVol, loudnessMetadata, this.sound);
 
 					this.sound.t再生を開始する(true);
-					if (this.long再生位置 == -1)
+					if (long再生位置 == -1)
 					{
 						this.long再生開始時のシステム時刻 = CSound管理.rc演奏用タイマ.nシステム時刻ms;
 						this.long再生位置 = cスコア.譜面情報.nデモBGMオフセット;
