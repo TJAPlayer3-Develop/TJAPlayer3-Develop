@@ -620,10 +620,10 @@ namespace TJAPlayer3
 
             if (TJAPlayer3.Tx.Lane_Background_Sub != null)
             {
-                TJAPlayer3.Tx.Lane_Background_Sub.t2D描画(TJAPlayer3.app.Device, 333, 326);
+                TJAPlayer3.Tx.Lane_Background_Sub.t2D描画(TJAPlayer3.app.Device, 332, 326);
                 if (TJAPlayer3.stage演奏ドラム画面.bDoublePlay)
                 {
-                    TJAPlayer3.Tx.Lane_Background_Sub.t2D描画(TJAPlayer3.app.Device, 333, 502);
+                    TJAPlayer3.Tx.Lane_Background_Sub.t2D描画(TJAPlayer3.app.Device, 332, 502);
                 }
             }
 

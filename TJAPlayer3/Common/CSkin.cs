@@ -2410,7 +2410,7 @@ namespace TJAPlayer3
         //分岐背景、ゴーゴー背景が連動する。(全て同じ大きさ、位置で作成すること。)
         //左上基準描画
         public bool bFieldBgPointOverride = false;
-        public int[] nScrollFieldBGX = new int[] { 333, 333, 333, 333 };
+        public int[] nScrollFieldBGX = new int[] { 332, 332, 332, 332 };
         public int[] nScrollFieldBGY = new int[] { 192, 368, 0, 0 };
 
         //SEnotes
@@ -2638,7 +2638,7 @@ namespace TJAPlayer3
         public int[] Game_Score_Size = new int[] { 24, 40 };
         #endregion
         #region Taiko
-        public int[] Game_Taiko_NamePlate_X = new int[] { -27, -27 };
+        public int[] Game_Taiko_NamePlate_X = new int[] { -25, -25 };
         public int[] Game_Taiko_NamePlate_Y = new int[] { 286, 366 };
         public int[] Game_Taiko_PlayerNumber_X = new int[] { 4, 4 };
         public int[] Game_Taiko_PlayerNumber_Y = new int[] { 233, 435 };
