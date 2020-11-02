@@ -292,12 +292,15 @@ namespace TJAPlayer3
 				this.r現在選択中の曲.r親ノード.Openindex = r現在選択中の曲.r親ノード.list子リスト.IndexOf(this.r現在選択中の曲);
 				list.Insert(list.IndexOf(this.r現在選択中の曲) + 1, this.r現在選択中の曲.r親ノード);
 				this.r現在選択中の曲 = this.r次の曲(r現在選択中の曲);
-				for (int index = 0; index < list.Count; index++)
+				if ( this.r現在選択中の曲 != null )
 				{
-					if (this.r現在選択中の曲.list子リスト.Contains(list[index]))
+					for (int index = 0; index < list.Count; index++)
 					{
-						list.RemoveAt(index);
-						index--;
+						if (this.r現在選択中の曲.list子リスト.Contains(list[index]))
+						{
+							list.RemoveAt(index);
+							index--;
+						}
 					}
 				}
 				this.t現在選択中の曲を元に曲バーを再構成する();
