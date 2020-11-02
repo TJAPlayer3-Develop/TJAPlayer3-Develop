@@ -650,7 +650,7 @@ namespace TJAPlayer3
 			ctBoxClose.t進行();
 			ctBoxExplanationOpacity.t進行();
 
-            try
+            if (TJAPlayer3.stage選曲.r現在選択中の曲 != null)
             {
                 if (TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] != null && TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] != null && TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2] != null)
                 {
@@ -667,11 +667,6 @@ namespace TJAPlayer3
                         }
                     }
                 }
-            }
-            catch (NullReferenceException e)
-            {
-                Trace.TraceError(e.ToString());
-                Trace.TraceError("例外が発生しましたが処理を継続します。");
             }
 
 			// 進行。

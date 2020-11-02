@@ -377,6 +377,11 @@ namespace TJAPlayer3
 				{
 					if (ct全体アニメ.n現在の値 >= 2000 + (ctゲージアニメーション.n終了値 * 66) + 1000)
 					{
+						if (!b音声再生[0])
+						{
+							TJAPlayer3.Skin.sound決定音.t再生する();
+							b音声再生[0] = true;
+						}
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.X = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 1180 ? 1.3f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 1000)) / 2 * (Math.PI / 180)) * 0.3f : 1.0f;
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.Y = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 1180 ? 1.3f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 1000)) / 2 * (Math.PI / 180)) * 0.3f : 1.0f;
 						this.t小文字表示(TJAPlayer3.Skin.nResultGreatP1X, TJAPlayer3.Skin.nResultGreatP1Y, string.Format("{0,4:###0}", TJAPlayer3.stage結果.st演奏記録.Drums.nPerfect数.ToString()));
@@ -385,6 +390,11 @@ namespace TJAPlayer3
 					}
 					if (ct全体アニメ.n現在の値 >= 2000 + (ctゲージアニメーション.n終了値 * 66) + 1500)
 					{
+						if (!b音声再生[1])
+						{
+							TJAPlayer3.Skin.sound決定音.t再生する();
+							b音声再生[1] = true;
+						}
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.X = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 1680 ? 1.3f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 1500)) / 2 * (Math.PI / 180)) * 0.3f : 1.0f;
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.Y = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 1680 ? 1.3f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 1500)) / 2 * (Math.PI / 180)) * 0.3f : 1.0f;
 						this.t小文字表示(TJAPlayer3.Skin.nResultGoodP1X, TJAPlayer3.Skin.nResultGoodP1Y, string.Format("{0,4:###0}", TJAPlayer3.stage結果.st演奏記録.Drums.nGreat数.ToString()));
@@ -393,6 +403,11 @@ namespace TJAPlayer3
 					}
 					if (ct全体アニメ.n現在の値 >= 2000 + (ctゲージアニメーション.n終了値 * 66) + 2000)
 					{
+						if (!b音声再生[2])
+						{
+							TJAPlayer3.Skin.sound決定音.t再生する();
+							b音声再生[2] = true;
+						}
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.X = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 2180 ? 1.3f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 2000)) / 2 * (Math.PI / 180)) * 0.3f : 1.0f;
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.Y = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 2180 ? 1.3f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 2000)) / 2 * (Math.PI / 180)) * 0.3f : 1.0f;
 						this.t小文字表示(TJAPlayer3.Skin.nResultBadP1X, TJAPlayer3.Skin.nResultBadP1Y, string.Format("{0,4:###0}", TJAPlayer3.stage結果.st演奏記録.Drums.nMiss数.ToString()));
@@ -401,6 +416,11 @@ namespace TJAPlayer3
 					}
 					if (ct全体アニメ.n現在の値 >= 2000 + (ctゲージアニメーション.n終了値 * 66) + 2500)
 					{
+						if (!b音声再生[3])
+						{
+							TJAPlayer3.Skin.sound決定音.t再生する();
+							b音声再生[3] = true;
+						}
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.X = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 2680 ? 1.3f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 2500)) / 2 * (Math.PI / 180)) * 0.3f : 1.0f;
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.Y = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 2680 ? 1.3f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 2500)) / 2 * (Math.PI / 180)) * 0.3f : 1.0f;
 						this.t小文字表示(TJAPlayer3.Skin.nResultRollP1X, TJAPlayer3.Skin.nResultRollP1Y, string.Format("{0,4:###0}", TJAPlayer3.stage結果.st演奏記録.Drums.n連打数.ToString()));
@@ -409,6 +429,11 @@ namespace TJAPlayer3
 					}
 					if (ct全体アニメ.n現在の値 >= 2000 + (ctゲージアニメーション.n終了値 * 66) + 3000)
 					{
+						if (!b音声再生[4])
+						{
+							TJAPlayer3.Skin.sound決定音.t再生する();
+							b音声再生[4] = true;
+						}
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.X = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 3180 ? 1.3f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 3000)) / 2 * (Math.PI / 180)) * 0.3f : 1.0f;
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.Y = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 3180 ? 1.3f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 3000)) / 2 * (Math.PI / 180)) * 0.3f : 1.0f;
 						this.t小文字表示(TJAPlayer3.Skin.nResultComboP1X, TJAPlayer3.Skin.nResultComboP1Y, string.Format("{0,4:###0}", TJAPlayer3.stage結果.st演奏記録.Drums.n最大コンボ数.ToString()));
@@ -416,15 +441,13 @@ namespace TJAPlayer3
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.Y = 1;
 					}
 
-					if (ct全体アニメ.n現在の値 >= 2000 + (ctゲージアニメーション.n終了値 * 66) + 4000)
+					if(ct全体アニメ.n現在の値 >= 2000 + (ctゲージアニメーション.n終了値 * 66) + 4000)
+					{
 						if (!b音声再生[5])
 						{
 							TJAPlayer3.Skin.sound決定音.t再生する();
 							b音声再生[5] = true;
 						}
-
-					if(ct全体アニメ.n現在の値 >= 2000 + (ctゲージアニメーション.n終了値 * 66) + 4000)
-					{
 						TJAPlayer3.Tx.Result_Score_Number.vc拡大縮小倍率.X = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 4270 ? 1.0f + (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 4000)) / 1.5f * (Math.PI / 180)) * 0.5f :
 																		  ct全体アニメ.n現在の値 >= 2000 + (ctゲージアニメーション.n終了値 * 66) + 4270 && ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 4360 ? 1.0f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 4270)) / 1.5f * (Math.PI / 180)) * 0.05f : 1.0f;
 
