@@ -292,7 +292,7 @@ namespace TJAPlayer3
 				this.r現在選択中の曲.r親ノード.Openindex = r現在選択中の曲.r親ノード.list子リスト.IndexOf(this.r現在選択中の曲);
 				list.Insert(list.IndexOf(this.r現在選択中の曲) + 1, this.r現在選択中の曲.r親ノード);
 				this.r現在選択中の曲 = this.r次の曲(r現在選択中の曲);
-				if ( this.r現在選択中の曲 != null )
+				try
 				{
 					for (int index = 0; index < list.Count; index++)
 					{
@@ -302,6 +302,11 @@ namespace TJAPlayer3
 							index--;
 						}
 					}
+				}
+				catch (NullReferenceException e)
+				{
+					Trace.TraceError(e.ToString());
+					Trace.TraceError("例外が発生しましたが処理を継続します。");
 				}
 				this.t現在選択中の曲を元に曲バーを再構成する();
 				this.t選択曲が変更された(false);
