@@ -415,7 +415,7 @@ namespace TJAPlayer3
 				return;
 				
 			song_last = song;
-			List<C曲リストノード> list = ( song.r親ノード != null ) ? song.r親ノード.list子リスト : TJAPlayer3.Songs管理.list曲ルート;
+			List<C曲リストノード> list = TJAPlayer3.Songs管理.list曲ルート;
 			int index = list.IndexOf( song ) + 1;
 			if ( index <= 0 )
 			{
@@ -1982,7 +1982,7 @@ namespace TJAPlayer3
 			if( song == null )
 				return null;
 
-			List<C曲リストノード> list = ( song.r親ノード != null ) ? song.r親ノード.list子リスト : TJAPlayer3.Songs管理.list曲ルート;
+			List<C曲リストノード> list = TJAPlayer3.Songs管理.list曲ルート;
 
 			int index = list.IndexOf( song );
 
@@ -1999,7 +1999,7 @@ namespace TJAPlayer3
 			if( song == null )
 				return null;
 
-			List<C曲リストノード> list = ( song.r親ノード != null ) ? song.r親ノード.list子リスト : TJAPlayer3.Songs管理.list曲ルート;
+			List<C曲リストノード> list = TJAPlayer3.Songs管理.list曲ルート;
 
 			int index = list.IndexOf( song );
 	
