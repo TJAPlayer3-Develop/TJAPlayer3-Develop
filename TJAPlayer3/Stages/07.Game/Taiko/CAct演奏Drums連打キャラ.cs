@@ -52,7 +52,7 @@ namespace TJAPlayer3
                 if(!RollCharas[i].IsUsing)
                 {
                     RollCharas[i].IsUsing = true;
-                    RollCharas[i].Type = random.Next(6);
+                    RollCharas[i].Type = TJAPlayer3.Random.Next(6);
                     RollCharas[i].OldValue = 0;
                     RollCharas[i].Counter = new CCounter(0, 5000, 1, TJAPlayer3.Timer);
                     if (TJAPlayer3.stage演奏ドラム画面.bDoublePlay)
@@ -60,16 +60,16 @@ namespace TJAPlayer3
                         switch (player)
                         {
                             case 0:
-                                RollCharas[i].X = TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_1P_X[random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_1P_X.Length)];
-                                RollCharas[i].Y = TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_1P_Y[random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_1P_Y.Length)];
-                                RollCharas[i].XAdd = TJAPlayer3.Skin.Game_Effect_Roll_Speed_1P_X[random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_Speed_1P_X.Length)];
-                                RollCharas[i].YAdd = TJAPlayer3.Skin.Game_Effect_Roll_Speed_1P_Y[random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_Speed_1P_Y.Length)];
+                                RollCharas[i].X = TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_1P_X[TJAPlayer3.Random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_1P_X.Length)];
+                                RollCharas[i].Y = TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_1P_Y[TJAPlayer3.Random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_1P_Y.Length)];
+                                RollCharas[i].XAdd = TJAPlayer3.Skin.Game_Effect_Roll_Speed_1P_X[TJAPlayer3.Random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_Speed_1P_X.Length)];
+                                RollCharas[i].YAdd = TJAPlayer3.Skin.Game_Effect_Roll_Speed_1P_Y[TJAPlayer3.Random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_Speed_1P_Y.Length)];
                                 break;
                             case 1:
-                                RollCharas[i].X = TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_2P_X[random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_2P_X.Length)];
-                                RollCharas[i].Y = TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_2P_Y[random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_2P_Y.Length)];
-                                RollCharas[i].XAdd = TJAPlayer3.Skin.Game_Effect_Roll_Speed_2P_X[random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_Speed_2P_X.Length)];
-                                RollCharas[i].YAdd = TJAPlayer3.Skin.Game_Effect_Roll_Speed_2P_Y[random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_Speed_2P_Y.Length)];
+                                RollCharas[i].X = TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_2P_X[TJAPlayer3.Random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_2P_X.Length)];
+                                RollCharas[i].Y = TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_2P_Y[TJAPlayer3.Random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_2P_Y.Length)];
+                                RollCharas[i].XAdd = TJAPlayer3.Skin.Game_Effect_Roll_Speed_2P_X[TJAPlayer3.Random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_Speed_2P_X.Length)];
+                                RollCharas[i].YAdd = TJAPlayer3.Skin.Game_Effect_Roll_Speed_2P_Y[TJAPlayer3.Random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_Speed_2P_Y.Length)];
                                 break;
                             default:
                                 return;
@@ -77,10 +77,10 @@ namespace TJAPlayer3
                     }
                     else
                     {
-                        RollCharas[i].X = TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_X[random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_X.Length)];
-                        RollCharas[i].Y = TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_Y[random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_Y.Length)];
-                        RollCharas[i].XAdd = TJAPlayer3.Skin.Game_Effect_Roll_Speed_X[random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_Speed_X.Length)];
-                        RollCharas[i].YAdd = TJAPlayer3.Skin.Game_Effect_Roll_Speed_Y[random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_Speed_Y.Length)];
+                        RollCharas[i].X = TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_X[TJAPlayer3.Random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_X.Length)];
+                        RollCharas[i].Y = TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_Y[TJAPlayer3.Random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_StartPoint_Y.Length)];
+                        RollCharas[i].XAdd = TJAPlayer3.Skin.Game_Effect_Roll_Speed_X[TJAPlayer3.Random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_Speed_X.Length)];
+                        RollCharas[i].YAdd = TJAPlayer3.Skin.Game_Effect_Roll_Speed_Y[TJAPlayer3.Random.Next(0, TJAPlayer3.Skin.Game_Effect_Roll_Speed_Y.Length)];
                     }
                     break;
                 }
@@ -103,7 +103,7 @@ namespace TJAPlayer3
                 RollCharas[i].IsUsing = false;
                 RollCharas[i].Counter = new CCounter();
             }
-            Effects_Roll_Series = random.Next(TJAPlayer3.Skin.Game_Effect_Roll_Ptn);
+            Effects_Roll_Series = TJAPlayer3.Random.Next(TJAPlayer3.Skin.Game_Effect_Roll_Ptn);
             // SkinConfigで指定されたいくつかの変数からこのクラスに合ったものに変換していく
 
             base.On活性化();
@@ -189,7 +189,7 @@ namespace TJAPlayer3
                             RollCharas[i].X += RollCharas[i].XAdd;
                             RollCharas[i].Y += RollCharas[i].YAdd;
                         }
-                        TJAPlayer3.Tx.Effects_Roll[Effects_Roll_Series, RollCharas[i].Type]?.t2D描画(TJAPlayer3.app.Device, RollCharas[i].X, RollCharas[i].Y);
+                        TJAPlayer3.Tx.Effects_Roll[Effects_Roll_Series, RollCharas[i].Type].t2D描画(TJAPlayer3.app.Device, RollCharas[i].X, RollCharas[i].Y);
                         // 画面外にいたら描画をやめさせる
                         if(RollCharas[i].X < 0 - TJAPlayer3.Tx.Effects_Roll[Effects_Roll_Series, RollCharas[i].Type].szテクスチャサイズ.Width || RollCharas[i].X > 1280)
                         {
@@ -246,8 +246,6 @@ namespace TJAPlayer3
         }
 
         private RollChara[] RollCharas = new RollChara[128];
-
-        private Random random = new Random();
 
         private int[,] StartPoint;
         private int[,] StartPoint_1P;

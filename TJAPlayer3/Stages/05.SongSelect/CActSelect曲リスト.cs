@@ -257,16 +257,19 @@ namespace TJAPlayer3
 			//Trace.TraceInformation( "Skin変更System  : "+  CSkin.strSystemSkinSubfolderFullName );
 			//Trace.TraceInformation( "Skin変更BoxDef  : "+  CSkin.strBoxDefSkinSubfolderFullName );
 
-			List<C曲リストノード> list = TJAPlayer3.Songs管理.list曲ルート;
-			list.InsertRange(list.IndexOf(this.r現在選択中の曲) + 1, this.r現在選択中の曲.list子リスト);
-			int n回数 = this.r現在選択中の曲.Openindex;
-			for (int index = 0; index <= n回数; index++)
-				this.r現在選択中の曲 = this.r次の曲(this.r現在選択中の曲);
-			list.RemoveAt(list.IndexOf(this.r現在選択中の曲.r親ノード));
-			this.t現在選択中の曲を元に曲バーを再構成する();
-			this.t選択曲が変更された(false);
-			TJAPlayer3.stage選曲.t選択曲変更通知();                          // #27648 項目数変更を反映させる
-			this.b選択曲が変更された = true;
+			if( ( this.r現在選択中の曲.list子リスト != null ) && ( this.r現在選択中の曲.list子リスト.Count > 0 ) )
+			{
+				List<C曲リストノード> list = TJAPlayer3.Songs管理.list曲ルート;
+				list.InsertRange(list.IndexOf(this.r現在選択中の曲) + 1, this.r現在選択中の曲.list子リスト);
+				int n回数 = this.r現在選択中の曲.Openindex;
+				for (int index = 0; index <= n回数; index++)
+					this.r現在選択中の曲 = this.r次の曲(this.r現在選択中の曲);
+				list.RemoveAt(list.IndexOf(this.r現在選択中の曲.r親ノード));
+				this.t現在選択中の曲を元に曲バーを再構成する();
+				this.t選択曲が変更された(false);
+				TJAPlayer3.stage選曲.t選択曲変更通知();                          // #27648 項目数変更を反映させる
+				this.b選択曲が変更された = true;
+			}
 			return ret;
 		}
 		public bool tBOXを出る()
@@ -283,13 +286,13 @@ namespace TJAPlayer3
 			TJAPlayer3.Skin.SetCurrentSkinSubfolderFullName(
 				(this.r現在選択中の曲.strSkinPath == "") ? "" : TJAPlayer3.Skin.GetSkinSubfolderFullNameFromSkinName(CSkin.GetSkinName(this.r現在選択中の曲.strSkinPath)), false);
 
-			List<C曲リストノード> list = TJAPlayer3.Songs管理.list曲ルート;
-			this.r現在選択中の曲.r親ノード.Openindex = r現在選択中の曲.r親ノード.list子リスト.IndexOf(this.r現在選択中の曲);
-			list.Insert(list.IndexOf(this.r現在選択中の曲) + 1, this.r現在選択中の曲.r親ノード);
-			this.r現在選択中の曲 = this.r次の曲(r現在選択中の曲);
-			for (int index = 0; index < list.Count; index++)
+			if ( this.r現在選択中の曲.r親ノード != null )
 			{
-				if (this.r現在選択中の曲 != null)
+				List<C曲リストノード> list = TJAPlayer3.Songs管理.list曲ルート;
+				this.r現在選択中の曲.r親ノード.Openindex = r現在選択中の曲.r親ノード.list子リスト.IndexOf(this.r現在選択中の曲);
+				list.Insert(list.IndexOf(this.r現在選択中の曲) + 1, this.r現在選択中の曲.r親ノード);
+				this.r現在選択中の曲 = this.r次の曲(r現在選択中の曲);
+				for (int index = 0; index < list.Count; index++)
 				{
 					if (this.r現在選択中の曲.list子リスト.Contains(list[index]))
 					{
@@ -297,11 +300,11 @@ namespace TJAPlayer3
 						index--;
 					}
 				}
+				this.t現在選択中の曲を元に曲バーを再構成する();
+				this.t選択曲が変更された(false);
+				TJAPlayer3.stage選曲.t選択曲変更通知();                                 // #27648 項目数変更を反映させる
+				this.b選択曲が変更された = true;
 			}
-			this.t現在選択中の曲を元に曲バーを再構成する();
-			this.t選択曲が変更された(false);
-			TJAPlayer3.stage選曲.t選択曲変更通知();                                 // #27648 項目数変更を反映させる
-			this.b選択曲が変更された = true;
 			return ret;
 		}
 		public void t現在選択中の曲を元に曲バーを再構成する()
@@ -404,8 +407,7 @@ namespace TJAPlayer3
 				return;
 				
 			song_last = song;
-			//List<C曲リストノード> list = ( song.r親ノード != null ) ? song.r親ノード.list子リスト : TJAPlayer3.Songs管理.list曲ルート;
-			List<C曲リストノード> list = (song.r親ノード != null) ? TJAPlayer3.Songs管理.list曲ルート : TJAPlayer3.Songs管理.list曲ルート;
+			List<C曲リストノード> list = ( song.r親ノード != null ) ? song.r親ノード.list子リスト : TJAPlayer3.Songs管理.list曲ルート;
 			int index = list.IndexOf( song ) + 1;
 			if ( index <= 0 )
 			{
@@ -1972,7 +1974,7 @@ namespace TJAPlayer3
 			if( song == null )
 				return null;
 
-			List<C曲リストノード> list = (song.r親ノード != null) ? TJAPlayer3.Songs管理.list曲ルート : TJAPlayer3.Songs管理.list曲ルート;
+			List<C曲リストノード> list = ( song.r親ノード != null ) ? song.r親ノード.list子リスト : TJAPlayer3.Songs管理.list曲ルート;
 
 			int index = list.IndexOf( song );
 
@@ -1989,7 +1991,7 @@ namespace TJAPlayer3
 			if( song == null )
 				return null;
 
-			List<C曲リストノード> list = (song.r親ノード != null) ? TJAPlayer3.Songs管理.list曲ルート : TJAPlayer3.Songs管理.list曲ルート;
+			List<C曲リストノード> list = ( song.r親ノード != null ) ? song.r親ノード.list子リスト : TJAPlayer3.Songs管理.list曲ルート;
 
 			int index = list.IndexOf( song );
 	
@@ -2011,9 +2013,6 @@ namespace TJAPlayer3
 
 			for( int i = 0; i < 5; i++ )
 				song = this.r前の曲( song );
-
-			if( song == null )
-				return;
 
 			for( int i = 0; i < 13; i++ )
 			{
