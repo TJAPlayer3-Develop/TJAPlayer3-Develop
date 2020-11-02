@@ -359,6 +359,21 @@ namespace TJAPlayer3
 					{
 						this.t現在選択中の曲を元に曲バーを再構成する();
 					}
+					if (TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] != null && TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] != null && TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2] != null)
+					{
+						if (TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2] != OldBoxExplanetion)
+						{
+							for (int i = 0; i < 3; i++)
+							{
+								using (var pfBE = pfBoxExplanation.DrawPrivateFont(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[i], TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor, TJAPlayer3.stage選曲.r現在選択中の曲.BackColor))
+								{
+									OldBoxExplanetion = TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2];
+									txBoxExplanation[i] = TJAPlayer3.tテクスチャの生成(pfBE);
+									this.txBoxExplanation[i].vc拡大縮小倍率.X = this.txBoxExplanation[i].szテクスチャサイズ.Width >= 540f ? 540f / this.txBoxExplanation[i].szテクスチャサイズ.Width : 1.0f;
+								}
+							}
+						}
+					}
 #if false			// list子リストの中まではmatchしてくれないので、検索ロジックは手書きで実装 (searchCurrentBreadcrumbs())
 					string bc = this.r現在選択中の曲.strBreadcrumbs;
 					Predicate<C曲リストノード> match = delegate( C曲リストノード c )
@@ -2014,6 +2029,8 @@ namespace TJAPlayer3
 
 		private void tバーの初期化()
 		{
+			try
+			{
 			C曲リストノード song = this.r現在選択中の曲;
 
 			if( song == null )
@@ -2062,7 +2079,12 @@ namespace TJAPlayer3
 
 				song = this.r次の曲( song );
 			}
-
+			}
+			catch (NullReferenceException e)
+			{
+				Trace.TraceError(e.ToString());
+				Trace.TraceError("例外が発生しましたが処理を継続します。");
+			}
 			this.n現在の選択行 = 5;
 		}
 		private void tジャンル別選択されていない曲バーの描画( int x, int y, string strジャンル, Eバー種別 eバー種別, bool[] Clear, bool[] FullCombo, bool[] DondaFullCombo, int[] nScoreRank)
