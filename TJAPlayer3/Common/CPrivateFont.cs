@@ -326,6 +326,7 @@ namespace TJAPlayer3
 				System.Windows.Forms.TextFormatFlags.NoPrefix |
 				System.Windows.Forms.TextFormatFlags.NoPadding
 			);
+            stringSize.Height = _font.Height;
             stringSize.Width += 10; //2015.04.01 kairera0467 ROTTERDAM NATIONの描画サイズがうまくいかんので。
 
 			//取得した描画サイズを基に、描画先のbitmapを作成する
@@ -444,9 +445,10 @@ namespace TJAPlayer3
                 Size strSize = System.Windows.Forms.TextRenderer.MeasureText( strName[ i ], this._font, new Size( int.MaxValue, int.MaxValue ),
 				System.Windows.Forms.TextFormatFlags.NoPrefix |
 				System.Windows.Forms.TextFormatFlags.NoPadding );
+                strSize.Height = _font.Height;
 
                 //stringformatは最初にやっていてもいいだろう。
-			    StringFormat sFormat = new StringFormat();
+                StringFormat sFormat = new StringFormat();
 			    sFormat.LineAlignment = StringAlignment.Center;	// 画面下部（垂直方向位置）
 			    sFormat.Alignment = StringAlignment.Center;	// 画面中央（水平方向位置）
 
@@ -493,6 +495,7 @@ namespace TJAPlayer3
                 Size strSize = System.Windows.Forms.TextRenderer.MeasureText(strName[i], this._font, new Size(int.MaxValue, int.MaxValue),
                 System.Windows.Forms.TextFormatFlags.NoPrefix |
                 System.Windows.Forms.TextFormatFlags.NoPadding);
+                strSize.Height = _font.Height;
 
                 //stringformatは最初にやっていてもいいだろう。
                 StringFormat sFormat = new StringFormat();

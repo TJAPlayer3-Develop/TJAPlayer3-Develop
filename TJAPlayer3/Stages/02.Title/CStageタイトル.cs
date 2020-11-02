@@ -34,6 +34,7 @@ namespace TJAPlayer3
 			try
 			{
 				TJAPlayer3.Skin.soundタイトルスタート音.t再生する();
+				TJAPlayer3.Skin.soundEntry.t再生する();
 				for ( int i = 0; i < 4; i++ )
 				{
 					this.ctキー反復用[ i ] = new CCounter( 0, 0, 0, TJAPlayer3.Timer );
@@ -168,23 +169,24 @@ namespace TJAPlayer3
 					{
 						if ((this.n現在のカーソル行 == (int)E戻り値.GAMESTART - 1))
 						{
-							if (TJAPlayer3.stage選曲.act曲リスト.r現在選択中の曲 != null)
-                            {
+							//if (TJAPlayer3.stage選曲.act曲リスト.r現在選択中の曲 != null)
+                            //{
 								TJAPlayer3.Skin.soundタイトル音.t停止する();
 								TJAPlayer3.Skin.soundタイトルスタート音.t停止する();
+								TJAPlayer3.Skin.soundEntry.t停止する();
 								TJAPlayer3.Skin.soundゲーム開始音.t再生する();
 
 								this.actFO.tフェードアウト開始();
 								base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
-							}
-							else
+							//}
+							/*else
                             {
 								MessageBox.Show(
 									"曲の読み込みが終わっていない、または曲が1つもないため、\nゲームをスタートできません。\n\nThe songs are either not loaded yet or not existing.\nIf you haven't installed any song yet,\nplease install some into the same directory as this game.",
 									"TJAPlayer3-Develop",
 									MessageBoxButtons.OK,
 									MessageBoxIcon.Warning);
-							}
+							}*/
 						}
 						else
 						{

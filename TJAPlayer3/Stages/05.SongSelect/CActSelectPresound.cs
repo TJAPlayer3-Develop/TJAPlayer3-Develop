@@ -21,9 +21,9 @@ namespace TJAPlayer3
 		{
 			Cスコア cスコア = TJAPlayer3.stage選曲.act曲リスト.r現在選択中のスコア;
 
-			this.tサウンドの停止MT();
 			if ((cスコア != null) && ((!(cスコア.ファイル情報.フォルダの絶対パス + cスコア.譜面情報.strBGMファイル名).Equals(this.str現在のファイル名) || (this.sound == null)) || !this.sound.b再生中))
 			{
+				this.tサウンドの停止MT();
 				this.tBGMフェードイン開始();
 				this.long再生位置 = -1;
 				if ((cスコア.譜面情報.strBGMファイル名 != null) && (cスコア.譜面情報.strBGMファイル名.Length > 0))
@@ -78,7 +78,7 @@ namespace TJAPlayer3
 				if ((this.ctBGMフェードアウト用 != null) && this.ctBGMフェードアウト用.b進行中)
 				{
 					this.ctBGMフェードアウト用.t進行();
-					this.sound.AutomationLevel = this.ctBGMフェードアウト用.n現在の値;
+					TJAPlayer3.Skin.bgm選曲画面.nAutomationLevel_現在のサウンド = CSound.MaximumAutomationLevel - this.ctBGMフェードアウト用.n現在の値;
 					if (this.ctBGMフェードアウト用.b終了値に達した)
 					{
 						this.ctBGMフェードアウト用.t停止();
@@ -99,9 +99,9 @@ namespace TJAPlayer3
 					else
 					{
 						this.long再生位置 = CSound管理.rc演奏用タイマ.nシステム時刻ms - this.long再生開始時のシステム時刻;
-						if (this.long再生位置 >= this.sound.n総演奏時間ms - cスコア.譜面情報.nデモBGMオフセット) //2020.04.18 Mr-Ojii #DEMOSTARTから何度も再生するために追加
-							this.long再生位置 = -1;
 					}
+					if (this.long再生位置 >= (this.sound.n総演奏時間ms - cスコア.譜面情報.nデモBGMオフセット) - 1 && this.long再生位置 <= (this.sound.n総演奏時間ms - cスコア.譜面情報.nデモBGMオフセット))
+					    this.long再生位置 = -1;
 				}
 			}
 			return 0;
@@ -171,13 +171,8 @@ namespace TJAPlayer3
 										   ?? LoudnessMetadataScanner.LoadForAudioPath(strPreviewFilename);
 					TJAPlayer3.SongGainController.Set(cスコア.譜面情報.SongVol, loudnessMetadata, this.sound);
 
-					this.long再生位置 = -1;
-
-					if(ctBGMフェードイン用 != null)
-						this.sound.AutomationLevel = 100 - this.ctBGMフェードイン用.n現在の値;
-
 					this.sound.t再生を開始する(true);
-					if (this.long再生位置 == -1)
+					if (long再生位置 == -1)
 					{
 						this.long再生開始時のシステム時刻 = CSound管理.rc演奏用タイマ.nシステム時刻ms;
 						this.long再生位置 = cスコア.譜面情報.nデモBGMオフセット;
@@ -228,8 +223,6 @@ namespace TJAPlayer3
 				{
 					token.Cancel();
 				}
-				if (ctBGMフェードアウト用 != null)
-					this.sound.AutomationLevel = this.ctBGMフェードアウト用.n現在の値;
 				this.sound.t再生を停止する();
 				TJAPlayer3.Sound管理.tサウンドを破棄する(this.sound);
 				this.sound = null;

@@ -1617,10 +1617,10 @@ namespace TJAPlayer3
 			if( this.b活性化してない )
 				return;
 
-			TJAPlayer3.tテクスチャの解放( ref this.txSkinSample1 );
-			//CDTXMania.tテクスチャの解放( ref this.tx通常項目行パネル );
-			//CDTXMania.tテクスチャの解放( ref this.txその他項目行パネル );
-			//CDTXMania.tテクスチャの解放( ref this.tx三角矢印 );
+			TJAPlayer3.t安全にDisposeする( ref this.txSkinSample1 );
+			//CDTXMania.t安全にDisposeする( ref this.tx通常項目行パネル );
+			//CDTXMania.t安全にDisposeする( ref this.txその他項目行パネル );
+			//CDTXMania.t安全にDisposeする( ref this.tx三角矢印 );
 		
 			base.OnManagedリソースの解放();
 		}
@@ -1819,7 +1819,7 @@ namespace TJAPlayer3
 					{
 					    listMenu[ nItem ].txMenuItemRight = TJAPlayer3.tテクスチャの生成( bmpItem );
 					    // ctItem.t2D描画( CDTXMania.app.Device, ( x + 0x12 ) * Scale.X, ( y + 12 ) * Scale.Y - 20 );
-					    // CDTXMania.tテクスチャの解放( ref ctItem );
+					    // CDTXMania.t安全にDisposeする( ref ctItem );
 					}
 				}
 				//CDTXMania.stageコンフィグ.actFont.t文字列描画( x + 0x12, y + 12, this.list項目リスト[ nItem ].str項目名 );

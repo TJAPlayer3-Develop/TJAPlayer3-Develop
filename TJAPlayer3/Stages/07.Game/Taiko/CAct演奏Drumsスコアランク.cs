@@ -75,9 +75,9 @@ namespace TJAPlayer3
                     TJAPlayer3.Tx.ScoreRank.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 87, 98 + (int)x, new System.Drawing.Rectangle(0, i * 120, 140, 120));
                 }
             }
-
+            #if DEBUG
             TJAPlayer3.act文字コンソール.tPrint(0, 0, C文字コンソール.Eフォント種別.白, counter[0].n現在の値.ToString());
-
+            #endif
             return base.On進行描画();
         }
 

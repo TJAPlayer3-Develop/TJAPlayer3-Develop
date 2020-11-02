@@ -156,11 +156,11 @@ namespace TJAPlayer3
 		{
 			if( !base.b活性化してない )
 			{
-				//CDTXMania.tテクスチャの解放( ref this.tx背景 );
-				//CDTXMania.tテクスチャの解放( ref this.tx上部パネル );
-				//CDTXMania.tテクスチャの解放( ref this.tx下部パネル );
-				//CDTXMania.tテクスチャの解放( ref this.txMenuカーソル );
-				TJAPlayer3.tテクスチャの解放( ref this.tx説明文パネル );
+				//CDTXMania.t安全にDisposeする( ref this.tx背景 );
+				//CDTXMania.t安全にDisposeする( ref this.tx上部パネル );
+				//CDTXMania.t安全にDisposeする( ref this.tx下部パネル );
+				//CDTXMania.t安全にDisposeする( ref this.txMenuカーソル );
+				TJAPlayer3.t安全にDisposeする( ref this.tx説明文パネル );
 				for ( int i = 0; i < txMenuItemLeft.GetLength( 0 ); i++ )
 				{
 					txMenuItemLeft[ i, 0 ].Dispose();

@@ -29,6 +29,7 @@ namespace TJAPlayer3
 
         public override void OnManagedリソースの作成()
         {
+            this.Mob_Footer_Index = TJAPlayer3.Random.Next(TJAPlayer3.Skin.Game_Mob_Footer_Ptn);
             base.OnManagedリソースの作成();
         }
 
@@ -39,15 +40,16 @@ namespace TJAPlayer3
 
         public override int On進行描画()
         {
-            if (TJAPlayer3.Tx.Mob_Footer != null)
+            if (TJAPlayer3.Skin.Game_Mob_Footer_Ptn != 0)
             {
-                TJAPlayer3.Tx.Mob_Footer.t2D描画(TJAPlayer3.app.Device, 0, 720 - TJAPlayer3.Tx.Mob_Footer.szテクスチャサイズ.Height);
+                TJAPlayer3.Tx.Mob_Footer[this.Mob_Footer_Index].t2D描画(TJAPlayer3.app.Device, 0, 720 - TJAPlayer3.Tx.Mob_Footer[this.Mob_Footer_Index].szテクスチャサイズ.Height);
             }
             return base.On進行描画();
         }
 
         #region[ private ]
         //-----------------
+        private int Mob_Footer_Index;
         //-----------------
         #endregion
     }

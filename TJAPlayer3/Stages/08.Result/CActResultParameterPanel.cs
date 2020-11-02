@@ -535,7 +535,9 @@ namespace TJAPlayer3
             }
             #endregion
 
+            #if DEBUG
             TJAPlayer3.act文字コンソール.tPrint(0, 0, C文字コンソール.Eフォント種別.白, ct全体アニメ.n現在の値.ToString());
+            #endif
 
             if ( !this.ct表示用.b終了値に達した )
 			{

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
@@ -89,12 +89,14 @@ namespace TJAPlayer3
                 {
                     if (this.n現在の選択行 == 3 && TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.nレベル[4] >= 0)
                     {
+                        TJAPlayer3.Skin.sound裏切り替え音.t再生する();
                         b裏譜面 = true;
                         this.n現在の選択行 = 4;
                         縁カウント = 0;
                     }
                     else if (this.n現在の選択行 == 4)
                     {
+                        TJAPlayer3.Skin.sound裏切り替え音.t再生する();
                         b裏譜面 = false;
                         this.n現在の選択行 = 3;
                         縁カウント = 0;
@@ -108,7 +110,6 @@ namespace TJAPlayer3
             TJAPlayer3.Skin.sound変更音.t再生する();
             if (this.n現在の選択行 - 1 >= -2)
             {
-                縁カウント = 0;
                 ctBarAnime.t開始(0, 180, 1, TJAPlayer3.Timer);
                 if (this.n現在の選択行 == 4)
                 {
@@ -119,20 +120,32 @@ namespace TJAPlayer3
                     this.n現在の選択行 -= 1;
                 }
             }
+            縁カウント = 0;
+        }
+
+        public void t難易度選択画面を閉じる()
+        {
+            this.b曲選択 = false;
+            this.bIsDifficltSelect = false;
+            this.b初めての進行描画 = true;
+            縁カウント = 0;
+            TJAPlayer3.Skin.sound取消音.t再生する();
+            TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 = 0;
+            TJAPlayer3.stage選曲.ctDiffSelect移動待ち.t停止();
+            TJAPlayer3.stage選曲.act曲リスト.ctBarOpen.t開始(0, 161, 2, TJAPlayer3.Timer);
         }
 
 		// CActivity 実装
 
 		public override void On活性化()
 		{
-			if( this.b活性化してる )
-				return;
+            if( this.b活性化してる )
+                return;
 
-			this.n目標のスクロールカウンタ = 0;
-			this.n現在のスクロールカウンタ = 0;
+            this.n目標のスクロールカウンタ = 0;
+            this.n現在のスクロールカウンタ = 0;
             ct決定待機 = new CCounter();
 
-            this.b曲選択 = false;
             // フォント作成。
             // 曲リスト文字は２倍（面積４倍）でテクスチャに描画してから縮小表示するので、フォントサイズは２倍とする。
             this.ctBarAnime = new CCounter();
@@ -145,9 +158,6 @@ namespace TJAPlayer3
 		{
 			if( this.b活性化してない )
 				return;
-
-			for( int i = 0; i < 13; i++ )
-				this.ct登場アニメ用[ i ] = null;
 
             this.ct移動 = null;
             this.ctBarAnime = null;
@@ -162,16 +172,12 @@ namespace TJAPlayer3
 			if( this.b活性化してない )
 				return;
 
-            this.soundSelectAnnounce = TJAPlayer3.Sound管理.tサウンドを生成する( CSkin.Path( @"Sounds\DiffSelect.ogg" ), ESoundGroup.SoundEffect );
-
 			base.OnManagedリソースの作成();
 		}
 		public override void OnManagedリソースの解放()
 		{
 			if( this.b活性化してない )
 				return;
-
-            TJAPlayer3.t安全にDisposeする( ref this.soundSelectAnnounce );
 
 			base.OnManagedリソースの解放();
 		}
@@ -184,11 +190,10 @@ namespace TJAPlayer3
 			//-----------------
 			if( this.b初めての進行描画 )
             {
+                TJAPlayer3.Skin.soundSelectAnnounce.t再生する();
+                this.b曲選択 = false;
                 this.b裏譜面 = false;
-                for ( int i = 0; i < 13; i++ )
-					this.ct登場アニメ用[ i ] = new CCounter( -i * 10, 100, 3, TJAPlayer3.Timer );
-
-                this.soundSelectAnnounce.tサウンドを再生する();
+                縁カウント = 0;
 
                 base.b初めての進行描画 = false;
 			}
@@ -225,27 +230,45 @@ namespace TJAPlayer3
                             {
                                 TJAPlayer3.stage選曲.ctDonchanStart.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Start.Length - 1, 1000 / 45, TJAPlayer3.Timer);
                                 this.b曲選択 = true;
+                                if (TJAPlayer3.Skin.soundSelectAnnounce.b再生中) TJAPlayer3.Skin.soundSelectAnnounce.t停止する();
                                 TJAPlayer3.Skin.sound曲決定音.t再生する();
                                 ct決定待機.t開始(0, 2000, 1, TJAPlayer3.Timer);
                             }
                         }
                         else if (n現在の選択行 == -1)
                         {
-
+                            TJAPlayer3.Skin.sound決定音.t再生する();
+                            //TODO: Implement this feature.
                         }
                         else if (n現在の選択行 == -2)
                         {
-                            this.b曲選択 = false;
-                            this.bIsDifficltSelect = false;
-                            TJAPlayer3.Skin.sound決定音.t再生する();
-                            TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 = 0;
-                            TJAPlayer3.stage選曲.ctDiffSelect移動待ち.t停止();
-                            TJAPlayer3.stage選曲.act曲リスト.ctBarOpen.t開始(0, 161, 2, TJAPlayer3.Timer);
+                            this.t難易度選択画面を閉じる();
                         }
                     }
                     else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape))
                     {
-                        this.bIsDifficltSelect = false;
+                        this.t難易度選択画面を閉じる();
+                    }
+                    else if ( ( TJAPlayer3.Input管理.Keyboard.bキーが押されている( (int) SlimDX.DirectInput.Key.RightShift ) || TJAPlayer3.Input管理.Keyboard.bキーが押されている( (int) SlimDX.DirectInput.Key.LeftShift ) ) && TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.F1 ) )
+                    {
+                        TJAPlayer3.stage選曲.enterConfigStage();
+                    }
+                    /*else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F2))
+                    {
+                        TJAPlayer3.stage選曲.showQuickConfig();
+                    }*/
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F3))
+                    {
+                        TJAPlayer3.Skin.sound変更音.t再生する();
+                        C共通.bToggleBoolian( ref TJAPlayer3.ConfigIni.b太鼓パートAutoPlay );
+                    }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F4))
+                    {
+                        if (TJAPlayer3.ConfigIni.nPlayerCount > 1)
+                        {
+                            TJAPlayer3.Skin.sound変更音.t再生する();
+                            C共通.bToggleBoolian(ref TJAPlayer3.ConfigIni.b太鼓パートAutoPlay2P);
+                        }
                     }
                 }
 
@@ -420,14 +443,11 @@ namespace TJAPlayer3
         public CActSelect曲リスト.TitleTextureKey SongSubTitle;
         private CCounter ct決定待機;
         public int 縁カウント = 0;
-		private CCounter[] ct登場アニメ用 = new CCounter[ 13 ];
         private CCounter ctBarAnime;
         private CCounter ct移動;
 		private int n現在のスクロールカウンタ;
 		public int n現在の選択行;
 		private int n目標のスクロールカウンタ;
-
-        private CSound soundSelectAnnounce;
 		//-----------------
 		#endregion
 	}

@@ -46,7 +46,15 @@ namespace TJAPlayer3
                 {
                     if (TJAPlayer3.stage演奏ドラム画面.actGauge.db現在のゲージ値[i] >= 80)
                     {
-                        this.Mode[i] = EndMode.StageCleared;
+                        if (TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Miss == 0)
+                        {
+                            if (TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Great == 0)
+                                this.Mode[i] = EndMode.StageDondaFullCombo;
+                            else
+                                this.Mode[i] = EndMode.StageFullCombo;
+                        }
+                        else
+                            this.Mode[i] = EndMode.StageCleared;
                     }
                     else
                     {
@@ -73,6 +81,9 @@ namespace TJAPlayer3
         {
             this.b再生済み = false;
             this.soundClear = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Clear.ogg"), ESoundGroup.SoundEffect);
+            this.soundFailed = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Failed.ogg"), ESoundGroup.SoundEffect);
+            this.soundFullCombo = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Full combo.ogg"), ESoundGroup.SoundEffect);
+            this.soundDondaFullCombo = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Donda Full Combo.ogg"), ESoundGroup.SoundEffect);
             base.OnManagedリソースの作成();
         }
 
@@ -80,48 +91,18 @@ namespace TJAPlayer3
         {
             if (this.soundClear != null)
                 this.soundClear.t解放する();
+            if (this.soundFailed != null)
+                this.soundFailed.t解放する();
+            if (this.soundFullCombo != null)
+                this.soundFullCombo.t解放する();
+            if (this.soundDondaFullCombo != null)
+                this.soundDondaFullCombo.t解放する();
             base.OnManagedリソースの解放();
         }
 
-        public override int On進行描画()
+        public void showEndEffect_Clear(int i)
         {
-            if (base.b初めての進行描画)
-            {
-                base.b初めての進行描画 = false;
-            }
-            if (this.ct進行メイン != null && (TJAPlayer3.stage演奏ドラム画面.eフェーズID == CStage.Eフェーズ.演奏_演奏終了演出 || TJAPlayer3.stage演奏ドラム画面.eフェーズID == CStage.Eフェーズ.演奏_STAGE_CLEAR_フェードアウト))
-            {
-                this.ct進行メイン.t進行();
-
-                //CDTXMania.act文字コンソール.tPrint( 0, 0, C文字コンソール.Eフォント種別.灰, this.ct進行メイン.n現在の値.ToString() );
-                //仮置き
-                for (int i = 0; i < TJAPlayer3.ConfigIni.nPlayerCount; i++)
-                {
-                    switch (this.Mode[i])
-                    {
-                        case EndMode.StageFailed:
-                            break;
-                        case EndMode.StageCleared:
-                            int[] y = new int[] { 210, 386 };
-                            for (int j = 0; j < TJAPlayer3.ConfigIni.nPlayerCount; j++)
-                            {
-
-                                //this.ct進行メイン.n現在の値 = 18;
-                                if (this.soundClear != null && !this.b再生済み)
-                                {
-                                    this.soundClear.t再生を開始する();
-                                    this.b再生済み = true;
-                                }
-                            }
-                            if (TJAPlayer3.Tx.End_Clear_Text != null)
-                            {
-                                //this.ct進行メイン.n現在の値 = 18;
-                                //if (this.soundClear != null && !this.b再生済み)
-                                //{
-                                //    this.soundClear.t再生を開始する();
-                                //    this.b再生済み = true;
-                                //}
-
+                                int[] y = new int[] { 210, 386 };
                                 #region[ 文字 ]
                                 //登場アニメは20フレーム。うち最初の5フレームは半透過状態。
                                 float[] f文字拡大率 = new float[] { 1.04f, 1.11f, 1.15f, 1.19f, 1.23f, 1.26f, 1.30f, 1.31f, 1.32f, 1.32f, 1.32f, 1.30f, 1.30f, 1.26f, 1.25f, 1.19f, 1.15f, 1.11f, 1.05f, 1.0f };
@@ -274,9 +255,67 @@ namespace TJAPlayer3
                                         TJAPlayer3.Tx.End_Clear_R[4].t2D描画(TJAPlayer3.app.Device, 956, y[i] - 30);
                                 }
                                 #endregion
+        }
+
+        public override int On進行描画()
+        {
+            if (base.b初めての進行描画)
+            {
+                base.b初めての進行描画 = false;
+            }
+            if (this.ct進行メイン != null && (TJAPlayer3.stage演奏ドラム画面.eフェーズID == CStage.Eフェーズ.演奏_演奏終了演出 || TJAPlayer3.stage演奏ドラム画面.eフェーズID == CStage.Eフェーズ.演奏_STAGE_CLEAR_フェードアウト))
+            {
+                this.ct進行メイン.t進行();
+
+                //CDTXMania.act文字コンソール.tPrint( 0, 0, C文字コンソール.Eフォント種別.灰, this.ct進行メイン.n現在の値.ToString() );
+                //仮置き
+                for (int i = 0; i < TJAPlayer3.ConfigIni.nPlayerCount; i++)
+                {
+                    switch (this.Mode[i])
+                    {
+                        case EndMode.StageFailed:
+                            //this.ct進行メイン.n現在の値 = 18;
+                            if (this.soundFailed != null && !this.b再生済み)
+                            {
+                                this.soundFailed.t再生を開始する();
+                                this.b再生済み = true;
+                            }
+                            break;
+                        case EndMode.StageCleared:
+                            //this.ct進行メイン.n現在の値 = 18;
+                            if (this.soundClear != null && !this.b再生済み)
+                            {
+                                this.soundClear.t再生を開始する();
+                                this.b再生済み = true;
+                            }
+                            if (TJAPlayer3.Tx.End_Clear_Text != null)
+                            {
+                                this.showEndEffect_Clear(i);
                             }
                             break;
                         case EndMode.StageFullCombo:
+                            //this.ct進行メイン.n現在の値 = 18;
+                            if (this.soundFullCombo != null && !this.b再生済み)
+                            {
+                                this.soundFullCombo.t再生を開始する();
+                                this.b再生済み = true;
+                            }
+                            if (TJAPlayer3.Tx.End_Clear_Text != null)
+                            {
+                                this.showEndEffect_Clear(i);
+                            }
+                            break;
+                        case EndMode.StageDondaFullCombo:
+                            //this.ct進行メイン.n現在の値 = 18;
+                            if (this.soundDondaFullCombo != null && !this.b再生済み)
+                            {
+                                this.soundDondaFullCombo.t再生を開始する();
+                                this.b再生済み = true;
+                            }
+                            if (TJAPlayer3.Tx.End_Clear_Text != null)
+                            {
+                                this.showEndEffect_Clear(i);
+                            }
                             break;
                         default:
                             break;
@@ -305,12 +344,16 @@ namespace TJAPlayer3
         //CTexture tx文字;
         //CTexture tx文字マスク;
         CSound soundClear;
+        CSound soundFailed;
+        CSound soundFullCombo;
+        CSound soundDondaFullCombo;
         EndMode[] Mode;
         enum EndMode
         {
             StageFailed,
             StageCleared,
-            StageFullCombo
+            StageFullCombo,
+            StageDondaFullCombo
         }
         //-----------------
         #endregion

@@ -45,13 +45,19 @@ namespace TJAPlayer3
         public override void On非活性化()
         {
             TJAPlayer3.t安全にDisposeする(ref this.ct上背景FIFOタイマー);
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < TJAPlayer3.ConfigIni.nPlayerCount; i++)
             {
                 ct上背景スクロール用タイマー1st[i] = null;
                 ct上背景スクロール用タイマー2nd[i] = null;
                 ct上背景スクロール用タイマー3rd[i] = null;
             }
             TJAPlayer3.t安全にDisposeする(ref this.ct下背景スクロール用タイマー1);
+            TJAPlayer3.t安全にDisposeする(ref this.ct桜X移動用タイマー1);
+            TJAPlayer3.t安全にDisposeする(ref this.ct桜Y移動用タイマー1);
+            TJAPlayer3.t安全にDisposeする(ref this.ct桜X移動用タイマー2);
+            TJAPlayer3.t安全にDisposeする(ref this.ct桜Y移動用タイマー2);
+            TJAPlayer3.t安全にDisposeする(ref this.ct桜X移動用タイマー3);
+            TJAPlayer3.t安全にDisposeする(ref this.ct桜Y移動用タイマー3);
             base.On非活性化();
         }
 
@@ -62,7 +68,7 @@ namespace TJAPlayer3
             this.ct上背景スクロール用タイマー3rd = new CCounter[2];
             this.ct上背景クリアインタイマー = new CCounter[2];
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < TJAPlayer3.ConfigIni.nPlayerCount; i++)
             {
                 if (TJAPlayer3.Tx.Background_Up_3rd[i] != null)
                 {
@@ -75,6 +81,18 @@ namespace TJAPlayer3
 
             if (TJAPlayer3.Tx.Background_Down_Scroll != null)
                 this.ct下背景スクロール用タイマー1 = new CCounter(1, TJAPlayer3.Tx.Background_Down_Scroll.szテクスチャサイズ.Width, 4, TJAPlayer3.Timer);
+
+            if (TJAPlayer3.Tx.Background_Down_Sakura != null)
+            {
+                this.ct桜X移動用タイマー1 = new CCounter(0, 166, 15, TJAPlayer3.Timer);
+                this.ct桜Y移動用タイマー1 = new CCounter(0, 500, 5, TJAPlayer3.Timer);
+                this.ct桜X移動用タイマー2 = new CCounter(0, 250, 10, TJAPlayer3.Timer);
+                this.ct桜Y移動用タイマー2 = new CCounter(0, 500, 5, TJAPlayer3.Timer);
+                this.ct桜X移動用タイマー3 = new CCounter(0, 333, 15, TJAPlayer3.Timer);
+                this.ct桜Y移動用タイマー3 = new CCounter(0, 500, 10, TJAPlayer3.Timer);
+            }
+
+            this.Background_Down_Index = TJAPlayer3.Random.Next(TJAPlayer3.Skin.Game_Background_Down_Ptn);
 
             this.ct上背景FIFOタイマー = new CCounter();
             base.OnManagedリソースの作成();
@@ -95,22 +113,22 @@ namespace TJAPlayer3
         {
             this.ct上背景FIFOタイマー.t進行();
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < TJAPlayer3.ConfigIni.nPlayerCount; i++)
             {
                 if (this.ct上背景クリアインタイマー[i] != null)
                     this.ct上背景クリアインタイマー[i].t進行();
             }
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < TJAPlayer3.ConfigIni.nPlayerCount; i++)
             {
                 if (this.ct上背景スクロール用タイマー1st[i] != null)
                     this.ct上背景スクロール用タイマー1st[i].t進行Loop();
             }
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < TJAPlayer3.ConfigIni.nPlayerCount; i++)
             {
                 if (this.ct上背景スクロール用タイマー2nd[i] != null)
                     this.ct上背景スクロール用タイマー2nd[i].t進行Loop();
             }
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < TJAPlayer3.ConfigIni.nPlayerCount; i++)
             {
                 if (this.ct上背景スクロール用タイマー3rd[i] != null)
                     this.ct上背景スクロール用タイマー3rd[i].t進行Loop();
@@ -118,10 +136,26 @@ namespace TJAPlayer3
             if (this.ct下背景スクロール用タイマー1 != null)
                 this.ct下背景スクロール用タイマー1.t進行Loop();
 
+            if (this.ct桜X移動用タイマー1 != null)
+                this.ct桜X移動用タイマー1.t進行Loop();
 
+            if (this.ct桜Y移動用タイマー1 != null)
+                this.ct桜Y移動用タイマー1.t進行Loop();
+
+            if (this.ct桜X移動用タイマー2 != null)
+                this.ct桜X移動用タイマー2.t進行Loop();
+
+            if (this.ct桜Y移動用タイマー2 != null)
+                this.ct桜Y移動用タイマー2.t進行Loop();
+
+            if (this.ct桜X移動用タイマー3 != null)
+                this.ct桜X移動用タイマー3.t進行Loop();
+
+            if (this.ct桜Y移動用タイマー3 != null)
+                this.ct桜Y移動用タイマー3.t進行Loop();
 
             #region 1P-2P-上背景
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < TJAPlayer3.ConfigIni.nPlayerCount; i++)
             {
                 if (this.ct上背景スクロール用タイマー1st[i] != null)
                 {
@@ -273,9 +307,24 @@ namespace TJAPlayer3
             #region 1P-下背景
             if (!TJAPlayer3.stage演奏ドラム画面.bDoublePlay)
             {
-                if (TJAPlayer3.Tx.Background_Down != null)
+                if (TJAPlayer3.Skin.Game_Background_Down_Ptn != 0)
                 {
-                    TJAPlayer3.Tx.Background_Down.t2D描画(TJAPlayer3.app.Device, 0, 360);
+                    TJAPlayer3.Tx.Background_Down[this.Background_Down_Index].t2D描画(TJAPlayer3.app.Device, 0, 360);
+
+		    #region 桜モーション
+                    if (TJAPlayer3.Tx.Background_Down_Sakura != null && this.Background_Down_Index == 0)
+                    {
+                        TJAPlayer3.Tx.Background_Down_Sakura.t2D描画(TJAPlayer3.app.Device, 900 - this.ct桜X移動用タイマー1.n現在の値, 400 + this.ct桜Y移動用タイマー1.n現在の値);
+                        TJAPlayer3.Tx.Background_Down_Sakura.t2D描画(TJAPlayer3.app.Device, 100 + this.ct桜X移動用タイマー1.n現在の値, 350 + this.ct桜Y移動用タイマー1.n現在の値);
+                        TJAPlayer3.Tx.Background_Down_Sakura.t2D描画(TJAPlayer3.app.Device, 1300 - this.ct桜X移動用タイマー1.n現在の値, 350 + this.ct桜Y移動用タイマー1.n現在の値);
+                        TJAPlayer3.Tx.Background_Down_Sakura.t2D描画(TJAPlayer3.app.Device, 900 - this.ct桜X移動用タイマー2.n現在の値, 320 + this.ct桜Y移動用タイマー2.n現在の値);
+                        TJAPlayer3.Tx.Background_Down_Sakura.t2D描画(TJAPlayer3.app.Device, 800 - this.ct桜X移動用タイマー3.n現在の値, 450 + this.ct桜Y移動用タイマー3.n現在の値);
+                        TJAPlayer3.Tx.Background_Down_Sakura.t2D描画(TJAPlayer3.app.Device, 10 + this.ct桜X移動用タイマー3.n現在の値, 430 + this.ct桜Y移動用タイマー3.n現在の値);
+                        TJAPlayer3.Tx.Background_Down_Sakura.t2D描画(TJAPlayer3.app.Device, 800 - this.ct桜X移動用タイマー1.n現在の値, 200 + this.ct桜Y移動用タイマー1.n現在の値);
+                        TJAPlayer3.Tx.Background_Down_Sakura.t2D描画(TJAPlayer3.app.Device, 0 + this.ct桜X移動用タイマー1.n現在の値, 220 + this.ct桜Y移動用タイマー1.n現在の値);
+                        TJAPlayer3.Tx.Background_Down_Sakura.t2D描画(TJAPlayer3.app.Device, 1100 - this.ct桜X移動用タイマー1.n現在の値, 250 + this.ct桜Y移動用タイマー1.n現在の値);
+                    }
+                    #endregion
                 }
                 if (TJAPlayer3.stage演奏ドラム画面.bIsAlreadyCleared[0])
                 {
@@ -314,11 +363,18 @@ namespace TJAPlayer3
         private CCounter ct下背景スクロール用タイマー1; //下背景パーツ1のX方向スクロール用
         private CCounter ct上背景FIFOタイマー;
         private CCounter[] ct上背景クリアインタイマー;
+        private CCounter ct桜X移動用タイマー1;
+        private CCounter ct桜Y移動用タイマー1;
+        private CCounter ct桜X移動用タイマー2;
+        private CCounter ct桜Y移動用タイマー2;
+        private CCounter ct桜X移動用タイマー3;
+        private CCounter ct桜Y移動用タイマー3;
         //private CTexture tx上背景メイン;
         //private CTexture tx上背景クリアメイン;
         //private CTexture tx下背景メイン;
         //private CTexture tx下背景クリアメイン;
         //private CTexture tx下背景クリアサブ1;
+	private int Background_Down_Index;
         private EFIFOモード eFadeMode;
         //-----------------
         #endregion

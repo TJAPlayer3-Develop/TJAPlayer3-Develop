@@ -1593,14 +1593,6 @@ for (int i = 0; i < 3; i++) {
 				return null;
 			}
 		}
-		public static void tテクスチャの解放(ref CTexture tx )
-		{
-			TJAPlayer3.t安全にDisposeする( ref tx );
-		}
-        public static void tテクスチャの解放( ref CTextureAf tx )
-		{
-			TJAPlayer3.t安全にDisposeする( ref tx );
-		}
 		public static CTexture tテクスチャの生成( byte[] txData )
 		{
 			return tテクスチャの生成( txData, false );
