@@ -303,10 +303,13 @@ namespace TJAPlayer3
 
 				this.ct登場時アニメ用共通.t進行();
 
-				if( TJAPlayer3.Tx.SongSelect_Background != null )
-                    TJAPlayer3.Tx.SongSelect_Background.t2D描画( TJAPlayer3.app.Device, 0, 0 );
+				if (TJAPlayer3.Tx.SongSelect_Background != null)
+				{
+					for (int i = 0; i < (1280 / TJAPlayer3.Tx.SongSelect_Background.szテクスチャサイズ.Width) + 2; i++)
+						TJAPlayer3.Tx.SongSelect_Background.t2D描画(TJAPlayer3.app.Device, -ct背景スクロール用タイマー.n現在の値 + TJAPlayer3.Tx.SongSelect_Background.szテクスチャサイズ.Width * i, 0);
+				}
 
-                if( this.r現在選択中の曲 != null )
+				if ( this.r現在選択中の曲 != null )
                 {
                     if(this.nStrジャンルtoNum(this.r現在選択中の曲.strジャンル) != 0 || r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.BOX || r現在選択中の曲.eノード種別 == C曲リストノード.Eノード種別.SCORE)
                     {
@@ -315,8 +318,7 @@ namespace TJAPlayer3
                     if (TJAPlayer3.Tx.SongSelect_GenreBack[nGenreBack] != null )
                     {
                         for( int i = 0 ; i <(1280 / TJAPlayer3.Tx.SongSelect_Background.szテクスチャサイズ.Width) + 2; i++ )
-                            if (TJAPlayer3.Tx.SongSelect_GenreBack[nGenreBack] != null )
-                                    TJAPlayer3.Tx.SongSelect_GenreBack[nGenreBack].t2D描画(TJAPlayer3.app.Device, -ct背景スクロール用タイマー.n現在の値 + TJAPlayer3.Tx.SongSelect_Background.szテクスチャサイズ.Width * i , 0);
+                            TJAPlayer3.Tx.SongSelect_GenreBack[nGenreBack].t2D描画(TJAPlayer3.app.Device, -ct背景スクロール用タイマー.n現在の値 + TJAPlayer3.Tx.SongSelect_Background.szテクスチャサイズ.Width * i , 0);
                     }
                 }
 
@@ -399,8 +401,16 @@ namespace TJAPlayer3
 					if ( !this.actSortSongs.bIsActivePopupMenu && !this.actQuickConfig.bIsActivePopupMenu && !this.act難易度選択画面.bIsDifficltSelect && !this.act曲リスト.ctBoxOpen.b進行中 && !act曲リスト.bBoxOpenAnime)
 					{
                         #region [ ESC ]
-                        if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape) && (this.act曲リスト.r現在選択中の曲 != null))// && (  ) ) )
-                            if (this.act曲リスト.r現在選択中の曲.r親ノード == null)
+                        if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape))
+							if (this.act曲リスト.r現在選択中の曲 == null)
+							{   // [ESC]
+								TJAPlayer3.Skin.sound取消音.t再生する();
+								this.eフェードアウト完了時の戻り値 = E戻り値.タイトルに戻る;
+								this.actFIFO.tフェードアウト開始();
+								base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
+								return 0;
+							}
+						    else if (this.act曲リスト.r現在選択中の曲.r親ノード == null)
                             {   // [ESC]
                                 TJAPlayer3.Skin.sound取消音.t再生する();
                                 this.eフェードアウト完了時の戻り値 = E戻り値.タイトルに戻る;

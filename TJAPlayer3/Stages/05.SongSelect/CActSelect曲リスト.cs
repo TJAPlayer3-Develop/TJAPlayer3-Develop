@@ -257,7 +257,7 @@ namespace TJAPlayer3
 			//Trace.TraceInformation( "Skin変更System  : "+  CSkin.strSystemSkinSubfolderFullName );
 			//Trace.TraceInformation( "Skin変更BoxDef  : "+  CSkin.strBoxDefSkinSubfolderFullName );
 
-			if( ( this.r現在選択中の曲.list子リスト != null ) && ( this.r現在選択中の曲.list子リスト.Count > 0 ) )
+			if(( this.r現在選択中の曲.list子リスト != null ))
 			{
 				List<C曲リストノード> list = TJAPlayer3.Songs管理.list曲ルート;
 				list.InsertRange(list.IndexOf(this.r現在選択中の曲) + 1, this.r現在選択中の曲.list子リスト);
@@ -292,21 +292,13 @@ namespace TJAPlayer3
 				this.r現在選択中の曲.r親ノード.Openindex = r現在選択中の曲.r親ノード.list子リスト.IndexOf(this.r現在選択中の曲);
 				list.Insert(list.IndexOf(this.r現在選択中の曲) + 1, this.r現在選択中の曲.r親ノード);
 				this.r現在選択中の曲 = this.r次の曲(r現在選択中の曲);
-				try
+				for (int index = 0; index < list.Count; index++)
 				{
-					for (int index = 0; index < list.Count; index++)
+					if (this.r現在選択中の曲.list子リスト.Contains(list[index]))
 					{
-						if (this.r現在選択中の曲.list子リスト.Contains(list[index]))
-						{
-							list.RemoveAt(index);
-							index--;
-						}
+						list.RemoveAt(index);
+						index--;
 					}
-				}
-				catch (NullReferenceException e)
-				{
-					Trace.TraceError(e.ToString());
-					Trace.TraceError("例外が発生しましたが処理を継続します。");
 				}
 				this.t現在選択中の曲を元に曲バーを再構成する();
 				this.t選択曲が変更された(false);
@@ -318,10 +310,6 @@ namespace TJAPlayer3
 		public void t現在選択中の曲を元に曲バーを再構成する()
 		{
 			this.tバーの初期化();
-			for( int i = 0; i < 13; i++ )
-			{
-				//this.t曲名バーの生成( i, this.stバー情報[ i ].strタイトル文字列, this.stバー情報[ i ].ForeColor, this.stバー情報[i].BackColor);
-			}
 		}
 		public void t次に移動()
 		{
@@ -515,7 +503,8 @@ namespace TJAPlayer3
 
 			for (int i = 0; i < 3; i++)
 			{
-				if(TJAPlayer3.stage選曲.r現在選択中の曲 != null)
+				if (TJAPlayer3.stage選曲.r現在選択中の曲 != null)
+				{
 					if (TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[i] != null)
 					{
 						using (var pfBE = pfBoxExplanation.DrawPrivateFont(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[i],
@@ -527,6 +516,7 @@ namespace TJAPlayer3
 							OldBoxExplanetion = TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2];
 						}
 					}
+				}
 			}
 
 			for ( int i = 0; i < 13; i++ )
@@ -537,14 +527,14 @@ namespace TJAPlayer3
 
 			int c = ( CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "ja" ) ? 0 : 1;
 
-			#region [ Songs not found画像 ]
+			#region [ Songs were not found画像 ]
 			try
 			{
 				using( Bitmap image = new Bitmap( 640, 128 ) )
 				using( Graphics graphics = Graphics.FromImage( image ) )
 				{
-					string[] s1 = { "曲データが見つかりません。", "Songs not found." };
-					string[] s2 = { "曲データをDTXManiaGR.exe以下の", "You need to install songs." };
+					string[] s1 = { "曲データが見つかりません。", "Songs were not found." };
+					string[] s2 = { "曲データをDTXManiaGR.exe以下の", "You need to install songs first." };
 					string[] s3 = { "フォルダにインストールして下さい。", "" };
 					graphics.DrawString( s1[c], this.ft曲リスト用フォント, Brushes.DarkGray, (float) 2f, (float) 2f );
 					graphics.DrawString( s1[c], this.ft曲リスト用フォント, Brushes.White, (float) 0f, (float) 0f );
@@ -650,24 +640,24 @@ namespace TJAPlayer3
 			ctBoxClose.t進行();
 			ctBoxExplanationOpacity.t進行();
 
-            if (TJAPlayer3.stage選曲.r現在選択中の曲 != null)
-            {
-                if (TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] != null && TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] != null && TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2] != null)
-                {
-                    if (TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2] != OldBoxExplanetion)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            using (var pfBE = pfBoxExplanation.DrawPrivateFont(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[i], TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor, TJAPlayer3.stage選曲.r現在選択中の曲.BackColor))
-                            {
-                                OldBoxExplanetion = TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2];
-                                txBoxExplanation[i] = TJAPlayer3.tテクスチャの生成(pfBE);
-                                this.txBoxExplanation[i].vc拡大縮小倍率.X = this.txBoxExplanation[i].szテクスチャサイズ.Width >= 540f ? 540f / this.txBoxExplanation[i].szテクスチャサイズ.Width : 1.0f;
-                            }
-                        }
-                    }
-                }
-            }
+			if (TJAPlayer3.stage選曲.r現在選択中の曲 != null)
+			{
+				if (TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] != null && TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] != null && TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2] != null)
+				{
+					if (TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2] != OldBoxExplanetion)
+					{
+						for (int i = 0; i < 3; i++)
+						{
+							using (var pfBE = pfBoxExplanation.DrawPrivateFont(TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[i], TJAPlayer3.stage選曲.r現在選択中の曲.ForeColor, TJAPlayer3.stage選曲.r現在選択中の曲.BackColor))
+							{
+								OldBoxExplanetion = TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[0] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[1] + "\n" + TJAPlayer3.stage選曲.r現在選択中の曲.strボックス説明[2];
+								txBoxExplanation[i] = TJAPlayer3.tテクスチャの生成(pfBE);
+								this.txBoxExplanation[i].vc拡大縮小倍率.X = this.txBoxExplanation[i].szテクスチャサイズ.Width >= 540f ? 540f / this.txBoxExplanation[i].szテクスチャサイズ.Width : 1.0f;
+							}
+						}
+					}
+				}
+			} 
 
 			// 進行。
 			if (n現在のスクロールカウンタ == 0) ct三角矢印アニメ.t進行Loop();
@@ -921,7 +911,7 @@ namespace TJAPlayer3
 
 			if( this.r現在選択中の曲 == null )
 			{
-				#region [ 曲が１つもないなら「Songs not found.」を表示してここで帰れ。]
+				#region [ 曲が１つもないなら「Songs were not found.」を表示してここで帰れ。]
 				//-----------------
 				if ( bIsEnumeratingSongs )
 				{
@@ -1611,7 +1601,8 @@ namespace TJAPlayer3
 												{
 													if (txBoxExplanation != null)
 														for (int j = 0; j < 3; j++)
-															this.txBoxExplanation[j].Opacity = 255 - ((ctBoxOpen.n現在の値 - 545) * 3);
+															if (txBoxExplanation[j] != null)
+																this.txBoxExplanation[j].Opacity = 255 - ((ctBoxOpen.n現在の値 - 545) * 3);
 
 													tx選択している曲のサブタイトル.Opacity = 255 - ((ctBoxOpen.n現在の値 - 645) * 3);
 													ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 255 - ((ctBoxOpen.n現在の値 - 545) * 3);
@@ -1626,7 +1617,8 @@ namespace TJAPlayer3
 												{
 													if (txBoxExplanation != null)
 														for (int j = 0; j < 3; j++)
-															this.txBoxExplanation[j].Opacity = ctBoxClose.n現在の値 * 2.833333333f;
+															if (txBoxExplanation[j] != null)
+																this.txBoxExplanation[j].Opacity = ctBoxClose.n現在の値 * 2.833333333f;
 													tx選択している曲のサブタイトル.Opacity = ctBoxClose.n現在の値 * 2.833333333f;
 													ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = ctBoxClose.n現在の値 * 2.8333f;
 												}
@@ -1702,7 +1694,8 @@ namespace TJAPlayer3
 												{
 													if (txBoxExplanation != null)
 														for (int j = 0; j < 3; j++)
-															this.txBoxExplanation[j].Opacity = 255 - ((ctBoxOpen.n現在の値 - 545) * 3);
+															if (txBoxExplanation[j] != null)
+																this.txBoxExplanation[j].Opacity = 255 - ((ctBoxOpen.n現在の値 - 545) * 3);
 
 													ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 255 - ((ctBoxOpen.n現在の値 - 545) * 3);
 												}
@@ -1710,7 +1703,8 @@ namespace TJAPlayer3
 												{
 													if (txBoxExplanation != null)
 														for (int j = 0; j < 3; j++)
-															this.txBoxExplanation[j].Opacity = 0;
+															if (txBoxExplanation[j] != null)
+																this.txBoxExplanation[j].Opacity = 0;
 
 													ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = 0;
 												}
@@ -1723,7 +1717,8 @@ namespace TJAPlayer3
 												{
 													if (txBoxExplanation != null)
 														for (int j = 0; j < 3; j++)
-														this.txBoxExplanation[j].Opacity = ctBoxClose.n現在の値 * 2.833333333f;
+															if (txBoxExplanation[j] != null)
+																this.txBoxExplanation[j].Opacity = ctBoxClose.n現在の値 * 2.833333333f;
 													ResolveTitleTexture(this.ttk選択している曲の曲名).Opacity = ctBoxClose.n現在の値 * 2.8333f;
 												}
 										}
@@ -1762,16 +1757,19 @@ namespace TJAPlayer3
 								{
 									for (int j = 0; j < 3; j++)
 									{
-										if (ctBoxExplanationOpacity.n現在の値 >= 161)
+										if (txBoxExplanation[j] != null)
 										{
-											if (!ctBoxOpen.b進行中 && !ctBoxClose.b進行中)
-												this.txBoxExplanation[j].Opacity = (ctBoxExplanationOpacity.n現在の値 - 161) * 5.1f;
-											this.txBoxExplanation[j].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 643 + TJAPlayer3.Skin.SongSelect_BoxExplanation_X, 360 + j * 35 + TJAPlayer3.Skin.SongSelect_BoxExplanation_Y);
-										}
-										else
-										{
-											if (!ctBoxOpen.b進行中 && !ctBoxClose.b進行中)
-												this.txBoxExplanation[j].Opacity = 0;
+											if (ctBoxExplanationOpacity.n現在の値 >= 161)
+											{
+												if (!ctBoxOpen.b進行中 && !ctBoxClose.b進行中)
+													this.txBoxExplanation[j].Opacity = (ctBoxExplanationOpacity.n現在の値 - 161) * 5.1f;
+												this.txBoxExplanation[j].t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, 643 + TJAPlayer3.Skin.SongSelect_BoxExplanation_X, 360 + j * 35 + TJAPlayer3.Skin.SongSelect_BoxExplanation_Y);
+											}
+											else
+											{
+												if (!ctBoxOpen.b進行中 && !ctBoxClose.b進行中)
+													this.txBoxExplanation[j].Opacity = 0;
+											}
 										}
 									}
 								}
@@ -2014,17 +2012,15 @@ namespace TJAPlayer3
 
 		private void tバーの初期化()
 		{
-			try
-			{
 			C曲リストノード song = this.r現在選択中の曲;
-
-			if( song == null )
-				return;
 
 			for( int i = 0; i < 5; i++ )
 				song = this.r前の曲( song );
 
-			for( int i = 0; i < 13; i++ )
+			if (song == null)
+				return;
+
+			for ( int i = 0; i < 13; i++ )
 			{
 				this.stバー情報[ i ].strタイトル文字列 = song.strタイトル;
                 this.stバー情報[ i ].strジャンル = song.strジャンル;
@@ -2064,12 +2060,7 @@ namespace TJAPlayer3
 
 				song = this.r次の曲( song );
 			}
-			}
-			catch (NullReferenceException e)
-			{
-				Trace.TraceError(e.ToString());
-				Trace.TraceError("例外が発生しましたが処理を継続します。");
-			}
+
 			this.n現在の選択行 = 5;
 		}
 		private void tジャンル別選択されていない曲バーの描画( int x, int y, string strジャンル, Eバー種別 eバー種別, bool[] Clear, bool[] FullCombo, bool[] DondaFullCombo, int[] nScoreRank)

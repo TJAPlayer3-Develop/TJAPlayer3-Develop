@@ -701,14 +701,15 @@ namespace TJAPlayer3
 							#region [ 曲検索の中断と再開 ]
 							if ( r現在のステージ.eステージID == CStage.Eステージ.選曲 && !EnumSongs.IsSongListEnumCompletelyDone )
 							{
-								switch ( this.n進行描画の戻り値 )
+								switch (this.n進行描画の戻り値)
 								{
-									case 0:		// 何もない
+									case 0:     // 何もない
+										EnumSongs.Resume();
 										actEnumSongs.On活性化();
 										break;
 
-									case 2:		// 曲決定
-										EnumSongs.Suspend();						// #27060 バックグラウンドの曲検索を一時停止
+									case 2:     // 曲決定
+										EnumSongs.Suspend();                        // #27060 バックグラウンドの曲検索を一時停止
 										actEnumSongs.On非活性化();
 										break;
 								}
@@ -2436,10 +2437,26 @@ for (int i = 0; i < 3; i++) {
 					}
 				}
 				CAvi.t終了();
-                //---------------------
-                #endregion
-                #region TextureLoaderの処理
-                Tx.DisposeTexture();
+				//---------------------
+				#endregion
+				#region TextureLoaderの処理
+				if (Tx != null)
+				{
+					try
+					{
+						Tx.DisposeTexture();
+						Tx = null;
+					}
+					catch (Exception e)
+                    {
+						Trace.TraceError(e.ToString());
+						Trace.TraceError("TextureLoaderの終了処理に失敗しました。");
+					}
+					finally
+					{
+						Trace.Unindent();
+					}
+				}
                 #endregion
                 #region [ スキンの終了処理 ]
                 //---------------------

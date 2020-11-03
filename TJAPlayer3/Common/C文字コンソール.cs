@@ -128,8 +128,8 @@ namespace TJAPlayer3
 		{
 			if( !base.b活性化してない )
 			{
-				this.txフォント8x16[ 0 ] = TJAPlayer3.Tx.TxC(@"Console_Font.png");
-				this.txフォント8x16[ 1 ] = TJAPlayer3.Tx.TxC(@"Console_Font_Small.png");
+				this.txフォント8x16[ 0 ] = TJAPlayer3.Tx.TxCUntracked(@"Console_Font.png");
+				this.txフォント8x16[ 1 ] = TJAPlayer3.Tx.TxCUntracked(@"Console_Font_Small.png");
                 base.OnManagedリソースの作成();
 			}
 		}
