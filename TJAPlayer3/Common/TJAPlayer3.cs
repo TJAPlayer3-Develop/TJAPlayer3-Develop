@@ -1701,29 +1701,17 @@ for (int i = 0; i < 3; i++) {
         }
 
         /// <summary>プロパティ、インデクサには ref は使用できないので注意。</summary>
-        public static void t安全にDisposeする<T>(ref T obj) where T : class, IDisposable
+        public static void t安全にDisposeする<T>(ref T obj)
         {
             if (obj == null)
-            {
                 return;
-            }
 
-            obj.Dispose();
-            obj = null;
-        }
+            var d = obj as IDisposable;
 
-        public static void t安全にDisposeする<T>(T[] array) where T : class, IDisposable
-        {
-            if (array == null)
-            {
-                return;
-            }
+            if (d != null)
+                d.Dispose();
 
-            for (var i = 0; i < array.Length; i++)
-            {
-                array[i]?.Dispose();
-                array[i] = null;
-            }
+            obj = default(T);
         }
 
         /// <summary>
