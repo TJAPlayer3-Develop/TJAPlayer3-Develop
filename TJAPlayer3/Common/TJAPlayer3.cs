@@ -1701,17 +1701,29 @@ for (int i = 0; i < 3; i++) {
         }
 
         /// <summary>プロパティ、インデクサには ref は使用できないので注意。</summary>
-        public static void t安全にDisposeする<T>(ref T obj)
+        public static void t安全にDisposeする<T>(ref T obj) where T : class, IDisposable
         {
             if (obj == null)
+            {
                 return;
+            }
 
-            var d = obj as IDisposable;
+            obj.Dispose();
+            obj = null;
+        }
 
-            if (d != null)
-                d.Dispose();
+        public static void t安全にDisposeする<T>(T[] array) where T : class, IDisposable
+        {
+            if (array == null)
+            {
+                return;
+            }
 
-            obj = default(T);
+            for (var i = 0; i < array.Length; i++)
+            {
+                array[i]?.Dispose();
+                array[i] = null;
+            }
         }
 
         /// <summary>
@@ -2782,6 +2794,7 @@ for (int i = 0; i < 3; i++) {
 
 
             TJAPlayer3.Tx.DisposeTexture();
+            TJAPlayer3.Tx = new TextureLoader();
             TJAPlayer3.Tx.LoadTexture();
 
             TJAPlayer3.act文字コンソール.On活性化();
