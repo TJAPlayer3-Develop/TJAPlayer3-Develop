@@ -452,7 +452,7 @@ namespace TJAPlayer3
 
 			FontStyle regular = FontStyle.Regular;
 			this.ft曲リスト用フォント = new Font( TJAPlayer3.ConfigIni.FontName, 40f, regular, GraphicsUnit.Pixel );
-			
+
 
 			// 現在選択中の曲がない（＝はじめての活性化）なら、現在選択中の曲をルートの先頭ノードに設定する。
 
@@ -2014,7 +2014,10 @@ namespace TJAPlayer3
 		{
 			C曲リストノード song = this.r現在選択中の曲;
 
-			for( int i = 0; i < 5; i++ )
+			if (song == null)
+				return;
+
+			for ( int i = 0; i < 5; i++ )
 				song = this.r前の曲( song );
 
 			if (song == null)

@@ -46,15 +46,7 @@ namespace TJAPlayer3
         const string ROLL = @"Roll\";
         const string SPLASH = @"Splash\";
 
-
-        public TextureLoader()
-        {
-            // コンストラクタ
-
-        }
-
         private readonly List<CTexture> _trackedTextures = new List<CTexture>();
-        private readonly Dictionary<string, CTexture> _genreTexturesByFileNameWithoutExtension = new Dictionary<string, CTexture>();
 
         private (int skinGameCharaPtnNormal, CTexture[] charaNormal) TxCFolder(string folder)
         {
@@ -103,16 +95,7 @@ namespace TJAPlayer3
         }
         internal CTexture TxCGen(string fileNameWithoutExtension)
         {
-            if (_genreTexturesByFileNameWithoutExtension.TryGetValue(fileNameWithoutExtension, out var texture))
-            {
-                return texture;
-            }
-
-            texture = TxC($"{GAME}{GENRE}{fileNameWithoutExtension}.png");
-
-            _genreTexturesByFileNameWithoutExtension.Add(fileNameWithoutExtension, texture);
-
-            return texture;
+            return TxCUntracked($"{GAME}{GENRE}{fileNameWithoutExtension}.png");
         }
 
         public void LoadTexture()
@@ -624,11 +607,9 @@ namespace TJAPlayer3
 
         public void DisposeTexture()
         {
-            _genreTexturesByFileNameWithoutExtension.Clear();
-
             foreach (var texture in _trackedTextures)
             {
-                texture.Dispose();
+                texture?.Dispose();
             }
             _trackedTextures.Clear();
         }

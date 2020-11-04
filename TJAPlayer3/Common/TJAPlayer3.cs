@@ -1850,7 +1850,7 @@ for (int i = 0; i < 3; i++) {
 				{
 					Trace.Listeners.Add( new CTraceLogListener( new StreamWriter( System.IO.Path.Combine( strEXEのあるフォルダ, "TJAPlayer3.log" ), false, Encoding.GetEncoding( "Shift_JIS" ) ) ) );
 				}
-				catch ( System.UnauthorizedAccessException )			// #24481 2011.2.20 yyagi
+				catch ( System.IO.IOException )			// #24481 2011.2.20 yyagi
 				{
 					int c = (CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ja")? 0 : 1;
 					string[] mes_writeErr = {
