@@ -276,18 +276,22 @@ namespace TJAPlayer3
                     if (this.ct進行用.n現在の値 < 745)
                     {
                         txSONGS.Opacity = 0;
+                        txGENRE.Opacity = 255;
                     }
                     else if (this.ct進行用.n現在の値 >= 745 && this.ct進行用.n現在の値 < 1000)
                     {
                         txSONGS.Opacity = (this.ct進行用.n現在の値 - 745);
+                        txGENRE.Opacity = 255 - (this.ct進行用.n現在の値 - 1745);
                     }
                     else if (this.ct進行用.n現在の値 >= 1000 && this.ct進行用.n現在の値 <= 1745)
                     {
                         txSONGS.Opacity = 255;
+                        txGENRE.Opacity = 0;
                     }
                     else if (this.ct進行用.n現在の値 >= 1745)
                     {
                         txSONGS.Opacity = 255 - (this.ct進行用.n現在の値 - 1745);
+                        txGENRE.Opacity = (this.ct進行用.n現在の値 - 745);
                     }
                     #endregion
 

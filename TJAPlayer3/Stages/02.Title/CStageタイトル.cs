@@ -174,6 +174,7 @@ namespace TJAPlayer3
 								TJAPlayer3.Skin.soundタイトル音.t停止する();
 								TJAPlayer3.Skin.soundタイトルスタート音.t停止する();
 								TJAPlayer3.Skin.soundEntry.t停止する();
+								TJAPlayer3.Skin.sound決定音.t再生する();
 								TJAPlayer3.Skin.soundゲーム開始音.t再生する();
 
 								this.actFO.tフェードアウト開始();

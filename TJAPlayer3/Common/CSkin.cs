@@ -664,7 +664,7 @@ namespace TJAPlayer3
             this.bgmリザルト音 = new Cシステムサウンド(@"Sounds\Result.ogg", true, false, false, ESoundGroup.Voice);
             this.soundスキップ音 = new Cシステムサウンド(@"Sounds\Skip.ogg", false, false, false, ESoundGroup.SoundEffect);
             this.soundSelectAnnounce = new Cシステムサウンド(@"Sounds\DiffSelect.ogg", false, false, true, ESoundGroup.Voice);
-            this.sound裏切り替え音 = new Cシステムサウンド(@"Sounds\Ura Switch.ogg", false, false, false, ESoundGroup.SoundEffect);
+            this.sound裏切り替え音 = new Cシステムサウンド(@"Sounds\EditSwitch.ogg", false, false, false, ESoundGroup.SoundEffect);
             this.soundEntry = new Cシステムサウンド(@"Sounds\Entry.ogg", true, false, true, ESoundGroup.Voice);
             ReloadSkin();
             tReadSkinConfig();
