@@ -1535,7 +1535,7 @@ namespace TJAPlayer3
 								break;
 						}
 						TJAPlayer3.Tx.SongSelect_Branch.Opacity = (ctBarOpen.n現在の値 - 100) * 5.1f;
-						for (int i = 0; i < 5; i++)
+						for (int i = 0; i < 4; i++) // Don't show the branch indicator for Ura, so the maximum value of "i" should be 4, instead of 5.
 						{
 						    if (TJAPlayer3.Tx.SongSelect_Branch != null && TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.b譜面分岐[i])
 						        TJAPlayer3.Tx.SongSelect_Branch.t2D中心基準描画(TJAPlayer3.app.Device, 447 + (i * 122) - 31, TJAPlayer3.Skin.SongSelect_Overall_Y + 273);
@@ -2021,7 +2021,17 @@ namespace TJAPlayer3
 				song = this.r前の曲( song );
 
 			if (song == null)
+			{
+				if (TJAPlayer3.Songs管理.list曲ルート[0] != null)
+				{
+					this.r現在選択中の曲 = TJAPlayer3.Songs管理.list曲ルート[0];
+					this.t現在選択中の曲を元に曲バーを再構成する();
+					this.t選択曲が変更された(false);
+					this.b選択曲が変更された = true;
+					TJAPlayer3.stage選曲.t選択曲変更通知();
+				}
 				return;
+			}
 
 			for ( int i = 0; i < 13; i++ )
 			{

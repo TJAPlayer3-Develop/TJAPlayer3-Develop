@@ -112,6 +112,7 @@ namespace TJAPlayer3
 
 		public void t選択曲変更通知()
 		{
+			if (this.act難易度選択画面.bIsDifficltSelect) this.act難易度選択画面.t難易度選択画面を閉じる();
 			this.actPresound.t選択曲が変更された();
 
 			#region [ プラグインにも通知する（BOX, RANDOM, BACK なら通知しない）]
