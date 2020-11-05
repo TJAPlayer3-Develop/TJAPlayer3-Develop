@@ -154,6 +154,19 @@ namespace TJAPlayer3
                     this.actQuickConfig.tActivatePopupMenu( E楽器パート.DRUMS );
                 }
 
+		public void 制限時間音声のリセット()
+		{
+			this.soundあと30秒.t再生を停止する();
+			this.soundあと10秒.t再生を停止する();
+			this.soundあと5秒.t再生を停止する();
+
+			this.soundあと30秒.t再生位置を先頭に戻す();
+			this.soundあと10秒.t再生位置を先頭に戻す();
+			this.soundあと5秒.t再生位置を先頭に戻す();
+
+			for (int i = 0; i < 10; i++) this.IsPlayed_pi[i] = false;
+		}
+
 		// CStage 実装
 
 		/// <summary>
@@ -229,24 +242,31 @@ namespace TJAPlayer3
 				//this.tx下部パネル = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_footer panel.png" ) );
 
 				//this.txFLIP = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_skill number on gauge etc.png" ), false );
-                //this.tx難易度名 = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_difficulty name.png" ) );
-                //this.txジャンル別背景[0] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Anime.png" ) );
-                //this.txジャンル別背景[1] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_JPOP.png" ) );
-                //this.txジャンル別背景[2] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Game.png" ) );
-                //this.txジャンル別背景[3] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Namco.png" ) );
-                //this.txジャンル別背景[4] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Classic.png" ) );
-                //this.txジャンル別背景[5] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Child.png" ) );
-                //this.txジャンル別背景[6] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Variety.png" ) );
-                //this.txジャンル別背景[7] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_VOCALID.png" ) );
-                //this.txジャンル別背景[8] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Other.png" ) );
+				//this.tx難易度名 = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_difficulty name.png" ) );
+				//this.txジャンル別背景[0] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Anime.png" ) );
+				//this.txジャンル別背景[1] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_JPOP.png" ) );
+				//this.txジャンル別背景[2] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Game.png" ) );
+				//this.txジャンル別背景[3] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Namco.png" ) );
+				//this.txジャンル別背景[4] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Classic.png" ) );
+				//this.txジャンル別背景[5] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Child.png" ) );
+				//this.txジャンル別背景[6] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Variety.png" ) );
+				//this.txジャンル別背景[7] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_VOCALID.png" ) );
+				//this.txジャンル別背景[8] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Other.png" ) );
 
-                //this.tx難易度別背景[0] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Easy.png" ) );
-                //this.tx難易度別背景[1] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Normal.png" ) );
-                //this.tx難易度別背景[2] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Hard.png" ) );
-                //this.tx難易度別背景[3] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Master.png" ) );
-                //this.tx難易度別背景[4] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Edit.png" ) );
-                //this.tx下部テキスト = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_footer text.png" ) );
-                this.ct背景スクロール用タイマー = new CCounter(0, TJAPlayer3.Tx.SongSelect_Background.szテクスチャサイズ.Width, 30, TJAPlayer3.Timer);
+				//this.tx難易度別背景[0] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Easy.png" ) );
+				//this.tx難易度別背景[1] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Normal.png" ) );
+				//this.tx難易度別背景[2] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Hard.png" ) );
+				//this.tx難易度別背景[3] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Master.png" ) );
+				//this.tx難易度別背景[4] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Edit.png" ) );
+				//this.tx下部テキスト = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_footer text.png" ) );
+				this.ct制限時間 = new CCounter(0, 100, 1000, TJAPlayer3.Timer);
+				this.soundあと30秒 = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\30Seconds.ogg"), ESoundGroup.Voice);
+				this.soundあと10秒 = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\10Seconds.ogg"), ESoundGroup.Voice);
+				this.soundあと5秒 = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\5Seconds.ogg"), ESoundGroup.Voice);
+				this.soundピッ = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\pi.ogg"), ESoundGroup.SoundEffect);
+				this.IsPlayed_pi = new bool[10];
+				for (int i = 0; i < 10; i++) this.IsPlayed_pi[i] = false;
+				this.ct背景スクロール用タイマー = new CCounter(0, TJAPlayer3.Tx.SongSelect_Background.szテクスチャサイズ.Width, 30, TJAPlayer3.Timer);
 				base.OnManagedリソースの作成();
 			}
 		}
@@ -401,6 +421,93 @@ namespace TJAPlayer3
 					#endregion
 					if ( !this.actSortSongs.bIsActivePopupMenu && !this.actQuickConfig.bIsActivePopupMenu && !this.act難易度選択画面.bIsDifficltSelect && !this.act曲リスト.ctBoxOpen.b進行中 && !act曲リスト.bBoxOpenAnime)
 					{
+						#region [ timer ]
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadEnter))
+						{
+							if (ct制限時間.b進行中)
+							{
+								ct制限時間.t停止();
+							}
+							else
+							{
+								int int制限時間 = ct制限時間.n現在の値;
+								ct制限時間.t開始(0, 100, 1000, TJAPlayer3.Timer);
+								ct制限時間.n現在の値 = int制限時間;
+							}
+						}
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadPeriod))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 0;
+						}
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad1))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 90;
+						}
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad2))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 80;
+						}
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad3))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 70;
+						}
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad4))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 60;
+						}
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad5))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 50;
+						}
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad6))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 40;
+						}
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad7))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 30;
+						}
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad8))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 20;
+						}
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad9))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 10;
+						}
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad0))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 100;
+						}
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadPlus))
+						{
+							if (ct制限時間.n現在の値 > 0 && ct制限時間.n現在の値 <= 100)
+							{
+								制限時間音声のリセット();
+								ct制限時間.n現在の値--;
+							}
+						}
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadMinus))
+						{
+							if (ct制限時間.n現在の値 >= 0 && ct制限時間.n現在の値 < 100)
+							{
+								制限時間音声のリセット();
+								ct制限時間.n現在の値++;
+							}
+						}
+                        #endregion
+
                         #region [ ESC ]
                         if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape))
 							if (this.act曲リスト.r現在選択中の曲 == null)
@@ -504,7 +611,7 @@ namespace TJAPlayer3
 						if (this.act曲リスト.r現在選択中の曲 != null)
 						{
 							#region [ Decide ]
-							if ((TJAPlayer3.Pad.b押されたDGB(Eパッド.Decide) || (TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed)) ||
+							if (ct制限時間.b終了値に達した || (TJAPlayer3.Pad.b押されたDGB(Eパッド.Decide) || (TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed)) ||
 									((TJAPlayer3.ConfigIni.bEnterがキー割り当てのどこにも使用されていない && TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Return)))))
 							{
 								if (this.act曲リスト.r現在選択中の曲 != null)
@@ -566,6 +673,8 @@ namespace TJAPlayer3
 												//    this.X();
 												//    break;
 										}
+										this.制限時間音声のリセット();
+										ct制限時間.n現在の値 = 0;
 									}
 								}
 							}
@@ -657,6 +766,300 @@ namespace TJAPlayer3
 				#endregion
 
 				TJAPlayer3.Tx.SongSelect_Header.t2D描画(TJAPlayer3.app.Device, 0, 0);
+
+				if (ct制限時間.n現在の値 > 90 && ct制限時間.n現在の値 <= 100)
+				{
+					if (TJAPlayer3.Tx.SongSelect_Timer_Red != null)
+						TJAPlayer3.Tx.SongSelect_Timer_Red.t2D描画(TJAPlayer3.app.Device, 0, 0);
+				}
+				/*else
+				{
+					if (TJAPlayer3.Tx.SongSelect_Header != null)
+						TJAPlayer3.Tx.SongSelect_Header.t2D描画(TJAPlayer3.app.Device, 0, 0);
+				}*/
+
+				this.ct制限時間.t進行();
+
+				switch (ct制限時間.n現在の値)
+				{
+					case 0:
+						if (TJAPlayer3.Tx.SongSelect_Timer100 != null)
+							TJAPlayer3.Tx.SongSelect_Timer100.t2D描画(TJAPlayer3.app.Device, 0, 0);
+						break;
+					case 1:
+					case 11:
+					case 21:
+					case 31:
+					case 41:
+					case 51:
+					case 61:
+					case 71:
+					case 81:
+						if (TJAPlayer3.Tx.SongSelect_Timer[9] != null)
+							TJAPlayer3.Tx.SongSelect_Timer[9].t2D描画(TJAPlayer3.app.Device, 1191, 56);
+						break;
+					case 2:
+					case 12:
+					case 22:
+					case 32:
+					case 42:
+					case 52:
+					case 62:
+					case 72:
+					case 82:
+						if (TJAPlayer3.Tx.SongSelect_Timer[8] != null)
+							TJAPlayer3.Tx.SongSelect_Timer[8].t2D描画(TJAPlayer3.app.Device, 1191, 56);
+						break;
+					case 3:
+					case 13:
+					case 23:
+					case 33:
+					case 43:
+					case 53:
+					case 63:
+					case 73:
+					case 83:
+						if (TJAPlayer3.Tx.SongSelect_Timer[7] != null)
+							TJAPlayer3.Tx.SongSelect_Timer[7].t2D描画(TJAPlayer3.app.Device, 1191, 56);
+						break;
+					case 4:
+					case 14:
+					case 24:
+					case 34:
+					case 44:
+					case 54:
+					case 64:
+					case 74:
+					case 84:
+						if (TJAPlayer3.Tx.SongSelect_Timer[6] != null)
+							TJAPlayer3.Tx.SongSelect_Timer[6].t2D描画(TJAPlayer3.app.Device, 1191, 56);
+						break;
+					case 5:
+					case 15:
+					case 25:
+					case 35:
+					case 45:
+					case 55:
+					case 65:
+					case 75:
+					case 85:
+						if (TJAPlayer3.Tx.SongSelect_Timer[5] != null)
+							TJAPlayer3.Tx.SongSelect_Timer[5].t2D描画(TJAPlayer3.app.Device, 1191, 56);
+						break;
+					case 6:
+					case 16:
+					case 26:
+					case 36:
+					case 46:
+					case 56:
+					case 66:
+					case 76:
+					case 86:
+						if (TJAPlayer3.Tx.SongSelect_Timer[4] != null)
+							TJAPlayer3.Tx.SongSelect_Timer[4].t2D描画(TJAPlayer3.app.Device, 1191, 56);
+						break;
+					case 7:
+					case 17:
+					case 27:
+					case 37:
+					case 47:
+					case 57:
+					case 67:
+					case 77:
+					case 87:
+						if (TJAPlayer3.Tx.SongSelect_Timer[3] != null)
+							TJAPlayer3.Tx.SongSelect_Timer[3].t2D描画(TJAPlayer3.app.Device, 1191, 56);
+						break;
+					case 8:
+					case 18:
+					case 28:
+					case 38:
+					case 48:
+					case 58:
+					case 68:
+					case 78:
+					case 88:
+						if (TJAPlayer3.Tx.SongSelect_Timer[2] != null)
+							TJAPlayer3.Tx.SongSelect_Timer[2].t2D描画(TJAPlayer3.app.Device, 1191, 56);
+						break;
+					case 9:
+					case 19:
+					case 29:
+					case 39:
+					case 49:
+					case 59:
+					case 69:
+					case 79:
+					case 89:
+						if (TJAPlayer3.Tx.SongSelect_Timer[1] != null)
+							TJAPlayer3.Tx.SongSelect_Timer[1].t2D描画(TJAPlayer3.app.Device, 1191, 56);
+						break;
+					case 10:
+					case 20:
+					case 30:
+					case 40:
+					case 50:
+					case 60:
+					case 70:
+					case 80:
+					case 90:
+						if (TJAPlayer3.Tx.SongSelect_Timer[0] != null)
+							TJAPlayer3.Tx.SongSelect_Timer[0].t2D描画(TJAPlayer3.app.Device, 1191, 56);
+						break;
+					case 91:
+						if (TJAPlayer3.Tx.SongSelect_Timerw[9] != null)
+							TJAPlayer3.Tx.SongSelect_Timerw[9].t2D描画(TJAPlayer3.app.Device, 1169, 56);
+						if (!this.IsPlayed_pi[1])
+						{
+							this.soundピッ.t再生を開始する();
+							this.IsPlayed_pi[1] = true;
+						}
+						break;
+					case 92:
+						if (TJAPlayer3.Tx.SongSelect_Timerw[8] != null)
+							TJAPlayer3.Tx.SongSelect_Timerw[8].t2D描画(TJAPlayer3.app.Device, 1169, 56);
+						if (!this.IsPlayed_pi[2])
+						{
+							this.soundピッ.t再生を開始する();
+							this.IsPlayed_pi[2] = true;
+						}
+						break;
+					case 93:
+						if (TJAPlayer3.Tx.SongSelect_Timerw[7] != null)
+							TJAPlayer3.Tx.SongSelect_Timerw[7].t2D描画(TJAPlayer3.app.Device, 1169, 56);
+						if (!this.IsPlayed_pi[3])
+						{
+							this.soundピッ.t再生を開始する();
+							this.IsPlayed_pi[3] = true;
+						}
+						break;
+					case 94:
+						if (TJAPlayer3.Tx.SongSelect_Timerw[6] != null)
+							TJAPlayer3.Tx.SongSelect_Timerw[6].t2D描画(TJAPlayer3.app.Device, 1169, 56);
+						if (!this.IsPlayed_pi[4])
+						{
+							this.soundピッ.t再生を開始する();
+							this.IsPlayed_pi[4] = true;
+						}
+						break;
+					case 95:
+						if (TJAPlayer3.Tx.SongSelect_Timerw[5] != null)
+							TJAPlayer3.Tx.SongSelect_Timerw[5].t2D描画(TJAPlayer3.app.Device, 1169, 56);
+						if (!this.IsPlayed_pi[5])
+						{
+							this.soundピッ.t再生を開始する();
+							this.IsPlayed_pi[5] = true;
+						}
+						break;
+					case 96:
+						if (TJAPlayer3.Tx.SongSelect_Timerw[4] != null)
+							TJAPlayer3.Tx.SongSelect_Timerw[4].t2D描画(TJAPlayer3.app.Device, 1169, 56);
+						if (!this.IsPlayed_pi[6])
+						{
+							this.soundピッ.t再生を開始する();
+							this.IsPlayed_pi[6] = true;
+						}
+						break;
+					case 97:
+						if (TJAPlayer3.Tx.SongSelect_Timerw[3] != null)
+							TJAPlayer3.Tx.SongSelect_Timerw[3].t2D描画(TJAPlayer3.app.Device, 1169, 56);
+						if(!this.IsPlayed_pi[7])
+{
+							this.soundピッ.t再生を開始する();
+							this.IsPlayed_pi[7] = true;
+						}
+						break;
+					case 98:
+						if (TJAPlayer3.Tx.SongSelect_Timerw[2] != null)
+							TJAPlayer3.Tx.SongSelect_Timerw[2].t2D描画(TJAPlayer3.app.Device, 1169, 56);
+						if (!this.IsPlayed_pi[8])
+						{
+							this.soundピッ.t再生を開始する();
+							this.IsPlayed_pi[8] = true;
+						}
+						break;
+					case 99:
+						if (TJAPlayer3.Tx.SongSelect_Timerw[1] != null)
+							TJAPlayer3.Tx.SongSelect_Timerw[1].t2D描画(TJAPlayer3.app.Device, 1169, 56);
+						if (!this.IsPlayed_pi[9])
+						{
+							this.soundピッ.t再生を開始する();
+							this.IsPlayed_pi[9] = true;
+						}
+						break;
+					case 100:
+						if (TJAPlayer3.Tx.SongSelect_Timerw[0] != null)
+							TJAPlayer3.Tx.SongSelect_Timerw[0].t2D描画(TJAPlayer3.app.Device, 1169, 56);
+						if (!this.IsPlayed_pi[0])
+						{
+							this.soundピッ.t再生を開始する();
+							this.IsPlayed_pi[0] = true;
+						}
+						break;
+
+				}
+				if (ct制限時間.n現在の値 > 0 & ct制限時間.n現在の値 < 11)
+				{
+					if (TJAPlayer3.Tx.SongSelect_Timer[9] != null)
+						TJAPlayer3.Tx.SongSelect_Timer[9].t2D描画(TJAPlayer3.app.Device, 1147, 56);
+				}
+				else if (ct制限時間.n現在の値 > 10 & ct制限時間.n現在の値 < 21)
+				{
+					if (TJAPlayer3.Tx.SongSelect_Timer[8] != null)
+						TJAPlayer3.Tx.SongSelect_Timer[8].t2D描画(TJAPlayer3.app.Device, 1147, 56);
+				}
+				else if (ct制限時間.n現在の値 > 20 & ct制限時間.n現在の値 < 31)
+				{
+					if (TJAPlayer3.Tx.SongSelect_Timer[7] != null)
+						TJAPlayer3.Tx.SongSelect_Timer[7].t2D描画(TJAPlayer3.app.Device, 1147, 56);
+				}
+				else if (ct制限時間.n現在の値 > 30 & ct制限時間.n現在の値 < 41)
+				{
+					if (TJAPlayer3.Tx.SongSelect_Timer[6] != null)
+						TJAPlayer3.Tx.SongSelect_Timer[6].t2D描画(TJAPlayer3.app.Device, 1147, 56);
+				}
+				else if (ct制限時間.n現在の値 > 40 & ct制限時間.n現在の値 < 51)
+				{
+					if (TJAPlayer3.Tx.SongSelect_Timer[5] != null)
+						TJAPlayer3.Tx.SongSelect_Timer[5].t2D描画(TJAPlayer3.app.Device, 1147, 56);
+				}
+				else if (ct制限時間.n現在の値 > 50 & ct制限時間.n現在の値 < 61)
+				{
+					if (TJAPlayer3.Tx.SongSelect_Timer[4] != null)
+						TJAPlayer3.Tx.SongSelect_Timer[4].t2D描画(TJAPlayer3.app.Device, 1147, 56);
+				}
+				else if (ct制限時間.n現在の値 > 60 & ct制限時間.n現在の値 < 71)
+				{
+					if (TJAPlayer3.Tx.SongSelect_Timer[3] != null)
+						TJAPlayer3.Tx.SongSelect_Timer[3].t2D描画(TJAPlayer3.app.Device, 1147, 56);
+				}
+				else if (ct制限時間.n現在の値 > 70 & ct制限時間.n現在の値 < 81)
+				{
+					if (TJAPlayer3.Tx.SongSelect_Timer[2] != null)
+						TJAPlayer3.Tx.SongSelect_Timer[2].t2D描画(TJAPlayer3.app.Device, 1147, 56);
+				}
+				else if (ct制限時間.n現在の値 > 80 & ct制限時間.n現在の値 < 91)
+				{
+					if (TJAPlayer3.Tx.SongSelect_Timer[1] != null)
+						TJAPlayer3.Tx.SongSelect_Timer[1].t2D描画(TJAPlayer3.app.Device, 1147, 56);
+				}
+
+				if (ct制限時間.n現在の値 == 70)
+				{
+					this.soundあと30秒.tサウンドを再生する();
+				}
+				else if (ct制限時間.n現在の値 == 90)
+				{
+					this.soundあと10秒.tサウンドを再生する();
+				}
+				else if (ct制限時間.n現在の値 == 95)
+				{
+					this.soundあと5秒.tサウンドを再生する();
+				}
+				/*else if (ct制限時間.b終了値に達した)
+				{
+					// Maybe we can do something interesting here when the timer reaches 0.
+				}*/
 
 				switch ( base.eフェーズID )
 				{
@@ -776,6 +1179,12 @@ namespace TJAPlayer3
 		private CCounter ctDonchanNormal;
 		private CCounter ctDonchanSelect;
 		public CCounter ctDonchanStart;
+		public CCounter ct制限時間;
+		private CSound soundあと30秒;
+		private CSound soundあと10秒;
+		private CSound soundあと5秒;
+		private CSound soundピッ;
+		private bool[] IsPlayed_pi;
 		private CActFIFOBlack actFIFO;
 		private CActFIFOBlack actFIfrom結果画面;
 		//private CActFIFOBlack actFOtoNowLoading;

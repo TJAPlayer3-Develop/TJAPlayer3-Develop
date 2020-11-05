@@ -221,7 +221,7 @@ namespace TJAPlayer3
                     {
                         this.t前に移動();
                     }
-                    else if ((TJAPlayer3.Pad.b押されたDGB(Eパッド.Decide) ||
+                    else if (TJAPlayer3.stage選曲.ct制限時間.b終了値に達した || (TJAPlayer3.Pad.b押されたDGB(Eパッド.Decide) ||
                             ((TJAPlayer3.ConfigIni.bEnterがキー割り当てのどこにも使用されていない && TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Return)))) ||
                             TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed))
                     {
@@ -271,6 +271,92 @@ namespace TJAPlayer3
                             C共通.bToggleBoolian(ref TJAPlayer3.ConfigIni.b太鼓パートAutoPlay2P);
                         }
                     }
+                    #region [ timer ]
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadEnter))
+                    {
+                        if (TJAPlayer3.stage選曲.ct制限時間.b進行中)
+                        {
+                            TJAPlayer3.stage選曲.ct制限時間.t停止();
+                        }
+                        else
+                        {
+                            int int制限時間 = TJAPlayer3.stage選曲.ct制限時間.n現在の値;
+                            TJAPlayer3.stage選曲.ct制限時間.t開始(0, 100, 1000, TJAPlayer3.Timer);
+                            TJAPlayer3.stage選曲.ct制限時間.n現在の値 = int制限時間;
+                        }
+                    }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadPeriod))
+                    {
+                        TJAPlayer3.stage選曲.制限時間音声のリセット();
+                        TJAPlayer3.stage選曲.ct制限時間.n現在の値 = 0;
+                    }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad1))
+                    {
+                        TJAPlayer3.stage選曲.制限時間音声のリセット();
+                        TJAPlayer3.stage選曲.ct制限時間.n現在の値 = 90;
+                    }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad2))
+                    {
+                        TJAPlayer3.stage選曲.制限時間音声のリセット();
+                        TJAPlayer3.stage選曲.ct制限時間.n現在の値 = 80;
+                    }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad3))
+                    {
+                        TJAPlayer3.stage選曲.制限時間音声のリセット();
+                        TJAPlayer3.stage選曲.ct制限時間.n現在の値 = 70;
+                    }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad4))
+                    {
+                        TJAPlayer3.stage選曲.制限時間音声のリセット();
+                        TJAPlayer3.stage選曲.ct制限時間.n現在の値 = 60;
+                    }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad5))
+                    {
+                        TJAPlayer3.stage選曲.制限時間音声のリセット();
+                        TJAPlayer3.stage選曲.ct制限時間.n現在の値 = 50;
+                    }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad6))
+                    {
+                        TJAPlayer3.stage選曲.制限時間音声のリセット();
+                        TJAPlayer3.stage選曲.ct制限時間.n現在の値 = 40;
+                    }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad7))
+                    {
+                        TJAPlayer3.stage選曲.制限時間音声のリセット();
+                        TJAPlayer3.stage選曲.ct制限時間.n現在の値 = 30;
+                    }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad8))
+                    {
+                        TJAPlayer3.stage選曲.制限時間音声のリセット();
+                        TJAPlayer3.stage選曲.ct制限時間.n現在の値 = 20;
+                    }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad9))
+                    {
+                        TJAPlayer3.stage選曲.制限時間音声のリセット();
+                        TJAPlayer3.stage選曲.ct制限時間.n現在の値 = 10;
+                    }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad0))
+                    {
+                        TJAPlayer3.stage選曲.制限時間音声のリセット();
+                        TJAPlayer3.stage選曲.ct制限時間.n現在の値 = 100;
+                    }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadPlus))
+                    {
+                        if (TJAPlayer3.stage選曲.ct制限時間.n現在の値 > 0 && TJAPlayer3.stage選曲.ct制限時間.n現在の値 <= 100)
+                        {
+                            TJAPlayer3.stage選曲.制限時間音声のリセット();
+                            TJAPlayer3.stage選曲.ct制限時間.n現在の値--;
+                        }
+                    }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadMinus))
+                    {
+                        if (TJAPlayer3.stage選曲.ct制限時間.n現在の値 >= 0 && TJAPlayer3.stage選曲.ct制限時間.n現在の値 < 100)
+                        {
+                            TJAPlayer3.stage選曲.制限時間音声のリセット();
+                            TJAPlayer3.stage選曲.ct制限時間.n現在の値++;
+                        }
+                    }
+                    #endregion
                 }
 
                 TJAPlayer3.Tx.Diffculty_Back[TJAPlayer3.stage選曲.act曲リスト.nStrジャンルtoNum(TJAPlayer3.stage選曲.r現在選択中の曲.strジャンル)].Opacity = TJAPlayer3.stage選曲.ctDiffSelect移動待ち.n現在の値 - 935;

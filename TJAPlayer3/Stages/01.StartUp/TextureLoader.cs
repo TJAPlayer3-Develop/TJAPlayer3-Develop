@@ -146,7 +146,9 @@ namespace TJAPlayer3
             SongSelect_Crown = TxC(SONGSELECT + @"SongSelect_Crown.png");
             SongSelect_ScoreRank = TxC(SONGSELECT + @"ScoreRank.png");
             SongSelect_Header = TxC(SONGSELECT + @"Header.png");
+            SongSelect_Timer_Red = TxC(SONGSELECT + @"Header_Timer_Red.png");
             SongSelect_Bar_Genre_Back = TxC(SONGSELECT + @"Bar_Genre\Bar_Genre_Back.png");
+            SongSelect_Timer100 = TxC(SONGSELECT + @"Timer\100.png");
             for (int i = 0; i < SongSelect_Bar_Genre.Length; i++)
             {
                 SongSelect_Bar_Genre[i] = TxC(SONGSELECT + @"Bar_Genre\Bar_Genre_" + i.ToString() + ".png");
@@ -175,6 +177,15 @@ namespace TJAPlayer3
                 SongSelect_Donchan_Start[i] = TxC(SONGSELECT + @"Donchan\Start\" + i.ToString() + ".png");
             }
             SongSelect_ScoreWindow_Text = TxC(SONGSELECT + @"ScoreWindow_Text.png");
+
+            for (int i = 0; i < 10; i++)
+            {
+                SongSelect_Timer[i] = TxC(SONGSELECT + @"Timer\" + i.ToString() + ".png");
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                SongSelect_Timerw[i] = TxC(SONGSELECT + @"Timer\" + i.ToString() + "w.png");
+            }
 
             for (int i = 0; i < Diffculty_Back.Length; i++)
             {
@@ -656,8 +667,10 @@ namespace TJAPlayer3
             SongSelect_Bar_Select,
             SongSelect_Crown,
             SongSelect_Header,
+            SongSelect_Timer_Red,
             SongSelect_ScoreRank,
-            SongSelect_ScoreWindow_Text;
+            SongSelect_ScoreWindow_Text,
+            SongSelect_Timer100;
         public CTexture[] SongSelect_GenreBack = new CTexture[9],
             SongSelect_ScoreWindow = new CTexture[(int)Difficulty.Total],
             SongSelect_Bar_Genre = new CTexture[9],
@@ -665,7 +678,9 @@ namespace TJAPlayer3
             SongSelect_Donchan_Normal = new CTexture[49],
             SongSelect_Donchan_Select = new CTexture[47],
             SongSelect_Donchan_Start = new CTexture[18],
-            SongSelect_NamePlate = new CTexture[1];
+            SongSelect_NamePlate = new CTexture[1],
+            SongSelect_Timer = new CTexture[10],
+            SongSelect_Timerw = new CTexture[10];
 
         public CTexture Difficulty_Bar,
                         Difficulty_SelectBar,
