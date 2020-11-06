@@ -27,7 +27,7 @@ namespace TJAPlayer3
 
 		public int nNoteCount;
 		public int nBalloonCount;
-		const public double nAddScoreNiji;
+		public double nAddScoreNiji;
 		public double nAddScoreNiji2;
 
 		#region [ t演奏結果を格納する_ドラム() ]
