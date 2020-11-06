@@ -1784,7 +1784,7 @@ namespace TJAPlayer3
                                         */
 					if (eJudgeResult == E判定.Great || eJudgeResult == E判定.Good)
 					{
-						nAddScore = nAddScoreNiji / 2;
+						nAddScoreNiji = nAddScoreNiji / 2;
 					}
                                         /*
 					if (pChip.nチャンネル番号 == 0x13 || pChip.nチャンネル番号 == 0x14 || pChip.nチャンネル番号 == 0x1A || pChip.nチャンネル番号 == 0x1B)
