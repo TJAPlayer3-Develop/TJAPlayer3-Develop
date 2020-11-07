@@ -1792,7 +1792,7 @@ namespace TJAPlayer3
 						nAddScoreNiji2 = nAddScoreNiji / 2;
 						if(nAddScoreNiji2 % 2 == 1)
 						{
-						    nAddScoreNiji2 += 5;
+						    nAddScoreNiji2 -= 5;
 						}
 						
 					}
