@@ -236,15 +236,16 @@ namespace TJAPlayer3
                                 ct決定待機.t開始(0, 2000, 1, TJAPlayer3.Timer);
                             }
                         }
-                        else if (n現在の選択行 == -1)
+                        else if (n現在の選択行 == -1 && !TJAPlayer3.stage選曲.ct制限時間.b終了値に達した)
                         {
                             TJAPlayer3.Skin.sound決定音.t再生する();
                             //TODO: Implement this feature.
                         }
-                        else if (n現在の選択行 == -2)
+                        else if (n現在の選択行 == -2 && !TJAPlayer3.stage選曲.ct制限時間.b終了値に達した)
                         {
                             this.t難易度選択画面を閉じる();
                         }
+                        else this.t次に移動();
                     }
                     else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape))
                     {

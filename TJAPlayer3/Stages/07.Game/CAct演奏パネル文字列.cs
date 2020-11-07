@@ -244,7 +244,7 @@ namespace TJAPlayer3
                 if( this.txGENRE != null )
                     this.txGENRE.t2D描画( TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Genre_X, TJAPlayer3.Skin.Game_Genre_Y );
 
-                if (this.txSONGS != null)
+                if (this.txSONGS != null && !TJAPlayer3.Skin.b現在のステージ数を表示しない)
                     txSONGS.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Genre_X, TJAPlayer3.Skin.Game_Genre_Y);
 
                 if ( TJAPlayer3.Skin.b現在のステージ数を表示しない )

@@ -197,6 +197,9 @@ namespace TJAPlayer3
 				this.ctDonchanStart = new CCounter();
 				ctDiffSelect移動待ち = new CCounter();
 				//this.act難易度選択画面.bIsDifficltSelect = true;
+				this.ct制限時間 = new CCounter(0, 100, 1000, TJAPlayer3.Timer);
+				this.IsPlayed_pi = new bool[10];
+				for (int i = 0; i < 10; i++) this.IsPlayed_pi[i] = false;
 				base.On活性化();
 
                 // Discord Presenceの更新
@@ -221,10 +224,12 @@ namespace TJAPlayer3
 					this.ftフォント.Dispose();
 					this.ftフォント = null;
 				}
-				for( int i = 0; i < 6; i++ )
-				{
-					this.ctキー反復用[ i ] = null;
-				}
+                for (int i = 0; i < 6; i++)
+                {
+                    this.ctキー反復用[i] = null;
+                }
+				if (this.ct制限時間 != null)
+					this.ct制限時間 = null;
 				base.On非活性化();
 			}
 			finally
@@ -259,13 +264,10 @@ namespace TJAPlayer3
 				//this.tx難易度別背景[3] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Master.png" ) );
 				//this.tx難易度別背景[4] = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_background_Edit.png" ) );
 				//this.tx下部テキスト = CDTXMania.tテクスチャの生成( CSkin.Path( @"Graphics\5_footer text.png" ) );
-				this.ct制限時間 = new CCounter(0, 100, 1000, TJAPlayer3.Timer);
 				this.soundあと30秒 = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\30Seconds.ogg"), ESoundGroup.Voice);
 				this.soundあと10秒 = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\10Seconds.ogg"), ESoundGroup.Voice);
 				this.soundあと5秒 = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\5Seconds.ogg"), ESoundGroup.Voice);
 				this.soundピッ = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\pi.ogg"), ESoundGroup.SoundEffect);
-				this.IsPlayed_pi = new bool[10];
-				for (int i = 0; i < 10; i++) this.IsPlayed_pi[i] = false;
 				this.ct背景スクロール用タイマー = new CCounter(0, TJAPlayer3.Tx.SongSelect_Background.szテクスチャサイズ.Width, 30, TJAPlayer3.Timer);
 				base.OnManagedリソースの作成();
 			}
@@ -302,16 +304,16 @@ namespace TJAPlayer3
 				{
 					this.act難易度選択画面.n現在の選択行 = 3;
 					this.ct登場時アニメ用共通 = new CCounter( 0, 100, 3, TJAPlayer3.Timer );
-					if( TJAPlayer3.r直前のステージ == TJAPlayer3.stage結果 )
-					{
-						this.actFIfrom結果画面.tフェードイン開始();
-						base.eフェーズID = CStage.Eフェーズ.選曲_結果画面からのフェードイン;
-					}
-					else
-					{
-						this.actFIFO.tフェードイン開始();
-						base.eフェーズID = CStage.Eフェーズ.共通_フェードイン;
-					}
+                    if (TJAPlayer3.r直前のステージ == TJAPlayer3.stage結果)
+                    {
+                        this.actFIfrom結果画面.tフェードイン開始();
+                        base.eフェーズID = CStage.Eフェーズ.選曲_結果画面からのフェードイン;
+                    }
+                    else
+                    {
+                        this.actFIFO.tフェードイン開始();
+                        base.eフェーズID = CStage.Eフェーズ.共通_フェードイン;
+                    }
 					this.t選択曲変更通知();
 					base.b初めての進行描画 = false;
 				}
@@ -631,10 +633,16 @@ namespace TJAPlayer3
 													ctDiffSelect移動待ち.t開始(0, 1190, 1, TJAPlayer3.Timer);
 													act難易度選択画面.bIsDifficltSelect = true;
 													TJAPlayer3.Skin.sound決定音.t再生する();
+													if (ct制限時間.b終了値に達した)
+													{
+														this.制限時間音声のリセット();
+														ct制限時間.n現在の値 = 70;
+													}
 												}
 												else
 												{
 													ctDonchanStart.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Start.Length - 1, 1000 / 45, TJAPlayer3.Timer);
+													TJAPlayer3.Skin.sound決定音.t再生する();
 													this.t曲を選択する();
 												}
 												break;
@@ -649,6 +657,7 @@ namespace TJAPlayer3
 												}
 												break;
 											case C曲リストノード.Eノード種別.BACKBOX:
+												if(!ct制限時間.b終了値に達した)
 												{
 													TJAPlayer3.Skin.sound取消音.t再生する();
 													ctDonchanSelect.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Select.Length - 1, 1000 / 45, TJAPlayer3.Timer);
@@ -656,7 +665,7 @@ namespace TJAPlayer3
 													this.act曲リスト.bBoxClose = true;
 													this.act曲リスト.bBoxOpen = false;
 													this.act曲リスト.ctBoxOpen.t開始(0, 1000, 1, TJAPlayer3.Timer);
-												}
+												} else this.tカーソルを下へ移動する();
 												break;
 											case C曲リストノード.Eノード種別.RANDOM:
 												if (TJAPlayer3.Skin.sound曲決定音.b読み込み成功)
@@ -673,8 +682,6 @@ namespace TJAPlayer3
 												//    this.X();
 												//    break;
 										}
-										this.制限時間音声のリセット();
-										ct制限時間.n現在の値 = 0;
 									}
 								}
 							}
@@ -772,11 +779,6 @@ namespace TJAPlayer3
 					if (TJAPlayer3.Tx.SongSelect_Timer_Red != null)
 						TJAPlayer3.Tx.SongSelect_Timer_Red.t2D描画(TJAPlayer3.app.Device, 0, 0);
 				}
-				/*else
-				{
-					if (TJAPlayer3.Tx.SongSelect_Header != null)
-						TJAPlayer3.Tx.SongSelect_Header.t2D描画(TJAPlayer3.app.Device, 0, 0);
-				}*/
 
 				this.ct制限時間.t進行();
 
@@ -1058,7 +1060,7 @@ namespace TJAPlayer3
 				}
 				/*else if (ct制限時間.b終了値に達した)
 				{
-					// Maybe we can do something interesting here when the timer reaches 0.
+					// Unused.
 				}*/
 
 				switch ( base.eフェーズID )

@@ -274,7 +274,7 @@ namespace TJAPlayer3
 			{
 				if (!b音声再生[0])
 				{
-					TJAPlayer3.Skin.sound決定音.t再生する();
+					TJAPlayer3.Skin.soundResultPom.t再生する();
 					b音声再生[0] = true;
 				}
 				{
@@ -286,7 +286,7 @@ namespace TJAPlayer3
 				}
 				if (!b音声再生[1])
 				{
-					TJAPlayer3.Skin.sound決定音.t再生する();
+					TJAPlayer3.Skin.soundResultPom.t再生する();
 					b音声再生[1] = true;
 				}
 				{
@@ -298,7 +298,7 @@ namespace TJAPlayer3
 				}
 				if (!b音声再生[2])
 				{
-					TJAPlayer3.Skin.sound決定音.t再生する();
+					TJAPlayer3.Skin.soundResultPom.t再生する();
 					b音声再生[2] = true;
 				}
 				{
@@ -310,7 +310,7 @@ namespace TJAPlayer3
 				}
 				if (!b音声再生[3])
 				{
-					TJAPlayer3.Skin.sound決定音.t再生する();
+					TJAPlayer3.Skin.soundResultPom.t再生する();
 					b音声再生[3] = true;
 				}
 				{
@@ -322,7 +322,7 @@ namespace TJAPlayer3
 				}
 				if (!b音声再生[4])
 				{
-					TJAPlayer3.Skin.sound決定音.t再生する();
+					TJAPlayer3.Skin.soundResultPom.t再生する();
 					b音声再生[4] = true;
 				}
 				{
@@ -379,7 +379,7 @@ namespace TJAPlayer3
 					{
 						if (!b音声再生[0])
 						{
-							TJAPlayer3.Skin.sound決定音.t再生する();
+							TJAPlayer3.Skin.soundResultPom.t再生する();
 							b音声再生[0] = true;
 						}
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.X = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 1180 ? 1.3f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 1000)) / 2 * (Math.PI / 180)) * 0.3f : 1.0f;
@@ -392,7 +392,7 @@ namespace TJAPlayer3
 					{
 						if (!b音声再生[1])
 						{
-							TJAPlayer3.Skin.sound決定音.t再生する();
+							TJAPlayer3.Skin.soundResultPom.t再生する();
 							b音声再生[1] = true;
 						}
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.X = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 1680 ? 1.3f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 1500)) / 2 * (Math.PI / 180)) * 0.3f : 1.0f;
@@ -405,7 +405,7 @@ namespace TJAPlayer3
 					{
 						if (!b音声再生[2])
 						{
-							TJAPlayer3.Skin.sound決定音.t再生する();
+							TJAPlayer3.Skin.soundResultPom.t再生する();
 							b音声再生[2] = true;
 						}
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.X = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 2180 ? 1.3f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 2000)) / 2 * (Math.PI / 180)) * 0.3f : 1.0f;
@@ -418,7 +418,7 @@ namespace TJAPlayer3
 					{
 						if (!b音声再生[3])
 						{
-							TJAPlayer3.Skin.sound決定音.t再生する();
+							TJAPlayer3.Skin.soundResultPom.t再生する();
 							b音声再生[3] = true;
 						}
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.X = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 2680 ? 1.3f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 2500)) / 2 * (Math.PI / 180)) * 0.3f : 1.0f;
@@ -431,7 +431,7 @@ namespace TJAPlayer3
 					{
 						if (!b音声再生[4])
 						{
-							TJAPlayer3.Skin.sound決定音.t再生する();
+							TJAPlayer3.Skin.soundResultPom.t再生する();
 							b音声再生[4] = true;
 						}
 						TJAPlayer3.Tx.Result_Number.vc拡大縮小倍率.X = ct全体アニメ.n現在の値 <= 2000 + (ctゲージアニメーション.n終了値 * 66) + 3180 ? 1.3f - (float)Math.Sin((ct全体アニメ.n現在の値 - (2000 + (ctゲージアニメーション.n終了値 * 66) + 3000)) / 2 * (Math.PI / 180)) * 0.3f : 1.0f;
