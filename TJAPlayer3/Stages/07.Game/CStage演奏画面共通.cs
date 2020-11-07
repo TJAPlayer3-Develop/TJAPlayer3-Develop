@@ -28,6 +28,7 @@ namespace TJAPlayer3
 		public int nNoteCount;
 		public int nBalloonCount;
 		public double nAddScoreNiji;
+		public double nAddScoreNiji2;
 
 		#region [ t演奏結果を格納する_ドラム() ]
 		public void t演奏結果を格納する_ドラム(out CScoreIni.C演奏記録 Drums)
@@ -1781,18 +1782,27 @@ namespace TJAPlayer3
 						//int nBallonNoteCount = CDTXMania.DTX.n風船数[ 2 ] + CDTXMania.DTX.n風船数[ 3 ];
 						//int test = ( 1000000 - ( ( nBallonCount - nBallonNoteCount * 300 ) + ( nBallonNoteCount * 5000 ) ) ) / ( CDTXMania.DTX.nノーツ数[ 2 ] + CDTXMania.DTX.nノーツ数[ 3 ] );
 					}
-
+                                        */
+					if (eJudgeResult == E判定.Perfect)
+					{
+						nAddScoreNiji2 = nAddScoreNiji;
+					}
 					if (eJudgeResult == E判定.Great || eJudgeResult == E判定.Good)
 					{
-						nAddScore = nAddScore / 2;
+						nAddScoreNiji2 = nAddScoreNiji / 2;
+						if(nAddScoreNiji2 % 2 == 1)
+						{
+						    nAddScoreNiji2 -= 5;
+						}
+						
 					}
-
+                                        /*
 					if (pChip.nチャンネル番号 == 0x13 || pChip.nチャンネル番号 == 0x14 || pChip.nチャンネル番号 == 0x1A || pChip.nチャンネル番号 == 0x1B)
 					{
 						nAddScore = nAddScore * 2;
 					}
 					*/
-					this.actScore.Add(E楽器パート.TAIKO, bIsAutoPlay, (long)nAddScoreNiji, nPlayer);
+					this.actScore.Add(E楽器パート.TAIKO, bIsAutoPlay, (long)nAddScoreNiji2, nPlayer);
 				}
 				else if (TJAPlayer3.DTX.nScoreModeTmp == 2)
 				{
