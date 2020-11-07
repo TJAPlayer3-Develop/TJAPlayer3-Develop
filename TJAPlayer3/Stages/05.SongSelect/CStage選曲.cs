@@ -613,7 +613,7 @@ namespace TJAPlayer3
 						if (this.act曲リスト.r現在選択中の曲 != null)
 						{
 							#region [ Decide ]
-							if (ct制限時間.b終了値に達した || TJAPlayer3.Pad.b押されたDGB(Eパッド.Decide) || TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed) || TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadEnter) ||
+							if (ct制限時間.b終了値に達した || TJAPlayer3.Pad.b押されたDGB(Eパッド.Decide) || TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed) ||
 									(TJAPlayer3.ConfigIni.bEnterがキー割り当てのどこにも使用されていない && TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Return)))
 							{
 								if (this.act曲リスト.r現在選択中の曲 != null)

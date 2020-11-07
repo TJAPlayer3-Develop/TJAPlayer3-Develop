@@ -221,7 +221,7 @@ namespace TJAPlayer3
                     {
                         this.t前に移動();
                     }
-                    else if (TJAPlayer3.stage選曲.ct制限時間.b終了値に達した || (TJAPlayer3.Pad.b押されたDGB(Eパッド.Decide) || TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadEnter) ||
+                    else if (TJAPlayer3.stage選曲.ct制限時間.b終了値に達した || (TJAPlayer3.Pad.b押されたDGB(Eパッド.Decide) ||
                             ((TJAPlayer3.ConfigIni.bEnterがキー割り当てのどこにも使用されていない && TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Return)))) ||
                             TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed))
                     {

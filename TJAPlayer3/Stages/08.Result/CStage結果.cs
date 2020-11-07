@@ -456,6 +456,8 @@ namespace TJAPlayer3
                             {
 								this.actParameterPanel.ct全体アニメ.n現在の値 = 2000 + (this.actParameterPanel.ctゲージアニメーション.n終了値 * 66) + 8360 - 85;
 								this.actParameterPanel.ctゲージアニメーション.n現在の値 = actParameterPanel.ctゲージアニメーション.n終了値;
+								for (int i = 0; i < 6; i++) actParameterPanel.b音声再生[i] = true;
+								TJAPlayer3.Skin.sound決定音.t再生する();
 								EndAnime = true;
 								this.actParameterPanel.ctEndAnime.t開始(0, 360, 1, TJAPlayer3.Timer);
 								this.actParameterPanel.ctMountain_ClearIn.t開始(0, 515, 3, TJAPlayer3.Timer);
