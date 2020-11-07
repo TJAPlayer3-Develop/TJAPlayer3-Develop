@@ -110,7 +110,7 @@ namespace TJAPlayer3
                     {
                         this.txGENRE = TJAPlayer3.Tx.TxCGen("Classic");
                     }
-                    else if(genreName.Equals( "どうよう" ) )
+                    else if(genreName.Equals( "どうよう" ) || genreName.Equals( "キッズ" ))
                     {
                         this.txGENRE = TJAPlayer3.Tx.TxCGen("Child");
                     }
@@ -272,26 +272,28 @@ namespace TJAPlayer3
                 else
                 {
                     #region[ 透明度制御 ]
-
-                    if (this.ct進行用.n現在の値 < 745)
+                    if (txGENRE != null)
                     {
-                        txSONGS.Opacity = 0;
-                        txGENRE.Opacity = 255;
-                    }
-                    else if (this.ct進行用.n現在の値 >= 745 && this.ct進行用.n現在の値 < 1000)
-                    {
-                        txSONGS.Opacity = (this.ct進行用.n現在の値 - 745);
-                        txGENRE.Opacity = 255 - (this.ct進行用.n現在の値 - 1745);
-                    }
-                    else if (this.ct進行用.n現在の値 >= 1000 && this.ct進行用.n現在の値 <= 1745)
-                    {
-                        txSONGS.Opacity = 255;
-                        txGENRE.Opacity = 0;
-                    }
-                    else if (this.ct進行用.n現在の値 >= 1745)
-                    {
-                        txSONGS.Opacity = 255 - (this.ct進行用.n現在の値 - 1745);
-                        txGENRE.Opacity = (this.ct進行用.n現在の値 - 745);
+                        if (this.ct進行用.n現在の値 < 745)
+                        {
+                            txSONGS.Opacity = 0;
+                            txGENRE.Opacity = 255;
+                        }
+                        else if (this.ct進行用.n現在の値 >= 745 && this.ct進行用.n現在の値 < 1000)
+                        {
+                            txSONGS.Opacity = (this.ct進行用.n現在の値 - 745);
+                            txGENRE.Opacity = 255 - (this.ct進行用.n現在の値 - 1745);
+                        }
+                        else if (this.ct進行用.n現在の値 >= 1000 && this.ct進行用.n現在の値 <= 1745)
+                        {
+                            txSONGS.Opacity = 255;
+                            txGENRE.Opacity = 0;
+                        }
+                        else if (this.ct進行用.n現在の値 >= 1745)
+                        {
+                            txSONGS.Opacity = 255 - (this.ct進行用.n現在の値 - 1745);
+                            txGENRE.Opacity = (this.ct進行用.n現在の値 - 745);
+                        }
                     }
                     #endregion
 

@@ -424,8 +424,9 @@ namespace TJAPlayer3
 					if ( !this.actSortSongs.bIsActivePopupMenu && !this.actQuickConfig.bIsActivePopupMenu && !this.act難易度選択画面.bIsDifficltSelect && !this.act曲リスト.ctBoxOpen.b進行中 && !act曲リスト.bBoxOpenAnime)
 					{
 						#region [ timer ]
-						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadEnter))
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F8)) // Press "F8" key to pause or resume the timer.
 						{
+							TJAPlayer3.Skin.sound変更音.t再生する();
 							if (ct制限時間.b進行中)
 							{
 								ct制限時間.t停止();
@@ -509,7 +510,6 @@ namespace TJAPlayer3
 							}
 						}
                         #endregion
-
                         #region [ ESC ]
                         if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape))
 							if (this.act曲リスト.r現在選択中の曲 == null)
@@ -613,8 +613,8 @@ namespace TJAPlayer3
 						if (this.act曲リスト.r現在選択中の曲 != null)
 						{
 							#region [ Decide ]
-							if (ct制限時間.b終了値に達した || (TJAPlayer3.Pad.b押されたDGB(Eパッド.Decide) || (TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed)) ||
-									((TJAPlayer3.ConfigIni.bEnterがキー割り当てのどこにも使用されていない && TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Return)))))
+							if (ct制限時間.b終了値に達した || TJAPlayer3.Pad.b押されたDGB(Eパッド.Decide) || TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed) || TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadEnter) ||
+									(TJAPlayer3.ConfigIni.bEnterがキー割り当てのどこにも使用されていない && TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Return)))
 							{
 								if (this.act曲リスト.r現在選択中の曲 != null)
 								{
@@ -637,7 +637,11 @@ namespace TJAPlayer3
 													{
 														this.制限時間音声のリセット();
 														ct制限時間.n現在の値 = 70;
-													}
+													} else if (ct制限時間.n現在の値 > 70)
+                                                    {
+														this.制限時間音声のリセット();
+														ct制限時間.n現在の値 = 70;
+                                                    }
 												}
 												else
 												{
@@ -665,7 +669,7 @@ namespace TJAPlayer3
 													this.act曲リスト.bBoxClose = true;
 													this.act曲リスト.bBoxOpen = false;
 													this.act曲リスト.ctBoxOpen.t開始(0, 1000, 1, TJAPlayer3.Timer);
-												} else this.tカーソルを下へ移動する();
+												} else this.tカーソルを下へ移動する(1);
 												break;
 											case C曲リストノード.Eノード種別.RANDOM:
 												if (TJAPlayer3.Skin.sound曲決定音.b読み込み成功)
@@ -1307,15 +1311,15 @@ namespace TJAPlayer3
 			this.act曲リスト.t次に移動();
 		}
 
-                private void tカーソルを下へ移動する()
-                {
-                    this.tカーソルを下へ移動する(1);
-                }
+		private void tカーソルを下へ移動する()
+		{
+			if (!ct制限時間.b終了値に達した) this.tカーソルを下へ移動する(1);
+		}
 
-                private void tカーソルを下へ移動する_Skip()
-                {
-                    this.tカーソルを下へ移動する(7);
-                }
+		private void tカーソルを下へ移動する_Skip()
+		{
+			if (!ct制限時間.b終了値に達した) this.tカーソルを下へ移動する(7);
+		}
 
 		private void tカーソルを上へ移動する(int move)
 		{
@@ -1325,15 +1329,15 @@ namespace TJAPlayer3
 			this.act曲リスト.t前に移動();
 		}
 
-                private void tカーソルを上へ移動する()
-                {
-                    this.tカーソルを上へ移動する(1);
-                }
+		private void tカーソルを上へ移動する()
+		{
+			if (!ct制限時間.b終了値に達した) this.tカーソルを上へ移動する(1);
+		}
 
-                private void tカーソルを上へ移動する_Skip()
-                {
-                    this.tカーソルを上へ移動する(7);
-                }
+		private void tカーソルを上へ移動する_Skip()
+		{
+			if (!ct制限時間.b終了値に達した) this.tカーソルを上へ移動する(7);
+		}
 
 		private void t曲をランダム選択する()
 		{

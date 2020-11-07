@@ -261,7 +261,8 @@ namespace TJAPlayer3
 					}
 					#endregion
 					#region [ キー入力: キャンセル ]
-					else if ( ( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.Escape )
+					else if (TJAPlayer3.stage選曲.ct制限時間.b終了値に達した
+						|| ( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.Escape )
 						|| TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.FT )
 						|| TJAPlayer3.Pad.b押されたGB( Eパッド.Cancel ) )
                         && this.bEsc有効 )
