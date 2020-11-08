@@ -139,20 +139,20 @@ namespace TJAPlayer3
 			#endregion
 		}
 
-                public void enterConfigStage()
-                {
-                    TJAPlayer3.Skin.sound取消音.t再生する();
-                    this.actPresound.tサウンドの停止MT();
-                    this.eフェードアウト完了時の戻り値 = E戻り値.コンフィグ呼び出し;
-                    this.actFIFO.tフェードアウト開始();
-                    base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
-                }
+        private void enterConfigStage()
+        {
+            TJAPlayer3.Skin.sound取消音.t再生する();
+            this.actPresound.tサウンドの停止MT();
+            this.eフェードアウト完了時の戻り値 = E戻り値.コンフィグ呼び出し;
+            this.actFIFO.tフェードアウト開始();
+            base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
+        }
 
-                public void showQuickConfig()
-                {
-                    TJAPlayer3.Skin.sound変更音.t再生する();
-                    this.actQuickConfig.tActivatePopupMenu( E楽器パート.DRUMS );
-                }
+        private void showQuickConfig()
+        {
+            TJAPlayer3.Skin.sound変更音.t再生する();
+            this.actQuickConfig.tActivatePopupMenu( E楽器パート.DRUMS );
+        }
 
 		public void 制限時間音声のリセット(bool LessThan30Sec = false)
 		{
@@ -427,10 +427,10 @@ namespace TJAPlayer3
 						this.enterConfigStage();
 					}
 					#endregion
-					if ( !this.actSortSongs.bIsActivePopupMenu && !this.actQuickConfig.bIsActivePopupMenu && !this.act難易度選択画面.bIsDifficltSelect && !this.act曲リスト.ctBoxOpen.b進行中 && !act曲リスト.bBoxOpenAnime)
+					if ( !this.actSortSongs.bIsActivePopupMenu && !this.actQuickConfig.bIsActivePopupMenu && !this.act曲リスト.ctBoxOpen.b進行中 && !act曲リスト.bBoxOpenAnime)
 					{
                         #region [ ESC ]
-                        if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape))
+                        if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape) && !this.act難易度選択画面.bIsDifficltSelect)
 							if (this.act曲リスト.r現在選択中の曲 == null)
 							{   // [ESC]
 								TJAPlayer3.Skin.sound取消音.t再生する();
@@ -528,8 +528,95 @@ namespace TJAPlayer3
                             TJAPlayer3.Skin.sound変更音.t再生する();
                             C共通.bToggleBoolian( ref TJAPlayer3.ConfigIni.bSuperHard );
                         }
-                        #endregion
-						else if (this.act曲リスト.r現在選択中の曲 != null)
+						#endregion
+						#region [ timer ]
+						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F8)) // Press "F8" key to pause or resume the timer.
+						{
+							TJAPlayer3.Skin.sound変更音.t再生する();
+							if (ct制限時間.b進行中)
+							{
+								ct制限時間.t停止();
+							}
+							else
+							{
+								int int制限時間 = ct制限時間.n現在の値;
+								ct制限時間.t開始(0, 100, 1000, TJAPlayer3.Timer);
+								ct制限時間.n現在の値 = int制限時間;
+							}
+						}
+						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadPeriod))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 0;
+						}
+						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad1))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 90;
+						}
+						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad2))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 80;
+						}
+						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad3))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 70;
+						}
+						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad4))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 60;
+						}
+						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad5))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 50;
+						}
+						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad6))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 40;
+						}
+						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad7))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 30;
+						}
+						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad8))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 20;
+						}
+						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad9))
+						{
+							制限時間音声のリセット();
+							ct制限時間.n現在の値 = 10;
+						}
+						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad0))
+						{
+							//制限時間音声のリセット();
+							ct制限時間.n現在の値 = 100;
+						}
+						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadPlus))
+						{
+							if (ct制限時間.n現在の値 > 0 && ct制限時間.n現在の値 <= 100)
+							{
+								制限時間音声のリセット();
+								ct制限時間.n現在の値--;
+							}
+						}
+						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadMinus))
+						{
+							if (ct制限時間.n現在の値 >= 0 && ct制限時間.n現在の値 < 100)
+							{
+								制限時間音声のリセット();
+								ct制限時間.n現在の値++;
+							}
+						}
+						#endregion
+						else if (this.act曲リスト.r現在選択中の曲 != null && !this.act難易度選択画面.bIsDifficltSelect)
 						{
 							#region [ Decide ]
 							if (ct制限時間.b終了値に達した || TJAPlayer3.Pad.b押されたDGB(Eパッド.Decide) || TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed) ||
@@ -640,93 +727,6 @@ namespace TJAPlayer3
                             }
 							#endregion
 						}
-						#region [ timer ]
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F8)) // Press "F8" key to pause or resume the timer.
-						{
-							TJAPlayer3.Skin.sound変更音.t再生する();
-							if (ct制限時間.b進行中)
-							{
-								ct制限時間.t停止();
-							}
-							else
-							{
-								int int制限時間 = ct制限時間.n現在の値;
-								ct制限時間.t開始(0, 100, 1000, TJAPlayer3.Timer);
-								ct制限時間.n現在の値 = int制限時間;
-							}
-						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadPeriod))
-						{
-							制限時間音声のリセット();
-							ct制限時間.n現在の値 = 0;
-						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad1))
-						{
-							制限時間音声のリセット();
-							ct制限時間.n現在の値 = 90;
-						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad2))
-						{
-							制限時間音声のリセット();
-							ct制限時間.n現在の値 = 80;
-						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad3))
-						{
-							制限時間音声のリセット();
-							ct制限時間.n現在の値 = 70;
-						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad4))
-						{
-							制限時間音声のリセット();
-							ct制限時間.n現在の値 = 60;
-						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad5))
-						{
-							制限時間音声のリセット();
-							ct制限時間.n現在の値 = 50;
-						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad6))
-						{
-							制限時間音声のリセット();
-							ct制限時間.n現在の値 = 40;
-						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad7))
-						{
-							制限時間音声のリセット();
-							ct制限時間.n現在の値 = 30;
-						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad8))
-						{
-							制限時間音声のリセット();
-							ct制限時間.n現在の値 = 20;
-						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad9))
-						{
-							制限時間音声のリセット();
-							ct制限時間.n現在の値 = 10;
-						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad0))
-						{
-							//制限時間音声のリセット();
-							ct制限時間.n現在の値 = 100;
-						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadPlus))
-						{
-							if (ct制限時間.n現在の値 > 0 && ct制限時間.n現在の値 <= 100)
-							{
-								制限時間音声のリセット();
-								ct制限時間.n現在の値--;
-							}
-						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadMinus))
-						{
-							if (ct制限時間.n現在の値 >= 0 && ct制限時間.n現在の値 < 100)
-							{
-								制限時間音声のリセット();
-								ct制限時間.n現在の値++;
-							}
-						}
-						#endregion
 					}
 
 					#region [ Minus & Equals Sound Group Level ]
