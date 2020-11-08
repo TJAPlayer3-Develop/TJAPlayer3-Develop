@@ -402,7 +402,7 @@ namespace TJAPlayer3
 		#region [ private ]
 		//-----------------
 		private bool bキー入力待ち;
-        protected bool bEsc有効;
+        protected bool bEsc有効 = true;
 
 		internal int n現在の選択行;
 		internal E楽器パート eInst = E楽器パート.UNKNOWN;
