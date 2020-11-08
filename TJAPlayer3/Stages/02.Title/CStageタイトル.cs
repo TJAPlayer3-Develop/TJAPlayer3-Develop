@@ -8,6 +8,7 @@ using System.Drawing;
 using SlimDX.DirectInput;
 using FDK;
 using System.Reflection;
+using Un4seen.Bass.AddOn.Cd;
 
 namespace TJAPlayer3
 {
@@ -64,6 +65,7 @@ namespace TJAPlayer3
 				this.ctカーソルフラッシュ用 = null;
 
 				bTitleStartPlayed = false;
+				bInit = false;
 			}
 			finally
 			{
@@ -119,6 +121,9 @@ namespace TJAPlayer3
 				if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)Key.Home))
 				{
 					bEnableNewTitle = !bEnableNewTitle;
+					bInit = false;
+
+					TJAPlayer3.Skin.soundTitle_R1_BGM.t停止する();
 				}
 				//----------------
 
@@ -136,6 +141,36 @@ namespace TJAPlayer3
 					if (TJAPlayer3.Skin.soundEntry.b再生中) TJAPlayer3.Skin.soundEntry.t停止する();
 					if (bTitleStartPlayed) bTitleStartPlayed = false;
 
+					titleScreenRoutine = 1;
+
+                    if (titleScreenRoutine == 0)
+                    {
+						if (!bInit)
+						{
+							bInit = true;
+						}
+					}
+					else if (titleScreenRoutine == 1)
+                    {
+						if(!bInit)
+                        {
+							TJAPlayer3.Skin.soundTitle_R1_BGM.t再生する();
+
+							bInit = true;
+                        }
+
+						TJAPlayer3.Tx.Title_R1_Background.t2D描画(TJAPlayer3.app.Device, 0, 0);
+						TJAPlayer3.Tx.Title_R1_Logo.t2D描画(TJAPlayer3.app.Device, 308 + rnd.Next(1, 25), 58 + rnd.Next(1, 25));
+
+						if (TJAPlayer3.Input管理.Keyboard.list入力イベント.Count >= 1)
+                        {
+							if (!TJAPlayer3.Input管理.Keyboard.bキーが押されている((int)Key.Home))
+                            {
+								TJAPlayer3.Skin.soundTitle_R1_BGM.t停止する();
+								return (int)E戻り値.GAMESTART;
+							}
+                        }
+					}
 				}
 				else
                 {
@@ -249,7 +284,7 @@ namespace TJAPlayer3
 						TJAPlayer3.Skin.soundタイトルスタート音.t再生する();
 						bTitleStartPlayed = true;
 					}
-					if (!TJAPlayer3.Skin.soundEntry.b再生中) TJAPlayer3.Skin.soundEntry.t再生する();
+					//if (!TJAPlayer3.Skin.soundEntry.b再生中) TJAPlayer3.Skin.soundEntry.t再生する();
 
 					if (TJAPlayer3.Tx.Title_Background != null)
 						TJAPlayer3.Tx.Title_Background.t2D描画(TJAPlayer3.app.Device, 0, 0);
@@ -471,7 +506,12 @@ namespace TJAPlayer3
 		}
 
 		//新タイトル画面用の変数 - Variables for new title screen
-		private bool bEnableNewTitle = false;
+		private bool bEnableNewTitle;
+		private bool bInit;
+
+		private int titleScreenRoutine;
+
+		private Random rnd = new Random();
 
 		//-----------------
 		#endregion

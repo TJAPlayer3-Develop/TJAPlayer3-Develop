@@ -115,6 +115,12 @@ namespace TJAPlayer3
             #region 1_タイトル画面
             Title_Background = TxC(TITLE + @"Background.png");
             Title_Menu = TxC(TITLE + @"Menu.png");
+
+            //title routine 0
+
+            //title routine 1
+            Title_R1_Background = TxC(TITLE + @"routine1\Background.png");
+            Title_R1_Logo = TxC(TITLE + @"routine1\Logo.png");
             #endregion
 
             #region 2_コンフィグ画面
@@ -638,6 +644,11 @@ namespace TJAPlayer3
         #region 1_タイトル画面
         public CTexture Title_Background,
             Title_Menu;
+        //title routine 0
+
+        //title routine 1
+        public CTexture Title_R1_Background,
+            Title_R1_Logo;
         #endregion
 
         #region 2_コンフィグ画面

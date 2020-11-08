@@ -339,6 +339,7 @@ namespace TJAPlayer3
         //public Cシステムサウンド soundBlue = null;
         public Cシステムサウンド soundBalloon = null;
 
+        public Cシステムサウンド soundTitle_R1_BGM = null;
 
         public readonly int nシステムサウンド数 = (int)Eシステムサウンド.Count;
         public Cシステムサウンド this[Eシステムサウンド sound]
@@ -674,6 +675,8 @@ namespace TJAPlayer3
             this.sound裏切り替え音 = new Cシステムサウンド(@"Sounds\EditSwitch.ogg", false, false, false, ESoundGroup.SoundEffect);
             this.soundEntry = new Cシステムサウンド(@"Sounds\Entry.ogg", true, false, true, ESoundGroup.Voice);
             this.soundResultPom = new Cシステムサウンド(@"Sounds\Result_Pom.ogg", false, false, false, ESoundGroup.SoundEffect);
+
+            this.soundTitle_R1_BGM = new Cシステムサウンド(@"Sounds\Title\routine1\BGM.ogg", true, false, false, ESoundGroup.SoundEffect);
             ReloadSkin();
             tReadSkinConfig();
         }
