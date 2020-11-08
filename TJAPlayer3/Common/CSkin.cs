@@ -215,7 +215,6 @@ namespace TJAPlayer3
                     catch
                     {
                         this.rSound[i] = null;
-                        throw;
                     }
                 }
                 this.b読み込み成功 = true;
