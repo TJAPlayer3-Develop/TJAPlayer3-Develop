@@ -737,9 +737,9 @@ namespace TJAPlayer3
             cスコア.譜面情報.SongVol = br.ReadInt32();
 			for(int i = 0; i < 5; i++)
 			{
-				cスコア.譜面情報.クリア[i] = bool.Parse(br.ReadString());
-				cスコア.譜面情報.フルコンボ[i] = bool.Parse(br.ReadString());
-				cスコア.譜面情報.ドンダフルコンボ[i] = bool.Parse(br.ReadString());
+				cスコア.譜面情報.クリア[i] = br.ReadBoolean();
+				cスコア.譜面情報.フルコンボ[i] = br.ReadBoolean();
+				cスコア.譜面情報.ドンダフルコンボ[i] = br.ReadBoolean();
 			}
 		    var hasSongIntegratedLoudness = br.ReadBoolean();
 		    var songIntegratedLoudness = br.ReadDouble();

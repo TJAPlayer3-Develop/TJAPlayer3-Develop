@@ -154,15 +154,18 @@ namespace TJAPlayer3
                     this.actQuickConfig.tActivatePopupMenu( E楽器パート.DRUMS );
                 }
 
-		public void 制限時間音声のリセット()
+		public void 制限時間音声のリセット(bool LessThan30Sec = false)
 		{
-			this.soundあと30秒.t再生を停止する();
+			if (!LessThan30Sec) this.soundあと30秒.t再生を停止する();
 			this.soundあと10秒.t再生を停止する();
 			this.soundあと5秒.t再生を停止する();
 
-			this.soundあと30秒.t再生位置を先頭に戻す();
+			if (!LessThan30Sec) this.soundあと30秒.t再生位置を先頭に戻す();
 			this.soundあと10秒.t再生位置を先頭に戻す();
 			this.soundあと5秒.t再生位置を先頭に戻す();
+
+			if (LessThan30Sec) this.suppress30sec = true;
+			else this.suppress30sec = false;
 
 			for (int i = 0; i < 10; i++) this.IsPlayed_pi[i] = false;
 		}
@@ -198,6 +201,7 @@ namespace TJAPlayer3
 				ctDiffSelect移動待ち = new CCounter();
 				//this.act難易度選択画面.bIsDifficltSelect = true;
 				this.ct制限時間 = new CCounter(0, 100, 1000, TJAPlayer3.Timer);
+				this.suppress30sec = false;
 				this.IsPlayed_pi = new bool[10];
 				for (int i = 0; i < 10; i++) this.IsPlayed_pi[i] = false;
 				base.On活性化();
@@ -228,8 +232,7 @@ namespace TJAPlayer3
                 {
                     this.ctキー反復用[i] = null;
                 }
-				if (this.ct制限時間 != null)
-					this.ct制限時間 = null;
+				ct制限時間.n現在の値 = 0;
 				base.On非活性化();
 			}
 			finally
@@ -348,8 +351,11 @@ namespace TJAPlayer3
 				this.act曲リスト.On進行描画();
 				int y = 0;
 
-                #region[ 下部テキスト ]
-                if (TJAPlayer3.Tx.SongSelect_Auto != null)
+				if (TJAPlayer3.Tx.SongSelect_Header != null)
+					TJAPlayer3.Tx.SongSelect_Header.t2D描画(TJAPlayer3.app.Device, 0, 0);
+
+				#region[ 下部テキスト ]
+				if (TJAPlayer3.Tx.SongSelect_Auto != null)
                 {
                     if (TJAPlayer3.ConfigIni.b太鼓パートAutoPlay)
                     {
@@ -490,7 +496,7 @@ namespace TJAPlayer3
 						}
 						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad0))
 						{
-							制限時間音声のリセット();
+							//制限時間音声のリセット();
 							ct制限時間.n現在の値 = 100;
 						}
 						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadPlus))
@@ -633,15 +639,11 @@ namespace TJAPlayer3
 													ctDiffSelect移動待ち.t開始(0, 1190, 1, TJAPlayer3.Timer);
 													act難易度選択画面.bIsDifficltSelect = true;
 													TJAPlayer3.Skin.sound決定音.t再生する();
-													if (ct制限時間.b終了値に達した)
+													if (ct制限時間.n現在の値 > 70)
 													{
-														this.制限時間音声のリセット();
+														this.制限時間音声のリセット(true);
 														ct制限時間.n現在の値 = 70;
-													} else if (ct制限時間.n現在の値 > 70)
-                                                    {
-														this.制限時間音声のリセット();
-														ct制限時間.n現在の値 = 70;
-                                                    }
+													}
 												}
 												else
 												{
@@ -731,9 +733,6 @@ namespace TJAPlayer3
 				    KeyboardSoundGroupLevelControlHandler.Handle(
 				        TJAPlayer3.Input管理.Keyboard, TJAPlayer3.SoundGroupLevelController, TJAPlayer3.Skin, true);
 				    #endregion
-
-					this.actSortSongs.t進行描画();
-					this.actQuickConfig.t進行描画();
 				}
 
 				if (this.act難易度選択画面.bIsDifficltSelect)
@@ -747,7 +746,10 @@ namespace TJAPlayer3
 					}
 				}
 
-				if(!ctDonchanSelect.b進行中 && !ctDonchanStart.b進行中)
+				this.actSortSongs.t進行描画();
+				this.actQuickConfig.t進行描画();
+
+				if (!ctDonchanSelect.b進行中 && !ctDonchanStart.b進行中)
 					TJAPlayer3.Tx.SongSelect_Donchan_Normal[ctDonchanNormal.n現在の値].t2D描画(TJAPlayer3.app.Device, 0, 330);
 				else
 				{
@@ -775,8 +777,6 @@ namespace TJAPlayer3
 					}
 				}
 				#endregion
-
-				TJAPlayer3.Tx.SongSelect_Header.t2D描画(TJAPlayer3.app.Device, 0, 0);
 
 				if (ct制限時間.n現在の値 > 90 && ct制限時間.n現在の値 <= 100)
 				{
@@ -1050,7 +1050,7 @@ namespace TJAPlayer3
 						TJAPlayer3.Tx.SongSelect_Timer[1].t2D描画(TJAPlayer3.app.Device, 1147, 56);
 				}
 
-				if (ct制限時間.n現在の値 == 70)
+				if (ct制限時間.n現在の値 == 70 && !this.suppress30sec)
 				{
 					this.soundあと30秒.tサウンドを再生する();
 				}
@@ -1190,6 +1190,7 @@ namespace TJAPlayer3
 		private CSound soundあと10秒;
 		private CSound soundあと5秒;
 		private CSound soundピッ;
+		private bool suppress30sec;
 		private bool[] IsPlayed_pi;
 		private CActFIFOBlack actFIFO;
 		private CActFIFOBlack actFIfrom結果画面;
@@ -1201,7 +1202,7 @@ namespace TJAPlayer3
         public CActSelect難易度選択画面 act難易度選択画面;
 
 		public CActSortSongs actSortSongs;
-		private CActSelectQuickConfig actQuickConfig;
+		public CActSelectQuickConfig actQuickConfig;
 
                 private int nGenreBack;
 		public bool bBGM再生済み;
@@ -1410,17 +1411,7 @@ namespace TJAPlayer3
 		}
 		private void t曲を選択する()
 		{
-			this.r確定された曲 = this.act曲リスト.r現在選択中の曲;
-			this.r確定されたスコア = this.act曲リスト.r現在選択中のスコア;
-			this.n確定された曲の難易度 = this.act曲リスト.n現在選択中の曲の現在の難易度レベル;
-            this.str確定された曲のジャンル = this.r確定された曲.strジャンル;
-            if ( ( this.r確定された曲 != null ) && ( this.r確定されたスコア != null ) )
-			{
-				this.eフェードアウト完了時の戻り値 = E戻り値.選曲した;
-				this.actFOtoNowLoading.tフェードアウト開始();				// #27787 2012.3.10 yyagi 曲決定時の画面フェードアウトの省略
-				base.eフェーズID = CStage.Eフェーズ.選曲_NowLoading画面へのフェードアウト;
-			}
-			TJAPlayer3.Skin.bgm選曲画面.t停止する();
+			t曲を選択する(this.act曲リスト.n現在選択中の曲の現在の難易度レベル);
 		}
 		public void t曲を選択する( int nCurrentLevel )
 		{

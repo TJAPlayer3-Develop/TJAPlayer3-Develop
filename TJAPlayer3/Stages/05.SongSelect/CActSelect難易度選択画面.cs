@@ -209,7 +209,7 @@ namespace TJAPlayer3
                 //-----------------
 
                 //キー操作
-                if (!b曲選択)
+                if (!TJAPlayer3.stage選曲.actSortSongs.bIsActivePopupMenu && !TJAPlayer3.stage選曲.actQuickConfig.bIsActivePopupMenu && !b曲選択)
                 {
                     if (TJAPlayer3.Pad.b押されたDGB(Eパッド.RBlue) ||
                             TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.RightArrow))
@@ -233,6 +233,7 @@ namespace TJAPlayer3
                                 this.b曲選択 = true;
                                 if (TJAPlayer3.Skin.soundSelectAnnounce.b再生中) TJAPlayer3.Skin.soundSelectAnnounce.t停止する();
                                 TJAPlayer3.Skin.sound曲決定音.t再生する();
+                                if (TJAPlayer3.stage選曲.ct制限時間.b進行中) TJAPlayer3.stage選曲.ct制限時間.t停止();
                                 ct決定待機.t開始(0, 2000, 1, TJAPlayer3.Timer);
                             }
                         }
@@ -255,10 +256,10 @@ namespace TJAPlayer3
                     {
                         TJAPlayer3.stage選曲.enterConfigStage();
                     }
-                    /*else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F2))
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F2))
                     {
                         TJAPlayer3.stage選曲.showQuickConfig();
-                    }*/
+                    }
                     else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F3))
                     {
                         TJAPlayer3.Skin.sound変更音.t再生する();

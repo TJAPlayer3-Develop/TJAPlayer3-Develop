@@ -110,7 +110,7 @@ namespace TJAPlayer3
                     {
                         this.txGENRE = TJAPlayer3.Tx.TxCGen("Classic");
                     }
-                    else if(genreName.Equals( "どうよう" ) || genreName.Equals( "キッズ" ))
+                    else if(genreName.Equals( "キッズ" ))
                     {
                         this.txGENRE = TJAPlayer3.Tx.TxCGen("Child");
                     }
