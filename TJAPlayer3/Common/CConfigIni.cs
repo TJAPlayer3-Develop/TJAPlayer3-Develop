@@ -1042,9 +1042,6 @@ namespace TJAPlayer3
 						case 0:
 							return this.Perfect;
 
-						case 1:
-							return this.Great;
-
 						case 2:
 							return this.Good;
 
@@ -1059,10 +1056,6 @@ namespace TJAPlayer3
 					{
 						case 0:
 							this.Perfect = value;
-							return;
-
-						case 1:
-							this.Great = value;
 							return;
 
 						case 2:
@@ -1344,10 +1337,9 @@ namespace TJAPlayer3
             this.bAuto先生の連打 = true;
 			#endregion
 			this.nヒット範囲ms = new STRANGE();
-			this.nヒット範囲ms.Perfect = 30;
-			this.nヒット範囲ms.Great = -1; //使用しません。
-			this.nヒット範囲ms.Good = 100;
-			this.nヒット範囲ms.Poor = 130;
+			this.nヒット範囲ms.Perfect = 25;
+			this.nヒット範囲ms.Good = 75;
+			this.nヒット範囲ms.Poor = 108;
 			this.ConfigIniファイル名 = "";
 			this.dicJoystick = new Dictionary<int, string>( 10 );
 			this.tデフォルトのキーアサインに設定する();
@@ -2531,10 +2523,6 @@ namespace TJAPlayer3
                                         if (str3.Equals("Perfect"))
                                         {
                                             this.nヒット範囲ms.Perfect = C変換.n値を文字列から取得して範囲内に丸めて返す(str4, 0, 0x3e7, this.nヒット範囲ms.Perfect);
-                                        }
-                                        else if (str3.Equals("Great"))
-                                        {
-                                            this.nヒット範囲ms.Great = C変換.n値を文字列から取得して範囲内に丸めて返す(str4, 0, 0x3e7, this.nヒット範囲ms.Great);
                                         }
                                         else if (str3.Equals("Good"))
                                         {
