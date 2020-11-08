@@ -274,8 +274,9 @@ namespace TJAPlayer3
                         }
                     }
                     #region [ timer ]
-                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadEnter))
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F8)) // Press "F8" key to pause or resume the timer.
                     {
+                        TJAPlayer3.Skin.sound変更音.t再生する();
                         if (TJAPlayer3.stage選曲.ct制限時間.b進行中)
                         {
                             TJAPlayer3.stage選曲.ct制限時間.t停止();
@@ -339,7 +340,7 @@ namespace TJAPlayer3
                     }
                     else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad0))
                     {
-                        TJAPlayer3.stage選曲.制限時間音声のリセット();
+                        //TJAPlayer3.stage選曲.制限時間音声のリセット();
                         TJAPlayer3.stage選曲.ct制限時間.n現在の値 = 100;
                     }
                     else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadPlus))
