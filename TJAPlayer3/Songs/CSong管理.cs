@@ -195,12 +195,20 @@ namespace TJAPlayer3
 
                                     c曲リストノード.strタイトル = dtx.TITLE;
                                     c曲リストノード.strサブタイトル = dtx.SUBTITLE;
-                                    c曲リストノード.strジャンル = dtx.GENRE;
+
+									var genreName = dtx.GENRE;
                                     if (c曲リストノード.r親ノード != null && c曲リストノード.r親ノード.strジャンル != "")
                                     {
-                                        c曲リストノード.strジャンル = c曲リストノード.r親ノード.strジャンル;
+                                        genreName = c曲リストノード.r親ノード.strジャンル;
                                     }
-                                    c曲リストノード.nLevel = dtx.LEVELtaiko;
+									if (genreName == "J-POP") genreName = "ポップス";
+									if (genreName == "ゲームミュージック") genreName = "ゲームバラエティ";
+									if (genreName == "バラエティ") genreName = "ゲームバラエティ";
+									if (genreName == "バラエティー") genreName = "ゲームバラエティ";
+									if (genreName == "どうよう") genreName = "キッズ";
+									c曲リストノード.strジャンル = genreName;
+
+									c曲リストノード.nLevel = dtx.LEVELtaiko;
                                     
                                     c曲リストノード.arスコア[ n ] = new Cスコア();
                                     c曲リストノード.arスコア[ n ].ファイル情報.ファイルの絶対パス = str基点フォルダ + fileinfo.Name;
