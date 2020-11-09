@@ -1901,7 +1901,7 @@ namespace TJAPlayer3
 								tGenerateSkinSample();		// 最初にSkinの選択肢にきたとき(Enterを押す前)に限り、サンプル生成が発生する。
 								if ( txSkinSample1 != null )
 								{
-									txSkinSample1.t2D描画( TJAPlayer3.app.Device, 124, 409 );
+									txSkinSample1.t2D描画( TJAPlayer3.app.Device, 118, 434 );
 								}
 							}
 							#endregion
