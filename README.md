@@ -25,3 +25,5 @@ Fork元のFork元より引用。
 > 「実行時フォルダ/Licenses」に収録しています。
 > 
 > また、このプログラムはFROM氏の「DTXMania」を元に製作しています。
+
+test
