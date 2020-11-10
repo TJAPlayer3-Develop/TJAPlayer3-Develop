@@ -427,7 +427,7 @@ namespace TJAPlayer3
 						this.enterConfigStage();
 					}
 					#endregion
-					if ( !this.actSortSongs.bIsActivePopupMenu && !this.actQuickConfig.bIsActivePopupMenu && !this.act曲リスト.ctBoxOpen.b進行中 && !act曲リスト.bBoxOpenAnime)
+					if ( !this.actSortSongs.bIsActivePopupMenu && !this.actQuickConfig.bIsActivePopupMenu && !this.act曲リスト.ctBoxOpen.b進行中 && !act曲リスト.bBoxOpenAnime && !this.act難易度選択画面.b曲選択)
 					{
                         #region [ ESC ]
                         if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape) && !this.act難易度選択画面.bIsDifficltSelect)
