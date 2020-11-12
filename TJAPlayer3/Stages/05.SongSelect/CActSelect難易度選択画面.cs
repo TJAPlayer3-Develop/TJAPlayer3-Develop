@@ -245,6 +245,12 @@ namespace TJAPlayer3
                         }
                         else this.t次に移動();
                     }
+                    else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Tab) && TJAPlayer3.stage選曲.r現在選択中のスコア.譜面情報.nレベル[4] >= 0)
+                    {
+                        TJAPlayer3.Skin.sound裏切り替え音.t再生する();
+                        b裏譜面 = !b裏譜面;
+                        縁カウント = 0;
+                    }
                     else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape))
                     {
                         this.t難易度選択画面を閉じる();
