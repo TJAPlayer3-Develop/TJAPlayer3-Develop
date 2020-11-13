@@ -2201,22 +2201,22 @@ namespace TJAPlayer3
 
 		private void t進行描画_リアルタイム判定数表示()
 		{
-			if (TJAPlayer3.ConfigIni.nPlayerCount == 1 ? (TJAPlayer3.ConfigIni.bJudgeCountDisplay && !TJAPlayer3.ConfigIni.b太鼓パートAutoPlay) : false)
+			if (TJAPlayer3.ConfigIni.nPlayerCount == 1 && TJAPlayer3.ConfigIni.bJudgeCountDisplay)
 			{
 				//ボードの横幅は333px
 				//数字フォントの小さいほうはリザルトのものと同じ。
 				if (TJAPlayer3.Tx.Judge_Meter != null)
 					TJAPlayer3.Tx.Judge_Meter.t2D描画(TJAPlayer3.app.Device, 0, 360);
 
-				this.t小文字表示(102, 494, string.Format("{0,4:###0}", this.nヒット数_Auto含まない.Drums.Perfect.ToString()), false);
-				this.t小文字表示(102, 532, string.Format("{0,4:###0}", this.nヒット数_Auto含まない.Drums.Great.ToString()), false);
-				this.t小文字表示(102, 570, string.Format("{0,4:###0}", this.nヒット数_Auto含まない.Drums.Miss.ToString()), false);
+				this.t小文字表示(102, 494, string.Format("{0,4:###0}", this.nヒット数_Auto含む.Drums.Perfect.ToString()), false);
+				this.t小文字表示(102, 532, string.Format("{0,4:###0}", this.nヒット数_Auto含む.Drums.Great.ToString()), false);
+				this.t小文字表示(102, 570, string.Format("{0,4:###0}", this.nヒット数_Auto含む.Drums.Miss.ToString()), false);
 
-				int nNowTotal = this.nヒット数_Auto含まない.Drums.Perfect + this.nヒット数_Auto含まない.Drums.Great + this.nヒット数_Auto含まない.Drums.Miss;
-				double dbたたけた率 = Math.Round((100.0 * (TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Perfect + TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Great)) / (double)nNowTotal);
-				double dbPERFECT率 = Math.Round((100.0 * TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Perfect) / (double)nNowTotal);
-				double dbGREAT率 = Math.Round((100.0 * TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Great / (double)nNowTotal));
-				double dbMISS率 = Math.Round((100.0 * TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Miss / (double)nNowTotal));
+				int nNowTotal = this.nヒット数_Auto含む.Drums.Perfect + this.nヒット数_Auto含む.Drums.Great + this.nヒット数_Auto含む.Drums.Miss;
+				double dbたたけた率 = Math.Round((100.0 * (TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含む.Drums.Perfect + TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含む.Drums.Great)) / (double)nNowTotal);
+				double dbPERFECT率 = Math.Round((100.0 * TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含む.Drums.Perfect) / (double)nNowTotal);
+				double dbGREAT率 = Math.Round((100.0 * TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含む.Drums.Great / (double)nNowTotal));
+				double dbMISS率 = Math.Round((100.0 * TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含む.Drums.Miss / (double)nNowTotal));
 
 				if (double.IsNaN(dbたたけた率))
 					dbたたけた率 = 0;
