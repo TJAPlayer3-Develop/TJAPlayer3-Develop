@@ -250,6 +250,8 @@ namespace TJAPlayer3
                         TJAPlayer3.Skin.sound裏切り替え音.t再生する();
                         b裏譜面 = !b裏譜面;
                         縁カウント = 0;
+                        if (this.n現在の選択行 == 4) this.n現在の選択行 = 3;
+                        else if (this.n現在の選択行 == 3) this.n現在の選択行 = 4;
                     }
                     else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape))
                     {
