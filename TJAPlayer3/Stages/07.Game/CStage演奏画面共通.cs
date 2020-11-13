@@ -2712,10 +2712,8 @@ namespace TJAPlayer3
 
 				if (keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F4))
 				{
-					if (TJAPlayer3.ConfigIni.bJudgeCountDisplay == false)
-						TJAPlayer3.ConfigIni.bJudgeCountDisplay = true;
-					else
-						TJAPlayer3.ConfigIni.bJudgeCountDisplay = false;
+					TJAPlayer3.ConfigIni.bJudgeCountDisplay = !TJAPlayer3.ConfigIni.bJudgeCountDisplay;
+					TJAPlayer3.Skin.sound変更音.t再生する();
 				}
 				else if (keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F5))
 				{
