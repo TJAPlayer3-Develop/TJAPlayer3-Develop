@@ -359,5 +359,6 @@ namespace TJAPlayer3
         }
         //-----------------
         #endregion
+        public CTexture[] Game_End_Full_Combo_Ptn;
     }
 }
