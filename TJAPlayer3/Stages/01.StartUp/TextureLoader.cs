@@ -550,6 +550,10 @@ namespace TJAPlayer3
             End_Clear_Text = TxC(GAME + END + @"Clear_Text.png");
             End_Clear_Text_Effect = TxC(GAME + END + @"Clear_Text_Effect.png");
             if (End_Clear_Text_Effect != null) End_Clear_Text_Effect.b加算合成 = true;
+            for (int i = 0; i < 67; i++)
+            {
+            End_FullCombo_Text = TxC(GAME + END + @"fullcombo\" + i.ToString() + ".png");
+            }
             #endregion
             #region ゲームモード
             GameMode_Timer_Tick = TxC(GAME + GAMEMODE + @"Timer_Tick.png");
