@@ -2565,6 +2565,7 @@ namespace TJAPlayer3
 
         #endregion
         #region Game
+	public int Game_End_Full_Combo_Ptn;
         public bool Game_Notes_Anime = false;
         public string Game_StageText = "1曲目";
         public RollColorMode Game_RollColorMode = RollColorMode.All;
