@@ -819,7 +819,9 @@ namespace TJAPlayer3
         public CTexture[] End_Clear_L,
             End_Clear_R;
         public CTexture End_Clear_Text,
-            End_Clear_Text_Effect;
+            End_Clear_Text_Effect,
+            End_FullCombo_Text,
+            End_DondaFullCombo_Text;
         #endregion
         #region ゲームモード
         public CTexture GameMode_Timer_Frame,
