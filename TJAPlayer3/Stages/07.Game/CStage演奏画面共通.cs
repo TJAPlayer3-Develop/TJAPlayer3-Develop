@@ -171,7 +171,8 @@ namespace TJAPlayer3
 				nBalloonCount += TJAPlayer3.DTX.listChip[i].nRollCount;
 			}
 			//nAddScoreNiji = (1000000 - (15 * RollTimems * 100) - (nBalloonCount * 100)) / TJAPlayer3.DTX.listChip.Count;
-			nAddScoreNiji = (double)Math.Ceiling((decimal)(1000000 - (nBalloonCount * 100)) / nNoteCount / 10) * 10;
+			if(nNoteCount == 0) nAddscoreNiji = 0;
+			else nAddScoreNiji = (double)Math.Ceiling((decimal)(1000000 - (nBalloonCount * 100)) / nNoteCount / 10) * 10;
 
 			this.ct制御タイマ = new CCounter();
 			ctChipAnime = new CCounter[2];
