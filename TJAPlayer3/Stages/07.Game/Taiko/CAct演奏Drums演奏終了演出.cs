@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
@@ -300,7 +300,7 @@ namespace TJAPlayer3
                                 this.soundFullCombo.t再生を開始する();
                                 this.b再生済み = true;
                             }
-                            if (TJAPlayer3.Tx.End_FullCombo_Text != null)
+                            if (TJAPlayer3.Tx.End_Clear_Text != null)
                             {
                                 this.showEndEffect_Clear(i);
                             }
@@ -357,6 +357,5 @@ namespace TJAPlayer3
         }
         //-----------------
         #endregion
-        public CTexture[] Game_End_Full_Combo_Ptn;
     }
 }
