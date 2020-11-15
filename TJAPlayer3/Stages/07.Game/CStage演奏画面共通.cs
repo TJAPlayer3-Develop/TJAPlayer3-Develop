@@ -171,7 +171,7 @@ namespace TJAPlayer3
 				nBalloonCount += TJAPlayer3.DTX.listChip[i].nRollCount;
 			}
 			//nAddScoreNiji = (1000000 - (15 * RollTimems * 100) - (nBalloonCount * 100)) / TJAPlayer3.DTX.listChip.Count;
-			if(nNoteCount == 0) nAddScoreNiji = 696969;  //69 means something :)
+			if(nNoteCount == 0) nAddScoreNiji = 696969;  //Since nAddScoreNiji won't take effect at all when there are no notes, so I used 696969 cuz I'm happy. 69 means something :)
 			else nAddScoreNiji = (double)Math.Ceiling((decimal)(1000000 - (nBalloonCount * 100)) / nNoteCount / 10) * 10;
 
 			this.ct制御タイマ = new CCounter();
