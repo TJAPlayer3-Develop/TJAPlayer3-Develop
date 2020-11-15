@@ -302,7 +302,7 @@ namespace TJAPlayer3
                             }
                             if (TJAPlayer3.Tx.End_FullCombo_Text != null)
                             {
-                                
+                                this.showEndEffect_Clear(i);
                             }
                             break;
                         case EndMode.StageDondaFullCombo:
