@@ -207,6 +207,7 @@ namespace TJAPlayer3
 					case CStage.Eフェーズ.起動7_完了:
 						TJAPlayer3.Tx.LoadTexture();
 						this.list進行文字列.Add("LOADING TEXTURES...OK");
+						this.list進行文字列.Add("");
 						this.str現在進行中 = "Now entering the game...";
 						break;
 				}
@@ -217,7 +218,7 @@ namespace TJAPlayer3
 				lock (this.list進行文字列)
 				{
 					int x = 640;
-					int y = 70;
+					int y = 60;
 					foreach (string str in this.list進行文字列)
 					{
 						TJAPlayer3.act文字コンソール.tPrintCenter(x, y, C文字コンソール.Eフォント種別.白, str);
