@@ -550,10 +550,6 @@ namespace TJAPlayer3
             End_Clear_Text = TxC(GAME + END + @"Clear_Text.png");
             End_Clear_Text_Effect = TxC(GAME + END + @"Clear_Text_Effect.png");
             if (End_Clear_Text_Effect != null) End_Clear_Text_Effect.b加算合成 = true;
-            for (int i = 0; i < 67; i++)
-            {
-            End_FullCombo_Text = TxC(GAME + END + @"fullcombo\" + i.ToString() + ".png");
-            }
             #endregion
             #region ゲームモード
             GameMode_Timer_Tick = TxC(GAME + GAMEMODE + @"Timer_Tick.png");
@@ -739,8 +735,6 @@ namespace TJAPlayer3
             Chara_Balloon_Broke,
             Chara_Balloon_Miss;
         #endregion
-        #region FC
-        public CTexture[] Game_End_Full_Combo_Ptn;
         #region 踊り子
         public CTexture[][] Dancer;
         #endregion
@@ -821,9 +815,7 @@ namespace TJAPlayer3
         public CTexture[] End_Clear_L,
             End_Clear_R;
         public CTexture End_Clear_Text,
-            End_Clear_Text_Effect,
-            End_FullCombo_Text,
-            End_DondaFullCombo_Text;
+            End_Clear_Text_Effect;
         #endregion
         #region ゲームモード
         public CTexture GameMode_Timer_Frame,
