@@ -353,11 +353,6 @@ namespace TJAPlayer3
                 }
             }
             #endregion
-            #region FC
-            TJAPlayer3.Skin.Game_End_Full_Combo_Ptn = TJAPlayer3.t連番画像の枚数を数える(CSkin.Path(BASE + GAME + END + @"fullcombo\"));
-            Game_End_Full_Combo_Ptn = new CTexture[TJAPlayer3.Skin.Game_End_Full_Combo_Ptn];
-            for(int i = 0; i < TJAPlayer3.Skin.Game_End_Full_Combo_Ptn; i++) Game_End_Full_Combo_Ptn[i] = TxC(GAME + END + @"fullcombo\" + i.ToString() + ".png");
-            #endregion
             #region 踊り子
             TJAPlayer3.Skin.Game_Dancer_Ptn = TJAPlayer3.t連番画像の枚数を数える(CSkin.Path(BASE + GAME + DANCER + @"1\"));
             if (TJAPlayer3.Skin.Game_Dancer_Ptn != 0)
