@@ -147,11 +147,10 @@ namespace TJAPlayer3
 						if (latestDateTime.CompareTo(buildDateTime) > 0)
 						{
 							this.list進行文字列.Add("UPDATE FOUND!");
-							this.list進行文字列.Add("Download it at:");
-							this.list進行文字列.Add("bit.ly/tjap3dev-update");
+							this.list進行文字列.Add("Download it here: http://bit.ly/tjap3dev-update");
 						} else this.list進行文字列.Add("You are using the latest version! :)");
 					}
-					catch (Exception e)
+					catch
 					{
 						this.list進行文字列.Add("Error while checking for updates :(");
 					}
