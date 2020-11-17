@@ -12,8 +12,8 @@ jobs:
         timezoneWindows: "Tokyo Standard Time"
     - name: Checkout repository
       uses: actions/checkout@v1
-    - name: Set up NuGet
-      uses: warrenbuckley/Setup-Nuget@v1
+    - name: Setup NuGet.exe for use with actions
+      uses: NuGet/setup-nuget@v1
     - name: Restore NuGet Packages
       run: nuget restore $Env:GITHUB_WORKSPACE\TJAPlayer3.sln
     - name: Set up MSBuild
