@@ -16,8 +16,8 @@ jobs:
       uses: NuGet/setup-nuget@v1
     - name: Restore NuGet Packages
       run: nuget restore $Env:GITHUB_WORKSPACE\TJAPlayer3.sln
-    - name: Set up MSBuild
-      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
     - name: Build the Solution
       run: MSBuild.exe $Env:GITHUB_WORKSPACE\TJAPlayer3.sln -p:Configuration=Release
       timeout-minutes: 5
