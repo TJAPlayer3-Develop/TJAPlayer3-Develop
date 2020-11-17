@@ -66,7 +66,7 @@ namespace TJAPlayer3
 		{
 			if (!base.b活性化してない && !string.IsNullOrEmpty(str英数字文字列))
 			{
-				int textWidth = nFontWidth * str英数字文字列.Length;
+				int textWidth = nFontWidthBig * str英数字文字列.Length;
 
 				x -= textWidth / 2;
 				int BOL = x;
@@ -76,22 +76,22 @@ namespace TJAPlayer3
 					if (ch == '\n')
 					{
 						x = BOL;
-						y += nFontHeight;
+						y += nFontHeightBig;
 					}
 					else
 					{
 						int index = str表記可能文字.IndexOf(ch);
 						if (index < 0)
 						{
-							x += nFontWidth;
+							x += nFontWidthBig;
 						}
 						else
 						{
-							if (this.txフォント8x16[(int)((int)font / (int)Eフォント種別.白細)] != null)
+							if (this.txフォント16x32 != null)
 							{
-								this.txフォント8x16[(int)((int)font / (int)Eフォント種別.白細)].t2D描画(TJAPlayer3.app.Device, x, y, this.rc文字の矩形領域[(int)((int)font % (int)Eフォント種別.白細), index]);
+								this.txフォント16x32.t2D描画(TJAPlayer3.app.Device, x, y, this.rc文字の矩形領域大[(int)((int)font % (int)Eフォント種別.白細), index]);
 							}
-							x += nFontWidth;
+							x += nFontWidthBig;
 						}
 					}
 				}
@@ -104,7 +104,8 @@ namespace TJAPlayer3
 		public override void On活性化()
 		{
 			this.rc文字の矩形領域 = new Rectangle[3, str表記可能文字.Length ];
-			for( int i = 0; i < 3; i++ )
+			this.rc文字の矩形領域大 = new Rectangle[3, str表記可能文字.Length];
+			for ( int i = 0; i < 3; i++ )
 			{
 				for (int j = 0; j < str表記可能文字.Length; j++)
 				{
@@ -113,6 +114,10 @@ namespace TJAPlayer3
 					this.rc文字の矩形領域[ i, j ].Y = ( ( i % 2 ) * regionX ) + ( ( j / regionY ) * nFontHeight );
 					this.rc文字の矩形領域[ i, j ].Width = nFontWidth;
 					this.rc文字の矩形領域[ i, j ].Height = nFontHeight;
+					this.rc文字の矩形領域大[i, j].X = ((i / 2) * regionX) + ((j % regionY) * nFontWidthBig);
+					this.rc文字の矩形領域大[i, j].Y = ((i % 2) * regionX) + ((j / regionY) * nFontHeightBig);
+					this.rc文字の矩形領域大[i, j].Width = nFontWidthBig;
+					this.rc文字の矩形領域大[i, j].Height = nFontHeightBig;
 				}
 			}
 			base.On活性化();
@@ -121,6 +126,8 @@ namespace TJAPlayer3
 		{
 			if( this.rc文字の矩形領域 != null )
 				this.rc文字の矩形領域 = null;
+			if (this.rc文字の矩形領域大 != null)
+				this.rc文字の矩形領域大 = null;
 
 			base.On非活性化();
 		}
@@ -130,7 +137,8 @@ namespace TJAPlayer3
 			{
 				this.txフォント8x16[ 0 ] = TJAPlayer3.Tx.TxCUntracked(@"Console_Font.png");
 				this.txフォント8x16[ 1 ] = TJAPlayer3.Tx.TxCUntracked(@"Console_Font_Small.png");
-                base.OnManagedリソースの作成();
+				this.txフォント16x32 = TJAPlayer3.Tx.TxCUntracked(@"Console_Font_Big.png");
+				base.OnManagedリソースの作成();
 			}
 		}
 		public override void OnManagedリソースの解放()
@@ -145,6 +153,11 @@ namespace TJAPlayer3
 						this.txフォント8x16[ i ] = null;
 					}
 				}
+				if (this.txフォント16x32 != null)
+				{
+					this.txフォント16x32.Dispose();
+					this.txフォント16x32 = null;
+				}
 				base.OnManagedリソースの解放();
 			}
 		}
@@ -154,10 +167,12 @@ namespace TJAPlayer3
 
 		#region [ private ]
 		//-----------------
-		private Rectangle[,] rc文字の矩形領域;
+		private Rectangle[,] rc文字の矩形領域, rc文字の矩形領域大;
 		private const string str表記可能文字 = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ";
-		private const int nFontWidth = 16, nFontHeight = 32;
+		private const int nFontWidth = 8, nFontHeight = 16;
+		private const int nFontWidthBig = 16, nFontHeightBig = 32;
 		private CTexture[] txフォント8x16 = new CTexture[ 2 ];
+		private CTexture txフォント16x32;
 		//-----------------
 		#endregion
 	}
