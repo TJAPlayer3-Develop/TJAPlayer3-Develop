@@ -204,6 +204,7 @@ namespace TJAPlayer3
 				this.suppress30sec = false;
 				this.IsPlayed_pi = new bool[10];
 				for (int i = 0; i < 10; i++) this.IsPlayed_pi[i] = false;
+				this.ctOneCoin = new CCounter(0, 510, 4, TJAPlayer3.Timer);
 				base.On活性化();
 
                 // Discord Presenceの更新
@@ -232,7 +233,6 @@ namespace TJAPlayer3
                 {
                     this.ctキー反復用[i] = null;
                 }
-				ct制限時間.n現在の値 = 0;
 				base.On非活性化();
 			}
 			finally
@@ -326,6 +326,8 @@ namespace TJAPlayer3
 				ctDonchanNormal.t進行Loop();
 				ctDonchanSelect.t進行();
 				ctDonchanStart.t進行();
+				ct制限時間.t進行();
+				ctOneCoin.t進行Loop();
 
 				this.ct登場時アニメ用共通.t進行();
 
@@ -749,6 +751,14 @@ namespace TJAPlayer3
 				this.actSortSongs.t進行描画();
 				this.actQuickConfig.t進行描画();
 
+				if (TJAPlayer3.ConfigIni.nPlayerCount == 1)
+				{
+					if (TJAPlayer3.Tx.SongSelect_One_Coin != null)
+						TJAPlayer3.Tx.SongSelect_One_Coin.t2D描画(TJAPlayer3.app.Device, 0, 0);
+					if (this.ctOneCoin.n現在の値 > 255) TJAPlayer3.Tx.SongSelect_One_Coin.Opacity = 510 - this.ctOneCoin.n現在の値;
+					else TJAPlayer3.Tx.SongSelect_One_Coin.Opacity = this.ctOneCoin.n現在の値;
+				}
+
 				if (!ctDonchanSelect.b進行中 && !ctDonchanStart.b進行中)
 					TJAPlayer3.Tx.SongSelect_Donchan_Normal[ctDonchanNormal.n現在の値].t2D描画(TJAPlayer3.app.Device, 0, 330);
 				else
@@ -783,8 +793,6 @@ namespace TJAPlayer3
 					if (TJAPlayer3.Tx.SongSelect_Timer_Red != null)
 						TJAPlayer3.Tx.SongSelect_Timer_Red.t2D描画(TJAPlayer3.app.Device, 0, 0);
 				}
-
-				this.ct制限時間.t進行();
 
 				switch (ct制限時間.n現在の値)
 				{
@@ -1186,6 +1194,7 @@ namespace TJAPlayer3
 		private CCounter ctDonchanSelect;
 		public CCounter ctDonchanStart;
 		public CCounter ct制限時間;
+		private CCounter ctOneCoin;
 		private CSound soundあと30秒;
 		private CSound soundあと10秒;
 		private CSound soundあと5秒;

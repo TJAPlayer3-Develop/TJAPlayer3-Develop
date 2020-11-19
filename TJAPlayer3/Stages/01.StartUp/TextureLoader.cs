@@ -155,6 +155,7 @@ namespace TJAPlayer3
             SongSelect_Timer_Red = TxC(SONGSELECT + @"Header_Timer_Red.png");
             SongSelect_Bar_Genre_Back = TxC(SONGSELECT + @"Bar_Genre\Bar_Genre_Back.png");
             SongSelect_Timer100 = TxC(SONGSELECT + @"Timer\100.png");
+            SongSelect_One_Coin = TxC(SONGSELECT + @"One_Coin.png");
             for (int i = 0; i < SongSelect_Bar_Genre.Length; i++)
             {
                 SongSelect_Bar_Genre[i] = TxC(SONGSELECT + @"Bar_Genre\Bar_Genre_" + i.ToString() + ".png");
@@ -681,7 +682,8 @@ namespace TJAPlayer3
             SongSelect_Timer_Red,
             SongSelect_ScoreRank,
             SongSelect_ScoreWindow_Text,
-            SongSelect_Timer100;
+            SongSelect_Timer100,
+            SongSelect_One_Coin;
         public CTexture[] SongSelect_GenreBack = new CTexture[9],
             SongSelect_ScoreWindow = new CTexture[(int)Difficulty.Total],
             SongSelect_Bar_Genre = new CTexture[9],
