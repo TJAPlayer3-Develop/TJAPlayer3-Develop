@@ -264,7 +264,8 @@ namespace TJAPlayer3
 				int n回数 = this.r現在選択中の曲.Openindex;
 				for (int index = 0; index <= n回数; index++)
 					this.r現在選択中の曲 = this.r次の曲(this.r現在選択中の曲);
-				list.RemoveAt(list.IndexOf(this.r現在選択中の曲.r親ノード));
+				if(list.IndexOf(this.r現在選択中の曲.r親ノード) != -1)
+					list.RemoveAt(list.IndexOf(this.r現在選択中の曲.r親ノード));
 				this.t現在選択中の曲を元に曲バーを再構成する();
 				this.t選択曲が変更された(false);
 				TJAPlayer3.stage選曲.t選択曲変更通知();                          // #27648 項目数変更を反映させる

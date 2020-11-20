@@ -755,7 +755,7 @@ namespace TJAPlayer3
 				{
 					if (TJAPlayer3.Tx.SongSelect_One_Coin != null)
 						TJAPlayer3.Tx.SongSelect_One_Coin.t2D描画(TJAPlayer3.app.Device, 0, 0);
-					if (this.ctOneCoin.n現在の値 > 255) TJAPlayer3.Tx.SongSelect_One_Coin.Opacity = 510 - this.ctOneCoin.n現在の値;
+					if (this.ctOneCoin.n現在の値 > 255) TJAPlayer3.Tx.SongSelect_One_Coin.Opacity = 511 - this.ctOneCoin.n現在の値;
 					else TJAPlayer3.Tx.SongSelect_One_Coin.Opacity = this.ctOneCoin.n現在の値;
 				}
 
