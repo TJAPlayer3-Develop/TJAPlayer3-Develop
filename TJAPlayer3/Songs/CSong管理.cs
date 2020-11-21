@@ -962,55 +962,58 @@ namespace TJAPlayer3
 			{
 				SlowOrSuspendSearchTask();      // #27060 中断要求があったら、解除要求が来るまで待機, #PREMOVIE再生中は検索負荷を落とす
 
-				int 曲数 = c曲リストノード.list子リスト.Count;//for文に直接書くと、もどるもカウントされてしまう。
-				for(int index = 0; index < (曲数 / 7) + 1; index++)
+				if (c曲リストノード.eノード種別 == C曲リストノード.Eノード種別.BOX)
 				{
-					C曲リストノード itemBack = new C曲リストノード
+					int 曲数 = c曲リストノード.list子リスト.Count;//for文に直接書くと、もどるもカウントされてしまう。
+					for (int index = 0; index < (曲数 / 7) + 1; index++)
 					{
-						eノード種別 = C曲リストノード.Eノード種別.BACKBOX,
-						strタイトル = "",
-						nスコア数 = 1,
-						r親ノード = c曲リストノード,
-						strSkinPath = (c曲リストノード.r親ノード == null) ?
-						"" : c曲リストノード.r親ノード.strSkinPath
-					};
+						C曲リストノード itemBack = new C曲リストノード
+						{
+							eノード種別 = C曲リストノード.Eノード種別.BACKBOX,
+							strタイトル = "",
+							nスコア数 = 1,
+							r親ノード = c曲リストノード,
+							strSkinPath = (c曲リストノード.r親ノード == null) ?
+							"" : c曲リストノード.r親ノード.strSkinPath
+						};
 
-					if (itemBack.strSkinPath != "" && !listStrBoxDefSkinSubfolderFullName.Contains(itemBack.strSkinPath))
-					{
-						listStrBoxDefSkinSubfolderFullName.Add(itemBack.strSkinPath);
-					}
+						if (itemBack.strSkinPath != "" && !listStrBoxDefSkinSubfolderFullName.Contains(itemBack.strSkinPath))
+						{
+							listStrBoxDefSkinSubfolderFullName.Add(itemBack.strSkinPath);
+						}
 
-					itemBack.strBreadcrumbs = (itemBack.r親ノード == null) ?
-						itemBack.strタイトル : itemBack.r親ノード.strBreadcrumbs + " > " + itemBack.strタイトル;
+						itemBack.strBreadcrumbs = (itemBack.r親ノード == null) ?
+							itemBack.strタイトル : itemBack.r親ノード.strBreadcrumbs + " > " + itemBack.strタイトル;
 
-					itemBack.arスコア[0] = new Cスコア();
-					itemBack.arスコア[0].ファイル情報.フォルダの絶対パス = "";
-					itemBack.arスコア[0].譜面情報.タイトル = itemBack.strタイトル;
-					itemBack.arスコア[0].譜面情報.コメント =
-						(CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "ja") ?
-						"BOX を出ます。" :
-						"Exit from the BOX.";
+						itemBack.arスコア[0] = new Cスコア();
+						itemBack.arスコア[0].ファイル情報.フォルダの絶対パス = "";
+						itemBack.arスコア[0].譜面情報.タイトル = itemBack.strタイトル;
+						itemBack.arスコア[0].譜面情報.コメント =
+							(CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "ja") ?
+							"BOX を出ます。" :
+							"Exit from the BOX.";
 						c曲リストノード.list子リスト.Insert(Math.Min(index * (7 + 1), c曲リストノード.list子リスト.Count), itemBack);
 
-					#region [ ログ出力 ]
-					//-----------------------------
-					if (TJAPlayer3.ConfigIni.bLog曲検索ログ出力)
-					{
-						StringBuilder sb = new StringBuilder(0x100);
-						sb.Append(string.Format("nID#{0:D3}", itemBack.nID));
-						if (itemBack.r親ノード != null)
+						#region [ ログ出力 ]
+						//-----------------------------
+						if (TJAPlayer3.ConfigIni.bLog曲検索ログ出力)
 						{
-							sb.Append(string.Format("(in#{0:D3}):", itemBack.r親ノード.nID));
+							StringBuilder sb = new StringBuilder(0x100);
+							sb.Append(string.Format("nID#{0:D3}", itemBack.nID));
+							if (itemBack.r親ノード != null)
+							{
+								sb.Append(string.Format("(in#{0:D3}):", itemBack.r親ノード.nID));
+							}
+							else
+							{
+								sb.Append("(onRoot):");
+							}
+							sb.Append(" BACKBOX");
+							Trace.TraceInformation(sb.ToString());
 						}
-						else
-						{
-							sb.Append("(onRoot):");
-						}
-						sb.Append(" BACKBOX");
-						Trace.TraceInformation(sb.ToString());
+						//-----------------------------
+						#endregion
 					}
-					//-----------------------------
-					#endregion
 				}
 
 				#region [ ノードにタイトルがないなら、最初に見つけたスコアのタイトルを設定する ]

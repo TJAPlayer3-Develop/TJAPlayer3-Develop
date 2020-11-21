@@ -154,7 +154,7 @@ namespace TJAPlayer3
             this.actQuickConfig.tActivatePopupMenu( E楽器パート.DRUMS );
         }
 
-		public void 制限時間音声のリセット(bool LessThan30Sec = false)
+		private void 制限時間音声のリセット(bool LessThan30Sec = false)
 		{
 			if (!LessThan30Sec) this.soundあと30秒.t再生を停止する();
 			this.soundあと10秒.t再生を停止する();
@@ -168,6 +168,24 @@ namespace TJAPlayer3
 			else this.suppress30sec = false;
 
 			for (int i = 0; i < 10; i++) this.IsPlayed_pi[i] = false;
+		}
+
+		private void Timer_Plus()
+        {
+			if (ct制限時間.n現在の値 > 0 && ct制限時間.n現在の値 <= 100)
+			{
+				制限時間音声のリセット();
+				ct制限時間.n現在の値--;
+			}
+		}
+
+		private void Timer_Minus()
+        {
+			if (ct制限時間.n現在の値 >= 0 && ct制限時間.n現在の値 < 100)
+			{
+				制限時間音声のリセット();
+				ct制限時間.n現在の値++;
+			}
 		}
 
 		// CStage 実装
@@ -192,7 +210,7 @@ namespace TJAPlayer3
 				this.eフェードアウト完了時の戻り値 = E戻り値.継続;
 				this.bBGM再生済み = false;
 				this.ftフォント = new Font("MS UI Gothic", 26f, GraphicsUnit.Pixel );
-				for( int i = 0; i < 6; i++ )
+				for( int i = 0; i < 8; i++ )
 					this.ctキー反復用[ i ] = new CCounter( 0, 0, 0, TJAPlayer3.Timer );
 
 				this.ctDonchanNormal = new CCounter(0, TJAPlayer3.Tx.SongSelect_Donchan_Normal.Length - 1, 1000 / 45, TJAPlayer3.Timer);
@@ -229,7 +247,7 @@ namespace TJAPlayer3
 					this.ftフォント.Dispose();
 					this.ftフォント = null;
 				}
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 8; i++)
                 {
                     this.ctキー反復用[i] = null;
                 }
@@ -431,8 +449,10 @@ namespace TJAPlayer3
 					#endregion
 					if ( !this.actSortSongs.bIsActivePopupMenu && !this.actQuickConfig.bIsActivePopupMenu && !this.act曲リスト.ctBoxOpen.b進行中 && !act曲リスト.bBoxOpenAnime && !this.act難易度選択画面.b曲選択)
 					{
-                        #region [ ESC ]
-                        if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape) && !this.act難易度選択画面.bIsDifficltSelect)
+						this.ctキー反復用.Plus.tキー反復(TJAPlayer3.Input管理.Keyboard.bキーが押されている((int)SlimDX.DirectInput.Key.NumberPadPlus), new CCounter.DGキー処理(this.Timer_Plus));
+						this.ctキー反復用.Minus.tキー反復(TJAPlayer3.Input管理.Keyboard.bキーが押されている((int)SlimDX.DirectInput.Key.NumberPadMinus), new CCounter.DGキー処理(this.Timer_Minus));
+						#region [ ESC ]
+						if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.Escape) && !this.act難易度選択画面.bIsDifficltSelect)
 							if (this.act曲リスト.r現在選択中の曲 == null)
 							{   // [ESC]
 								TJAPlayer3.Skin.sound取消音.t再生する();
@@ -531,7 +551,7 @@ namespace TJAPlayer3
                             C共通.bToggleBoolian( ref TJAPlayer3.ConfigIni.bSuperHard );
                         }
 						#endregion
-						#region [ timer ]
+						#region [ F8 timer ]
 						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F8)) // Press "F8" key to pause or resume the timer.
 						{
 							TJAPlayer3.Skin.sound変更音.t再生する();
@@ -601,21 +621,15 @@ namespace TJAPlayer3
 							//制限時間音声のリセット();
 							ct制限時間.n現在の値 = 100;
 						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadPlus))
+						#endregion
+						#region [ F9 Randomly select a song ]
+						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F9))
 						{
-							if (ct制限時間.n現在の値 > 0 && ct制限時間.n現在の値 <= 100)
-							{
-								制限時間音声のリセット();
-								ct制限時間.n現在の値--;
-							}
-						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPadMinus))
-						{
-							if (ct制限時間.n現在の値 >= 0 && ct制限時間.n現在の値 < 100)
-							{
-								制限時間音声のリセット();
-								ct制限時間.n現在の値++;
-							}
+							if (TJAPlayer3.Skin.sound曲決定音.b読み込み成功)
+								TJAPlayer3.Skin.sound曲決定音.t再生する();
+							else
+								TJAPlayer3.Skin.sound決定音.t再生する();
+							this.t曲をランダム選択する();
 						}
 						#endregion
 						else if (this.act曲リスト.r現在選択中の曲 != null && !this.act難易度選択画面.bIsDifficltSelect)
@@ -1132,6 +1146,8 @@ namespace TJAPlayer3
 			public CCounter B;
 			public CCounter Skip_Up;
 			public CCounter Skip_Down;
+			public CCounter Plus;
+			public CCounter Minus;
 			public CCounter this[ int index ]
 			{
 				get
@@ -1155,6 +1171,12 @@ namespace TJAPlayer3
 
 						case 5:
 							return this.Skip_Down;
+
+						case 6:
+							return this.Plus;
+
+						case 7:
+							return this.Minus;
 					}
 					throw new IndexOutOfRangeException();
 				}
@@ -1184,6 +1206,14 @@ namespace TJAPlayer3
 
 						case 5:
 							this.Skip_Down = value;
+							return;
+
+						case 6:
+							this.Plus = value;
+							return;
+
+						case 7:
+							this.Minus = value;
 							return;
 					}
 					throw new IndexOutOfRangeException();
