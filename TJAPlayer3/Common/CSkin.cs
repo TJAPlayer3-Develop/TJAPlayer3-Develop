@@ -39,6 +39,8 @@ namespace TJAPlayer3
         SOUND裏切り替え音,
         SOUNDENTRY,
         SOUNDRESULTPOM,
+        SOUNDRESULTGAUGE,
+        SOUNDSONGOPTION,
         Count				// システムサウンド総数の計算用
     }
 
@@ -334,6 +336,8 @@ namespace TJAPlayer3
         public Cシステムサウンド sound裏切り替え音 = null;
         public Cシステムサウンド soundEntry = null;
         public Cシステムサウンド soundResultPom = null;
+        public Cシステムサウンド soundResultGauge = null;
+        public Cシステムサウンド soundSongOption = null;
 
         //public Cシステムサウンド soundRed = null;
         //public Cシステムサウンド soundBlue = null;
@@ -425,6 +429,12 @@ namespace TJAPlayer3
 
                     case Eシステムサウンド.SOUNDRESULTPOM:
                         return this.soundResultPom;
+
+                    case Eシステムサウンド.SOUNDRESULTGAUGE:
+                        return this.soundResultGauge;
+
+                    case Eシステムサウンド.SOUNDSONGOPTION:
+                        return this.soundSongOption;
                 }
                 throw new IndexOutOfRangeException();
             }
@@ -512,6 +522,12 @@ namespace TJAPlayer3
 
                     case 23:
                         return this.soundResultPom;
+
+                    case 24:
+                        return this.soundResultGauge;
+
+                    case 25:
+                        return this.soundSongOption;
                 }
                 throw new IndexOutOfRangeException();
             }
@@ -675,6 +691,8 @@ namespace TJAPlayer3
             this.sound裏切り替え音 = new Cシステムサウンド(@"Sounds\EditSwitch.ogg", false, false, false, ESoundGroup.SoundEffect);
             this.soundEntry = new Cシステムサウンド(@"Sounds\Entry.ogg", true, false, true, ESoundGroup.Voice);
             this.soundResultPom = new Cシステムサウンド(@"Sounds\Result_Pom.ogg", false, false, false, ESoundGroup.SoundEffect);
+            this.soundResultGauge = new Cシステムサウンド(@"Sounds\Result_Gauge.ogg", false, false, false, ESoundGroup.SoundEffect);
+            this.soundSongOption = new Cシステムサウンド(@"Sounds\Song_Option.ogg", false, false, true, ESoundGroup.Voice);
 
             this.soundTitle_R1_BGM = new Cシステムサウンド(@"Sounds\Title\routine1\BGM.ogg", true, false, false, ESoundGroup.SoundEffect);
             ReloadSkin();

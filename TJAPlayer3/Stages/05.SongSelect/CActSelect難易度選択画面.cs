@@ -236,7 +236,8 @@ namespace TJAPlayer3
                         }
                         else if (n現在の選択行 == -1 && !TJAPlayer3.stage選曲.ct制限時間.b終了値に達した)
                         {
-                            TJAPlayer3.Skin.sound決定音.t再生する();
+                            TJAPlayer3.Skin.soundSongOption.t再生する();
+                            TJAPlayer3.stage選曲.showQuickConfig(); // Use QCM for the time being, since we haven't implemented this feature.
                             //TODO: Implement this feature.
                         }
                         else if (n現在の選択行 == -2 && !TJAPlayer3.stage選曲.ct制限時間.b終了値に達した)

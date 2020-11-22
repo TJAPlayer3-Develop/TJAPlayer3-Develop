@@ -148,7 +148,7 @@ namespace TJAPlayer3
             base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
         }
 
-        private void showQuickConfig()
+        public void showQuickConfig()
         {
             TJAPlayer3.Skin.sound変更音.t再生する();
             this.actQuickConfig.tActivatePopupMenu( E楽器パート.DRUMS );
@@ -242,7 +242,8 @@ namespace TJAPlayer3
 			Trace.Indent();
 			try
 			{
-				if( this.ftフォント != null )
+				ct制限時間.n現在の値 = 0;
+				if ( this.ftフォント != null )
 				{
 					this.ftフォント.Dispose();
 					this.ftフォント = null;
