@@ -22,8 +22,13 @@ namespace TJAPlayer3
         public void Start()
         {
             this.ct進行メイン = new CCounter(0, 300, 22, TJAPlayer3.Timer);
+            this.ctEnd_ClearFailed = new CCounter(0, 69, 30, TJAPlayer3.Timer);
+            this.ctEnd_FullCombo = new CCounter(0, 66, 33, TJAPlayer3.Timer);
+            this.ctEnd_FullComboLoop = new CCounter(0, 2, 30, TJAPlayer3.Timer);
+            this.ctEnd_DondaFullCombo = new CCounter(0, 61, 33, TJAPlayer3.Timer);
+            this.ctEnd_DondaFullComboLoop = new CCounter(0, 2, 30, TJAPlayer3.Timer);
             // モードの決定。クリア失敗・フルコンボも事前に作っとく。
-            if(TJAPlayer3.stage選曲.n確定された曲の難易度 == (int)Difficulty.Dan)
+            if (TJAPlayer3.stage選曲.n確定された曲の難易度 == (int)Difficulty.Dan)
             {
                 // 段位認定モード。
                 if (!TJAPlayer3.stage演奏ドラム画面.actDan.GetFailedAllChallenges())
@@ -100,7 +105,27 @@ namespace TJAPlayer3
             base.OnManagedリソースの解放();
         }
 
-        public void showEndEffect_Clear(int i)
+        private void showEndEffect_Failed(int i)
+        {
+            this.ctEnd_ClearFailed.t進行();
+            if (this.ctEnd_ClearFailed.n現在の値 <= 20)
+            {
+                TJAPlayer3.Tx.End_ClearFailed[this.ctEnd_ClearFailed.n現在の値].t2D描画(TJAPlayer3.app.Device, 505, 145);
+            }
+            if (this.ctEnd_ClearFailed.n現在の値 >= 20 && this.ctEnd_ClearFailed.n現在の値 <= 67)
+            {
+                TJAPlayer3.Tx.ClearFailed.t2D描画(TJAPlayer3.app.Device, 502, 192);
+            }
+            else if (this.ctEnd_ClearFailed.n現在の値 == 68)
+            {
+                TJAPlayer3.Tx.ClearFailed1.t2D描画(TJAPlayer3.app.Device, 502, 192);
+            }
+            else if (this.ctEnd_ClearFailed.n現在の値 >= 69)
+            {
+                TJAPlayer3.Tx.ClearFailed2.t2D描画(TJAPlayer3.app.Device, 502, 192);
+            }
+        }
+        private void showEndEffect_Clear(int i)
         {
                                 int[] y = new int[] { 210, 386 };
                                 #region[ 文字 ]
@@ -257,6 +282,29 @@ namespace TJAPlayer3
                                 #endregion
         }
 
+        private void showEndEffect_FullCombo(int i)
+        {
+            this.ctEnd_FullCombo.t進行();
+            TJAPlayer3.Tx.End_FullCombo[this.ctEnd_FullCombo.n現在の値].t2D描画(TJAPlayer3.app.Device, 330, 50);
+            if (this.ctEnd_FullCombo.b終了値に達した)
+            {
+                this.ctEnd_FullComboLoop.t進行Loop();
+                TJAPlayer3.Tx.End_FullComboLoop[this.ctEnd_FullComboLoop.n現在の値].t2D描画(TJAPlayer3.app.Device, 330, 196);
+            }
+        }
+
+        private void showEndEffect_DondaFullCombo(int i)
+        {
+            this.ctEnd_DondaFullCombo.t進行();
+            if (this.ctEnd_DondaFullCombo.n現在の値 >= 34) TJAPlayer3.Tx.End_DondaFullComboBg.t2D描画(TJAPlayer3.app.Device, 332, 192);
+            TJAPlayer3.Tx.End_DondaFullCombo[this.ctEnd_DondaFullCombo.n現在の値].t2D描画(TJAPlayer3.app.Device, 330, 50);
+            /*if (this.ctEnd_DondaFullCombo.b終了値に達した)
+            {
+                this.ctEnd_DondaFullComboLoop.t進行Loop();
+                TJAPlayer3.Tx.End_DondaFullComboLoop[this.ctEnd_DondaFullComboLoop.n現在の値].t2D描画(TJAPlayer3.app.Device, 330, 196);
+            }*/
+        }
+
         public override int On進行描画()
         {
             if (base.b初めての進行描画)
@@ -280,6 +328,7 @@ namespace TJAPlayer3
                                 this.soundFailed.t再生を開始する();
                                 this.b再生済み = true;
                             }
+                            this.showEndEffect_Failed(i);
                             break;
                         case EndMode.StageCleared:
                             //this.ct進行メイン.n現在の値 = 18;
@@ -288,10 +337,7 @@ namespace TJAPlayer3
                                 this.soundClear.t再生を開始する();
                                 this.b再生済み = true;
                             }
-                            if (TJAPlayer3.Tx.End_Clear_Text != null)
-                            {
-                                this.showEndEffect_Clear(i);
-                            }
+                            this.showEndEffect_Clear(i);
                             break;
                         case EndMode.StageFullCombo:
                             //this.ct進行メイン.n現在の値 = 18;
@@ -300,10 +346,7 @@ namespace TJAPlayer3
                                 this.soundFullCombo.t再生を開始する();
                                 this.b再生済み = true;
                             }
-                            if (TJAPlayer3.Tx.End_Clear_Text != null)
-                            {
-                                this.showEndEffect_Clear(i);
-                            }
+                            this.showEndEffect_FullCombo(i);
                             break;
                         case EndMode.StageDondaFullCombo:
                             //this.ct進行メイン.n現在の値 = 18;
@@ -312,10 +355,7 @@ namespace TJAPlayer3
                                 this.soundDondaFullCombo.t再生を開始する();
                                 this.b再生済み = true;
                             }
-                            if (TJAPlayer3.Tx.End_Clear_Text != null)
-                            {
-                                this.showEndEffect_Clear(i);
-                            }
+                            this.showEndEffect_DondaFullCombo(i);
                             break;
                         default:
                             break;
@@ -339,6 +379,11 @@ namespace TJAPlayer3
         bool b再生済み;
         bool bリザルトボイス再生済み;
         CCounter ct進行メイン;
+        CCounter ctEnd_ClearFailed;
+        CCounter ctEnd_FullCombo;
+        CCounter ctEnd_FullComboLoop;
+        CCounter ctEnd_DondaFullCombo;
+        CCounter ctEnd_DondaFullComboLoop;
         //CTexture[] txバチお左_成功 = new CTexture[ 5 ];
         //CTexture[] txバチお右_成功 = new CTexture[ 5 ];
         //CTexture tx文字;

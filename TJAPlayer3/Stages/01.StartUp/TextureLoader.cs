@@ -545,12 +545,35 @@ namespace TJAPlayer3
             End_Clear_R = new CTexture[5];
             for (int i = 0; i < 5; i++)
             {
-                End_Clear_L[i] = TxC(GAME + END + @"Clear_L_" + i.ToString() + ".png");
-                End_Clear_R[i] = TxC(GAME + END + @"Clear_R_" + i.ToString() + ".png");
+                End_Clear_L[i] = TxC(GAME + END + @"Clear\" + @"Clear_L_" + i.ToString() + ".png");
+                End_Clear_R[i] = TxC(GAME + END + @"Clear\" + @"Clear_R_" + i.ToString() + ".png");
             }
-            End_Clear_Text = TxC(GAME + END + @"Clear_Text.png");
-            End_Clear_Text_Effect = TxC(GAME + END + @"Clear_Text_Effect.png");
+            End_Clear_Text = TxC(GAME + END + @"Clear\" + @"Clear_Text.png");
+            End_Clear_Text_Effect = TxC(GAME + END + @"Clear\" + @"Clear_Text_Effect.png");
             if (End_Clear_Text_Effect != null) End_Clear_Text_Effect.b加算合成 = true;
+
+            ClearFailed = TxC(GAME + END + @"ClearFailed\" + "Clear_Failed.png");
+            ClearFailed1 = TxC(GAME + END + @"ClearFailed\" + "Clear_Failed1.png");
+            ClearFailed2 = TxC(GAME + END + @"ClearFailed\" + "Clear_Failed2.png");
+            End_ClearFailed = new CTexture[26];
+            for (int i = 0; i < 26; i++)
+                End_ClearFailed[i] = TxC(GAME + END + @"ClearFailed\" + i.ToString() + ".png");
+
+            End_FullCombo = new CTexture[67];
+            for(int i = 0; i < 67; i++)
+                End_FullCombo[i] = TxC(GAME + END + @"FullCombo\" + i.ToString() + ".png");
+            End_FullComboLoop = new CTexture[3];
+            for (int i = 0; i < 3; i++)
+                End_FullComboLoop[i] = TxC(GAME + END + @"FullCombo\" + "loop_" + i.ToString() + ".png");
+
+            End_DondaFullComboBg = TxC(GAME + END + @"DondaFullCombo\" + "bg.png");
+            End_DondaFullCombo = new CTexture[62];
+            for (int i = 0; i < 62; i++)
+                End_DondaFullCombo[i] = TxC(GAME + END + @"DondaFullCombo\" + i.ToString() + ".png");
+            End_DondaFullComboLoop = new CTexture[3];
+            for (int i = 0; i < 3; i++)
+                End_DondaFullComboLoop[i] = TxC(GAME + END + @"DondaFullCombo\" + "loop_" + i.ToString() + ".png");
+
             #endregion
             #region ゲームモード
             GameMode_Timer_Tick = TxC(GAME + GAMEMODE + @"Timer_Tick.png");
@@ -815,9 +838,18 @@ namespace TJAPlayer3
         #endregion
         #region 終了演出
         public CTexture[] End_Clear_L,
-            End_Clear_R;
+            End_Clear_R,
+            End_ClearFailed,
+            End_FullCombo,
+            End_FullComboLoop,
+            End_DondaFullCombo,
+            End_DondaFullComboLoop;
         public CTexture End_Clear_Text,
-            End_Clear_Text_Effect;
+            End_Clear_Text_Effect,
+            ClearFailed,
+            ClearFailed1,
+            ClearFailed2,
+            End_DondaFullComboBg;
         #endregion
         #region ゲームモード
         public CTexture GameMode_Timer_Frame,
