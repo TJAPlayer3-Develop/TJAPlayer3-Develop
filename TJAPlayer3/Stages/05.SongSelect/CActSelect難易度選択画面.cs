@@ -196,6 +196,12 @@ namespace TJAPlayer3
                 this.b裏譜面 = false;
                 縁カウント = 0;
 
+                if (TJAPlayer3.stage選曲.ct制限時間.n現在の値 > 70)
+                {
+                    TJAPlayer3.stage選曲.制限時間音声のリセット(true);
+                    TJAPlayer3.stage選曲.ct制限時間.n現在の値 = 70;
+                }
+
                 base.b初めての進行描画 = false;
 			}
             //-----------------
