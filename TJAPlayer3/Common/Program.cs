@@ -60,7 +60,7 @@ namespace TJAPlayer3
 		#endregion
 
 		[STAThread] 
-		private static void Main()
+		static void Main()
 		{
 			mutex二重起動防止用 = new Mutex( false, "DTXManiaMutex" );
 
