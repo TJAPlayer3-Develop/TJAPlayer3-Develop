@@ -592,6 +592,6 @@ namespace TJAPlayer3
         
         //-----------------
         #endregion
+        #endregion
     }
-#endregion
 }
