@@ -813,6 +813,7 @@ namespace TJAPlayer3
             Gauge_Soul_Explosion;
         public CTexture Gauge_Soul,
             Gauge_Soul_Fire;
+        public CTexture[] Gauge_Dan;
         #endregion
         #region 吹き出し
         public CTexture[] Balloon_Combo;
