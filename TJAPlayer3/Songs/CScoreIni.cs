@@ -207,7 +207,7 @@ namespace TJAPlayer3
 				this.レーン9モード = true;
 				this.nRisky = 0;                                    // #23559 2011.6.20 yyagi
 				this.fゲージ = 0.0f;
-				Dan_C = new Dan_C[3];
+				Dan_C = new Dan_C[4];
 			}
 
 			public bool bフルコンボじゃない
