@@ -4511,7 +4511,7 @@ namespace TJAPlayer3
                     this.b配点が指定されている[1, this.n参照中の難易度] = true;
                 }
             }
-            else if (strCommandName.Equals("EXAM1") || strCommandName.Equals("EXAM2") || strCommandName.Equals("EXAM3") || strCommandName.Equals("EXAM4")))
+            else if (strCommandName.Equals("EXAM1") || strCommandName.Equals("EXAM2") || strCommandName.Equals("EXAM3") || strCommandName.Equals("EXAM4"))
             {
                 if (!string.IsNullOrEmpty(strCommandParam))
                 {
