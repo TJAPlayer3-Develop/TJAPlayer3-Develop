@@ -432,7 +432,6 @@ namespace TJAPlayer3
                     {
                         TJAPlayer3.Tx.DanC_Failed.t2D拡大率考慮下基準描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_DanC_X[count - 1] + TJAPlayer3.Skin.Game_DanC_Offset[0], TJAPlayer3.Skin.Game_DanC_Y[count - 1] + TJAPlayer3.Skin.Game_DanC_Size[1] * (i + 1) + ((i + 1) * TJAPlayer3.Skin.Game_DanC_Padding) - TJAPlayer3.Skin.Game_DanC_Offset[1]);
                     }
-                        #endregion
                     }
                     else
                         drawGaugeType = 0;
