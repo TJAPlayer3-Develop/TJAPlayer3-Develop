@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
@@ -272,6 +272,8 @@ namespace TJAPlayer3
 
             TJAPlayer3.Tx.DanC_Background?.t2D描画(TJAPlayer3.app.Device, 0, 0);
 
+
+
             // 段プレートを描画する。
             Dan_Plate?.t2D中心基準描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_DanC_Dan_Plate[0], TJAPlayer3.Skin.Game_DanC_Dan_Plate[1]);
 
@@ -368,7 +370,7 @@ namespace TJAPlayer3
                     #region ゲージの土台を描画する。
                     TJAPlayer3.Tx.DanC_Base?.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_DanC_X[count - 1], TJAPlayer3.Skin.Game_DanC_Y[count - 1] + TJAPlayer3.Skin.Game_DanC_Size[1] * i + (i * TJAPlayer3.Skin.Game_DanC_Padding), new RectangleF(0, 0, 1006, 92));
                     #endregion
-
+                
                     #region ゲージを描画する。
                     var drawGaugeType = 0;
                     if (dan_C[i].GetExamRange() == Exam.Range.More)
@@ -381,7 +383,7 @@ namespace TJAPlayer3
                             drawGaugeType = 0;
                     }
                     else
-                            {
+                    {
                         if (dan_C[i].GetAmountToPercent() >= 100)
                             drawGaugeType = 2;
                         else if (dan_C[i].GetAmountToPercent() > 70)
@@ -407,7 +409,7 @@ namespace TJAPlayer3
                     if (nowAmount < 0) nowAmount = 0;
 
                     DrawNumber(nowAmount, TJAPlayer3.Skin.Game_DanC_X[count - 1] + TJAPlayer3.Skin.Game_DanC_Number_Small_Number_Offset[0] + nowAmount.ToString().Length * TJAPlayer3.Skin.Game_DanC_Number_Size[0], TJAPlayer3.Skin.Game_DanC_Y[count - 1] + TJAPlayer3.Skin.Game_DanC_Size[1] * (i + 1) + ((i + 1) * TJAPlayer3.Skin.Game_DanC_Padding) - TJAPlayer3.Skin.Game_DanC_Number_Small_Number_Offset[1], TJAPlayer3.Skin.Game_DanC_Number_Small_Padding, true, TJAPlayer3.Skin.Game_DanC_Number_Small_Scale, TJAPlayer3.Skin.Game_DanC_Number_Small_Scale, (Status[i].Timer_Amount != null ? ScoreScale[Status[i].Timer_Amount.n現在の値] : 0f));
-
+                    
                     #endregion
 
                     #region 条件の文字を描画する。
@@ -432,21 +434,8 @@ namespace TJAPlayer3
                     {
                         TJAPlayer3.Tx.DanC_Failed.t2D拡大率考慮下基準描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_DanC_X[count - 1] + TJAPlayer3.Skin.Game_DanC_Offset[0], TJAPlayer3.Skin.Game_DanC_Y[count - 1] + TJAPlayer3.Skin.Game_DanC_Size[1] * (i + 1) + ((i + 1) * TJAPlayer3.Skin.Game_DanC_Padding) - TJAPlayer3.Skin.Game_DanC_Offset[1]);
                     }
-                    }
-                    else
-                        drawGaugeType = 0;
+                        #endregion
                 }
-                TJAPlayer3.Tx.DanC_Gauge[drawGaugeType]?.t2D拡大率考慮下基準描画(TJAPlayer3.app.Device,
-                    TJAPlayer3.Skin.Game_DanC_X[count - 1] + TJAPlayer3.Skin.Game_DanC_Offset[0], TJAPlayer3.Skin.Game_DanC_Y[count - 1] + TJAPlayer3.Skin.Game_DanC_Size[1] * (i + 1) + ((i + 1) * TJAPlayer3.Skin.Game_DanC_Padding) - TJAPlayer3.Skin.Game_DanC_Offset[1], new Rectangle(0, 0, (int)(dan_C[i].GetAmountToPercent() * (TJAPlayer3.Tx.DanC_Gauge[drawGaugeType].szテクスチャサイズ.Width / 100.0)), TJAPlayer3.Tx.DanC_Gauge[drawGaugeType].szテクスチャサイズ.Height));
-                #endregion
-
-                #region 現在の値を描画する。
-                var nowAmount = 0;
-                if (dan_C[i].GetExamRange() == Exam.Range.Less)
-                {
-                    nowAmount = dan_C[i].Value[0] - dan_C[i].Amount;
-                }
-                #endregion
                 else
                 {
                     #region ゲージの土台を描画する。
