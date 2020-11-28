@@ -605,8 +605,10 @@ namespace TJAPlayer3
                 DanC_Gauge[i] = TxC(GAME + DANC + @"Gauge_" + type[i] + ".png");
             }
             DanC_Base = TxC(GAME + DANC + @"Base.png");
+            DanC_Gauge_Base = TxC(GAME + DANC + @"Gauge_Base.png");
             DanC_Failed = TxC(GAME + DANC + @"Failed.png");
             DanC_Number = TxC(GAME + DANC + @"Number.png");
+            DanC_Small_Number = TxC(GAME + DANC + @"Small_Number.png");
             DanC_ExamType = TxC(GAME + DANC + @"ExamType.png");
             DanC_ExamRange = TxC(GAME + DANC + @"ExamRange.png");
             DanC_ExamUnit = TxC(GAME + DANC + @"ExamUnit.png");
@@ -876,9 +878,11 @@ namespace TJAPlayer3
         #region DanC
         public CTexture DanC_Background;
         public CTexture[] DanC_Gauge;
+        public CTexture DanC_Gauge_Base;
         public CTexture DanC_Base;
         public CTexture DanC_Failed;
         public CTexture DanC_Number,
+            DanC_Small_Number,
             DanC_ExamType,
             DanC_ExamRange,
             DanC_ExamUnit;
