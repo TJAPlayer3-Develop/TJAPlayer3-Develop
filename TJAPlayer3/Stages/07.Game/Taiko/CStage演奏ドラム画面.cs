@@ -530,14 +530,13 @@ namespace TJAPlayer3
 				actChara.OnDraw_Balloon();
 				this.t全体制御メソッド();
 
-
-				this.actPauseMenu.t進行描画();
 				//this.actEnd.On進行描画();
 				this.t進行描画_STAGEFAILED();
 
 
 
 				bIsFinishedEndAnime = this.actEnd.On進行描画() == 1 ? true : false;
+				this.actPauseMenu.t進行描画();
 				bIsFinishedFadeout = this.t進行描画_フェードイン_アウト();
 
 				//演奏終了→演出表示→フェードアウト
@@ -2153,7 +2152,7 @@ namespace TJAPlayer3
 			#endregion
 
 			string strNull = "Found";
-			if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F1))
+			if (base.eフェーズID == CStage.Eフェーズ.共通_通常状態 && TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F1))
 			{
 				if (!this.actPauseMenu.bIsActivePopupMenu)
 				{

@@ -349,11 +349,13 @@ namespace TJAPlayer3
 			set;
 		}
 
-        #endregion
+		[DllImport("wininet")]
+		private static extern bool InternetGetConnectedState(ref uint lpdwFlags, uint dwReserved);
+		#endregion
 
-        // コンストラクタ
+		// コンストラクタ
 
-        public TJAPlayer3()
+		public TJAPlayer3()
 		{
 			TJAPlayer3.app = this;
 			this.t起動処理();
@@ -1522,10 +1524,29 @@ for (int i = 0; i < 3; i++) {
 			    actScanningLoudness.On進行描画();
 
                 // オーバレイを描画する(テクスチャの生成されていない起動ステージは例外
-                if(r現在のステージ != null && r現在のステージ.eステージID != CStage.Eステージ.起動 && TJAPlayer3.Tx.Overlay != null)
+                if(r現在のステージ != null && r現在のステージ.eステージID != CStage.Eステージ.起動)
                 {
-                    TJAPlayer3.Tx.Overlay.t2D描画(app.Device, 0, 0);
-                }
+					//TJAPlayer3.Tx.Overlay.t2D描画(app.Device, 0, 0);
+					try
+					{
+						uint flags = 0x0;
+						bool isNetworkAvailable = InternetGetConnectedState(ref flags, 0);
+						if (!isNetworkAvailable)
+						{
+							TJAPlayer3.Tx.Title_NetworkStatus[2].t2D描画(app.Device, 0, 0);
+						}
+						else
+						{
+							TJAPlayer3.Tx.Title_NetworkStatus[0].t2D描画(app.Device, 0, 0);
+						}
+					}
+                    catch(Exception e)
+                    {
+						TJAPlayer3.Tx.Title_NetworkStatus[1].t2D描画(app.Device, 0, 0);
+						Trace.TraceInformation("InternetGetConnectedState error: " + e.ToString());
+					}
+
+				}
 			}
 			this.Device.EndScene();			// Present()は game.csのOnFrameEnd()に登録された、GraphicsDeviceManager.game_FrameEnd() 内で実行されるので不要
 											// (つまり、Present()は、Draw()完了後に実行される)

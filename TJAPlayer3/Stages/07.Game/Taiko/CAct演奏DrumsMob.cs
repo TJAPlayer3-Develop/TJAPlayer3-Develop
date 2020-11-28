@@ -21,6 +21,7 @@ namespace TJAPlayer3
         {
             ctMob = new CCounter();
             ctMobPtn = new CCounter();
+            RandomMob = TJAPlayer3.Random.Next(TJAPlayer3.Skin.Game_Mob_Ptn);
             base.On活性化();
         }
 
@@ -55,9 +56,9 @@ namespace TJAPlayer3
                 {
                     if (TJAPlayer3.stage演奏ドラム画面.actGauge.db現在のゲージ値[0] >= 100)
                     {
-                        if (TJAPlayer3.Tx.Mob[(int)ctMobPtn.db現在の値] != null)
+                        if (TJAPlayer3.Tx.Mob[RandomMob] != null)
                         {
-                            TJAPlayer3.Tx.Mob[(int)ctMobPtn.db現在の値].t2D描画(TJAPlayer3.app.Device, 0, (720 - (TJAPlayer3.Tx.Mob[0].szテクスチャサイズ.Height - 70)) + -((float)Math.Sin((float)this.ctMob.db現在の値 * (Math.PI / 180)) * 70));
+                            TJAPlayer3.Tx.Mob[RandomMob].t2D描画(TJAPlayer3.app.Device, 0, (720 - (TJAPlayer3.Tx.Mob[0].szテクスチャサイズ.Height - 70)) + -((float)Math.Sin((float)this.ctMob.db現在の値 * (Math.PI / 180)) * 70));
                         }
                     }
 
@@ -69,6 +70,7 @@ namespace TJAPlayer3
         //-----------------
         public CCounter ctMob;
         public CCounter ctMobPtn;
+        private int RandomMob;
         //-----------------
         #endregion
     }

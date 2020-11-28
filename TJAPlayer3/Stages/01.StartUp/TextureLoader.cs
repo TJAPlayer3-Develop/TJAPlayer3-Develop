@@ -121,6 +121,10 @@ namespace TJAPlayer3
             //title routine 1
             Title_R1_Background = TxC(TITLE + @"routine1\Background.png");
             Title_R1_Logo = TxC(TITLE + @"routine1\Logo.png");
+
+            Title_NetworkStatus = new CTexture[3];
+            for(int i = 0; i < 3; i++)
+                Title_NetworkStatus[i] = TxC(TITLE + @"NetworkStatus\" + i + ".png");
             #endregion
 
             #region 2_コンフィグ画面
@@ -685,6 +689,8 @@ namespace TJAPlayer3
         //title routine 1
         public CTexture Title_R1_Background,
             Title_R1_Logo;
+
+        public CTexture[] Title_NetworkStatus;
         #endregion
 
         #region 2_コンフィグ画面
