@@ -446,6 +446,7 @@ namespace TJAPlayer3
                 {
                     nowAmount = dan_C[i].Value[0] - dan_C[i].Amount;
                 }
+                #endregion
                 else
                 {
                     #region ゲージの土台を描画する。
@@ -591,7 +592,6 @@ namespace TJAPlayer3
 
         
         //-----------------
-        #endregion
         #endregion
     }
 }
