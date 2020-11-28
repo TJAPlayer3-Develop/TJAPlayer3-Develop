@@ -465,6 +465,16 @@ namespace TJAPlayer3
                     Gauge_Rainbow[i] = TxC(GAME + GAUGE + @"Rainbow\" + i.ToString() + ".png");
                 }
             }
+                        Gauge_Dan = new CTexture[4];
+            Gauge_Dan[0] = TxC(GAME + GAUGE + @"1P_Dan_Base.png");
+            Gauge_Dan[1] = TxC(GAME + GAUGE + @"1P_Dan.png");
+            Gauge_Dan[2] = TxC(GAME + GAUGE + @"1P_Dan_Clear_Base.png");
+            Gauge_Dan[3] = TxC(GAME + GAUGE + @"1P_Dan_Clear.png");
+            Gauge_Soul = TxC(GAME + GAUGE + @"Soul.png");
+            Gauge_Soul_Fire = TxC(GAME + GAUGE + @"Fire.png");
+            Gauge_Soul_Explosion = new CTexture[2];
+            Gauge_Soul_Explosion[0] = TxC(GAME + GAUGE + @"1P_Explosion.png");
+            Gauge_Soul_Explosion[1] = TxC(GAME + GAUGE + @"2P_Explosion.png");
             Gauge_Soul = TxC(GAME + GAUGE + @"Soul.png");
             Gauge_Soul_Fire = TxC(GAME + GAUGE + @"Fire.png");
             Gauge_Soul_Explosion = new CTexture[2];
