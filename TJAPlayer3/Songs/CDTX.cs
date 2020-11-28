@@ -781,6 +781,7 @@ namespace TJAPlayer3
             public int ScoreDiff;
             public static int Number;
             public CWAV Wave;
+	    public Dan_C[] Dan_C = new Dan_C[4];
 
             public DanSongs()
             {
