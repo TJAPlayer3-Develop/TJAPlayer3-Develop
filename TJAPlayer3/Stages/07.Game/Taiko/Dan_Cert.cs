@@ -381,17 +381,27 @@ namespace TJAPlayer3
                             drawGaugeType = 0;
                     }
                     else
-                        drawGaugeType = 0;
-                }
-                else
-                {
-                    {
+                            {
                         if (dan_C[i].GetAmountToPercent() >= 100)
                             drawGaugeType = 2;
                         else if (dan_C[i].GetAmountToPercent() > 70)
                             drawGaugeType = 1;
                         else
-                            {
+                            drawGaugeType = 0;
+                    }
+                    TJAPlayer3.Tx.DanC_Gauge[drawGaugeType]?.t2D拡大率考慮下基準描画(TJAPlayer3.app.Device,
+                        TJAPlayer3.Skin.Game_DanC_X[count - 1] + TJAPlayer3.Skin.Game_DanC_Offset[0], TJAPlayer3.Skin.Game_DanC_Y[count - 1] + TJAPlayer3.Skin.Game_DanC_Size[1] * (i + 1) + ((i + 1) * TJAPlayer3.Skin.Game_DanC_Padding) - TJAPlayer3.Skin.Game_DanC_Offset[1], 
+                        new Rectangle(0, 0, (int)(dan_C[i].GetAmountToPercent() * (TJAPlayer3.Tx.DanC_Gauge[drawGaugeType].szテクスチャサイズ.Width / 100.0)), TJAPlayer3.Tx.DanC_Gauge[drawGaugeType].szテクスチャサイズ.Height));
+                    #endregion
+
+                    #region 現在の値を描画する。
+                    var nowAmount = 0;
+                    if (dan_C[i].GetExamRange() == Exam.Range.Less)
+                    {
+                        nowAmount = dan_C[i].Value[0] - dan_C[i].Amount;
+                    }
+                    else
+                    {
                         nowAmount = dan_C[i].Amount;
                     }
                     if (nowAmount < 0) nowAmount = 0;
