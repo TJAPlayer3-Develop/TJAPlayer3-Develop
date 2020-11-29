@@ -1555,7 +1555,7 @@ for (int i = 0; i < 3; i++) {
 								CoinCount++;
 								Skin.soundCoin.t再生する();
 							}
-							if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)Key.NumberLock))
+							if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)Key.ScrollLock))
 							{
 								ServiceCount++;
 								Skin.soundService.t再生する();

@@ -117,15 +117,15 @@ namespace TJAPlayer3
 				//---------------------
 				#endregion
 
-				if(TJAPlayer3.ServiceCount >= TJAPlayer3.ConfigIni.nGameCost)
+				if(TJAPlayer3.ServiceCount >= TJAPlayer3.ConfigIni.nGameCost * TJAPlayer3.ConfigIni.nPlayerCount)
                 {
 					CreditStatus = 0;
                 }
-				else if (TJAPlayer3.CoinCount + TJAPlayer3.ServiceCount >= TJAPlayer3.ConfigIni.nGameCost)
+				else if (TJAPlayer3.CoinCount + TJAPlayer3.ServiceCount >= TJAPlayer3.ConfigIni.nGameCost * TJAPlayer3.ConfigIni.nPlayerCount)
                 {
 					CreditStatus = 1;
                 }
-				else if(TJAPlayer3.CoinCount >= TJAPlayer3.ConfigIni.nGameCost)
+				else if(TJAPlayer3.CoinCount >= TJAPlayer3.ConfigIni.nGameCost * TJAPlayer3.ConfigIni.nPlayerCount)
                 {
 					CreditStatus = 2;
                 }
@@ -251,15 +251,15 @@ namespace TJAPlayer3
                                     switch (CreditStatus)
                                     {
 										case 0:
-											TJAPlayer3.ServiceCount -= TJAPlayer3.ConfigIni.nGameCost;
+											TJAPlayer3.ServiceCount -= TJAPlayer3.ConfigIni.nGameCost * TJAPlayer3.ConfigIni.nPlayerCount;
 											break;
 										case 1:
-											int sub_num = TJAPlayer3.ConfigIni.nGameCost - TJAPlayer3.ServiceCount;
+											int sub_num = TJAPlayer3.ConfigIni.nGameCost * TJAPlayer3.ConfigIni.nPlayerCount - TJAPlayer3.ServiceCount;
 											TJAPlayer3.CoinCount -= sub_num;
 											TJAPlayer3.ServiceCount = 0;
 											break;
 										case 2:
-											TJAPlayer3.CoinCount -= TJAPlayer3.ConfigIni.nGameCost;
+											TJAPlayer3.CoinCount -= TJAPlayer3.ConfigIni.nGameCost * TJAPlayer3.ConfigIni.nPlayerCount;
 											break;
 									}
 									TJAPlayer3.Skin.soundタイトル音.t停止する();

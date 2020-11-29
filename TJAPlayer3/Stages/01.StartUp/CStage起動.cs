@@ -157,7 +157,7 @@ namespace TJAPlayer3
 					this.list進行文字列.Add("");
 					this.list進行文字列.Add("");
 					this.list進行文字列.Add("Now initializing:");
-					TJAPlayer3.CoinCount = TJAPlayer3.ConfigIni.nGameCost;
+					TJAPlayer3.CoinCount = TJAPlayer3.ConfigIni.nGameCost * TJAPlayer3.ConfigIni.nPlayerCount;
 					es = new CEnumSongs();
 					es.StartEnumFromCache();                                        // 曲リスト取得(別スレッドで実行される)
 					base.b初めての進行描画 = false;

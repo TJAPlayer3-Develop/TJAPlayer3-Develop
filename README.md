@@ -26,4 +26,3 @@ Fork元のFork元より引用。
 > 
 > また、このプログラムはFROM氏の「DTXMania」を元に製作しています。
 
-test

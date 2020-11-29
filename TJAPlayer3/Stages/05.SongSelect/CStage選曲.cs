@@ -572,7 +572,7 @@ namespace TJAPlayer3
 							制限時間音声のリセット();
 							ct制限時間.n現在の値 = 0;
 						}
-						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad1))
+						/*else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad1))
 						{
 							制限時間音声のリセット();
 							ct制限時間.n現在の値 = 90;
@@ -616,7 +616,7 @@ namespace TJAPlayer3
 						{
 							制限時間音声のリセット();
 							ct制限時間.n現在の値 = 10;
-						}
+						}*/
 						else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDX.DirectInput.Key.NumberPad0))
 						{
 							//制限時間音声のリセット();
@@ -784,20 +784,28 @@ namespace TJAPlayer3
 				}
 
 				if (!ctDonchanSelect.b進行中 && !ctDonchanStart.b進行中)
+				{
 					TJAPlayer3.Tx.SongSelect_Donchan_Normal[ctDonchanNormal.n現在の値].t2D描画(TJAPlayer3.app.Device, 0, 330);
+					if(TJAPlayer3.ConfigIni.nPlayerCount == 2)
+						TJAPlayer3.Tx.SongSelect_Donchan_Normal2[ctDonchanNormal.n現在の値].t2D描画(TJAPlayer3.app.Device, 990, 330);
+				}
 				else
 				{
-                    if (ctDonchanSelect.b進行中)
+					if (ctDonchanSelect.b進行中)
 					{
 						if (ctDonchanSelect.n現在の値 >= ctDonchanSelect.n終了値)
 						{
 							ctDonchanSelect.t停止();
 						}
 						TJAPlayer3.Tx.SongSelect_Donchan_Select[ctDonchanSelect.n現在の値].t2D描画(TJAPlayer3.app.Device, 0, 330);
+						if (TJAPlayer3.ConfigIni.nPlayerCount == 2)
+							TJAPlayer3.Tx.SongSelect_Donchan_Select2[ctDonchanSelect.n現在の値].t2D描画(TJAPlayer3.app.Device, 990, 330);
 					}
-                    if (ctDonchanStart.b進行中)
+					if (ctDonchanStart.b進行中)
 					{
 						TJAPlayer3.Tx.SongSelect_Donchan_Start[ctDonchanStart.n現在の値].t2D描画(TJAPlayer3.app.Device, 0, 330);
+						if (TJAPlayer3.ConfigIni.nPlayerCount == 2)
+							TJAPlayer3.Tx.SongSelect_Donchan_Start2[ctDonchanStart.n現在の値].t2D描画(TJAPlayer3.app.Device, 990, 330);
 					}
 				}
 
