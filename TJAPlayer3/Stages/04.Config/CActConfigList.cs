@@ -81,13 +81,16 @@ namespace TJAPlayer3
 				"Reload song data." );
 			this.list項目リスト.Add( this.iSystemReloadDTX );
 
-            //this.iCommonDark = new CItemList( "Dark", CItemBase.Eパネル種別.通常, (int) CDTXMania.ConfigIni.eDark,
-            //    "HALF: 背景、レーン、ゲージが表示\nされなくなります。\nFULL: さらに小節線、拍線、判定ラ\nイン、パッドも表示されなくなります。",
-            //    "OFF: all display parts are shown.\nHALF: wallpaper, lanes and gauge are\n disappeared.\nFULL: additionaly to HALF, bar/beat\n lines, hit bar, pads are disappeared.",
-            //    new string[] { "OFF", "HALF", "FULL" } );
-            //this.list項目リスト.Add( this.iCommonDark );
+			//this.iCommonDark = new CItemList( "Dark", CItemBase.Eパネル種別.通常, (int) CDTXMania.ConfigIni.eDark,
+			//    "HALF: 背景、レーン、ゲージが表示\nされなくなります。\nFULL: さらに小節線、拍線、判定ラ\nイン、パッドも表示されなくなります。",
+			//    "OFF: all display parts are shown.\nHALF: wallpaper, lanes and gauge are\n disappeared.\nFULL: additionaly to HALF, bar/beat\n lines, hit bar, pads are disappeared.",
+			//    new string[] { "OFF", "HALF", "FULL" } );
+			//this.list項目リスト.Add( this.iCommonDark );
 
-            this.iTaikoPlayerCount = new CItemInteger( "プレイ人数", 1, 2, TJAPlayer3.ConfigIni.nPlayerCount,
+			this.iTaikoGameCost = new CItemInteger("GameCost", 0, 99, TJAPlayer3.ConfigIni.nGameCost, "1プレイに必要なクレジット数を指定します。");
+			this.list項目リスト.Add(this.iTaikoGameCost);
+
+			this.iTaikoPlayerCount = new CItemInteger( "プレイ人数", 1, 2, TJAPlayer3.ConfigIni.nPlayerCount,
                 "プレイ人数切り替え：\n2にすると演奏画面が2人プレイ専用のレイアウトになり、2P専用譜面を読み込むようになります。",
                 "" );
             this.list項目リスト.Add( this.iTaikoPlayerCount );
@@ -2211,7 +2214,8 @@ namespace TJAPlayer3
         private CItemToggle iTaikoJudgeCountDisp;
         private CItemToggle iTaikoBigNotesJudge;
         private CItemInteger iTaikoPlayerCount;
-        CItemToggle ShowChara;
+		private CItemInteger iTaikoGameCost;
+		CItemToggle ShowChara;
         CItemToggle ShowDancer;
         CItemToggle ShowRunner;
         CItemToggle ShowMob;
@@ -2383,6 +2387,7 @@ namespace TJAPlayer3
             TJAPlayer3.ConfigIni.ShowPuchiChara = this.ShowPuchiChara.bON;
             TJAPlayer3.ConfigIni.nPlayerCount = this.iTaikoPlayerCount.n現在の値;
             TJAPlayer3.ConfigIni.FastRender = this.FastRender.bON;
+			TJAPlayer3.ConfigIni.nGameCost = this.iTaikoGameCost.n現在の値;
 		}
 		private void tConfigIniへ記録する_Bass()
 		{

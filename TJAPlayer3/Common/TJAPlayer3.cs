@@ -11,6 +11,7 @@ using System.Threading;
 using System.Runtime.Serialization.Formatters.Binary;
 using SlimDX;
 using SlimDX.Direct3D9;
+using SlimDX.DirectInput;
 using FDK;
 using SampleFramework;
 using System.Reflection;
@@ -460,7 +461,7 @@ namespace TJAPlayer3
 
 		protected override void Initialize()
 		{
-//			new GCBeep();
+			//			new GCBeep();
 			//sw.Start();
 			//swlist1 = new List<int>( 8192 );
 			//swlist2 = new List<int>( 8192 );
@@ -1523,29 +1524,59 @@ for (int i = 0; i < 3; i++) {
 
 			    actScanningLoudness.On進行描画();
 
-                // オーバレイを描画する(テクスチャの生成されていない起動ステージは例外
-                if(r現在のステージ != null && r現在のステージ.eステージID != CStage.Eステージ.起動)
-                {
-					//TJAPlayer3.Tx.Overlay.t2D描画(app.Device, 0, 0);
-					try
+				// オーバレイを描画する(テクスチャの生成されていない起動ステージは例外
+				if (r現在のステージ != null)
+				{
+					if (r現在のステージ.eステージID != CStage.Eステージ.起動 && r現在のステージ.eステージID != CStage.Eステージ.コンフィグ)
 					{
-						uint flags = 0x0;
-						bool isNetworkAvailable = InternetGetConnectedState(ref flags, 0);
-						if (!isNetworkAvailable)
+						//TJAPlayer3.Tx.Overlay.t2D描画(app.Device, 0, 0);
+						try
 						{
-							TJAPlayer3.Tx.Title_NetworkStatus[2].t2D描画(app.Device, 0, 0);
+							uint flags = 0x0;
+							bool isNetworkAvailable = InternetGetConnectedState(ref flags, 0);
+							if (!isNetworkAvailable)
+							{
+								TJAPlayer3.Tx.Title_NetworkStatus[2].t2D描画(app.Device, 0, 0);
+							}
+							else
+							{
+								TJAPlayer3.Tx.Title_NetworkStatus[0].t2D描画(app.Device, 0, 0);
+							}
 						}
-						else
+						catch (Exception e)
 						{
-							TJAPlayer3.Tx.Title_NetworkStatus[0].t2D描画(app.Device, 0, 0);
+							TJAPlayer3.Tx.Title_NetworkStatus[1].t2D描画(app.Device, 0, 0);
+							Trace.TraceInformation("InternetGetConnectedState error: " + e.ToString());
+						}
+						if (r現在のステージ.eステージID != CStage.Eステージ.曲読み込み && r現在のステージ.eステージID != CStage.Eステージ.演奏)
+						{
+							if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)Key.Insert))
+							{
+								CoinCount++;
+								Skin.soundCoin.t再生する();
+							}
+							if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)Key.NumberLock))
+							{
+								ServiceCount++;
+								Skin.soundService.t再生する();
+							}
+							pfCredit = new CPrivateFastFont(CSkin.Path(@"Graphics\DFPKanTeiRyu.ttf"), 18);
+							Bitmap bitmap = new Bitmap(1, 1);
+							if (ServiceCount >= 1)
+							{
+								Tx.Service.t2D描画(app.Device, 518, 674);
+								bitmap = this.pfCredit.DrawPrivateFont(ServiceCount.ToString(), Color.White, Color.Black, 24);
+								TxCredit = tテクスチャの生成(bitmap);
+							}
+							else
+							{
+								Tx.Coin.t2D描画(app.Device, 564, 674);
+								bitmap = this.pfCredit.DrawPrivateFont(CoinCount.ToString(), Color.White, Color.Black, 24);
+								TxCredit = tテクスチャの生成(bitmap);
+							}
+							TxCredit.t2D描画(app.Device, 677, 667);
 						}
 					}
-                    catch(Exception e)
-                    {
-						TJAPlayer3.Tx.Title_NetworkStatus[1].t2D描画(app.Device, 0, 0);
-						Trace.TraceInformation("InternetGetConnectedState error: " + e.ToString());
-					}
-
 				}
 			}
 			this.Device.EndScene();			// Present()は game.csのOnFrameEnd()に登録された、GraphicsDeviceManager.game_FrameEnd() 内で実行されるので不要
@@ -1805,6 +1836,10 @@ for (int i = 0; i < 3; i++) {
 		private List<CActivity> listトップレベルActivities;
 		private int n進行描画の戻り値;
 		private MouseButtons mb = System.Windows.Forms.MouseButtons.Left;
+		private CPrivateFont pfCredit;
+		public static int CoinCount = 0;
+		public static int ServiceCount = 0;
+		private CTexture TxCredit;
 		private string strWindowTitle
 		{
 			get

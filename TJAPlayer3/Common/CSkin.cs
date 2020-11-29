@@ -41,6 +41,9 @@ namespace TJAPlayer3
         SOUNDRESULTPOM,
         SOUNDRESULTGAUGE,
         SOUNDSONGOPTION,
+        SOUNDCOIN,
+        SOUNDSERVICE,
+        SOUNDCOINPROMPT,
         Count				// システムサウンド総数の計算用
     }
 
@@ -338,6 +341,9 @@ namespace TJAPlayer3
         public Cシステムサウンド soundResultPom = null;
         public Cシステムサウンド soundResultGauge = null;
         public Cシステムサウンド soundSongOption = null;
+        public Cシステムサウンド soundCoin = null;
+        public Cシステムサウンド soundService = null;
+        public Cシステムサウンド CoinPrompt = null;
 
         //public Cシステムサウンド soundRed = null;
         //public Cシステムサウンド soundBlue = null;
@@ -435,6 +441,15 @@ namespace TJAPlayer3
 
                     case Eシステムサウンド.SOUNDSONGOPTION:
                         return this.soundSongOption;
+
+                    case Eシステムサウンド.SOUNDCOIN:
+                        return this.soundCoin;
+
+                    case Eシステムサウンド.SOUNDSERVICE:
+                        return this.soundService;
+
+                    case Eシステムサウンド.SOUNDCOINPROMPT:
+                        return this.CoinPrompt;
                 }
                 throw new IndexOutOfRangeException();
             }
@@ -528,6 +543,15 @@ namespace TJAPlayer3
 
                     case 25:
                         return this.soundSongOption;
+
+                    case 26:
+                        return this.soundCoin;
+
+                    case 27:
+                        return this.soundService;
+
+                    case 28:
+                        return this.CoinPrompt;
                 }
                 throw new IndexOutOfRangeException();
             }
@@ -693,6 +717,9 @@ namespace TJAPlayer3
             this.soundResultPom = new Cシステムサウンド(@"Sounds\Result_Pom.ogg", false, false, false, ESoundGroup.SoundEffect);
             this.soundResultGauge = new Cシステムサウンド(@"Sounds\Result_Gauge.ogg", false, false, false, ESoundGroup.SoundEffect);
             this.soundSongOption = new Cシステムサウンド(@"Sounds\Song_Option.ogg", false, false, true, ESoundGroup.Voice);
+            this.soundCoin = new Cシステムサウンド(@"Sounds\Coin.ogg", false, false, false, ESoundGroup.SoundEffect);
+            this.soundService = new Cシステムサウンド(@"Sounds\Service.ogg", false, false, false, ESoundGroup.SoundEffect);
+            this.CoinPrompt = new Cシステムサウンド(@"Sounds\CoinPrompt.ogg", false, false, true, ESoundGroup.Voice);
 
             this.soundTitle_R1_BGM = new Cシステムサウンド(@"Sounds\Title\routine1\BGM.ogg", true, false, false, ESoundGroup.SoundEffect);
             ReloadSkin();

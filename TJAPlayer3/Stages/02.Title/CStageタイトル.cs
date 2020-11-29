@@ -117,6 +117,23 @@ namespace TJAPlayer3
 				//---------------------
 				#endregion
 
+				if(TJAPlayer3.ServiceCount >= TJAPlayer3.ConfigIni.nGameCost)
+                {
+					CreditStatus = 0;
+                }
+				else if (TJAPlayer3.CoinCount + TJAPlayer3.ServiceCount >= TJAPlayer3.ConfigIni.nGameCost)
+                {
+					CreditStatus = 1;
+                }
+				else if(TJAPlayer3.CoinCount >= TJAPlayer3.ConfigIni.nGameCost)
+                {
+					CreditStatus = 2;
+                }
+                else
+                {
+					CreditStatus = 3;
+                }
+
 				//--Homeキーでタイトル画面の切り替え : Press Home Key to toggle title screen--
 				if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)Key.Home))
 				{
@@ -229,25 +246,37 @@ namespace TJAPlayer3
 						{
 							if ((this.n現在のカーソル行 == (int)E戻り値.GAMESTART - 1))
 							{
-								//if (TJAPlayer3.stage選曲.act曲リスト.r現在選択中の曲 != null)
-								//{
-								TJAPlayer3.Skin.soundタイトル音.t停止する();
-								TJAPlayer3.Skin.soundタイトルスタート音.t停止する();
-								TJAPlayer3.Skin.soundEntry.t停止する();
-								TJAPlayer3.Skin.sound決定音.t再生する();
-								TJAPlayer3.Skin.soundゲーム開始音.t再生する();
-
-								this.actFO.tフェードアウト開始();
-								base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
-								//}
-								/*else
+								if (CreditStatus != 3)
 								{
-									MessageBox.Show(
-										"曲の読み込みが終わっていない、または曲が1つもないため、\nゲームをスタートできません。\n\nThe songs are either not loaded yet or not existing.\nIf you haven't installed any song yet,\nplease install some into the same directory as this game.",
-										"TJAPlayer3-Develop",
-										MessageBoxButtons.OK,
-										MessageBoxIcon.Warning);
-								}*/
+                                    switch (CreditStatus)
+                                    {
+										case 0:
+											TJAPlayer3.ServiceCount -= TJAPlayer3.ConfigIni.nGameCost;
+											break;
+										case 1:
+											int sub_num = TJAPlayer3.ConfigIni.nGameCost - TJAPlayer3.ServiceCount;
+											TJAPlayer3.CoinCount -= sub_num;
+											TJAPlayer3.ServiceCount = 0;
+											break;
+										case 2:
+											TJAPlayer3.CoinCount -= TJAPlayer3.ConfigIni.nGameCost;
+											break;
+									}
+									TJAPlayer3.Skin.soundタイトル音.t停止する();
+									TJAPlayer3.Skin.soundタイトルスタート音.t停止する();
+									TJAPlayer3.Skin.soundEntry.t停止する();
+									TJAPlayer3.Skin.sound決定音.t再生する();
+									TJAPlayer3.Skin.soundゲーム開始音.t再生する();
+
+									this.actFO.tフェードアウト開始();
+									base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
+								}
+                                else
+                                {
+									if (TJAPlayer3.Skin.CoinPrompt.b再生中)
+										TJAPlayer3.Skin.CoinPrompt.t停止する();
+									TJAPlayer3.Skin.CoinPrompt.t再生する();
+								}
 							}
 							else
 							{
@@ -476,6 +505,7 @@ namespace TJAPlayer3
 		private const int MENU_Y = 513;
 		private int n現在のカーソル行;
 		private bool bTitleStartPlayed;
+		private int CreditStatus;
 
 		private void tカーソルを下へ移動する()
 		{

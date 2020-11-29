@@ -111,6 +111,8 @@ namespace TJAPlayer3
             NamePlate = new CTexture[2];
             NamePlate[0] = TxC(@"1P_NamePlate.png");
             NamePlate[1] = TxC(@"2P_NamePlate.png");
+            Coin = TxC(@"Coin.png");
+            Service = TxC(@"Service.png");
             #endregion
             #region 1_タイトル画面
             Title_Background = TxC(TITLE + @"Background.png");
@@ -666,7 +668,9 @@ namespace TJAPlayer3
             Menu_Highlight,
             Enum_Song,
             Scanning_Loudness,
-            Overlay;
+            Overlay,
+            Coin,
+            Service;
         public CTexture[] NamePlate;
         #endregion
         #region 1_タイトル画面

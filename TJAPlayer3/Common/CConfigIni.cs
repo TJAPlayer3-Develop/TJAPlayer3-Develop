@@ -737,6 +737,7 @@ namespace TJAPlayer3
         public bool b大音符判定;
         public int n両手判定の待ち時間;
         public int nBranchAnime;
+		public int nGameCost;
 
         public bool bJudgeCountDisplay;
 
@@ -1422,6 +1423,7 @@ namespace TJAPlayer3
             FastRender = true;
             MusicPreTimeMs = 1000; // 一秒
             SendDiscordPlayingInformation = true;
+			this.nGameCost = 3;
             #region[ Ver.K追加 ]
             this.eLaneType = Eレーンタイプ.TypeA;
             this.bDirectShowMode = false;
@@ -1931,7 +1933,10 @@ namespace TJAPlayer3
             sw.WriteLine( "; プレイ人数" );
             sw.WriteLine( "PlayerCount={0}", this.nPlayerCount );
             sw.WriteLine();
-            //sw.WriteLine( "; 選曲画面の初期選択難易度(ベータ版)" );
+			sw.WriteLine("; 1プレイのゲームコスト ");
+			sw.WriteLine("GameCost={0}", this.nGameCost);
+			sw.WriteLine();
+			//sw.WriteLine( "; 選曲画面の初期選択難易度(ベータ版)" );
 			//sw.WriteLine( "DifficultPriority={0}", this.bJudgeCountDisplay ? 1 : 0 );
 			//sw.WriteLine();
 
@@ -2731,6 +2736,10 @@ namespace TJAPlayer3
                                             {
                                                 ShinuchiMode = C変換.bONorOFF(str4[0]);
                                             }
+											else if (str3.Equals("GameCost"))
+											{
+												this.nGameCost = C変換.n値を文字列から取得して範囲内に丸めて返す(str4, 0, 99, this.nGameCost);
+											}
 											continue;
 										}
 									//-----------------------------
