@@ -302,8 +302,8 @@ namespace TJAPlayer3
 				"To select joystick input method.\n\nON to use buffer input. No lost/lags.\nOFF to use realtime input. It may\n causes lost/lags for input.\n Moreover, input frequency is\n synchronized with FPS." );
 			this.list項目リスト.Add( this.iSystemBufferedInput );
 			this.iLogOutputLog = new CItemToggle( "TraceLog", TJAPlayer3.ConfigIni.bログ出力,
-				"Traceログ出力：\nDTXManiaLog.txt にログを出力します。\n変更した場合は、DTXMania の再起動\n後に有効となります。",
-				"Turn ON to put debug log to\n DTXManiaLog.txt\nTo take it effective, you need to\n re-open DTXMania." );
+				"Traceログ出力：\nTJAPlayer3.log にログを出力します。\n変更した場合は、DTXMania の再起動\n後に有効となります。",
+				"Turn ON to put debug log to\n TJAPlayer3.log\nTo take it effective, you need to\n re-open TJAPlayer3.");
 			this.list項目リスト.Add( this.iLogOutputLog );
 
 			// #24820 2013.1.3 yyagi

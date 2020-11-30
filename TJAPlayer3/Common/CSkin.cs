@@ -721,7 +721,7 @@ namespace TJAPlayer3
             this.soundService = new Cシステムサウンド(@"Sounds\Service.ogg", false, false, false, ESoundGroup.SoundEffect);
             this.CoinPrompt = new Cシステムサウンド(@"Sounds\CoinPrompt.ogg", false, false, true, ESoundGroup.Voice);
 
-            this.soundTitle_R1_BGM = new Cシステムサウンド(@"Sounds\Title\routine1\BGM.ogg", true, false, false, ESoundGroup.SoundEffect);
+            this.soundTitle_R1_BGM = new Cシステムサウンド(@"Sounds\Title\routine1\BGM.ogg", true, true, false, ESoundGroup.SoundEffect);
             ReloadSkin();
             tReadSkinConfig();
         }

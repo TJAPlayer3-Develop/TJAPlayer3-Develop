@@ -1910,10 +1910,10 @@ for (int i = 0; i < 3; i++) {
 				{
 					int c = (CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ja")? 0 : 1;
 					string[] mes_writeErr = {
-						"DTXManiaLog.txtへの書き込みができませんでした。書き込みできるようにしてから、再度起動してください。",
-						"Failed to write DTXManiaLog.txt. Please set it writable and try again."
+						"TJAPlayer3.logへの書き込みができませんでした。書き込みできるようにしてから、再度起動してください。",
+						"Failed to write TJAPlayer3.log. Please set it writable and try again."
 					};
-					MessageBox.Show( mes_writeErr[c], "DTXMania boot error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+					MessageBox.Show( mes_writeErr[c], "TJAPlayer3 boot error", MessageBoxButtons.OK, MessageBoxIcon.Error );
 					Environment.Exit(1);
 				}
 			}

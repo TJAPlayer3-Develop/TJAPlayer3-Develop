@@ -319,8 +319,8 @@ namespace TJAPlayer3
             // 縁取りの縁のサイズは、とりあえずフォントの大きさの1/4とする
             //int nEdgePt = (bEdge)? _pt / 4 : 0;
             //int nEdgePt = (bEdge) ? (_pt / 3) : 0; // 縁取りが少なすぎるという意見が多かったため変更。 (AioiLight)
-            if (edgeRatio == -1) edgeRatio = TJAPlayer3.Skin.Font_Edge_Ratio;
-            int nEdgePt = (bEdge) ? (10 * _pt / edgeRatio) : 0; //SkinConfigにて設定可能に(rhimm)
+            int nEdgeRatio = (edgeRatio == -1) ? TJAPlayer3.Skin.Font_Edge_Ratio : edgeRatio;
+            int nEdgePt = (bEdge) ? (10 * _pt / nEdgeRatio) : 0; //SkinConfigにて設定可能に(rhimm)
 
             // 描画サイズを測定する
             Size stringSize = System.Windows.Forms.TextRenderer.MeasureText(drawstr, this._font, new Size(int.MaxValue, int.MaxValue),
