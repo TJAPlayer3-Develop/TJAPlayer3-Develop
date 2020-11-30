@@ -179,8 +179,10 @@ namespace TJAPlayer3
 				{
 					if ( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int) Key.Escape ))
                     {
-						TJAPlayer3.Skin.sound決定音.t再生する();
-						return (int)E戻り値.EXIT;
+						TJAPlayer3.Skin.sound取消音.t再生する();
+						this.n現在のカーソル行 = (int)E戻り値.EXIT - 1;
+						this.actFO.tフェードアウト開始();
+						base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
 					}
 
 					this.ctキー反復用.Up.tキー反復( TJAPlayer3.Input管理.Keyboard.bキーが押されている( (int)SlimDX.DirectInput.Key.UpArrow ), new CCounter.DGキー処理( this.tカーソルを上へ移動する ) );
@@ -232,8 +234,9 @@ namespace TJAPlayer3
 						}
 						else if( this.n現在のカーソル行 == (int)E戻り値.EXIT - 1 )
 						{
-							TJAPlayer3.Skin.sound決定音.t再生する();
-							return (int)E戻り値.EXIT;
+							TJAPlayer3.Skin.sound取消音.t再生する();
+							this.actFO.tフェードアウト開始();
+							base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
 						}
 					}
 					//					if ( CDTXMania.Input管理.Keyboard.bキーが押された( (int) Key.Space ) )
