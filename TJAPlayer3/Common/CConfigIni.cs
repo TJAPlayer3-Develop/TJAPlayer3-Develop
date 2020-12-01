@@ -738,8 +738,10 @@ namespace TJAPlayer3
         public int n両手判定の待ち時間;
         public int nBranchAnime;
 		public int nGameCost;
+		public bool bStopTimerByDefault;
 
-        public bool bJudgeCountDisplay;
+
+		public bool bJudgeCountDisplay;
 
         // 各画像の表示・非表示設定
         public bool ShowChara;
@@ -1424,6 +1426,7 @@ namespace TJAPlayer3
             MusicPreTimeMs = 1000; // 一秒
             SendDiscordPlayingInformation = true;
 			this.nGameCost = 3;
+			bStopTimerByDefault = false;
             #region[ Ver.K追加 ]
             this.eLaneType = Eレーンタイプ.TypeA;
             this.bDirectShowMode = false;
@@ -1935,6 +1938,9 @@ namespace TJAPlayer3
             sw.WriteLine();
 			sw.WriteLine("; 1プレイのゲームコスト ");
 			sw.WriteLine("GameCost={0}", this.nGameCost);
+			sw.WriteLine();
+			sw.WriteLine("; Whether stop the timer by default(0:OFF, 1:ON) ");
+			sw.WriteLine("StopTimer={0}", this.bStopTimerByDefault? 1 : 0);
 			sw.WriteLine();
 			//sw.WriteLine( "; 選曲画面の初期選択難易度(ベータ版)" );
 			//sw.WriteLine( "DifficultPriority={0}", this.bJudgeCountDisplay ? 1 : 0 );
@@ -2739,6 +2745,10 @@ namespace TJAPlayer3
 											else if (str3.Equals("GameCost"))
 											{
 												this.nGameCost = C変換.n値を文字列から取得して範囲内に丸めて返す(str4, 0, 99, this.nGameCost);
+											}
+											else if (str3.Equals("StopTimer"))
+											{
+												this.bStopTimerByDefault = C変換.bONorOFF(str4[0]);
 											}
 											continue;
 										}

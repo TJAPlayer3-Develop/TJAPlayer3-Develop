@@ -71,7 +71,7 @@ namespace TJAPlayer3
 
 			// #27029 2012.1.5 from: 説明文は最大9行→13行に変更。
 
-			this.iSystemReturnToMenu = new CItemBase( "<< ReturnTo Menu", CItemBase.Eパネル種別.その他,
+			this.iSystemReturnToMenu = new CItemBase( "<< Return To Menu", CItemBase.Eパネル種別.その他,
 				"左側のメニューに戻ります。",
 				"Return to left menu." );
 			this.list項目リスト.Add( this.iSystemReturnToMenu );
@@ -87,7 +87,12 @@ namespace TJAPlayer3
 			//    new string[] { "OFF", "HALF", "FULL" } );
 			//this.list項目リスト.Add( this.iCommonDark );
 
-			this.iTaikoGameCost = new CItemInteger("GameCost", 0, 99, TJAPlayer3.ConfigIni.nGameCost, "1プレイに必要なクレジット数を指定します。");
+			this.iTaikoStopTimerByDefault = new CItemToggle("Stop The Timer", TJAPlayer3.ConfigIni.bStopTimerByDefault,
+			"デフォルトではタイマー停止。\nF8キーを押すとタイマーのオン/オフを切り替えることができます。",
+			"Stop the timer by default.\nYou can still toggle the timer by pressing F8 key.");
+			this.list項目リスト.Add(this.iTaikoStopTimerByDefault);
+
+			this.iTaikoGameCost = new CItemInteger("Game Cost", 0, 99, TJAPlayer3.ConfigIni.nGameCost, "1プレイに必要なクレジット数を指定します。");
 			this.list項目リスト.Add(this.iTaikoGameCost);
 
 			this.iTaikoPlayerCount = new CItemInteger( "プレイ人数", 1, 2, TJAPlayer3.ConfigIni.nPlayerCount,
@@ -2215,6 +2220,7 @@ namespace TJAPlayer3
         private CItemToggle iTaikoBigNotesJudge;
         private CItemInteger iTaikoPlayerCount;
 		private CItemInteger iTaikoGameCost;
+		private CItemToggle iTaikoStopTimerByDefault;
 		CItemToggle ShowChara;
         CItemToggle ShowDancer;
         CItemToggle ShowRunner;
@@ -2388,6 +2394,7 @@ namespace TJAPlayer3
             TJAPlayer3.ConfigIni.nPlayerCount = this.iTaikoPlayerCount.n現在の値;
             TJAPlayer3.ConfigIni.FastRender = this.FastRender.bON;
 			TJAPlayer3.ConfigIni.nGameCost = this.iTaikoGameCost.n現在の値;
+			TJAPlayer3.ConfigIni.bStopTimerByDefault = this.iTaikoStopTimerByDefault.bON;
 		}
 		private void tConfigIniへ記録する_Bass()
 		{

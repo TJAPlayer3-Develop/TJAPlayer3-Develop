@@ -223,6 +223,8 @@ namespace TJAPlayer3
 				this.IsPlayed_pi = new bool[10];
 				for (int i = 0; i < 10; i++) this.IsPlayed_pi[i] = false;
 				this.ctOneCoin = new CCounter(0, 510, 4, TJAPlayer3.Timer);
+				if (TJAPlayer3.ConfigIni.bStopTimerByDefault)
+					ct制限時間.t停止();
 				base.On活性化();
 
                 // Discord Presenceの更新
