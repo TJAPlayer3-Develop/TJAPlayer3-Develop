@@ -2721,15 +2721,15 @@ namespace TJAPlayer3
         #endregion
         #region Balloon
         public int[] Game_Balloon_Combo_X = new int[] { 253, 253 };
-        public int[] Game_Balloon_Combo_Y = new int[] { -11, 498 };
-        public int[] Game_Balloon_Combo_Number_X = new int[] { 312, 312 };
-        public int[] Game_Balloon_Combo_Number_Y = new int[] { 46, 598 };
-        public int[] Game_Balloon_Combo_Number_Ex_X = new int[] { 335, 335 };
-        public int[] Game_Balloon_Combo_Number_Ex_Y = new int[] { 46, 598 };
-        public int[] Game_Balloon_Combo_Text_X = new int[] { 471, 471 };
-        public int[] Game_Balloon_Combo_Text_Y = new int[] { 55, 561 };
-        public int[] Game_Balloon_Combo_Text_Ex_X = new int[] { 491, 491 };
-        public int[] Game_Balloon_Combo_Text_Ex_Y = new int[] { 55, 561 };
+        public int[] Game_Balloon_Combo_Y = new int[] { -11, 544 };
+        public int[] Game_Balloon_Combo_Number_X = new int[] { 257, 257 };
+        public int[] Game_Balloon_Combo_Number_Y = new int[] { 54, 609 };
+        public int[] Game_Balloon_Combo_Number_Ex_X = new int[] { 297, 297 };
+        public int[] Game_Balloon_Combo_Number_Ex_Y = new int[] { 54, 609 };
+        public int[] Game_Balloon_Combo_Text_X = new int[] { 442, 442 };
+        public int[] Game_Balloon_Combo_Text_Y = new int[] { 85, 640 };
+        public int[] Game_Balloon_Combo_Text_Ex_X = new int[] { 444, 444 };
+        public int[] Game_Balloon_Combo_Text_Ex_Y = new int[] { 85, 640 };
 
         public int[] Game_Balloon_Balloon_X = new int[] { 382, 382 };
         public int[] Game_Balloon_Balloon_Y = new int[] { 115, 290 };
@@ -2739,10 +2739,10 @@ namespace TJAPlayer3
         public int[] Game_Balloon_Balloon_Number_Y = new int[] { 187, 373 };
         public int[] Game_Balloon_Roll_Frame_X = new int[] { 218, 218 };
         public int[] Game_Balloon_Roll_Frame_Y = new int[] { -3, 514 };
-        public int[] Game_Balloon_Roll_Number_X = new int[] { 392, 392 };
+        public int[] Game_Balloon_Roll_Number_X = new int[] { 382, 382 };
         public int[] Game_Balloon_Roll_Number_Y = new int[] { 128, 639 };
-        public int[] Game_Balloon_Number_Size = new int[] { 62, 80 };
-        public int Game_Balloon_Number_Padding = 60;
+        public int[] Game_Balloon_Number_Size = new int[] { 63, 75 };
+        public int Game_Balloon_Number_Padding = 55;
         public float Game_Balloon_Roll_Number_Scale = 1.000f;
         public float Game_Balloon_Balloon_Number_Scale = 0.879f;
         #endregion

@@ -1066,9 +1066,12 @@ namespace TJAPlayer3
 				{
 					this.actRoll.b表示[nPlayer] = true;
 					this.n現在の連打数[nPlayer] = 0;
-					this.actRoll.t枠表示時間延長(nPlayer);
+					this.actRoll.t枠表示時間延長(nPlayer, true);
 				}
-				this.actRoll.t枠表示時間延長(nPlayer);
+				else
+				{
+					this.actRoll.t枠表示時間延長(nPlayer, false);
+				}
 				this.b連打中[nPlayer] = true;
 				if (this.actRoll.ct連打アニメ[nPlayer].b終了値に達してない)
 				{
@@ -1384,8 +1387,11 @@ namespace TJAPlayer3
 							else
 							{
 								this.eRollState = E連打State.roll;
-								this.tRollProcess(pChip, (CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0)), 1, 0, 0, nPlayer);
+								this.tRollProcess(pChip, (CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0)), 1, nNowInput, 0, nPlayer);
 							}
+
+							if (TJAPlayer3.stage演奏ドラム画面.actPlayInfo.dbBPM < 0 && (TJAPlayer3.ConfigIni.eScrollMode == EScrollMode.BMSCROLL || TJAPlayer3.ConfigIni.eScrollMode == EScrollMode.HBSCROLL))
+								pChip.fBMSCROLLTime -= TJAPlayer3.stage演奏ドラム画面.actPlayInfo.dbBPM * -0.05;
 
 							//if ((int)CSound管理.rc演奏用タイマ.n現在時刻ms >= pChip.nノーツ終了時刻ms)
 							//{
