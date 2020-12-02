@@ -51,9 +51,9 @@ namespace TJAPlayer3
                 {
                     if (TJAPlayer3.stage演奏ドラム画面.actGauge.db現在のゲージ値[i] >= 80)
                     {
-                        if (TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Miss == 0)
+                        if (TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない[i].Miss == 0)
                         {
-                            if (TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Great == 0)
+                            if (TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない[i].Great == 0)
                                 this.Mode[i] = EndMode.StageDondaFullCombo;
                             else
                                 this.Mode[i] = EndMode.StageFullCombo;
@@ -84,11 +84,17 @@ namespace TJAPlayer3
 
         public override void OnManagedリソースの作成()
         {
-            this.b再生済み = false;
+            this.b再生済み = new bool[2];
+            for (int i = 0; i < 2; i++)
+                this.b再生済み[i] = false;
+            this.soundFullCombo = new CSound[2];
+            this.soundDondaFullCombo = new CSound[2];
             this.soundClear = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Clear.ogg"), ESoundGroup.SoundEffect);
             this.soundFailed = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Failed.ogg"), ESoundGroup.SoundEffect);
-            this.soundFullCombo = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Full combo.ogg"), ESoundGroup.SoundEffect);
-            this.soundDondaFullCombo = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Donda Full Combo.ogg"), ESoundGroup.SoundEffect);
+            this.soundFullCombo[0] = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Full combo.ogg"), ESoundGroup.SoundEffect);
+            this.soundFullCombo[1] = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Full combo 2P.ogg"), ESoundGroup.SoundEffect);
+            this.soundDondaFullCombo[0] = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Donda Full Combo.ogg"), ESoundGroup.SoundEffect);
+            this.soundDondaFullCombo[1] = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Donda Full Combo 2P.ogg"), ESoundGroup.SoundEffect);
             base.OnManagedリソースの作成();
         }
 
@@ -99,9 +105,11 @@ namespace TJAPlayer3
             if (this.soundFailed != null)
                 this.soundFailed.t解放する();
             if (this.soundFullCombo != null)
-                this.soundFullCombo.t解放する();
+                for(int i = 0; i < 2; i++)
+                this.soundFullCombo[i].t解放する();
             if (this.soundDondaFullCombo != null)
-                this.soundDondaFullCombo.t解放する();
+                for (int i = 0; i < 2; i++)
+                    this.soundDondaFullCombo[i].t解放する();
             base.OnManagedリソースの解放();
         }
 
@@ -323,37 +331,37 @@ namespace TJAPlayer3
                     {
                         case EndMode.StageFailed:
                             //this.ct進行メイン.n現在の値 = 18;
-                            if (this.soundFailed != null && !this.b再生済み)
+                            if (this.soundFailed != null && !this.b再生済み[i])
                             {
                                 this.soundFailed.t再生を開始する();
-                                this.b再生済み = true;
+                                this.b再生済み[i] = true;
                             }
                             this.showEndEffect_Failed(i);
                             break;
                         case EndMode.StageCleared:
                             //this.ct進行メイン.n現在の値 = 18;
-                            if (this.soundClear != null && !this.b再生済み)
+                            if (this.soundClear != null && !this.b再生済み[i])
                             {
                                 this.soundClear.t再生を開始する();
-                                this.b再生済み = true;
+                                this.b再生済み[i] = true;
                             }
                             this.showEndEffect_Clear(i);
                             break;
                         case EndMode.StageFullCombo:
                             //this.ct進行メイン.n現在の値 = 18;
-                            if (this.soundFullCombo != null && !this.b再生済み)
+                            if (this.soundFullCombo[i] != null && !this.b再生済み[i])
                             {
-                                this.soundFullCombo.t再生を開始する();
-                                this.b再生済み = true;
+                                this.soundFullCombo[i].t再生を開始する();
+                                this.b再生済み[i] = true;
                             }
                             this.showEndEffect_FullCombo(i);
                             break;
                         case EndMode.StageDondaFullCombo:
                             //this.ct進行メイン.n現在の値 = 18;
-                            if (this.soundDondaFullCombo != null && !this.b再生済み)
+                            if (this.soundDondaFullCombo[i] != null && !this.b再生済み[i])
                             {
-                                this.soundDondaFullCombo.t再生を開始する();
-                                this.b再生済み = true;
+                                this.soundDondaFullCombo[i].t再生を開始する();
+                                this.b再生済み[i] = true;
                             }
                             this.showEndEffect_DondaFullCombo(i);
                             break;
@@ -376,7 +384,7 @@ namespace TJAPlayer3
 
         #region[ private ]
         //-----------------
-        bool b再生済み;
+        bool[] b再生済み;
         bool bリザルトボイス再生済み;
         CCounter ct進行メイン;
         CCounter ctEnd_ClearFailed;
@@ -388,10 +396,10 @@ namespace TJAPlayer3
         //CTexture[] txバチお右_成功 = new CTexture[ 5 ];
         //CTexture tx文字;
         //CTexture tx文字マスク;
-        CSound soundClear;
-        CSound soundFailed;
-        CSound soundFullCombo;
-        CSound soundDondaFullCombo;
+        CSound soundClear,
+               soundFailed;
+        CSound[] soundFullCombo,
+                 soundDondaFullCombo;
         EndMode[] Mode;
         enum EndMode
         {
