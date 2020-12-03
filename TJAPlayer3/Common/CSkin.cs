@@ -2564,10 +2564,10 @@ namespace TJAPlayer3
         public int SongSelect_Title_Y = 0;
         public int Difficulty_Title_X = 0;
         public int Difficulty_Title_Y = 0;
-        public int[] SongSelect_NamePlate_X = new int[] { 2, 945 };
+        public int[] SongSelect_NamePlate_X = new int[] { 2, 1015 };
         public int[] SongSelect_NamePlate_Y = new int[] { 610, 610 };
-        public int[] SongSelect_Auto_X = new int[] { 60, 950 };
-        public int[] SongSelect_Auto_Y = new int[] { 650, 650 };
+        public int[] SongSelect_Auto_X = new int[] { 33, 1046 };
+        public int[] SongSelect_Auto_Y = new int[] { 674, 674 };
         public Color SongSelect_ForeColor_JPOP = ColorTranslator.FromHtml("#FFFFFF");
         public Color SongSelect_ForeColor_Anime = ColorTranslator.FromHtml("#FFFFFF");
         public Color SongSelect_ForeColor_VOCALOID = ColorTranslator.FromHtml("#FFFFFF");
@@ -2660,7 +2660,7 @@ namespace TJAPlayer3
         #endregion
         #region CourseSymbol
         public int[] Game_CourseSymbol_X = new int[] { 28, 28 };
-        public int[] Game_CourseSymbol_Y = new int[] { 232, 396 };
+        public int[] Game_CourseSymbol_Y = new int[] { 232, 426 };
         #endregion
         #region PanelFont
         public int Game_MusicName_X = 1260;
@@ -2694,8 +2694,8 @@ namespace TJAPlayer3
         public int[] Game_Score_Size = new int[] { 35, 35 };
         #endregion
         #region Taiko
-        public int[] Game_Taiko_NamePlate_X = new int[] { -25, -25 };
-        public int[] Game_Taiko_NamePlate_Y = new int[] { 286, 366 };
+        public int[] Game_Taiko_NamePlate_X = new int[] { -23, -23 };
+        public int[] Game_Taiko_NamePlate_Y = new int[] { 286, 360 };
         public int[] Game_Taiko_PlayerNumber_X = new int[] { 4, 4 };
         public int[] Game_Taiko_PlayerNumber_Y = new int[] { 233, 435 };
         public int[] Game_Taiko_X = new int[] { 207, 207 };

@@ -721,6 +721,8 @@ namespace TJAPlayer3
 		protected CSound soundRed;
 		protected CSound soundBlue;
 		protected CSound soundAdlib;
+		protected CSound soundRoll1P,
+						 soundRoll2P;
 		public bool bDoublePlay; // 2016.08.21 kairera0467 表示だけ。
 		protected Stopwatch sw;     // 2011.6.13 最適化検討用のストップウォッチ
 		private int ListDan_Number;
@@ -1067,6 +1069,10 @@ namespace TJAPlayer3
 					this.actRoll.b表示[nPlayer] = true;
 					this.n現在の連打数[nPlayer] = 0;
 					this.actRoll.t枠表示時間延長(nPlayer, true);
+					if(nPlayer == 2)
+						this.soundRoll2P.t再生を開始する();
+					else
+						this.soundRoll1P.t再生を開始する();
 				}
 				else
 				{

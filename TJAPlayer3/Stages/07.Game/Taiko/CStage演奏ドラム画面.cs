@@ -336,6 +336,8 @@ namespace TJAPlayer3
 					this.soundRed = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Taiko\dong.ogg"), ESoundGroup.SoundEffect);
 					this.soundBlue = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Taiko\ka.ogg"), ESoundGroup.SoundEffect);
 					this.soundAdlib = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Taiko\Adlib.ogg"), ESoundGroup.SoundEffect);
+					this.soundRoll1P = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Drumroll.ogg"), ESoundGroup.Voice);
+					this.soundRoll2P = TJAPlayer3.Sound管理.tサウンドを生成する(CSkin.Path(@"Sounds\Drumroll 2P.ogg"), ESoundGroup.Voice);
 				}
 
 				base.OnManagedリソースの作成();
@@ -370,6 +372,10 @@ namespace TJAPlayer3
 					this.soundBlue.t解放する();
 				if (this.soundAdlib != null)
 					this.soundAdlib.t解放する();
+				if (this.soundRoll1P != null)
+					this.soundRoll1P.t解放する();
+				if (this.soundRoll2P != null)
+					this.soundRoll2P.t解放する();
 				base.OnManagedリソースの解放();
 			}
 		}
