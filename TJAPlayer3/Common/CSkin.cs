@@ -44,6 +44,7 @@ namespace TJAPlayer3
         SOUNDCOIN,
         SOUNDSERVICE,
         SOUNDCOINPROMPT,
+        SOUNDERROR,
         Count				// システムサウンド総数の計算用
     }
 
@@ -343,7 +344,8 @@ namespace TJAPlayer3
         public Cシステムサウンド soundSongOption = null;
         public Cシステムサウンド soundCoin = null;
         public Cシステムサウンド soundService = null;
-        public Cシステムサウンド CoinPrompt = null;
+        public Cシステムサウンド soundCoinPrompt = null;
+        public Cシステムサウンド soundError = null;
 
         //public Cシステムサウンド soundRed = null;
         //public Cシステムサウンド soundBlue = null;
@@ -449,7 +451,10 @@ namespace TJAPlayer3
                         return this.soundService;
 
                     case Eシステムサウンド.SOUNDCOINPROMPT:
-                        return this.CoinPrompt;
+                        return this.soundCoinPrompt;
+
+                    case Eシステムサウンド.SOUNDERROR:
+                        return this.soundError;
                 }
                 throw new IndexOutOfRangeException();
             }
@@ -551,7 +556,10 @@ namespace TJAPlayer3
                         return this.soundService;
 
                     case 28:
-                        return this.CoinPrompt;
+                        return this.soundCoinPrompt;
+
+                    case 29:
+                        return this.soundError;
                 }
                 throw new IndexOutOfRangeException();
             }
@@ -719,7 +727,8 @@ namespace TJAPlayer3
             this.soundSongOption = new Cシステムサウンド(@"Sounds\Song_Option.ogg", false, false, true, ESoundGroup.Voice);
             this.soundCoin = new Cシステムサウンド(@"Sounds\Coin.ogg", false, false, false, ESoundGroup.SoundEffect);
             this.soundService = new Cシステムサウンド(@"Sounds\Service.ogg", false, false, false, ESoundGroup.SoundEffect);
-            this.CoinPrompt = new Cシステムサウンド(@"Sounds\CoinPrompt.ogg", false, false, true, ESoundGroup.Voice);
+            this.soundCoinPrompt = new Cシステムサウンド(@"Sounds\CoinPrompt.ogg", false, false, true, ESoundGroup.Voice);
+            this.soundError = new Cシステムサウンド(@"Sounds\Error.ogg", false, false, false, ESoundGroup.SoundEffect);
 
             this.soundTitle_R1_BGM = new Cシステムサウンド(@"Sounds\Title\routine1\BGM.ogg", true, true, false, ESoundGroup.SoundEffect);
             ReloadSkin();

@@ -222,9 +222,9 @@ namespace TJAPlayer3
 							}
                             else
                             {
-								if (TJAPlayer3.Skin.CoinPrompt.b再生中)
-									TJAPlayer3.Skin.CoinPrompt.t停止する();
-								TJAPlayer3.Skin.CoinPrompt.t再生する();
+								if (TJAPlayer3.Skin.soundCoinPrompt.b再生中)
+									TJAPlayer3.Skin.soundCoinPrompt.t停止する();
+								TJAPlayer3.Skin.soundCoinPrompt.t再生する();
 							}
 						}
 						else if (this.n現在のカーソル行 == (int)E戻り値.CONFIG - 1)

@@ -2728,8 +2728,11 @@ namespace TJAPlayer3
 
 				if (keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F4))
 				{
-					TJAPlayer3.ConfigIni.bJudgeCountDisplay = !TJAPlayer3.ConfigIni.bJudgeCountDisplay;
-					TJAPlayer3.Skin.sound変更音.t再生する();
+					if (TJAPlayer3.ConfigIni.nPlayerCount == 1 && TJAPlayer3.stage選曲.n確定された曲の難易度 != (int)Difficulty.Dan && TJAPlayer3.stage選曲.n確定された曲の難易度 != (int)Difficulty.Tower)
+					{
+						TJAPlayer3.ConfigIni.bJudgeCountDisplay = !TJAPlayer3.ConfigIni.bJudgeCountDisplay;
+						TJAPlayer3.Skin.sound変更音.t再生する();
+					}
 				}
 				else if (keyboard.bキーが押された((int)SlimDX.DirectInput.Key.F5))
 				{
@@ -4132,6 +4135,7 @@ namespace TJAPlayer3
 		public void t演奏やりなおし()
 		{
 			TJAPlayer3.DTX.t全チップの再生停止とミキサーからの削除();
+			TJAPlayer3.DTX.t太鼓チップのランダム化(TJAPlayer3.ConfigIni.eRandom.Taiko);
 			this.t数値の初期化(true, true);
 			this.actAVI.tReset();
 			this.t演奏位置の変更(0, 0);

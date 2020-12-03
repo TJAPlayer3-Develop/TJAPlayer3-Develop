@@ -2206,7 +2206,7 @@ namespace TJAPlayer3
 
 		private void t進行描画_リアルタイム判定数表示()
 		{
-			if (TJAPlayer3.ConfigIni.nPlayerCount == 1 && TJAPlayer3.ConfigIni.bJudgeCountDisplay)
+			if (TJAPlayer3.ConfigIni.bJudgeCountDisplay && TJAPlayer3.ConfigIni.nPlayerCount == 1 && TJAPlayer3.stage選曲.n確定された曲の難易度 != (int)Difficulty.Dan && TJAPlayer3.stage選曲.n確定された曲の難易度 != (int)Difficulty.Tower)
 			{
 				//ボードの横幅は333px
 				//数字フォントの小さいほうはリザルトのものと同じ。
