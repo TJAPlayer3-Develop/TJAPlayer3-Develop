@@ -1548,7 +1548,7 @@ for (int i = 0; i < 3; i++) {
 							TJAPlayer3.Tx.Title_NetworkStatus[1].t2D描画(app.Device, 0, 0);
 							Trace.TraceInformation("InternetGetConnectedState error: " + e.ToString());
 						}
-						if (r現在のステージ.eステージID != CStage.Eステージ.曲読み込み && r現在のステージ.eステージID != CStage.Eステージ.演奏)
+						if (r現在のステージ.eステージID != CStage.Eステージ.曲読み込み && r現在のステージ.eステージID != CStage.Eステージ.演奏 && r現在のステージ.eステージID != CStage.Eステージ.選曲)
 						{
 							if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)Key.Insert))
 							{
