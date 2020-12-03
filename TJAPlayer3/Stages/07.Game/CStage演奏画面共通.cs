@@ -1069,7 +1069,7 @@ namespace TJAPlayer3
 					this.actRoll.b表示[nPlayer] = true;
 					this.n現在の連打数[nPlayer] = 0;
 					this.actRoll.t枠表示時間延長(nPlayer, true);
-					if(TJAPlayer3.stage選曲.n確定された曲の難易度 == (int)Difficulty.Easy || TJAPlayer3.stage選曲.n確定された曲の難易度 == (int)Difficulty.Normal)
+					if(TJAPlayer3.stage選曲.n確定された曲の難易度 == (int)Difficulty.Easy)
                     {
 						if (nPlayer == 2)
 							this.soundRoll2P.t再生を開始する();
