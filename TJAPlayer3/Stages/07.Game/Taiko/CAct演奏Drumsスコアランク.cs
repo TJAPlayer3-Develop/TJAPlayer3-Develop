@@ -11,7 +11,7 @@ namespace TJAPlayer3
     {
         public override void On活性化()
         {
-            public double RollTimems = 0;
+            double RollTimems = 0;
             foreach (var chip in TJAPlayer3.DTX.listChip)
             {
                 if (chip.nチャンネル番号 == 21 || chip.nチャンネル番号 == 22)
