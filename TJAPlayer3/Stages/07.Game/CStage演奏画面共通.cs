@@ -1213,6 +1213,13 @@ namespace TJAPlayer3
 				if (pChip.nRollCount == 0)
 				{
 					this.n風船残り[player] = pChip.nBalloon;
+					if (TJAPlayer3.stage選曲.n確定された曲の難易度 == (int)Difficulty.Easy)
+					{
+						if (player == 2)
+							this.soundRoll2P.t再生を開始する();
+						else
+							this.soundRoll1P.t再生を開始する();
+					}
 				}
 
 				this.b連打中[player] = true;

@@ -347,7 +347,7 @@ namespace TJAPlayer3
 
             for (int i = 0; i < TJAPlayer3.ConfigIni.nPlayerCount; i++)
             {
-                if (TJAPlayer3.stage演奏ドラム画面.bUseBranch[i] == true)
+                if (TJAPlayer3.stage演奏ドラム画面.bUseBranch[i])
                 {
                     if (TJAPlayer3.ConfigIni.nBranchAnime == 0)
                     {
@@ -547,15 +547,15 @@ namespace TJAPlayer3
                             {
                                 case CDTX.ECourse.eNormal:
                                     TJAPlayer3.Tx.Lane_Text[0].Opacity = 255;
-                                    TJAPlayer3.Tx.Lane_Text[0].t2D描画(TJAPlayer3.app.Device, 333, 192);
+                                    TJAPlayer3.Tx.Lane_Text[0].t2D描画(TJAPlayer3.app.Device, 333, TJAPlayer3.Skin.nScrollFieldY[i]);
                                     break;
                                 case CDTX.ECourse.eExpert:
                                     TJAPlayer3.Tx.Lane_Text[1].Opacity = 255;
-                                    TJAPlayer3.Tx.Lane_Text[1].t2D描画(TJAPlayer3.app.Device, 333, 192);
+                                    TJAPlayer3.Tx.Lane_Text[1].t2D描画(TJAPlayer3.app.Device, 333, TJAPlayer3.Skin.nScrollFieldY[i]);
                                     break;
                                 case CDTX.ECourse.eMaster:
                                     TJAPlayer3.Tx.Lane_Text[2].Opacity = 255;
-                                    TJAPlayer3.Tx.Lane_Text[2].t2D描画(TJAPlayer3.app.Device, 333, 192);
+                                    TJAPlayer3.Tx.Lane_Text[2].t2D描画(TJAPlayer3.app.Device, 333, TJAPlayer3.Skin.nScrollFieldY[i]);
                                     break;
                             }
                         }
