@@ -2820,23 +2820,25 @@ namespace TJAPlayer3
         public Color Game_DanC_Title_BackColor = ColorTranslator.FromHtml("#000000");
         public Color Game_DanC_SubTitle_ForeColor = ColorTranslator.FromHtml("#FFFFFF");
         public Color Game_DanC_SubTitle_BackColor = ColorTranslator.FromHtml("#000000");
-        public int[] Game_DanC_X = new int[] { 302, 302, 302 };
-        public int[] Game_DanC_Y = new int[] { 473, 419, 365 };
-        public int[] Game_DanC_Size = new int[] { 956, 92 };
-        public int Game_DanC_Padding = 5;
-        public int[] Game_DanC_Offset = new int[] { 15, 17 };
-        public int[] Game_DanC_Number_Size = new int[] { 50, 62 };
-        public int Game_DanC_Number_Padding = 50;
-        public float Game_DanC_Number_Small_Scale = 0.5f;
-        public int Game_DanC_Number_Small_Padding = 26;
+        public int[] Game_DanC_X = new int[] { 807, 70, 70, 70 }; // 329, 437
+        public int[] Game_DanC_Y = new int[] { 116, 190, 236, 292 };
+        public int[] Game_DanC_Size = new int[] { 1006, 92 };
+        public int Game_DanC_Padding = 9;
+        public int[] Game_DanC_Offset = new int[] { 259, 27 };
+        public int[] Game_DanC_Number_Size = new int[] { 42, 53 };
+        public int[] Game_DanC_Small_Number_Size = new int[] { 20, 25 };
+        public int Game_DanC_Number_Padding = 37;
+        public float Game_DanC_Number_Small_Scale = 0.92f;
+        public int Game_DanC_Number_Small_Padding = 37;
         public int[] Game_DanC_Number_XY = new int[] { 218, 610 };
-        public int[] Game_DanC_Number_Small_Number_Offset = new int[] { 178, 43 };
-        public int[] Game_DanC_ExamType_Size = new int[] { 100, 36 };
+        public int[] Game_DanC_Number_Small_Number_Offset = new int[] { 240, 38 };
+        public int[] Game_DanC_ExamType_Size = new int[] { 247, 28 };
         public int[] Game_DanC_ExamRange_Size = new int[] { 60, 36 };
         public int Game_DanC_ExamRange_Padding = 46;
         public int[] Game_DanC_Percent_Hit_Score_Padding = new int[] { 20, 20, 20 };
         public int[] Game_DanC_ExamUnit_Size = new int[] { 30, 36 };
-        public int[] Game_DanC_Exam_Offset = new int[] { 932, 17 };
+        public float Game_DanC_Exam_Number_Scale = 0.47f;
+        public int[] Game_DanC_Exam_Offset = new int[] { 222, 27 };
         public int[] Game_DanC_Dan_Plate = new int[] { 149, 416 };
         #endregion
         #endregion

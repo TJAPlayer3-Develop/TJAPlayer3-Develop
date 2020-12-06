@@ -483,6 +483,16 @@ namespace TJAPlayer3
                     Gauge_Rainbow[i] = TxC(GAME + GAUGE + @"Rainbow\" + i.ToString() + ".png");
                 }
             }
+                        Gauge_Dan = new CTexture[4];
+            Gauge_Dan[0] = TxC(GAME + GAUGE + @"1P_Dan_Base.png");
+            Gauge_Dan[1] = TxC(GAME + GAUGE + @"1P_Dan.png");
+            Gauge_Dan[2] = TxC(GAME + GAUGE + @"1P_Dan_Clear_Base.png");
+            Gauge_Dan[3] = TxC(GAME + GAUGE + @"1P_Dan_Clear.png");
+            Gauge_Soul = TxC(GAME + GAUGE + @"Soul.png");
+            Gauge_Soul_Fire = TxC(GAME + GAUGE + @"Fire.png");
+            Gauge_Soul_Explosion = new CTexture[2];
+            Gauge_Soul_Explosion[0] = TxC(GAME + GAUGE + @"1P_Explosion.png");
+            Gauge_Soul_Explosion[1] = TxC(GAME + GAUGE + @"2P_Explosion.png");
             Gauge_Soul = TxC(GAME + GAUGE + @"Soul.png");
             Gauge_Soul_Fire = TxC(GAME + GAUGE + @"Fire.png");
             Gauge_Soul_Explosion = new CTexture[2];
@@ -613,8 +623,10 @@ namespace TJAPlayer3
                 DanC_Gauge[i] = TxC(GAME + DANC + @"Gauge_" + type[i] + ".png");
             }
             DanC_Base = TxC(GAME + DANC + @"Base.png");
+            DanC_Gauge_Base = TxC(GAME + DANC + @"Gauge_Base.png");
             DanC_Failed = TxC(GAME + DANC + @"Failed.png");
             DanC_Number = TxC(GAME + DANC + @"Number.png");
+            DanC_Small_Number = TxC(GAME + DANC + @"Small_Number.png");
             DanC_ExamType = TxC(GAME + DANC + @"ExamType.png");
             DanC_ExamRange = TxC(GAME + DANC + @"ExamRange.png");
             DanC_ExamUnit = TxC(GAME + DANC + @"ExamUnit.png");
@@ -828,6 +840,7 @@ namespace TJAPlayer3
             Gauge_Soul_Explosion;
         public CTexture Gauge_Soul,
             Gauge_Soul_Fire;
+        public CTexture[] Gauge_Dan;
         #endregion
         #region 吹き出し
         public CTexture[] Balloon_Combo;
@@ -890,9 +903,11 @@ namespace TJAPlayer3
         #region DanC
         public CTexture DanC_Background;
         public CTexture[] DanC_Gauge;
+        public CTexture DanC_Gauge_Base;
         public CTexture DanC_Base;
         public CTexture DanC_Failed;
         public CTexture DanC_Number,
+            DanC_Small_Number,
             DanC_ExamType,
             DanC_ExamRange,
             DanC_ExamUnit;
